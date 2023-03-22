@@ -23,6 +23,7 @@ public class MemberDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+
 	   public void insert(MemberDto memberDto) {
 		      String sql = "insert into member("
 		            + "member_id, member_pw, member_name, "
@@ -41,6 +42,8 @@ public class MemberDao {
 		      };
 		      jdbcTemplate.update(sql, param);         
 		      }
+
+
 
 	
 	//조회를 위한 RowMapper 구현 (형석)
@@ -104,7 +107,7 @@ public class MemberDao {
 //		public String findId(MemberDto memberDto) {
 //			
 //		}
-		// 관리자용 회원정보 변경
+		// 관리자용 회원정보 변경(성현)
 		public boolean changeInformationByAdmin (MemberDto memberDto) {
 			String sql = "update member set "
 					+ "member_email=?, member_tel=?, member_nick=?, "
