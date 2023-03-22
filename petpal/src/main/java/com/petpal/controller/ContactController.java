@@ -18,12 +18,19 @@ public class ContactController {
 	@Autowired
 	private BoardDao boardDao;
 	
+	@GetMapping("/notice/write")
+	public String write() {
+		return "/WEB-INF/views/contact/write.jsp";
+	}
+	
+	
 	@GetMapping("/notice")
 	public String notice(Model model,@ModelAttribute("vo") PaginationVO vo) {
 		// 전체 게시물 개수
 		int totalPageCnt = boardDao.totalPageCnt();
 		vo.setCount(totalPageCnt);
 		model.addAttribute("noticeList",boardDao.selectList(vo));
+	
 		
 	return "/WEB-INF/views/contact/notice.jsp";
 	}
