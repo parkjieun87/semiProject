@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class ProductDto {
 	//상품(product) 필드
 	private int productNo; // 상품번호
-	private int categoryNo; // 카테고리 번호
+	private String categoryCode; // 카테고리코드
 	private String productName; // 상품이름
 	private int productPrice; // 상품가격
 	private int productStock; // 상품수량
