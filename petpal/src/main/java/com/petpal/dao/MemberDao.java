@@ -20,18 +20,17 @@ public class MemberDao {
 	
 	public void insert(MemberDto memberDto) {
 		String sql = "insert into member("
-				+ "member_id, member_pw, member_name"
-				+ "member_email, member_tel, member_nick"
-				+ "adminck, member_regdate, member_post"
+				+ "member_id, member_pw, member_name, "
+				+ "member_email, member_tel, member_nick ,"
+				+ "adminck, member_regdate, member_post, "
 				+ "member_basic_addr, member_detail_addr"
-				+ ")value("
+				+ ")values("
 				+ "?, ?, ?, ?, ?, ?, 0, sysdate, ?, ?, ?"
 				+ ")";
 		Object[] param = {
 				memberDto.getMemberId(), memberDto.getMemberPw(),
 				memberDto.getMemberName(), memberDto.getMemberEmail(),
 				memberDto.getMemberTel(), memberDto.getMemberNick(),
-				memberDto.getAdminCk(), memberDto.getMemberRegdate(),
 				memberDto.getMemberPost(), memberDto.getMemberBasicAddr(),
 				memberDto.getMemberDetailAddr()
 		};
@@ -99,7 +98,7 @@ public class MemberDao {
 //		public String findId(MemberDto memberDto) {
 //			
 //		}
-		// 관리자용 회원정보 변경
+		// 관리자용 회원정보 변경(성현)
 		public boolean changeInformationByAdmin (MemberDto memberDto) {
 			String sql = "update member set "
 					+ "member_email=?, member_tel=?, member_nick=?, "
