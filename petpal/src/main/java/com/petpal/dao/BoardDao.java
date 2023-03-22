@@ -5,15 +5,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.BoardDto;
+import com.petpal.vo.PaginationVO;
 
 @Repository
 public class BoardDao {
 	
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	private RowMapper<BoardDto> mapper = new RowMapper<BoardDto>() {
@@ -33,9 +36,33 @@ public class BoardDao {
 	};
 	
 	// 공지사항 리스트
-	public List<BoardDto> selectList(){
-		String sql = "select * from notice_board order by board_no desc";
-		return jdbcTemplate.query(sql,mapper);
+	public List<BoardDto> selectList(PaginationVO vo){
+		String sql = "select * from("
+				+ "select rownum rn, TMP.* from("
+				+ "select * from notice_board order by board_no desc"
+				+" )TMP"
+				+ ")where rn between ? and ?";
+		
+		Object[] param = {vo.getBegin(), vo.getEnd()};
+				
+		return jdbcTemplate.query(sql,mapper,param);
+	}
+	
+	// 공지사항 상세 조회
+	public BoardDto selectOne(int boardNo) {
+		String sql = "select * from notice_board where board_no = ?";
+		Object[] param = {boardNo};
+		
+		List<BoardDto> list = jdbcTemplate.query(sql,mapper,param);
+		
+		return list.isEmpty() ? null : list.get(0);
+	}
+	
+	// 전체 게시물 개수 
+	public int totalPageCnt() {
+		String sql = "select count(*) from notice_board";
+		
+		return jdbcTemplate.queryForObject(sql,int.class);
 	}
 	
 	
