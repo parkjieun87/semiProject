@@ -51,10 +51,20 @@
 		<input type="email" name="memberEmail" class="form-input w-100">
 	</div>
 	<div class="row">
-		<label>전화번호<i class="fa-solid fa-asterisk"></i></label>
-		<input type="tel" name="memberTel" class="form-input w-100" placeholder="대시(-)를 제외하고 작성">
-		<div class="invalid-message">올바른 휴대전화번호가 아닙니다</div>
+		<label>휴대폰 번호<i class="fa-solid fa-asterisk"></i></label>
 	</div>
+	<div class="row">
+		<input type="tel" name="memberTel" class="form-input w-60" id="phone"placeholder="대시(-)를 제외하고 작성">
+		<div class="invalid-message">올바른 휴대전화번호가 아닙니다</div>
+		<button type="button" class="form-btn positive w-30 ms-50" id="phoneChk">번호인증</button>
+	</div>
+	<div class="row">
+	<input id="phone2" type="text"  class="form-input w-100"  name="phone2" placeholder="인증번호 입력" disabled required/>
+			<span id="phoneChk2" class="doubleChk">본인인증</span>
+			<span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
+	</div>
+	
+
 	
 	<div class="row">
 		<label>닉네임<i class="fa-solid fa-asterisk"></i></label>
@@ -93,27 +103,9 @@
 
 
 
-
 </form>
 
-<tr class="mobileNo">
-	<th>
-		<label for="phone">휴대폰 번호</label>
-	</th>
-	<td>
-		<p>
-			<input id="phone" type="text" name="phone" title="전화번호 입력" required/>
-			<span id="phoneChk" class="doubleChk">인증번호 보내기</span><br/>
-			<input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled required/>
-			<span id="phoneChk2" class="doubleChk">본인인증</span>
-			<span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
-			<input type="hidden" id="phoneDoubleChk"/>
-		</p>
-		<p class="tip">
-			최초 가입 시에만 사용하고 있습니다. 따로 저장되지 않습니다.(번호만 입력해주세요.)
-		</p>
-	</td>
-</tr>
+
 
 <script>
 //휴대폰 번호 인증
