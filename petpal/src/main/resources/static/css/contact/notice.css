@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+   .row-menu{
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+
+       }
+
+       .header_search{
+    
+    top: 60px;
+    left: 370px;
+    text-align: center;
+    width: 380px;
+}
+.top_search{
+    position: relative;
+    display: inline-block;
+    width: 210px;
+    height: 40px;
+    padding: 0 45px 0 15px;
+    border: 1px solid #FFA751;
+    background: #fff;
+    
+}
+
+.input_search{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    font-size: 13px;
+    color: #555;
+    text-align: left;
+    outline: none;
+   
+}
+
+.top_search .btn_top_search{
+    
+    top: 50%;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    transform: translateY(-50%);
+}
+
+button{
+    position: absolute;
+    background: none;
+    outline: none;
+    border: 0;
+    margin: 0;
+
+}
+
+table > tbody > tr > td{
+    padding: 16px 10px;
+    border-bottom: 1px solid #ddd;
+    line-height: 20px;
+}
+
+.text-center{
+    text-align: center !important;
+    color: #828C94;
+    
+}
+
+
+.row table{
+    border-top: 1px solid #666;
+}
+.row-menu-title > h3{
+    margin-left: 20px;
+}
+
+.page_wrap {
+	text-align:center;
+	font-size:0;
+ }
+.page_nation {
+	display:inline-block;
+}
+.page_nation .none {
+	display:none;
+}
+.page_nation a {
+	display:block;
+	margin:0 3px;
+	float:left;
+	border:1px solid #e6e6e6;
+	width:28px;
+	height:28px;
+	line-height:28px;
+	text-align:center;
+	background-color:#fff;
+	font-size:13px;
+	color:#999999;
+	text-decoration:none;
+}
+.page_nation .arrow {
+	border:1px solid #ccc;
+}
+.page_nation .pprev {
+	background:#f8f8f8 url('/static/image/page_pprev.png') no-repeat center center;
+	margin-left:0;
+}
+.page_nation .prev {
+	background:#f8f8f8 url('/static/image/page_prev.png') no-repeat center center;
+	margin-right:7px;
+}
+.page_nation .next {
+	background:#f8f8f8 url('/static/image/page_next.png') no-repeat center center;
+	margin-left:7px;
+}
+.page_nation .nnext {
+	background:#f8f8f8 url('/static/image/page_nnext.png') no-repeat center center;
+	margin-right:0;
+}
+.page_nation a.active {
+	background-color:#42454c;
+	color:#fff;
+	border:1px solid #42454c;
+}

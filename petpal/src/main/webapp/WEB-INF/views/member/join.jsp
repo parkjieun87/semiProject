@@ -8,17 +8,13 @@
 		height:300px;
 	}
 	.info-window {
-		
 	}
 </style>
 <!-- kakao map cdn -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9d49f07bfcf20a8d717a28a819c2892b&libraries=services"></script>
 <script type="text/javascript" src="/static/js/member-join-map.js"></script>
 <script type="text/template" id="info-window-template">
-	<div class="info-window p-10">
-		<span class="text">{{text}}</span>
-		<a class="link" href="{{link}}">{{linkText}}</a>
-	</div>
+	
 </script>    
 <!-- 다음 우편 API 사용을 위한 CDN -->
 <script src="https://cdn.jsdelivr.net/gh/hiphop5782/daum-post-api@latest/find-address.min.js"></script>
