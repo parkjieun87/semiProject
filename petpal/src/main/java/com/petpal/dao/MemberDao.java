@@ -99,6 +99,19 @@ public class MemberDao {
 //		public String findId(MemberDto memberDto) {
 //			
 //		}
+		// 관리자용 회원정보 변경
+		public boolean changeInformationByAdmin (MemberDto memberDto) {
+			String sql = "update member set "
+					+ "member_email=?, member_tel=?, member_nick=?, "
+					+ "member_post=?, member_basic_addr=?, member_detail_addr=? "
+					+ "where member_id=?";
+			Object[] param = {
+					memberDto.getMemberEmail(), memberDto.getMemberTel(), memberDto.getMemberNick(),
+					memberDto.getMemberPost(), memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr()
+			};
+			return jdbcTemplate.update(sql, param) > 0;
+			
+		}
 		
 		
 	}
