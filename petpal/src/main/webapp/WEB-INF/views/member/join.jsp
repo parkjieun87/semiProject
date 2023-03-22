@@ -56,6 +56,7 @@
 		<input type="tel" name="memberTel" class="form-input w-100" placeholder="대시(-)를 제외하고 작성">
 		<div class="invalid-message">올바른 휴대전화번호가 아닙니다</div>
 	</div>
+	
 	<div class="row">
 		<label>닉네임<i class="fa-solid fa-asterisk"></i></label>
 		<input type="text" name="memberNick" class="form-input w-100">
