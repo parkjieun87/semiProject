@@ -14,26 +14,26 @@ import com.petpal.dto.MemberDto;
 @RequestMapping("/member")
 public class MemberController {
 
-	@Autowired
-	private MemberDao memberDao;
-	
-	//회원가입 구현 (형석)
-	@GetMapping("/join")
-	public String join() {
-		return "/WEB-INF/views/member/join.jsp";
-	}
+   @Autowired
+   private MemberDao memberDao;
+   
+   //회원가입 구현 (형석)
+   @GetMapping("/join")
+   public String join() {
+      return "/WEB-INF/views/member/join.jsp";
+   }
 
-	@PostMapping("/join")
-	public String join(@ModelAttribute MemberDto memberDto) {	
-		
-		memberDao.insert(memberDto);
-		return "redirect:joinFinish";
-	}
-	
-	@GetMapping("/joinFinish")
-	public String joinFinish() {
-		return "/WEB-INF/views/member/joinFinish.jsp";
-	}
+   @PostMapping("/join")
+   public String join(@ModelAttribute MemberDto memberDto) {   
+      
+      memberDao.insert(memberDto);
+      return "redirect:joinFinish";
+   }
+   
+   @GetMapping("/joinFinish")
+   public String joinFinish() {
+      return "/WEB-INF/views/member/joinFinish.jsp";
+   }
 
-	
+   
 }
