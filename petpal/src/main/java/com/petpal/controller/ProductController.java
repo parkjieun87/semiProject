@@ -2,10 +2,12 @@ package com.petpal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.petpal.dao.ProductDao;
 import com.petpal.dto.ProductDto;
@@ -36,4 +38,16 @@ public class ProductController {
 	public String list() {
 		return "/WEB-INF/views/product/list.jsp";
 	}
+	
+	@GetMapping("/detail")
+	public String detail(@RequestParam int productNo, Model model) {
+		ProductDto productDto = productDao.selectOne(productNo);
+		int disPrice = productDto.getProductPrice()*(100-productDto.getProductDiscount())/100;
+		model.addAttribute("productDto", productDto);
+		model.addAttribute("disPrice", disPrice);
+		return "/WEB-INF/views/product/detail.jsp";
+		
+	}
+	
+	
 }

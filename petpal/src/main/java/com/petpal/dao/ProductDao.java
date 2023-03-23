@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.ProductDto;
+import com.petpal.vo.PaginationVO;
 
 @Repository
 public class ProductDao {
@@ -34,7 +35,7 @@ public class ProductDao {
 		public ProductDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 			ProductDto productDto = new ProductDto();
 			productDto.setProductNo(rs.getInt("product_no"));
-			productDto.setCategoryCode(rs.getString("category_no"));
+			productDto.setCategoryCode(rs.getString("category_code"));
 			productDto.setProductName(rs.getString("product_name"));
 			productDto.setProductPrice(rs.getInt("product_price"));
 			productDto.setProductStock(rs.getInt("product_stock"));
@@ -46,10 +47,25 @@ public class ProductDao {
 		}
 	};
 	
-	// 상품 조회
-	public List<ProductDto> selectList(){
-		String sql = "select * from product order by product_regdate desc"; 
-		return jdbcTemplate.query(sql, mapper);
+	// 상품 리스트
+	public List<ProductDto> selectList(PaginationVO vo){
+		String sql = "select * from("
+				+ "select rownum rn, TMP.* from("
+				+ "select * from product order by product_regdate desc"
+				+" )TMP"
+				+ ")where rn between ? and ?";
+		
+		Object[] param = {vo.getBegin(), vo.getEnd()};
+				
+		return jdbcTemplate.query(sql,mapper,param);
+	}
+	
+	//상품 조회 by categoryCode
+	
+	public List<ProductDto> selectList(String categoryCode){
+		String sql = "select * from product where category_code=?";
+		Object[] param = {categoryCode};
+		return jdbcTemplate.query(sql, mapper, param);
 	}
 	
 	public ProductDto selectOne(int productNo) {
@@ -77,4 +93,11 @@ public class ProductDao {
 		Object[] param = {productNo};
 		return jdbcTemplate.update(sql, param)>0;
 	}
+	
+	// 전체 상품 개수
+	public int totalProductCnt() {
+		String sql = "select count(*) from product";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+
 }
