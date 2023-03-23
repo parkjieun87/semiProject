@@ -10,10 +10,6 @@
 	<h1>상품 입력 페이지</h1>
 	<form action="insertProcess" method="post">
 		<div>
-		<label>상품번호</label>
-		<input type="text" name="productNo">
-		</div>
-		<div>
 		<label>카테고리코드</label>
 		<input type="text" name="categoryCode">
 		</div>
