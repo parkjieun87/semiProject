@@ -36,4 +36,6 @@ public class ProductController {
 	public String list() {
 		return "/WEB-INF/views/product/list.jsp";
 	}
+	
+	
 }
