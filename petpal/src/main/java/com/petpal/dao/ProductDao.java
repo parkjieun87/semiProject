@@ -47,7 +47,7 @@ public class ProductDao {
 		}
 	};
 	
-	// 상품 조회
+	// 상품 리스트
 	public List<ProductDto> selectList(PaginationVO vo){
 		String sql = "select * from("
 				+ "select rownum rn, TMP.* from("
