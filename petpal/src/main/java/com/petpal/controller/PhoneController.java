@@ -23,7 +23,6 @@ public class PhoneController {
 
 		memberDao.certifiedPhoneNumber(userPhoneNumber,randomNumber);
 		
-		
 		return Integer.toString(randomNumber);
 	}
 
