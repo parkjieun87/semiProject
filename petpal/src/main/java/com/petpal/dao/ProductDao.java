@@ -22,8 +22,9 @@ public class ProductDao {
 		String sql = "insert into product("
 				+ "product_no, category_code, product_name, product_price, product_stock, "
 				+ "product_desc, product_regdate, product_discount, product_views) "
-				+ "values(product_seq.nextval, ?, ?, 0, 0, ?, sysdate, 0, 0)";
-		Object[] param = {productDto.getCategoryCode(), productDto.getProductName(), productDto.getProductDesc()};
+				+ "values(product_seq.nextval, ?, ?, ?, ?, ?, sysdate, ?, 0)";
+		Object[] param = {productDto.getCategoryCode(), productDto.getProductName(), productDto.getProductPrice(),
+									productDto.getProductStock(), productDto.getProductDesc(), productDto.getProductDiscount()};
 		jdbcTemplate.update(sql, param);
 	}
 	
