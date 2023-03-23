@@ -101,8 +101,8 @@
  }
  /* form-btn과 positive가 같이 있으면 */
  .form-btn.positive{
-    background-color: #00cec9;
-    border-color: #00cec9;
+    background-color: #b1b2ff;
+    border-color: #b1b2ff;
     color: white;
  }
  .form-btn.negative{
