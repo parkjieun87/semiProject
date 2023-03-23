@@ -741,12 +741,12 @@
         }
         .valid {
             border-color: forestgreen;
-            background-image: url("image/valid.png");
+            background-image: url("/static/image/valid.png");
         }
 
         .invalid, .invalid2, .invalid3 {
             border-color: red;
-            background-image: url("image/invalid.png");
+            background-image: url("/static/image/invalid.png");
         }
         
         .form-btn.positive[disabled],
