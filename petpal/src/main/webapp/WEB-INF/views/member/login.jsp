@@ -4,20 +4,28 @@
     
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<style>
+	img {
+	  display: block;
+	  margin: auto;
+	}
+</style>
+
 <title>로그인</title>
 
- <div class="container-600">
-        <div class="row center">
-            <form action="login" method="post">
-                <input class="form-input w-50" type="text" name="memberId" required placeholder="아이디"><br>
-                <input class="form-input w-50"type="password" name="memberPw"required placeholder="비밀번호"><br>
-                <button class="form-btn w-50 positive" >로그인</button>
-            </form>
-        </div>
-    </div>
+ <div class ="container-800">
+<img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em">
+<form action="login" method="post" align="center" class="mt-10">
+	<input type="text" name="memberId" class="form-input w-50" required placeholder="아이디"><br><br>
+	<input type="password" name="memberPw" class="form-input w-50"  required placeholder="비밀번호"><br><br>
+	<button class="form-btn positive w-50">로그인</button>
+	
+	<button class= "form-btn neutral w-50" onclick="location.href='find'">아이디가 기억나지 않습니다</button>
+	
+</form>
+</div>
 <div class ="row center" >
 <h4>
- <a href="find">아이디가 기억나지 않습니다.</a></h4>
  </div>
 <%-- 
 	이 페이지에 접근 가능한 방법은 2가지가 있다.
