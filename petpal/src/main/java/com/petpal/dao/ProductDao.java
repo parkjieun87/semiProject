@@ -52,6 +52,14 @@ public class ProductDao {
 		return jdbcTemplate.query(sql, mapper);
 	}
 	
+	//상품 조회 by categoryCode
+	
+	public List<ProductDto> selectList(String categoryCode){
+		String sql = "select * from product where category_code=?";
+		Object[] param = {categoryCode};
+		return jdbcTemplate.query(sql, mapper, param);
+	}
+	
 	public ProductDto selectOne(int productNo) {
 		String sql = "select * from product where product_no=?";
 		Object[] param = {productNo};
