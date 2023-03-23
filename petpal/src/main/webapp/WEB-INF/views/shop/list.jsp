@@ -21,7 +21,7 @@
 			<tbody>
 				 <c:forEach var="productDto" items="${list}">
 				 	<tr>
-					<td>${productDto.productName}</td>
+					<td><a href="/product/detail?productNo=${productDto.productNo}">${productDto.productName}</td>
 					<td>${productDto.productDiscount}</td>
 					<td>${productDto.productPrice}</td>
 					</tr>
