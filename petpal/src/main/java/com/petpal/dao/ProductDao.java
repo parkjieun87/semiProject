@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.ProductDto;
+import com.petpal.vo.PaginationVO;
 
 @Repository
 public class ProductDao {
@@ -47,9 +48,16 @@ public class ProductDao {
 	};
 	
 	// 상품 조회
-	public List<ProductDto> selectList(){
-		String sql = "select * from product order by product_regdate desc"; 
-		return jdbcTemplate.query(sql, mapper);
+	public List<ProductDto> selectList(PaginationVO vo){
+		String sql = "select * from("
+				+ "select rownum rn, TMP.* from("
+				+ "select * from product order by product_regdate desc"
+				+" )TMP"
+				+ ")where rn between ? and ?";
+		
+		Object[] param = {vo.getBegin(), vo.getEnd()};
+				
+		return jdbcTemplate.query(sql,mapper,param);
 	}
 	
 	public ProductDto selectOne(int productNo) {
@@ -77,4 +85,11 @@ public class ProductDao {
 		Object[] param = {productNo};
 		return jdbcTemplate.update(sql, param)>0;
 	}
+	
+	// 전체 상품 개수
+	public int totalProductCnt() {
+		String sql = "select count(*) from product";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+
 }
