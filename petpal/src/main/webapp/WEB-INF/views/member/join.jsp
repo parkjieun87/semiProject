@@ -136,4 +136,5 @@ $("#phoneChk").click(function(){
 });
 
 </script>
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

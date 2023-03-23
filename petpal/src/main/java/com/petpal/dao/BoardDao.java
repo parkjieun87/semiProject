@@ -35,6 +35,14 @@ public class BoardDao {
 		}
 	};
 	
+	// 공지사항 등록
+	public void insert(BoardDto dto) {
+		String sql = "insert into notice_board values(notice_board_seq.nextval,?,?,sysdate)";
+		Object[] param = {dto.getBoardTitle(),dto.getBoardContent()};
+		
+		jdbcTemplate.update(sql,param);
+	}
+	
 	// 공지사항 리스트
 	public List<BoardDto> selectList(PaginationVO vo){
 		String sql = "select * from("

@@ -24,6 +24,7 @@ public class MemberDao {
 	private JdbcTemplate jdbcTemplate;
 	
 
+
 	   public void insert(MemberDto memberDto) {
 		      String sql = "insert into member("
 		            + "member_id, member_pw, member_name, "
@@ -95,18 +96,25 @@ public class MemberDao {
 			return jdbcTemplate.update(sql, param) > 0;//update() 메소드의 반환값이 0보다 크면 true를 반환하고, 그렇지 않으면 false를 반환.
 			//이는 데이터베이스에서 비밀번호 변경 작업이 성공했는지의 여부를 나타낸다.	
 		}
-		
-	//	회원 탈퇴 기능 (형석)
+				
+		//회원 탈퇴 기능 (형석)
 		public boolean delete(String memberId) {
 			String sql = "delete member where member_id = ?";
 			Object[] param = {memberId};
 			return jdbcTemplate.update(sql, param) > 0 ;
 		}
 		
-	//	아이디 찾기 기능(닉네임, 전화번호로)
-//		public String findId(MemberDto memberDto) {
-//			
-//		}
+		//아이디 찾기 기능(닉네임, 전화번호로) (형석) (2023.03.22)
+		public String findId(MemberDto memberDto) {
+			String sql = "select member_id from member "
+					+ "where member_nick=? and member_tel=?";
+			Object[] param = {
+					memberDto.getMemberNick(), memberDto.getMemberTel()		
+			};
+			//String.Class는 "String 자료형" 이라는 뜻.
+			return jdbcTemplate.queryForObject(sql, String.class, param);
+		}
+		
 		// 관리자용 회원정보 변경(성현)
 		public boolean changeInformationByAdmin (MemberDto memberDto) {
 			String sql = "update member set "
@@ -142,11 +150,6 @@ public class MemberDao {
 		        System.out.println(e.getCode());
 		      }
 		    
-		}
-		
-		
-		
-		
-		
-	}
+
+	}}
 	

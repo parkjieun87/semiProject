@@ -20,6 +20,4 @@ public class ProductDto {
 	private Date productRegdate; // 상품등록일
 	private int productDiscount; // 상품할인율
 	private int productViews; //조회수
-
-	
 }
