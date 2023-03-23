@@ -31,4 +31,9 @@ public class ProductController {
 	public String insertFinish() {
 		return "/WEB-INF/views/product/insertFinish.jsp";
 	}
+	
+	@GetMapping("/list")
+	public String list() {
+		return "/WEB-INF/views/product/list.jsp";
+	}
 }
