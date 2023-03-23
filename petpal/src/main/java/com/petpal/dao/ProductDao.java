@@ -35,7 +35,7 @@ public class ProductDao {
 		public ProductDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 			ProductDto productDto = new ProductDto();
 			productDto.setProductNo(rs.getInt("product_no"));
-			productDto.setCategoryCode(rs.getString("category_no"));
+			productDto.setCategoryCode(rs.getString("category_code"));
 			productDto.setProductName(rs.getString("product_name"));
 			productDto.setProductPrice(rs.getInt("product_price"));
 			productDto.setProductStock(rs.getInt("product_stock"));
