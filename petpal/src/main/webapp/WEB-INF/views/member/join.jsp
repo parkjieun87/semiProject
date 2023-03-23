@@ -136,6 +136,7 @@ $("#phoneChk").click(function(){
               console.log(phone2);
               
               if(data == phone2){
+                 $(".successPhoneChk").text("올바른 번호입니다.");
                  $(".successPhoneChk").css("color","green");
 
               }else{
