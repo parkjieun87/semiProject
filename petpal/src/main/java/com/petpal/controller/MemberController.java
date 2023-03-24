@@ -145,4 +145,79 @@ public class MemberController {
 			 return "redirect:find";
 		 }
 	 }
+   
+ //비밀번호를 제외한 개인정보 변경 (형석 2023.03.23)
+	 @GetMapping("/edit")
+	 public String edit(HttpSession session,//회원 아디가 저장되어있는 세션 객체, 
+			 Model model//회원의 모든 정보를 전달할 전송 객체
+			 ) {
+		 String memberId = (String) session.getAttribute("memberId");
+		 MemberDto memberDto = memberDao.selectOne(memberId);
+		 model.addAttribute("memberDto", memberDto);
+		 return "/WEB-INF/views/member/edit.jsp";
+	 }
+	 
+	 @PostMapping("/edit")
+	 public String edit(@ModelAttribute MemberDto memberDto, 
+			 HttpSession session, //회원 아이디가 저장되어 있는 세션 객체
+			 RedirectAttributes attr//리다이렉트 시 정보를 추가할 전송 객체
+			 )//데이터를 자동으로 받기위한 객체) 
+	 {
+		 String memberId = (String) session.getAttribute("memberId"); //세션에서 아이디를 꺼낸다
+		 MemberDto findDto = memberDao.selectOne(memberId);
+		 
+		 //비밀번호가 일치하지 않는다면 -> 에러 표시 후 이전 페이지로 리다이렉트
+		 if(!findDto.getMemberPw().equals(memberDto.getMemberPw())) {
+			 attr.addAttribute("mode","error");
+			 return "redirect:edit";
+		 }
+		 //비밀번호가 일치한다면 -> 비밀번호 변경 및 완료 페이지로 리다이렉트
+		 memberDto.setMemberId(memberId);//아이디 추가 설정
+		 memberDao.changeInformation(memberDto);//정보 변경 요청 
+		 return "redirect:editFinish.jsp"; 
+	 }
+	 
+	 @GetMapping("/editFinish")
+	 public String editFinish(@ModelAttribute MemberDto memberDto, 
+			 HttpSession session,RedirectAttributes attr) {
+		 
+		 return "/WEB-INF/views/member/editFinish.jsp";
+	 }
+	 
+	 //회원탈퇴 기능 구현 (2023.03.24 형석)
+	 
+	 @GetMapping("/exit")
+	 public String exit(HttpSession session) {
+		 return "/WEB-INF/views/member/exit.jsp";
+	 }
+	 
+	 @PostMapping("/exit")
+	 public String exit(HttpSession session, //회원 정보가 저장되어 있는 세션 객체
+			 @RequestParam String memberPw, //사용자가 입력한 비번
+			 RedirectAttributes attr//리다이렉트시 정보를 추가 하기위한 객체
+			 )
+	 {
+		 String memberId = (String)session.getAttribute("memberId");
+		 MemberDto memberDto = memberDao.selectOne(memberId);
+		 
+		 //비번이 일치하지 않는 경우
+		 if(!memberDto.getMemberPw().equals(memberPw)) {
+			 attr.addAttribute("mode","error");
+			 return "redirect:exit";
+		 }
+		 
+		 //비번이 일치하는 경우 = 회원탈퇴 + 로그아웃
+		 memberDao.delete(memberId);
+		 
+		 session.removeAttribute("memberId");
+		 session.removeAttribute("memberNick");
+		 
+		 return "redirect:exitFinish";
+	 }
+			 
+	 @GetMapping("/exitFinish")
+	 public String exitFinish() {
+		 return "/WEB-INF/views/member/exitFinish.jsp";
+	 }
 }
+

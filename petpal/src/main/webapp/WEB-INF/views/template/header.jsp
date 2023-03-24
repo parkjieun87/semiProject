@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
     <style>
-        
+       
     </style>
     <!-- 링크 확인창 출력을 위한 cdn -->
      <script src="https://cdn.jsdelivr.net/gh/HSYOON27/confirm-link@latest/confirm-link.js"></script>

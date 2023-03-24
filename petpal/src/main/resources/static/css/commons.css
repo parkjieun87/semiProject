@@ -17,9 +17,10 @@
             - div는 기본적으로 폭이 100%이므로 원하는 크기로 변경해야 한다. 
             (주의) reset.css로 이동하였으므로 향후 제거해야 함 
 */
+
 *{
      box-sizing: border-box;
-     font-family: '맑은고딕';
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* 
@@ -68,6 +69,22 @@
  }
  .container-1100{
  	width: 1100px;
+ 	margin: 0 auto;
+ }
+ .container-1200{
+ 	width: 1200px;
+ 	margin: 0 auto;
+ }
+ .container-1300{
+ 	width: 1300px;
+ 	margin: 0 auto;
+ }
+ .container-1400{
+ 	width: 1400px;
+ 	margin: 0 auto;
+ }
+ .container-1500{
+ 	width: 1500px;
  	margin: 0 auto;
  }
 
@@ -190,6 +207,8 @@
         .ms-30 {margin-left: 30px;}
         .ms-40 {margin-left: 40px;}
         .ms-50 {margin-left: 50px;}
+        .ms-60 {margin-left: 60px;}
+      	.ms-70 {margin-left: 70px;}
         
         .me-5 {margin-right: 5px;}
         .me-10 {margin-right: 10px;}

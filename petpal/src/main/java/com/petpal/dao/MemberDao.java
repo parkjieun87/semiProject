@@ -155,5 +155,27 @@ public class MemberDao {
 			List<MemberDto> list = jdbcTemplate.query(sql, mapper, param);
 			return list.isEmpty() ? null : list.get(0);
 		}
+		
+		// 	회원 탈퇴시 웨이팅 테이블로의 이동 (2023.03.24 형석)
+		public void insertWaiting(MemberDto memberDto) {
+	         String sql = "insert into member("
+	 	            + "member_id, member_pw, member_name, "
+		            + "member_email, member_tel, member_nick, "
+		            + "adminck, member_regdate, member_post, "
+		            + "member_basic_addr, member_detail_addr"
+		            + ")values("
+		            + "?, ?, ?, ?, ?, ?, 0, sysdate, ?, ?, ?"
+		            + ")";
+	      Object[] param = {
+	    		  memberDto.getMemberId(), memberDto.getMemberPw(),
+		            memberDto.getMemberName(), memberDto.getMemberEmail(),
+		            memberDto.getMemberTel(), memberDto.getMemberNick(),
+		            memberDto.getMemberPost(), memberDto.getMemberBasicAddr(),
+		            memberDto.getMemberDetailAddr()
+	      };
+	      jdbcTemplate.update(sql, param);
+	      }
+		
+		
 }
 	

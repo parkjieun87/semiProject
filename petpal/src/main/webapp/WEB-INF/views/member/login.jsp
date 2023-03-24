@@ -5,6 +5,13 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
+
+.logo 
+	{
+	  display: block;
+	  margin: auto;
+	}
+
 	img {
 	  display: block;
 	  margin: auto;
@@ -14,7 +21,7 @@
 <title>로그인</title>
 
  <div class ="container-800">
-<img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em">
+<img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
 <form action="login" method="post" align="center" class="mt-10">
 	<input type="text" name="memberId" class="form-input w-50" required placeholder="아이디"><br><br>
 	<input type="password" name="memberPw" class="form-input w-50"  required placeholder="비밀번호"><br><br>
