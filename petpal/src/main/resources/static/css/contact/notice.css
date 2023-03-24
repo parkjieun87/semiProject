@@ -7,12 +7,12 @@
 
        }
 
-       .header_search{
+     .header_search{
     
     top: 60px;
     left: 370px;
     text-align: center;
-    width: 380px;
+    width: 300px;
 }
 .top_search{
     position: relative;
@@ -20,9 +20,22 @@
     width: 210px;
     height: 40px;
     padding: 0 45px 0 15px;
-    border: 1px solid #FFA751;
+    border: 2px solid #9091E6;
     background: #fff;
     
+}
+.keyword_search{
+	height:40px;
+	border: 2px solid #9091E6;
+	width: 80px;
+	text-align:center;
+}
+
+a{
+	text-decoration: none;
+	font-size:14px;
+	font-weight:900;
+	color:black;
 }
 
 .input_search{

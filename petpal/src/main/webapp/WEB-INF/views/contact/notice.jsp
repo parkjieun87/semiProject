@@ -17,10 +17,36 @@
                 <h3>공지사항</h3>
             </div>
             <div class="header_search">
+            	<form action="/contact/notice" method="get">
+				<c:choose>
+					<c:when test="${vo.column == 'board_content'}">
+						<select name="column" class="keyword_search">
+							<option value="board_title">제목</option>
+							<option value="board_content" selected>내용</option>
+							<option value="board_writer">작성자</option>	
+						</select>
+					</c:when>
+					<c:when test="${vo.column == 'board_writer'}">
+						<select name="column" class="keyword_search">
+							<option value="board_title">제목</option>
+							<option value="board_content">내용</option>
+							<option value="board_writer" selected>작성자</option>	
+						</select>
+					</c:when>
+					<c:otherwise>
+						<select name="column" class="keyword_search">
+							<option value="board_title" selected>제목</option>
+							<option value="board_content">내용</option>
+							<option value="board_writer">작성자</option>
+						</select>
+					</c:otherwise>
+				</c:choose>
+				
                 <div class="top_search">
-                    <input type="search" class="input_search" placeholder="검색어를 입력하세요.">
+                    <input type="search" class="input_search" name="keyword" placeholder="검색어를 입력하세요.">
                     <button type="button" class="btn_top_search" id="btnTopSearch"><i class="fas fa-search fa-lg"></i></button>   
                 </div>
+                </form>
             </div>
        </div>
        <div class="row table">

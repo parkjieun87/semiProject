@@ -14,7 +14,7 @@
 	display:flex;
 	justify-content:space-between;
 	width:100%;
-	background-color: #90A4AE;
+	background-color: #F8F8F8;
 }
 
 ul{
@@ -25,6 +25,14 @@ ul{
 	max-width:300px;
 	margin-left:250px;
 }
+.btn-black{
+	color:#fff;
+	background: #333;
+	border : 1px solid #333;
+	min-width:120px;
+	border-radius : 6px;
+}
+
 
 
 </style>
@@ -52,6 +60,38 @@ ul{
         	<div class="row center">
         		${pageInfo.boardContent}
         	</div>
+        </div>
+        
+		 <div class="row table">
+            <table style="width: 900px;">
+                <colgroup>
+                    <col style="width:80px">
+                    <col style="width:auto">
+                    <col style="width:120px">
+                </colgroup>
+                <tbody>
+                	
+					<tr>
+                        <td class="text-center">이전글</td>
+                        <td class="text-left">
+                        <a href="noticeDetail?boardNo=${pageInfo.boardNo-1}">${pageInfo.boardTitle}</a></td>
+                        <td class="text-center">${pageInfo.boardDate}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-center">다음글</td>
+                        <td class="text-left">
+                        <a href="noticeDetail?boardNo=${pageInfo.boardNo+1}">${pageInfo.boardTitle}</a></td>
+                        <td class="text-center">${pageInfo.boardDate}</td>
+                    </tr>
+                                         
+                </tbody>
+            </table>
+       </div>
+        
+        
+        <div class="row center">
+        	<a class="form-btn btn-black" href="/contact/notice">목록</a>
         </div>
 	</div>
 </body>

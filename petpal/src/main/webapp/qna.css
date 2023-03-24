@@ -1,0 +1,177 @@
+.title{
+    margin-top: 50px;
+}
+body{
+    padding: 0;
+}
+
+.search-box{
+    margin-top: 10px;
+    background: #F8F8F8;
+    border-radius: 6px;
+    padding: 27px 60px;
+}
+.input-group{
+    height: 40px;
+    display: table;
+    border-collapse: collapse;
+    position: relative;
+}
+
+.top_search .btn_top_search{
+
+top: 50%;
+right: 10px;
+width: 35px;
+height: 35px;
+transform: translateY(-50%);
+}
+
+button{
+position: absolute;
+background: none;
+outline: none;
+border: 0;
+margin: 0;
+
+}
+.input_search{
+width: 100%;
+height: 100%;
+border: 0;
+padding: 0;
+font-size: 13px;
+color: #555;
+text-align: left;
+outline: none;
+
+}
+
+.header_search{
+
+top: 60px;
+left: 370px;
+text-align: center;
+width: 380px;
+}
+.top_search{
+position: relative;
+display: inline-block;
+width: 200%;
+height: 70px;
+padding: 0 45px 0 15px;
+border: 1px solid #9091E6;
+background: #fff;
+border-radius: 16px;
+
+}
+.keyword_search{
+height:70px;
+border: 1px solid #9091E6;
+width: 100px;
+text-align:center;
+}
+ul{
+display: flex;
+justify-content: space-between;
+margin-left: auto;
+margin-right: auto;
+width: 700px;
+
+
+}
+li{
+list-style: none;
+}
+a{
+text-decoration: none;
+color: black;
+}
+.btn{
+border:1px solid gainsboro;
+border-radius: 15px;
+padding : 10px 30px;
+margin-left: 10px;
+
+}
+.ans-list{
+margin-top: 40px;
+width: 100%;
+}
+.ans-list-ul{
+border-top: 1px solid #bbb;
+width: 200%;
+}     
+.title-div{
+padding: 16px 40px 16px 10px;
+position: relative;
+display: block;
+
+}
+.subject{
+display: table;
+table-layout: fixed;
+width: 100%;
+}
+.category{
+display: table-cell;
+width: 30%;
+vertical-align: top;
+float: left;
+
+}
+.classify{
+/* display: table-cell; */
+color: #9091E6;
+font-weight: 700;
+padding-left: 100px;
+width: 5%;
+
+}
+.txt{
+display: table-cell;
+padding-right: 240px;
+width: 70%;
+
+}
+.right{
+position: absolute;
+top: 15px;
+right: 15px;
+color: #999;
+}
+.fa-solid{
+position: relative;
+display: inline-block;
+}
+.blind{
+position: absolute;
+width: 1px;
+height: 1px;
+margin: -1px;
+padding: 0;
+overflow: hidden;
+clip: rect(0,0,0,0);
+border: 0;
+}
+.ui-accordion-view{
+    position: relative;
+    display: none;
+
+}
+.answer{
+    padding: 25px 40px 30px 30px;
+    background: #F8F8F8;
+    
+}
+.type2{
+    padding-left: 120px;
+    padding-right: 20px;
+    color: #666;
+    line-height: 24px;
+    margin-top: 5px;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    
+}

@@ -1,14 +1,20 @@
 package com.petpal.controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.petpal.dao.BoardDao;
+import com.petpal.dao.FaqDao;
+import com.petpal.dto.BoardDto;
+import com.petpal.dto.FaqDto;
 import com.petpal.vo.PaginationVO;
 
 @Controller
@@ -18,9 +24,22 @@ public class ContactController {
 	@Autowired
 	private BoardDao boardDao;
 	
+	@Autowired
+	private FaqDao faqDao;
+	
+	
+	
 	@GetMapping("/notice/write")
 	public String write() {
 		return "/WEB-INF/views/contact/write.jsp";
+	}
+	
+	@PostMapping("/notice/upload")
+	public String upload(@ModelAttribute BoardDto dto){
+		// 공지사항 등록
+			boardDao.insert(dto);
+				
+			return "redirect:/contact/notice";
 	}
 	
 	
@@ -41,6 +60,14 @@ public class ContactController {
 		model.addAttribute("pageInfo",boardDao.selectOne(boardNo));
 		
 		return "/WEB-INF/views/contact/noticeDetail.jsp";
+	}
+	
+	@GetMapping("/notice/faq")
+	public String qna(@ModelAttribute FaqDto dto, Model model) {
+		
+		model.addAttribute("pageInfo",faqDao.selectList());
+		
+		return "/WEB-INF/views/contact/faq.jsp";
 	}
 
 }
