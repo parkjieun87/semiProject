@@ -15,8 +15,10 @@
     <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
-        <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="css/petpal.css">
+    
+    <!-- header css -->
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    
     <style>
        
     </style>
@@ -24,13 +26,13 @@
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	</head>
 	
-<main class="container-1000">
+<main class="container-1500">
 <body>
   <header id="header">
     <div id="header-area1">
         <div class="wrap">
                <div class="img-search">
-                <img src="./img/펫팔 로고.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
+                <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 <div id="search">
                   <form name="frm_search" id="frm_search" method="#" action="#">
                     <div class="inp-wrap">
