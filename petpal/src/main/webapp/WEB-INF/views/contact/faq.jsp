@@ -13,22 +13,22 @@
 
           $(".title-div").eq(1).click(function(e){
             e.preventDefault();
-            $(".ui-accordion-view").eq(0).toggle(10);
+            $(".ui-accordion-view").eq(1).toggle(10);
           });
 
           $(".title-div").eq(2).click(function(e){
             e.preventDefault();
-            $(".ui-accordion-view").eq(0).toggle(10);
+            $(".ui-accordion-view").eq(2).toggle(10);
           });
 
           $(".title-div").eq(3).click(function(e){
             e.preventDefault();
-            $(".ui-accordion-view").eq(0).toggle(10);
+            $(".ui-accordion-view").eq(3).toggle(10);
           });
 
           $(".title-div").eq(4).click(function(e){
             e.preventDefault();
-            $(".ui-accordion-view").eq(0).toggle(10);
+            $(".ui-accordion-view").eq(4).toggle(10);
           });
         });
     </script>
@@ -41,7 +41,7 @@
 
 <%@ include file="../template/header.jsp"%>
    <br>
-    <div class="row center title">
+    <div class="row center title" style="margin-top:30px;">
             <h3>자주묻는 FAQ</h3>
        </div>
        <div class="header_search">			

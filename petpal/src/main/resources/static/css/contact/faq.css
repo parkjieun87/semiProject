@@ -1,5 +1,7 @@
-.title{
+.title>h3{
     margin-top: 50px;
+    width:300px;
+    text-align:center;
 }
 body{
     padding: 0;
@@ -27,6 +29,10 @@ height: 35px;
 transform: translateY(-50%);
 }
 
+.top_search{
+	margin-top:30px;
+}
+
 button{
 position: absolute;
 background: none;
@@ -49,10 +55,11 @@ outline: none;
 
 .header_search{
 
-top: 60px;
-left: 370px;
 text-align: center;
-width: 50%;
+width:1000px;
+
+
+
 }
 .top_search{
 position: relative;
@@ -77,7 +84,7 @@ justify-content: space-between;
 margin-left: auto;
 margin-right: auto;
 margin-top:30px;
-width: 70%;
+width: 80%;
 
 
 }
@@ -122,16 +129,15 @@ float: left;
 
 }
 .classify{
-/* display: table-cell; */
+margin-left:140px;
 color: #9091E6;
 font-weight: 700;
-padding-left: 100px;
 width: 5%;
 
 }
 .txt{
 display: table-cell;
-padding-right: 240px;
+padding-right: 400px;
 width: 70%;
 
 }
