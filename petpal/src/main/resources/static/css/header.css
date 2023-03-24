@@ -3,12 +3,12 @@
 /* header css */
 .ex { display: block; position: relative; top: 0; right: 0; bottom: 0; left: 0; margin: 0; padding: 0; width: 0; height: 0; line-height: 0; color: #fff; font-size: 11px; font-weight: 500; font-family: '나눔'; border: 1px solid #ddd; background: none; float: left; clear: both; overflow: hidden; text-align: center; vertical-align: middle; z-index: 0; }
 
-.wrap { position: relative; margin: 0 auto; width: 1200px; height: 100%; }
+.wrap { position: relative; margin: 0 auto; width: 1000px; height: 100%; }
 .wrap:after { content:""; display: block; clear: both; }
 
 
 /* body */
-body{min-width: 1200px; align-items: center;}
+body{min-width: 100%; align-items: center;}
 
 
 /*header에서 area1번 div*/
@@ -58,7 +58,7 @@ a{text-decoration:none; color:#333; cursor: pointer; font-size: 14px;  font-fami
 
 
 /* 검색창-돋보기 */
-.inp-wrap>input{background-image: url(./img/header\ 돋보기.jpg); background-size: 28px; background-position-x: 97%; background-position-y: 20%; box-sizing: border-box; outline: none; background-repeat: no-repeat;}
+.inp-wrap>input{background-image: url(/static/image/reading_glasses.jpg); background-size: 28px; background-position-x: 97%; background-position-y: 20%; box-sizing: border-box; outline: none; background-repeat: no-repeat;}
 
 
 /*header에서 area2번 div*/
@@ -86,6 +86,4 @@ a{text-decoration:none; color:#333; cursor: pointer; font-size: 14px;  font-fami
     background-color: red;
     background-color:rgba(144,145,230,0);
   }
-
-
 
