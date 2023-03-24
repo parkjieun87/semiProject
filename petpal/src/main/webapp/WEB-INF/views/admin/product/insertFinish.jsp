@@ -7,9 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<a href="/shop/goods/goods_list?categoryCode=1010">사료</a>
-		<a href="/shop/goods/goods_list?categoryCode=3010">샴푸</a>
-	</div>
+	<h1>입력완료</h1>
+	<a href="#">목록으로</a>
 </body>
 </html>
