@@ -8,11 +8,7 @@
 </head>
 <body>
 	<h1>상품 입력 페이지</h1>
-	<form action="insertProcess" method="post">
-		<div>
-		<label>상품번호</label>
-		<input type="text" name="productNo">
-		</div>
+	<form action="insertProcess" method="post" enctype="multipart/form-data">
 		<div>
 		<label>카테고리코드</label>
 		<input type="text" name="categoryCode">
@@ -37,6 +33,8 @@
 		<label>상품할인율</label>
 		<input type="text" name="productDiscount">
 		</div>
+		<label>이미지</label>
+		<input type="file" name="attach">
 		<button type="submit">입력</button>
 	</form>
 </body>
