@@ -45,15 +45,28 @@ public class BoardDao {
 	
 	// 공지사항 리스트
 	public List<BoardDto> selectList(PaginationVO vo){
-		String sql = "select * from("
-				+ "select rownum rn, TMP.* from("
-				+ "select * from notice_board order by board_no desc"
-				+" )TMP"
-				+ ")where rn between ? and ?";
 		
-		Object[] param = {vo.getBegin(), vo.getEnd()};
-				
-		return jdbcTemplate.query(sql,mapper,param);
+		if(vo.isSearch()) {
+			String sql = "select * from("
+					+ "select rownum rn, TMP.* from("
+					+ "select * from notice_board where instr(#1,?) > 0"
+					+ ")TMP"
+					+ ")where rn between ? and ?";
+			sql = sql.replace("#1",vo.getColumn());
+			Object[] param = {vo.getKeyword(), vo.getBegin(), vo.getEnd()};
+			return jdbcTemplate.query(sql,mapper,param);
+		}else {
+			String sql = "select * from("
+					+ "select rownum rn, TMP.* from("
+					+ "select * from notice_board order by board_no desc"
+					+" )TMP"
+					+ ")where rn between ? and ?";
+			
+			Object[] param = {vo.getBegin(), vo.getEnd()};
+					
+			return jdbcTemplate.query(sql,mapper,param);
+		}	
+		
 	}
 	
 	// 공지사항 상세 조회

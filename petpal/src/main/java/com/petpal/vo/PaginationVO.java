@@ -5,6 +5,19 @@ import lombok.Data;
 @Data
 public class PaginationVO {
 	
+	private String column = "boardTitle";
+	private String keyword = "";
+	
+	// 검색 여부 판정
+	public boolean isSearch() {
+		return keyword.equals("") == false;
+	}
+	
+	public boolean isList() {
+		return !isSearch();
+	}
+	
+	
 		// 현재 페이지
 		private int page;
 		

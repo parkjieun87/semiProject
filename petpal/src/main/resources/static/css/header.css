@@ -8,7 +8,7 @@
 
 
 /* body */
-body{min-width: 1000px; align-items: center;}
+body{min-width: 100%; align-items: center;}
 
 
 /*header에서 area1번 div*/
