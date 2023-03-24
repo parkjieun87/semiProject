@@ -52,12 +52,12 @@ outline: none;
 top: 60px;
 left: 370px;
 text-align: center;
-width: 380px;
+width: 50%;
 }
 .top_search{
 position: relative;
 display: inline-block;
-width: 200%;
+width: 70%;
 height: 70px;
 padding: 0 45px 0 15px;
 border: 1px solid #9091E6;
@@ -71,12 +71,13 @@ border: 1px solid #9091E6;
 width: 100px;
 text-align:center;
 }
-ul{
+.ul{
 display: flex;
 justify-content: space-between;
 margin-left: auto;
 margin-right: auto;
-width: 700px;
+margin-top:30px;
+width: 70%;
 
 
 }
@@ -96,7 +97,7 @@ margin-left: 10px;
 }
 .ans-list{
 margin-top: 40px;
-width: 100%;
+width: 50%;
 }
 .ans-list-ul{
 border-top: 1px solid #bbb;

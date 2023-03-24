@@ -15,8 +15,11 @@
     <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/contact/faq.css">
    
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+   
+
         <!-- header css -->
     <link rel="stylesheet" type="text/css" href="/static/css/header.css">
     
