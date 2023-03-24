@@ -1,5 +1,10 @@
 package com.petpal.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,11 +13,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petpal.configuration.CustomFileuploadProperties;
 import com.petpal.dao.MemberDao;
+import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
+import com.petpal.dao.ProductImageDao;
+import com.petpal.dto.AttachmentDto;
 import com.petpal.dto.ProductDto;
+import com.petpal.dto.ProductImageDto;
 import com.petpal.vo.PaginationVO;
 
 @Controller
@@ -23,6 +34,18 @@ public class AdminController {
 	
 	@Autowired ProductDao productDao;
 	
+	@Autowired ProductAttachmentDao productAttachmentDao;
+	
+	@Autowired private CustomFileuploadProperties fileuploadProperties;
+	
+	@Autowired private ProductImageDao productImageDao;
+	
+	private File dir;
+	@PostConstruct
+	public void init() {
+		dir = new File(fileuploadProperties.getPath());
+	}
+	
 	// 관리자 홈
 	@GetMapping("/home")
 	public String home() {
@@ -32,19 +55,40 @@ public class AdminController {
 	// 관리자 상품등록 페이지
 	@GetMapping("/product/insert")
 	public String insert() {
-		return "/WEB-INF/views/product/insert.jsp";
+		return "/WEB-INF/views/admin/product/insert.jsp";
 	}
 	
 	@PostMapping("/product/insertProcess")
-	public String insert(@ModelAttribute ProductDto productDto) {
+	public String insert(@ModelAttribute ProductDto productDto,
+			@RequestParam MultipartFile attach) throws IllegalStateException, IOException {
+		productDto.setProductNo(productDao.sequence());
 		productDao.insert(productDto);
+		if(!attach.isEmpty()) {
+			int attachmentNo = productAttachmentDao.sequence();	
+			File target = new File(dir, String.valueOf(attachmentNo));
+			attach.transferTo(target);
+			
+			productAttachmentDao.insert(AttachmentDto.builder()
+											.attachmentNo(attachmentNo)
+											.attachmentName(attach.getOriginalFilename())
+											.attachmentType(attach.getContentType())
+											.attachmentSize(attach.getSize())
+											.build()
+					);
+			
+			productImageDao.insert(ProductImageDto.builder()
+											.productNo(productDto.getProductNo())
+											.attachmentNo(attachmentNo)
+											.build()
+					);
+		}
 		return "redirect:insertFinish";
 	}
 	
 	// 상품등록 완료 페이지
 	@GetMapping("/product/insertFinish")
 	public String insertFinish() {
-		return "/WEB-INF/views/product/insertFinish.jsp";
+		return "/WEB-INF/views/admin/product/insertFinish.jsp";
 	}
 	
 	// 상품 리스트 페이지
