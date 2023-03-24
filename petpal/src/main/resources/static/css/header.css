@@ -8,7 +8,7 @@
 
 
 /* body */
-body{min-width: 1200px; display: flex; align-items: center;}
+body{min-width: 1200px; align-items: center;}
 
 
 /*header에서 area1번 div*/
@@ -72,7 +72,7 @@ a{text-decoration:none; color:#333; cursor: pointer; font-size: 14px;  font-fami
     margin-top: 1px;
     margin-right: 20px;
     text-align: center;
-    width: 800px;
+    width: 100%;
     margin-left: 40px;
     }
 .wrap2>ul>li>a{
@@ -86,4 +86,6 @@ a{text-decoration:none; color:#333; cursor: pointer; font-size: 14px;  font-fami
     background-color: red;
     background-color:rgba(144,145,230,0);
   }
+
+
 

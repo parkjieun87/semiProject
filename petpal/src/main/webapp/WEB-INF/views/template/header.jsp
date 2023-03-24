@@ -30,7 +30,7 @@
     <div id="header-area1">
         <div class="wrap">
                <div class="img-search">
-                <img src="./img/펫팔 로고.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
+                <img src="./img/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 <div id="search">
                   <form name="frm_search" id="frm_search" method="#" action="#">
                     <div class="inp-wrap">
