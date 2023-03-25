@@ -51,14 +51,16 @@
             </div>
             <div>
                 <ul class="ul">
+               
                     <div class="search btn">
                         <li><a href="">전체보기</a></li>
                     </div>
                     <div class="search btn">
-                        <li><a href="">주문/결제/배송</a></li>
+                        <li><a href="/contact/notice/faq?faqCategory=2">주문/결제/배송</a></li>
                     </div>
+                    
                     <div class="search btn">
-                        <li><a href="">회원가입/정보</a></li>
+                        <li><a href="/contact/notice/faq?faqCategory=1">회원가입/정보</a></li>
                     </div>
                     <div class="search btn">
                         <li><a href="">기타</a></li>
@@ -69,13 +71,14 @@
     
      
             <div class="ans-list">
-                <ul class="ans-list-ul">
+            	<c:forEach items="${pageInfo}" var="list">
+            		<ul class="ans-list-ul">
                     <li>
                         <a href="" class="title-div">
                             <div class="subject">
-                                <span class="category">기타</span>
+                                <span class="category">${list.faqCategoryName}</span>
                                 <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
+                                <p class="txt">${list.faqTitle}</p>
                             </div>
                             <div class="right">
                                 <i class="fa-solid fa-chevron-down">
@@ -87,159 +90,16 @@
                             <div class="answer">
                                
                                 <p class="txt type2">
-                                혼합구성 상품은 해당 제품의 맛을 골고루 느껴보실 수 있도록 구성된 상품입니다.
-                                따라서 혼합 구성 내 내품 변경을 불가합니다.
-                                특정 맛의 구매를 원하실 경우 각 맛을 따로 주문하시거나, 골라담기 상품으로 구매 부탁드립니다.
+                                ${list.faqAnswer}
                                 </p>
                             </div>
                         </div>
                     </li>   
                 </ul>
+            	</c:forEach>
                 
-                <ul class="ans-list-ul">
-                    <li>
-                        <a href="" class="title-div">
-                            <div class="subject">
-                                <span class="category">기타</span>
-                                <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
-                            </div>
-                            <div class="right">
-                                <i class="fa-solid fa-chevron-down">
-                                    <span class="blind">내용보기</span>
-                                </i>
-                            </div>
-                        </a>
-                        <div class="ui-accordion-view">
-                            <div class="answer">
-                               
-                                <p class="txt type2">
-                                혼합구성 상품은 해당 제품의 맛을 골고루 느껴보실 수 있도록 구성된 상품입니다.
-                                따라서 혼합 구성 내 내품 변경을 불가합니다.
-                                특정 맛의 구매를 원하실 경우 각 맛을 따로 주문하시거나, 골라담기 상품으로 구매 부탁드립니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>   
-                </ul>
+                
                
-                <ul class="ans-list-ul">
-                    <li>
-                        <a href="" class="title-div">
-                            <div class="subject">
-                                <span class="category">기타</span>
-                                <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
-                            </div>
-                            <div class="right">
-                                <i class="fa-solid fa-chevron-down">
-                                    <span class="blind">내용보기</span>
-                                </i>
-                            </div>
-                        </a>
-                        <div class="ui-accordion-view">
-                            <div class="answer">
-                               
-                                <p class="txt type2">
-                                혼합구성 상품은 해당 제품의 맛을 골고루 느껴보실 수 있도록 구성된 상품입니다.
-                                따라서 혼합 구성 내 내품 변경을 불가합니다.
-                                특정 맛의 구매를 원하실 경우 각 맛을 따로 주문하시거나, 골라담기 상품으로 구매 부탁드립니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>   
-                </ul>
-                <ul class="ans-list-ul">
-                    <li>
-                        <a href="" class="title-div">
-                            <div class="subject">
-                                <span class="category">기타</span>
-                                <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
-                            </div>
-                            <div class="right">
-                                <i class="fa-solid fa-chevron-down">
-                                    <span class="blind">내용보기</span>
-                                </i>
-                            </div>
-                        </a>
-                        <div class="ui-accordion-view">
-                            <div class="answer">
-                               
-                                <p class="txt type2">
-                                혼합구성 상품은 해당 제품의 맛을 골고루 느껴보실 수 있도록 구성된 상품입니다.
-                                따라서 혼합 구성 내 내품 변경을 불가합니다.
-                                특정 맛의 구매를 원하실 경우 각 맛을 따로 주문하시거나, 골라담기 상품으로 구매 부탁드립니다.
-                                </p>
-                            </div>
-                        </div>
-                    </li>   
-                </ul>
-                <ul class="ans-list-ul">
-                    <li>
-                        <a href="" class="title-div">
-                            <div class="subject">
-                                <span class="category">기타</span>
-                                <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
-                            </div>
-                            <div class="right">
-                                <i class="fa-solid fa-chevron-down">
-                                    <span class="blind">내용보기</span>
-                                </i>
-                            </div>
-                        </a>
-                    </li>   
-                </ul>
-                <ul class="ans-list-ul">
-                    <li>
-                        <a href="" class="title-div">
-                            <div class="subject">
-                                <span class="category">기타</span>
-                                <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
-                            </div>
-                            <div class="right">
-                                <i class="fa-solid fa-chevron-down">
-                                    <span class="blind">내용보기</span>
-                                </i>
-                            </div>
-                        </a>
-                    </li>   
-                </ul>
-                <ul class="ans-list-ul">
-                    <li>
-                        <a href="" class="title-div">
-                            <div class="subject">
-                                <span class="category">기타</span>
-                                <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
-                            </div>
-                            <div class="right">
-                                <i class="fa-solid fa-chevron-down">
-                                    <span class="blind">내용보기</span>
-                                </i>
-                            </div>
-                        </a>
-                    </li>   
-                </ul>
-                <ul class="ans-list-ul">
-                    <li>
-                        <a href="" class="title-div">
-                            <div class="subject">
-                                <span class="category">기타</span>
-                                <span class="classify">Q</span>
-                                <p class="txt">언제부터 멤버십이 변경되나요?</p>
-                            </div>
-                            <div class="right">
-                                <i class="fa-solid fa-chevron-down">
-                                    <span class="blind">내용보기</span>
-                                </i>
-                            </div>
-                        </a>
-                       
-                    </li>   
-                </ul>
             </div> 
 
             

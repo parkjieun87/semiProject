@@ -123,13 +123,12 @@ width: 100%;
 }
 .category{
 display: table-cell;
-width: 30%;
 vertical-align: top;
-float: left;
+width:15%;
 
 }
 .classify{
-margin-left:140px;
+margin-left:15px;
 color: #9091E6;
 font-weight: 700;
 width: 5%;
@@ -138,7 +137,9 @@ width: 5%;
 .txt{
 display: table-cell;
 padding-right: 400px;
-width: 70%;
+width: 80%;
+text-align:left;
+
 
 }
 .right{

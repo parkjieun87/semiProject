@@ -27,6 +27,7 @@ public class FaqDao {
 			dto.setFaqTitle(rs.getString("faq_title"));
 			dto.setFaqAnswer(rs.getString("faq_answer"));
 			dto.setFaqCategory(rs.getInt("faq_category"));
+			dto.setFaqCategoryName(rs.getString("faq_category_name"));
 			
 			return dto;
 		}
@@ -37,6 +38,14 @@ public class FaqDao {
 		String sql = "select * from faq";
 		
 		return jdbcTemplate.query(sql,mapper);
+	}
+	
+	// 카테고리 별 목록
+	public List<FaqDto> selectList(int faqCategory){
+		String sql = "select * from faq where faq_category = ?";
+		Object[] param = {faqCategory};
+		
+		return jdbcTemplate.query(sql, mapper,param);
 	}
 
 }

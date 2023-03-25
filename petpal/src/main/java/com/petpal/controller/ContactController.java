@@ -63,11 +63,13 @@ public class ContactController {
 	}
 	
 	@GetMapping("/notice/faq")
-	public String qna(@ModelAttribute FaqDto dto, Model model) {
+	public String qna(int faqCategory, Model model) {
 		
-		model.addAttribute("pageInfo",faqDao.selectList());
+		model.addAttribute("pageInfo",faqDao.selectList(faqCategory));
 		
 		return "/WEB-INF/views/contact/faq.jsp";
 	}
+	
+	
 
 }
