@@ -28,7 +28,7 @@
             
             
        </div>
-       <div class="header_search">
+       <div class="header_search ">
             	<form action="/contact/notice" method="get">
 				<c:choose>
 					<c:when test="${vo.column == 'board_content'}">
