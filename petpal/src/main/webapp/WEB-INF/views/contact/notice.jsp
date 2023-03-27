@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +12,23 @@
 <link rel="stylesheet" href="/static/css/contact/notice.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
+<style>
+#top {
+  margin-top: 50px;
+}
+</style>
 </head>
- <div class="container-900">
+<body>
+
+ <div class="container-900" id="top">
        <div class="row-menu">
             <div class="row-menu-title">
-                <h3>공지사항</h3>
+                <h3>  </h3>
             </div>
-            <div class="header_search">
+            
+            
+       </div>
+       <div class="header_search">
             	<form action="/contact/notice" method="get">
 				<c:choose>
 					<c:when test="${vo.column == 'board_content'}">
@@ -48,7 +60,6 @@
                 </div>
                 </form>
             </div>
-       </div>
        <div class="row table">
             <table style="width: 900px;">
                 <colgroup>
@@ -89,3 +100,4 @@
     </div>
 </body>
 </html>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

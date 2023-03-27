@@ -9,11 +9,11 @@ import com.petpal.dto.ProductOrderDto;
 @Controller
 public class OrderController {
 
-	@Autowired
-	private ProductOrderDto productOrderDto;
-	
-	@Autowired
-	private OrderDetailDto orderDetailDto;
-	
+//	@Autowired
+////	private ProductOrderDto productOrderDto;
+//	
+//	@Autowired
+//	private OrderDetailDto orderDetailDto;
+//	
 	
 }
