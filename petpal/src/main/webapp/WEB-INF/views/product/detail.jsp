@@ -1,31 +1,506 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+ 
+ <style>
+       
+        body{
+            font-family: '카페24 써라운드 에어';
+        }
+
+        /* 상세페이지 사진 css */
+        .photo-sell-wrap .photo-wrap .photo-view img{
+            width: 478px;
+            height: 478px;
+            position: relative;
+        }
+
+        .photo-sell-wrap {
+        position: relative;
+        padding: 0 50px 0 560px;
+        min-height: 580px;
+        width: 100%;
+        vertical-align: top;
+        padding-right: 0;
+        }
+
+        .photo-sell-wrap .photo-wrap {
+            position: absolute;
+            top: 0;
+            left: 40px;
+            width: 500px;
+        }
+
+        .photo-indicate li button {
+            position: relative;
+            border: 1px solid #dfdfdf;
+        }
+        .photo-view:before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            content: '';
+            background-color: rgba(0, 0, 0, .025);
+            border: 1px solid rgba(0, 0, 0, .03);
+            -webkit-border-radius: 14px;
+            border-radius: 14px;
+            z-index: 1;
+        }
+        .sell-wrap>h2 {
+            margin-bottom: 15px;
+            padding: 0 70px 20px 8px;
+            line-height: 30px;
+            height: 75px;
+            color: #373737;
+            font-size: 20px;
+            font-weight: 500;
+            border-bottom: 1px solid #9091E6;
+            word-wrap: break-word;
+            word-break: keep-all;
+        }
+        .sell-wrap .price-info{
+            margin-bottom: 0px;
+            padding: 0 0 0 8px;
+            border-bottom: 1px solid #9091E6;
+            padding-bottom: 10px;
+        }
+        .sell-wrap .price-info d1
+        .price-sell{
+            display: flex;
+        }
+        .sell-wrap .basic-info{
+            margin-bottom: 0px;
+            padding: 0 0 0 8px;
+        }
+        .sell-wrap .basic-info dl{
+            position: relative;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        /* 수량 버튼 css */
+
+                                   .jss811 {
+                                       width: 100%;
+                                       padding: 12px 25px 50px 25px;
+                                       justify-content: space-between;
+                                       background-color: #f4f4f5;
+                                       border-radius: 6px;
+                                   }
+                                   .jss812{
+                                    float: left;
+                                   }
+                                   .jss813 {
+                                       color: rgba(60, 60, 67, 0.6);
+                                       margin-bottom: 8px;
+                                   }                      
+                                   .jss821 {
+                                       width: 200px;
+                                   }
+                                   .jss821 {
+                                       display: flex;
+                                       overflow: hidden;
+                                       border-radius: 4px;
+                                       background-color: #f4f4f5;
+                                   }
+                                   .jss816 {
+                                       color: rgba(60, 60, 67, 0.6);
+                                       text-align: right;
+                                       margin-bottom: 0px;
+                                
+                                   }
+       
+                                   .jss817 {
+                                       height: 40px;
+                                       display: flex;
+                                       font-size: 22px;
+                                       align-items: center;
+                                       font-weight: 500;
+                                       justify-content: flex-end;
+                                   }
+                                   .jss817 > strong {
+                                       font-size: 22px;
+                                    }
+
+        .quantity-wrap{
+            display: inline-block;
+            position: relative;
+            top: -2px;
+            padding: 0 28px;
+            width: 115px;
+            height: 30px;
+            border: 1px solid #dfdfdf;
+            vertical-align: middle;
+        } 
+        .quantity-wrap input{
+            width: 100%;
+            font-size: 12px;
+            height: 27px;
+            border: 0 none;
+            text-align: center;
+            vertical-align: top;
+            color: #333;
+        }  
+         /*수량 버튼 마이너스,플러스  */
+        .quantity-wrap button{
+            position: absolute;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            font-size: 0;
+        }   
+        /* 마이너스버튼 */
+        .quantity-wrap .btn-minus{
+            left: 0;
+            background-color: #f1f1f1;
+            border: 0 none;
+        }
+        .quantity-wrap button::after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 13px;
+            left: 9px;
+            width: 10px;
+            height: 2px;
+            background: #909090;
+        }  
+        /* 플러스버튼 */
+        .btn-plus{
+            border: 0 none;
+        }
+        .quantity-wrap .btn-plus::before{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 9px;
+            left: 13px;
+            width: 2px;
+            height: 10px;
+            background: #909090;
+            
+        }
+        .quantity-wrap .button::after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 13px;
+            left: 9px;
+            width: 10px;
+            height: 2px;
+            background: #909090;
+        }
+        .pss_quantitys{
+            margin-left:-1px;
+            text-align:left;
+            display:block;
+            margin-top:8px;
+            font-weight:bold;
+            color:#4f9900;
+            font-family:'Noto Sans KR','dotum', sans-serif;
+            letter-spacing: -.58px;
+            text-align: center;
+        }
+        /* 장바구니 버튼 */
+        .sell-wrap .btn-area {
+        /* position: absolute; */
+        bottom: 0;
+        right: 0;
+        padding-top: 10px;
+        width: 100%;
+        border-top: 1px solid #dfdfdf;
+        z-index: 1;
+        }
+        .sell-wrap .btn-area .btn-type {
+            margin-right: 0;
+            width: 50%;
+            max-width: 230px;
+            height: 50px;
+            line-height: 46px;
+            font-size: 16px;
+            font-family: inherit;
+            float: left;
+        }
+        .sell-wrap .btn-area .btn-type.type03::before{
+            width: 24px;
+            background-position: 0 -25px;
+        }
+        .sell-wrap .btn-area .btn-type~.btn-type {
+    float: right;
+        }
+        .sell-wrap .btn-area:after {
+            content: "";
+            display: block;
+            clear: both;
+            background-color: #fff;
+        }
+        .sell-wrap .cart-layer .cart-wrap {
+            /* display: none; */
+            width: 240px;
+            height: 0;
+            border: 1px solid #c8c8c8;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.13);
+            background: #fff;
+            /* overflow: hidden; */
+        }
+        .sell-wrap .cart-layer {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            margin-top: 4px;
+            width: 250px;
+            z-index: 100;
+        }
+
+    </style>   
+    
+    
+<!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            //마이너스 버튼
+            $(".btn-minus").click(function(){
+                var inputCount = parseInt($(this).next().val()); //input태그의 값을 변환
+                $("[name=quantity]").val(inputCount-1);
+                if(inputCount==2){
+                    $(this).attr("disabled",true); //마이너스 버튼 비활성화
+                }
+            })
+            //플러스 버튼
+            $(".btn-plus").click(function(){
+                $(".btn-minus").attr("disabled",false); //마이너스 버튼 활성화
+                var inputCount = parseInt($(this).prev().val());
+                $("[name=quantity]").val(inputCount+1);
+            });
+        });
+    </script>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+ 
 </head>
 <body>
-	<h1>제품 상세</h1>
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>상품명</th>
-					<th>판매가</th>
-					<th>할인가</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${productDto.productName}</td>
-					<td>${productDto.productPrice}</td>
-					<td>-${productDto.productDiscount}% ${disPrice} </td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+    <div class="container-1000">
+    <header id="header">
+        <div id="header-area1">
+            <div class="wrap">
+                   <div class="img-search">
+                    <img src="./img/펫팔 로고.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
+                    <div id="search">
+                      <form name="frm_search" id="frm_search" method="#" action="#">
+                        <div class="inp-wrap">
+                           <input class="inp2" type="text" placeholder="검색어를 입력하세요" > 
+                           <div class="tag" style="float:left; margin-top: 0;">
+                             <ul>
+                               <li><a href="#">Mypage</a></li>
+                               <li><a href="#"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
+                               <li><a href="#">Login</a></li>
+                               <li><a href="#">Join</a></li>
+                             </ul>
+                           </div>                   
+                        </div>
+                    </div>
+                      </form>
+                   </div>
+                 </div>
+        </div>
+    
+        <div id="header-area2">
+          <div class="wrap2">
+            <ul class="contents">
+              <li>
+                <a href="#">사료</a>
+                <ul class="depth_1">
+                  <a href="#">전연령용</a>
+                  <a href="#">자견용</a>
+                  <a href="#">성견용</a>
+                  <a href="#">노견용</a>
+                  <a href="#">분유</a>
+                </ul>
+              </li>
+              <li>
+                <a href="#">간식</a>
+                <ul class="depth_1">
+                  <a href="#">육포/건조간식</a>
+                  <a href="#">트릿/스틱</a>
+                  <a href="#">껌/덴탈껌</a>
+                  <a href="#">캔/파우치</a>
+                  <a href="#">수제간식</a>
+                  <a href="#">파우더</a>
+                </ul>
+              </li>
+              <li>
+                <a href="#">장난감</a>
+                <ul class="depth_1">
+                  <a href="#">봉제장난감</a>
+                  <a href="#">공/원반</a>
+                  <a href="#">라텍스장난감</a>
+                  <a href="#">치실/로프</a>
+                  <a href="#">터그놀이</a>
+                  <a href="#">노즈워크</a>
+                </ul>
+              </li>
+              <li>
+                <a href="#">목욕용품</a>
+                <ul class="depth_1">
+                  <a href="#">샴푸/린스</a>
+                  <a href="#">타월/드라이</a>
+                  <a href="#">목욕용품</a>
+                </ul>
+              </li>
+              <li>
+                <a href="#">미용용품</a>
+                <ul class="depth_1">
+                  <a href="#">빗/브러쉬</a>
+                  <a href="#">클리퍼/미용가위</a>
+                  <a href="#">발/발톱관리</a>
+                  <a href="#">미스트/향수</a>
+                  <a href="#">털제거용품</a>
+                </ul>
+              </li>
+              <li>
+                <a href="#">산책용품</a>
+                <ul class="depth_1">
+                  <a href="#">목줄</a>
+                  <a href="#">하네스줄/가슴줄</a>
+                  <a href="#">리드줄</a>
+                  <a href="#">산책용품</a>
+                  <a href="#">이동가방</a>
+                </ul>
+              </li>
+          </div>
+        </div>
+      </main>
+            </header>
+
+
+        <div class="row center">
+            <h1></h1>
+        </div>
+        <div class="row"  id="contents" style="width: 900px; margin-bottom: 10px; margin-left: 50px; margin-top:50px;">
+            <a href="#" style="text-decoration: none;">산책/이동장</a> &gt; <a href="#" style="text-decoration: none;">이동가방</a></div>
+        <div id="contents-wrap"> 
+            <div id="contents">
+                <div class="photo-sell-wrap">
+                    <div class="photo-wrap">
+                        <div class="photo-view" data="#" style="cursor: pointer;">
+                        <img src="./img/9012_web_original_1673006075211726.jpg"  alt="이동장가방사진" id="photo_detail">
+                        </div>
+                        <div class="photo-indicate">
+                            <ul id="photo_dumy">
+                                <li class="smallImg">
+                                    <button class="active thumb-detail-list">
+                                        <img id="btn_img" src="./img/9012_web_original_1673006075211726.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sell-wrap" style="padding-top: 0px;">
+                        <div style="margin-bottom: 3px;">
+                            <a href="#" style="margin-left: 8px; letter-spacing: 0px; text-decoration: none;">힐링타임</a>
+                        </div>
+                        <h2 style="margin-bottom: 0px;">
+                            <span id="viewName">힐링타임 도전 스케어 백팩 그레이</span>
+                            <div class="star">
+                                <div class="view-info-new">
+                                    <div class="grade">
+                                        <strong style="width: 0%;">0.0점</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </h2>
+                        <div class="price-info view_price_first">
+                            <dl class="price-sell" style="padding-top: 10px;">
+                                <dt>판매가</dt>
+                                <dd>
+                                    <del class="num" style="color: gray;">
+                                        45,000원
+                                    </del>
+                                </dd>
+                            </dl>
+                            <dl class="price-sell">
+                                <dt>할인가</dt>
+                                <dd>
+                                    <strong class="num" style="color: red;">43,000원</strong>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="basic-info">
+                            <dl class="price-basic">
+                                <dt style="float: left; padding-right: 50px;">배송</dt>
+                                <dd>
+                                    <span>30,000원 이상 구매 시 무료배송</span>
+                                </dd>
+                            </dl>
+                            <dl class="price-basic" style="margin-bottom: 10px;">
+                                <dt id="remain_subject" style="float: left; padding-right: 50px;">출고</dt>
+                                <dd id="remian_text">
+                                    <div>업체별 배송기간 1~3일 추가 소요</div>
+                                </dd>
+                            </dl>
+                        </div>
+                        <!-- 수량 -->
+                        <div class="jss811">
+                            <div>
+                                <div class="jss812">
+                                    <div class="jss813">수량</div>
+                                    <div class="jss821">
+                                        <dd class="alarm yes-stock" style="background-color: #f4f4f5;">
+                                            <div class="quantity-wrap" style="top:0">
+                                                <button class="btn-minus dim" style="background-color: #fff;">"빼기"</button>
+                                                <input type="tel" name="quantity" id="quantity" value="1" maxlength="2" minlength="1" autocapitalize="off" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" readonly>
+                                                <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
+                                            </div>
+                                            <span id="pass_quantity" class="pss_quantitys">(재고있음)</span>
+                                        </dd>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="jss816" style="margin-top: 10px;"> 
+                                        총 상품 금액
+                                    </div>
+                                    <div class="jss817">
+                                        <strong id="cart_total_price_pc">
+                                            86,000
+                                        </strong>
+                                        원
+                                    </div>
+                                </div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="basic-info">
+                            <div class="btn-area" style="border-top: 1px solid #fff;">
+                                <div class="cart-layer">
+                                    <!-- <div class="cart-wrap" style="height: 0px;">
+                                        <p class="cart-txt tit">상품이 장바구니에 담겼습니다.</p>
+                                        <div class="cart-body">
+                                            <div class="btn-area">
+                                                <a href="#" class="btn-type" style="width: 48%; font-size: 13px;">장바구니 보기</a>
+                                                <a href="#" class="btn-close" onclick="javascript:cart_layerclose();">닫기</a>
+                                            </div>
+                                            <a href="#" class="btn-close" onclick="javascript:cart_layerclose">
+                                                <b>닫기</b>
+                                            </a>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <button type="button" class="btn-type type03" id="insert_cart" style="border-color: #9091E6; background-color: #9091E6; border-bottom: #9091E6;">
+                                    <b>장바구니 담기</b>
+                                </button>
+                                <button type="button" class="btn-type type04" id="insert_direct">
+                                    <b>바로구매</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </body>
 </html>
