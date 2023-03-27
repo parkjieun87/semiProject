@@ -81,13 +81,13 @@ public class MemberDao {
 		
 	// 비밀번호 제외한 나머지 정보 변경 기능 구현(형석)
 		public boolean changeInformation(MemberDto memberDto) {
-			String sql = "update member set member_email=?, member_tel=?, member_nick=?, "
-					+ "member_post=?, member_basic_addr=?, member_detail_addr=?"
+			String sql = "update member set member_nick=?, member_email=?, member_tel=?, "
+					+ "member_post=?, member_basic_addr=?, member_detail_addr=?, "
 					+ "where member_id=?";
 			
 			Object[] param = {
-				memberDto.getMemberEmail(), memberDto.getMemberTel(), memberDto.getMemberNick(),
-				memberDto.getMemberPost(), memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr(),
+				memberDto.getMemberNick(), memberDto.getMemberEmail(), memberDto.getMemberTel(),
+				memberDto.getMemberPost(), memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr()
 			};
 			return jdbcTemplate.update(sql, param) > 0;//update() 메소드의 반환값이 0보다 크면 true를 반환하고, 그렇지 않으면 false를 반환.
 			//이는 데이터베이스에서 비밀번호 변경 작업이 성공했는지의 여부를 나타낸다.	
@@ -118,8 +118,8 @@ public class MemberDao {
 					+ "member_post=?, member_basic_addr=?, member_detail_addr=? "
 					+ "where member_id=?";
 			Object[] param = {
-					memberDto.getMemberEmail(), memberDto.getMemberTel(), memberDto.getMemberNick(),
-					memberDto.getMemberPost(), memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr()
+					memberDto.getMemberNick(), memberDto.getMemberEmail(), memberDto.getMemberTel(),
+					memberDto.getMemberPost(), memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr(),
 			};
 			return jdbcTemplate.update(sql, param) > 0;			
 		}

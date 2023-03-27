@@ -47,11 +47,13 @@
         <a href='https://www.petbabo.com/' target='_blank'>회사소개   |</a>
         <a href='https://www.dogpang.com/shop/service/term.php' target='_blank'>이용약관   |</a>  
         <a href='https://www.dogpang.com/shop/service/private.php' target='_blank'>개인정보 처리방침   |</a>  
-        <a href='http://localhost:8080/contact/notice' target='_blank'>공지사항   |</a>       
+        <a href='http://localhost:8080/contact/notice' target='_blank'>공지사항   |</a>     
+		<a href='http://localhost:8080/contact/notice/faqAll' target='_blank'>자주묻는 질문   |</a>       
+          
     </p>
      <hr>
 	<nav style="display:flex" class="footMent">
-		<img src = "/static/image/petpal.png" width ="150px" height = "150px" padding="5em" class="">
+		<img src = "/static/image/petpal.png" width ="150px" height ="150px" padding="5em" class="">
 		 <p class="ms-40 mt-10">
         <span>(주) 펫팔</span><span> | 대표이사 : C조 전원</span><br/>
         <span>주소 : 서울 영등포구 선유동2로 57 이레빌딩 19층 C강의실</span><br/>
@@ -85,6 +87,7 @@
      </ul>
      
 	</nav>
+	</div>
 	
 	
 </footer>
