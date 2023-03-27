@@ -84,11 +84,14 @@ public class ProductDao {
 	// 상품 정보 수정
 	public boolean changeProductInfo(ProductDto productDto) {
 		String sql = "update product set "
-				+ "product_price=?, product_stock=?, product_desc=?, product_discount=? "
+				+ "category_code=?, product_name=?, product_price=?, "
+				+ "product_stock=?, product_desc=?, product_discount=? "
 				+ "where product_no=?";
 		Object[] param = {
+				productDto.getCategoryCode(), productDto.getProductName(),
 				productDto.getProductPrice(), productDto.getProductStock(),
-				productDto.getProductDesc(), productDto.getProductDiscount()
+				productDto.getProductDesc(), productDto.getProductDiscount(), 
+				productDto.getProductNo()
 				};
 		return jdbcTemplate.update(sql, param) > 0;
 	}
