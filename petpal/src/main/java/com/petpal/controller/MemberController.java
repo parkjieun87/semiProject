@@ -93,6 +93,7 @@ public class MemberController {
 	   return "/WEB-INF/views/member/mypage.jsp";
    }
    
+   
    // 비밀번호 변경 기능 (형석 2023.03.23)
    @GetMapping("/password")
    public String password() {

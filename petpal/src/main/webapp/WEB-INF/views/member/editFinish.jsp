@@ -21,7 +21,7 @@
 		<img src = "/static/image/joinFinishDog.png" width = "400px" height = "400px" padding="10em" class="logo">
    </div>
 <div class="row center">	
-	<h2> </h2>
+	<h2> 회원 정보 수정 완료</h2>
 </div>
 <div class="row center">	
 	<a href="/"><button class="form-btn positive w-70">홈으로</button></a>
