@@ -8,5 +8,6 @@ public class FaqDto {
 	private String faqTitle;
 	private String faqAnswer;
 	private int faqCategory;
+	private String faqCategoryName;
 	
 }

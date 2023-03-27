@@ -23,8 +23,8 @@ public class ProductDao {
 		String sql = "insert into product("
 				+ "product_no, category_code, product_name, product_price, product_stock, "
 				+ "product_desc, product_regdate, product_discount, product_views) "
-				+ "values(product_seq.nextval, ?, ?, ?, ?, ?, sysdate, ?, 0)";
-		Object[] param = {productDto.getCategoryCode(), productDto.getProductName(), productDto.getProductPrice(),
+				+ "values(?, ?, ?, ?, ?, ?, sysdate, ?, 0)";
+		Object[] param = {productDto.getProductNo() ,productDto.getCategoryCode(), productDto.getProductName(), productDto.getProductPrice(),
 									productDto.getProductStock(), productDto.getProductDesc(), productDto.getProductDiscount()};
 		jdbcTemplate.update(sql, param);
 	}
@@ -46,6 +46,12 @@ public class ProductDao {
 			return productDto;
 		}
 	};
+	
+	//상품 번호 생성
+	public int sequence() {
+		String sql = "select product_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
 	
 	// 상품 리스트
 	public List<ProductDto> selectList(PaginationVO vo){
