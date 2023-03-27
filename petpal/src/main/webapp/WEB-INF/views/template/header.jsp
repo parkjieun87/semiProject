@@ -44,7 +44,7 @@
                        <input class="inp2" type="text" placeholder="검색어를 입력하세요" > 
                        <div class="tag" style="float:left; margin-top: 0;">
                          <ul>
-                           <li><a href="http://localhost:8080/member/edit">Mypage</a></li>
+                           <li><a href="http://localhost:8080/member/mypage">Mypage</a></li>
                            <li><a href="#"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
                            <li><a href="http://localhost:8080/member/login">Login</a></li>
                            <li><a href="http://localhost:8080/member/join">Join</a></li>

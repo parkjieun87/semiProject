@@ -51,7 +51,7 @@
     </p>
      <hr>
 	<nav style="display:flex" class="footMent">
-		<img src = "/static/image/petpal.png" width ="150px" height = "150px" padding="5em" class="">
+		<img src = "/static/image/petpal.png" width ="150px" height ="150px" padding="5em" class="">
 		 <p class="ms-40 mt-10">
         <span>(주) 펫팔</span><span> | 대표이사 : C조 전원</span><br/>
         <span>주소 : 서울 영등포구 선유동2로 57 이레빌딩 19층 C강의실</span><br/>
@@ -85,6 +85,7 @@
      </ul>
      
 	</nav>
+	</div>
 	
 	
 </footer>
