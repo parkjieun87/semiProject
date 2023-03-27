@@ -15,10 +15,9 @@
     <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/contact/faq.css">
 
 
-   
+
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- header css -->
     <link rel="stylesheet" type="text/css" href="/static/css/header.css">
@@ -36,18 +35,19 @@
     <div id="header-area1">
         <div class="wrap">
                <div class="img-search">
-
+               <a href="http://localhost:8080/">
                 <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
+                </a>
                 <div id="search">
                   <form name="frm_search" id="frm_search" method="#" action="#">
                     <div class="inp-wrap">
                        <input class="inp2" type="text" placeholder="검색어를 입력하세요" > 
                        <div class="tag" style="float:left; margin-top: 0;">
                          <ul>
-                           <li><a href="#">Mypage</a></li>
+                           <li><a href="http://localhost:8080/member/edit">Mypage</a></li>
                            <li><a href="#"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
-                           <li><a href="#">Login</a></li>
-                           <li><a href="#">Join</a></li>
+                           <li><a href="http://localhost:8080/member/login">Login</a></li>
+                           <li><a href="http://localhost:8080/member/join">Join</a></li>
                          </ul>
                        </div>                   
                     </div>
@@ -59,7 +59,7 @@
 
     <div id="header-area2">
       <div class="wrap2">
-        <ul class="contents">
+        <ul class="contents" >
           <li>
             <a href="#">사료</a>
             <ul class="depth_1">

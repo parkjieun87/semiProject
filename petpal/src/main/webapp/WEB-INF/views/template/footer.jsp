@@ -44,10 +44,10 @@
 <footer>
 <div class="container-1500">
 	<p class="row">
-        <a href='#' target='_blank'>회사소개   |</a>
-        <a href='#' target='_blank'>이용약관   |</a>  
-        <a href='#' target='_blank'>개인정보 처리방침   |</a>  
-        <a href='#' target='_blank'>공지사항   |</a>       
+        <a href='https://www.petbabo.com/' target='_blank'>회사소개   |</a>
+        <a href='https://www.dogpang.com/shop/service/term.php' target='_blank'>이용약관   |</a>  
+        <a href='https://www.dogpang.com/shop/service/private.php' target='_blank'>개인정보 처리방침   |</a>  
+        <a href='http://localhost:8080/contact/notice' target='_blank'>공지사항   |</a>       
     </p>
      <hr>
 	<nav style="display:flex" class="footMent">

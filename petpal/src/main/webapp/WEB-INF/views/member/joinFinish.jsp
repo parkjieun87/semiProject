@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+    
 <style>
    
 	.logo 
@@ -21,12 +22,12 @@
 </style>
 
 <div class="container-600">
-   <div class="row center">
-		<img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
+   <div class="row center mt-50">
+		<img src = "/static/image/joinFinish.png" width = "400px" height = "400px" padding="10em" class="logo">
    </div>
   
 	<div class="row center">	
-	<a href="login"><button class="form-btn positive w-50">로그인하기</button></a>
+	<a href="login"><button class="form-btn positive w-70">로그인하기</button></a>
 	</div>
   </div>
 	  
