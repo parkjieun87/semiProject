@@ -7,11 +7,12 @@
 
 <style>
 
-	.logo
-	{
-	  display: block;
-	  margin: auto;
-	}
+	  .logo 
+   {
+     display: block;
+     margin: auto;
+   }
+
 
    .info-window {
    }
@@ -22,11 +23,16 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/static/js/find-address.min.js"></script>
 
-<article style="display:flex;">
+
+
+<article style="display:flex; margin-top:3%; margin-left:10%;">
+
 <section class="flex-box flex-vertical">
-            <aside style="border: 4px solid #b1b2ff; border-radius: 15px 15px 15px 15px">
+            <aside style="border: 4px solid #b1b2ff; border-radius: 15px 15px 15px 15px ">
+            
                 <!-- 관리 메뉴는 수직으로 배치(List-Group 형태) -->
-                <div class="flex-box flex-vertical center">
+                <div class="flex-box flex-vertical">
+                
                     <div class="p-20">
                         <h3>내 정보 </h3>
                     </div>
@@ -39,16 +45,14 @@
                     <div class="p-20"><a href="/member/wishList" class="link">찜 목록</a></div>
                     <div class="p-20"><a href="/member/orderPage" class="link">주문 목록</a></div>
                     <div class="p-20"><a href="/member/basket" class="link">장바 구니</a></div>
-
                 </div>
+                
             </aside>
+            
         </section>
-<div class="container-600">
-   <div class="row center">
-		<img src = "/static/image/petpal.png" width = "400px" height = "400px" padding="10em" class="logo">
-   </div>
-</form>
-
-
-
+          <img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
+          
+ </article>
+ 
+ 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
