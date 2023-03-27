@@ -276,24 +276,30 @@ input[type='number']::-webkit-inner-spin-button {
         	var sell_price = $("[name=sell_price]").val();
         	
         	var inputCount = 1;
+        	var originalPrice = parseInt($(".disPrice").text());
+        	
+        	
+        	
         	
             //마이너스 버튼
             $(".btn-minus").click(function(){
             	
        
- 				var inputCount = parseInt($(this).next().val()); //input태그의 값을 변환
+            
                 $("[name=productStock]").val(inputCount-1);
-                
+                inputCount = parseInt($("#quantity").val());
+                console.log(inputCount);
                 
 				var sum = $("#cart_total_price_pc").val();
 			
 
             	sum = parseInt(inputCount) * sell_price;
+            
             	
-            	$("#cart_total_price_pc").val(sum);
+            	$(".disPrice").text(sum);
             	
                 
-                if(inputCount==2){
+                if(inputCount==1){
                     $(this).attr("disabled",true); //마이너스 버튼 비활성화
                 }
             })
@@ -301,19 +307,24 @@ input[type='number']::-webkit-inner-spin-button {
             $(".btn-plus").click(function(){
    	
                 $(".btn-minus").attr("disabled",false); //마이너스 버튼 활성화
-                var inputCount = parseInt($(this).prev().val());
+              
+              
                
+            	
                 var sum = $("#cart_total_price_pc").val();
                
                 $("[name=productStock]").val(inputCount+1);
-            	sum = parseInt(inputCount) * sell_price;
-            	$("#cart_total_price_pc").val(sum);
-            	
+              	inputCount = parseInt($("#quantity").val());
+              	$("#quantity").val(inputCount);
+                console.log(inputCount);
+        
+            	sum = inputCount * sell_price;
+            	$(".disPrice").text(sum);
                 
             	
                 
                 if(inputCount == ${productDto.productStock}){
-                	  $("#cart_total_price_pc").val(inputCount);
+                	 $(".btn-plus").attr("disabled",true);
                 }
             });
             
@@ -419,8 +430,8 @@ input[type='number']::-webkit-inner-spin-button {
                                         <strong id="cart_total_price_pc">
                                        
                                         	<input type="hidden" name="sell_price" value="${disPrice}">
-                                        	<input type="text" name="sum" value="${disPrice}" readonly>
-                                       		${disPrice}원
+                                        
+                                       		<span class="disPrice">${disPrice}</span>
                                            
                                         </strong>
                                         원
