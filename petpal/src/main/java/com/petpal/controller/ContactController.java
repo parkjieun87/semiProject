@@ -62,8 +62,22 @@ public class ContactController {
 		return "/WEB-INF/views/contact/noticeDetail.jsp";
 	}
 	
+	@GetMapping("/notice/faqAll")
+	public String qna(Model model,@ModelAttribute("vo") PaginationVO vo) {
+		// 전체 게시물 개수
+		int totalPageCnt = faqDao.totalPageCnt();
+		vo.setCount(totalPageCnt);
+		model.addAttribute("pageInfo",faqDao.selectList(vo));
+		model.addAttribute("flag","true");
+		return "/WEB-INF/views/contact/faq.jsp";
+	}
+	
 	@GetMapping("/notice/faq")
-	public String qna(int faqCategory, Model model) {
+	public String qna(int faqCategory, Model model,@ModelAttribute("vo") PaginationVO vo) {
+		
+		// 전체 게시물 개수
+		int totalPageCnt = faqDao.totalPageCnt();
+		vo.setCount(totalPageCnt);
 		
 		model.addAttribute("pageInfo",faqDao.selectList(faqCategory));
 		
