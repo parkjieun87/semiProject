@@ -1,0 +1,486 @@
+@charset "UTF-8";
+
+/* order css */
+
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, blockquote, th, td, p, button, span {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-text-size-adjust: none;
+        -webkit-tap-highlight-color: transparent;
+        font-family: '카페24 써라운드 에어'
+    }
+ol, ul, li {
+    list-style: none;
+}
+.b{
+    font-weight: 800;
+}
+
+/* 주문/결제페이지 상단*/
+.wrap{position: relative; margin: 0 auto; width: 1200px;}
+#pay-step{background-color: #f9f9f9;}
+#pay-step .wrap{padding: 0 50px 70px; border-top: 4px solid #9091E6; border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdfdf; background: #fff;}
+#pay-step .wrap #logo{position: relative; top: 0; left: 0; padding: 16px 0;}
+#logo sub{position: absolute;top: 0;left: 227px;font-size: 14px;white-space: nowrap;}
+#pay-step .wrap #logo sub{top: 33px;left: auto;right: 0;color: #9091E6;font-weight: 500;}
+#logo a{display: block;margin-left: 0px;margin-top: 8px;padding-top: 54px;width: 215px;height: 54px;background: url(../img/petpalLogo.png) 0 0 no-repeat;-ms-background: url(../img/petpalLogo.png) 0 0 no-repeat;background-size: 198px auto;overflow: hidden;}
+a{box-sizing: border-box;color: #333;text-decoration: none;cursor: pointer;-webkit-tap-highlight-color: transparent;}
+
+/* 장바구니,주문/결제,결제완료 */
+.step-location{
+    margin: 10px 0 0 0;
+}
+.step-location ul{
+    font-size: 0;
+}
+.step-location ul li{
+    display: inline-block;
+    position: relative;
+    padding: 20px 0 0 60px;
+    width: 30%;
+    height: 100px;
+    color: #5c5a5b;
+    font-size: 24px;
+    border: 1px solid #e0e0e0;
+    /* border-left: 0 none;
+    border-right: 0 none; */
+    vertical-align: top;
+}
+.step-location ul li:first-child{
+    padding-left: 60px;
+    border-left: 1px solid #e0e0e0;
+    background-image: url(../img/cart.png);
+    background-size: 100px auto;
+    background-repeat: no-repeat;
+    background-position-x: 160px;
+    background-position-y: 20px;
+}
+.step-location ul li sup{
+    display: block;
+    font-size: 18px;
+}
+sup{
+    vertical-align: super;
+}
+.step-location ul li:after,
+.step-location ul .step01:after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 98px;
+    background: #fff url(../img/cart.png) 0 33px no-repeat;
+}
+.step-location ul li:first-child{
+    padding-left: 20px;
+    border-left: 1px solid #e0e0e0;
+}
+.step-location ul li::before{
+    /* content: ""; */
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: -35px;
+    width: 68px;
+    height: 68px;
+    border: 1px solid #e0e0e0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.step-location ul
+.step02::after{
+    background-position: -72px 33px;
+}
+.step-location ul li.active {
+    color: #fff;
+    border-color: #909090;
+    background: #909090;
+}
+.step-location ul
+li.active::before{
+    background-color: #fff;
+}
+.step-location ul .step02{
+    background-image: url(../img/dollar.png);
+    background-size: 88px auto;
+    background-repeat: no-repeat;
+    background-position-x: 173px;
+    background-position-y: 10px;
+    background-color: #c7d2ff;
+}
+.step-location ul .step03{
+    background-image: url(../img/check.png);
+    background-size: 88px auto;
+    background-repeat: no-repeat;
+    background-position-x: 172px;
+    background-position-y: 10px;
+}
+
+
+/* 주문내역css */
+.order .sec>tit{
+    padding-left: 5px;
+    line-height: 35px;
+}
+.bundle-info__retail{
+    width: 100%;
+}
+.bundle-info__pdd-group-box{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.bundle-info__expected-delivery-date-box{
+    padding: 12px 16px 10px;
+    background-color: #eee;
+    line-height: 20px;
+}
+.bundle-info__item-list{
+    margin-left: 16px;
+    margin-right: 16px;
+}
+.bundle-info__vendor-item-box:first-child{
+    margin-top: 12px;
+}
+.bundle-info__vendor-item-box{
+    zoom: 1;
+    overflow: hidden;
+    /* padding-top: 12px; */
+    margin-bottom: 0px;
+    color: #333;
+    height: auto;
+    width: 100%;
+    border-bottom: 1px solid #f6f6f6;
+}
+
+/* 주문내역css */
+.sec{
+    margin-top: 15px;
+    position: relative;
+    width: 100%;
+}
+.tit.type02{
+    font-size: 16px;
+}
+.sec>.tit+.sec{
+    margin-top: 0;
+}
+.sec.type03 {
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+}
+.sec.type03 {
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+}
+
+.order .inp-wrap.type03.btn-add.wide {
+width: 500px;
+}
+.inp-wrap.type03, .inp-wrap.val {
+    padding: 0 0 0 125px;
+    border-color: transparent;
+    background: transparent;
+}
+.inp-wrap:first-child{margin-top: 0;}
+.val:first-child{margin-top: 0;}
+.inp-wrap{margin: 0;}
+
+.inp-wrap>label:first-child, .inp-wrap>strong:first-child {
+    display: block;
+    position: absolute;
+    left: 10px;
+    font-weight: 400;
+    z-index: 0;
+    margin-top: 10px;
+}
+    label {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+.inp-wrap.type03 .val {border-color: transparent;}
+.inp-wrap .val {
+    min-height: 28px;
+    height: auto;
+    line-height: 2.35;
+}
+.inp-wrap.type03.btn-add button, .inp-wrap.type03.btn-add button.side-out {
+    right: auto;
+    left: 100%;
+    margin-left: -1px;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-left: 0 none;
+}
+.inp-wrap input[type='text'], .inp-wrap input[type='password'], .inp-wrap input[type='search'], .inp-wrap input[type='tel'], .inp-wrap input[type='number'], .inp-wrap .val {
+    display: inline-block;
+    position: relative;
+    margin-top: 0;
+    padding: 0 10px;
+    width: 100%;
+    height: 35px;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: inherit;
+    outline: 0 none;
+    vertical-align: top;
+    z-index: 1;
+}
+
+.inp-wrap.type02:after, .inp-wrap.type03:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 118px;
+    width: 1px;
+    height: 15px;
+    background: #ddd;
+    z-index: 10;
+}
+
+.sec:after {
+content: "";
+display: block;
+clear: both;
+}
+.inp-wrap.type03 .val {
+    border-color: transparent;
+}
+.order .inp-wrap.type03.wide {
+    width: auto;
+    word-break: break-all;
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+.inp-wrap.type03+.warning-txt {
+    padding-left: 137px;
+}
+.order .warning-txt {
+    padding: 0 0 5px 137px;
+}
+.inp-wrap+.warning-txt {
+    margin-top: 5px;
+}
+.warning-txt {
+    display: none;
+    padding: 0 0 5px 11px;
+    color: #145eaa;
+    font-size: small;
+}
+
+/* 받는 사람 css */
+.inp-wrap .btn-clear:hover:after, .inp-wrap .btn-clear:focus:after {
+    opacity: 1 !important;
+}
+
+.inp-wrap.type03 .btn-clear, .inp-wrap.type03.btn-add .btn-clear {
+    top: 14px;
+    left: auto;
+    right: 4px;
+    margin-left: 0;
+    border: 0 none;
+}
+.order .inp-wrap.type03 {
+    display: block;
+    /* position: relative;display: inline-block; */
+}
+.order .inp-wrap.type03 {
+    width: 500px;
+}
+.inp-wrap.type03 input[type='text'], .inp-wrap.type03 input[type='password'], .inp-wrap.type03 input[type='search'], .inp-wrap.type03 input[type='tel'], .inp-wrap.type03 input[type='number'] {
+    padding-right: 30px;
+    border: 1px solid #ddd;
+}
+.order .inp-wrap.type03.btn-add {
+    width: 401px;
+}
+
+
+/* 입력창 x표시 */
+#rowbtn1{position: relative;height: 30px;display: inline-block;}
+#rowbtn1 input {padding-right: 5px;height: inherit; border-right: none;}
+#rowbtn1 #btnC1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: inherit;
+  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
+  background-size: 50%;
+  outline: none;
+  cursor: pointer;
+}
+#rowbtn2{position: relative;height: 30px;display: inline-block;}
+#rowbtn2 input {padding-right: 5px;height: inherit; border-right: none;}
+#rowbtn2 #btnC2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: inherit;
+  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
+  background-size: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+#row-btnC3 #btnC3 {
+  position: absolute;
+  width: 30px;
+  height: 35px;
+  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
+  background-size: 50%;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+}
+#row-btnC4 #btnC4 {
+  position: absolute;
+  width: 30px;
+  height: 35px;
+  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
+  background-size: 50%;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+}
+#row-btnC5 #btnC5 {
+  position: absolute;
+  width: 30px;
+  height: 35px;
+  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
+  background-size: 50%;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+}
+#row-btn6 #zipcode_search{
+    position: absolute;
+    width: 100px;
+    height: 35px;
+    margin-left: 0px;
+    left: 420px;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 0px;
+    border: none;
+}
+
+/* 결제금액 css */
+.inp-wrap #discountval{
+    color: #158;
+    font-weight: 500;
+}
+.order .inp-wrap strong.val {
+            font-size: 16px;
+            color: #145eaa;
+            font-weight: 1000;
+        }
+        .chk-wrap input[type='checkbox'], .chk-wrap input[type='radio'] {
+    position: fixed;
+    top: 2px;
+    left: 2px;
+}
+input[type="checkbox"], input[type="radio"] {
+    width: 13px;
+    height: 13px;
+    box-sizing: border-box;
+    -webkit-border-radius: 0;
+    cursor: pointer;
+}
+.chk-wrap label {
+    display: inline-block;
+    position: relative;
+    padding-left: 22px;
+    line-height: 18px;
+    z-index: 1;
+}
+.chk-wrap input[type='radio']+label:after {
+    border-radius: 100px;
+}
+.chk-wrap input:checked+label:after {
+    border-color: #e699a2;
+    background-position: 0 bottom;
+}
+.chk-wrap label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    background: #fff url(../ico_inp.png) 0 0 no-repeat;
+}
+.inp-wrap.type02:after, .inp-wrap.type03:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 118px;
+    width: 1px;
+    height: 15px;
+    background: #ddd;
+    z-index: 10;
+}
+.term-pay-wrap .scroll-wrap {
+    height: 150px;
+    overflow-y: auto;
+}
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.term-pay-wrap .scroll-wrap strong {
+    display: block;
+    margin-bottom: 10px;
+}
+.sec:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+/* 최종결제버튼 */
+.order .btn-area {
+    margin-top: 50px;
+    text-align: center;
+}
+.ico-ok:before, .ico-shop:before, .ico-shop-invert:before, .ico-join:before {
+    content: "";
+    position: relative;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+.btn-type.type05 {
+    border-color: #077edc;
+    border-radius: 4px;
+    background: #077edc;
+    box-shadow: none;
+    filter: '';
+}
+.btn-type.size04 {
+    min-width: 240px;
+    height: 50px;
+    line-height: 48px;
+    font-size: 15px;
+    letter-spacing: -1px;
+    background-color: #c9dcfd;
+    border: none;
+}
