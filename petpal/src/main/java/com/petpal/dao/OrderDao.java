@@ -81,14 +81,18 @@ public class OrderDao {
 			jdbcTemplate.update(sql,param);
 	}
 	
-	//2.주문내역 조회
-	public ProductOrderDto selectOne(String memberId) {
-		String sql="select*from order_detail where member_id=?";
-		Object[] param = {memberId};
-		List<ProductOrderDto> list = jdbcTemplate.query(sql, mapper, param);
-		return list.isEmpty()?null:list.get(0);
-	}
+//	//2.주문내역 조회
+//	public ProductOrderDto selectOne(String memberId) {
+//		String sql="select a.cart_no, a.member_id, a.product_no, a.product_count,"
+//				+ "      b.product_name, b.product_price, b.product_discount from cart "
+//				+ "      a left outer join product b on a.product_no = b.product_no where "
+//				+ "      member_id = ?";
+//		Object[] param = {memberId};
+//		List<ProductOrderDto>	 list = jdbcTemplate.query(sql, mapper, param);
+//		return list.isEmpty()?null:list.get(0);
+//	}
 	
+	//3.구매하기(등록)
 	
 	
 }
