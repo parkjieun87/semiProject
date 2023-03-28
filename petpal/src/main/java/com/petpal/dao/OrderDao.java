@@ -3,6 +3,7 @@ package com.petpal.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.OrderDetailDto;
 import com.petpal.dto.ProductOrderDto;
 
 import net.nurigo.java_sdk.api.Message;
@@ -42,6 +44,9 @@ public class OrderDao {
 		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
 		return productOrderDto;
 	}};
+	
+	
+	//mapper 생성
 	
 	// 번호 인증 기능
 			public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
@@ -76,5 +81,14 @@ public class OrderDao {
 			jdbcTemplate.update(sql,param);
 	}
 	
-	//
+	//2.주문내역 조회
+	public ProductOrderDto selectOne(String memberId) {
+		String sql="select*from order_detail where member_id=?";
+		Object[] param = {memberId};
+		List<ProductOrderDto> list = jdbcTemplate.query(sql, mapper, param);
+		return list.isEmpty()?null:list.get(0);
+	}
+	
+	
+	
 }
