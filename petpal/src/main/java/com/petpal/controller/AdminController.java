@@ -102,6 +102,14 @@ public class AdminController {
 		return "/WEB-INF/views/admin/product/list.jsp";
 	}
 	
+	// 상품 상세
+	@GetMapping("/product/detail")
+	public String productDetail(Model model, 
+							@RequestParam int productNo) {
+		model.addAttribute("productDto", productDao.selectOne(productNo));
+		return "/WEB-INF/views/admin/product/detail.jsp";
+	}
+	
 	// 상품정보 변경
 	@GetMapping("/product/edit")
 	public String productEdit(Model model, @RequestParam int productNo) {
@@ -148,7 +156,7 @@ public class AdminController {
 	public String memberEdit(Model model, @RequestParam String memberId) {
 		MemberDto memberDto = memberDao.selectOne(memberId);
 		model.addAttribute("memberDto", memberDto);
-		return "WEB-INF/views/admin/member/edit.jsp";
+		return "/WEB-INF/views/admin/member/edit.jsp";
 	}
 	@PostMapping("/member/edit")
 	public String memberEdit(@ModelAttribute MemberDto memberDto, 

@@ -3,12 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
     <div class="container-1100 center">
-    	<div class="row">
-    		<h3>상품 목록</h3>
-    	</div>
     	<!-- 상품 목록 테이블 -->
         <div class="row container-1200">
-            <table class="table table-border">
+            <table class="table table-slit">
                 <thead>
                     <tr>
                         <th>상품 번호</th>
@@ -31,9 +28,13 @@
 	                        <td>${list.productName}</td>
 	                        <td>${list.productPrice}원</td>
 	                        <td>${list.productStock}개</td>
-	                        <td>${list.productDesc}</td>
+	                        <td>
+	                        	<a class="link" href="detail?productNo=${list.productNo}">
+	                        		${list.productName} 자세히보기
+	                        	</a>
+	                        </td>
 	                        <td>${list.productRegdate}</td>
-	                        <td>${list.productDiscount}</td>
+	                        <td>${list.productDiscount}%</td>
 	                        <td>${list.productViews}</td>
 	                        <td>
 	                        	<a class="link" href="edit?productNo=${list.productNo}">수정</a>

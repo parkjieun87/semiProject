@@ -117,12 +117,14 @@ public class MemberDao {
       // 관리자용 회원정보 변경(성현)
       public boolean changeInformationByAdmin (MemberDto memberDto) {
          String sql = "update member set "
-               + "member_email=?, member_tel=?, member_nick=?, "
-               + "member_post=?, member_basic_addr=?, member_detail_addr=? "
-               + "where member_id=?";
+               + "member_name=?, adminCk=?, member_nick=?, "
+               + "member_email=?, member_tel=?, member_post=?, "
+               + "member_basic_addr=?, member_detail_addr=? where member_id=?";
          Object[] param = {
-               memberDto.getMemberNick(), memberDto.getMemberEmail(), memberDto.getMemberTel(),
-               memberDto.getMemberPost(), memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr(),
+        		 memberDto.getMemberName(), memberDto.getAdminCk(), memberDto.getMemberNick(), 
+        		 memberDto.getMemberEmail(), memberDto.getMemberTel(), memberDto.getMemberPost(),
+        		 memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr(), memberDto.getMemberId()
+               
          };
          return jdbcTemplate.update(sql, param) > 0;         
       }

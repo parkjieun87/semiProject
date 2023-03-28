@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
-<div class="container-1200">
-	<div class="row">
+<div class="container-800">
+	<div class="row center">
 		<h2>회원 상세정보</h2>
 	</div>
 	<div class="row">
-		<table>
+		<table class="center" style="margin-left:auto; margin-right:auto;">
 			<tbody>
 				<tr>
 					<th>아이디</th>
@@ -50,13 +50,14 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="row"></div>
+	<div class="row right">
+		<!-- 회원 관리 메뉴 -->
+		<h2><a class="link" href="edit?memberId=${memberDto.memberId }">개인정보 변경</a></h2>
+		<h2><a class="link" href="password?memberId=${memberDto.memberId}">일회용 비밀번호 설정</a></h2>
+		<h2><a class="link" href="exit?memberId=${memberDto.memberId}&page=${page}">회원 강제 탈퇴</a></h2>
+		<h2><a class="link" href="list">목록 보기</a></h2>
+	</div>
 
-	<!-- 회원 관리 메뉴 -->
-	<h2><a class="link" href="edit?memberId=${memberDto.memberId }">개인정보 변경</a></h2>
-	<h2><a class="link" href="password?memberId=${memberDto.memberId}">일회용 비밀번호 설정</a></h2>
-	<h2><a class="link" href="exit?memberId=${memberDto.memberId}&page=${page}">회원 강제 탈퇴</a></h2>
-	<h2><a class="link" href="list">목록 보기</a></h2>
 </div>
 
 

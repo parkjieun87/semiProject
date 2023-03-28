@@ -39,12 +39,25 @@
    	text-decoration: none;
    	color: #2d3436;
    }
+   .table.table-slit {
+            border-collapse: collapse;
+            border-top: none;
+            border-bottom: none;
+   }
+
+   .table.table-slit>thead {
+       border-bottom: 2px #b2bec3 solid;
+   }
+
+   .table.table-slit>tbody>tr:not(:last-child) {
+       border-bottom: 1px #b2bec3 solid;
+   }
 </style>
 	<!-- jQuery Cdn -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 	
-<body >
+<body>
 <main class="container-1500">
         <header style="border-bottom: 1px solid gray">
             <div class="row">

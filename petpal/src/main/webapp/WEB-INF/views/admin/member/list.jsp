@@ -3,12 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 <div class="container-1100 center">
-    	<div class="row">
-    		<h3>상품 목록</h3>
-    	</div>
     	<!-- 상품 목록 테이블 -->
         <div class="row container-1200">
-            <table class="table table-border">
+            <table class="table table-slit">
                 <thead>
                     <tr>
                         <th>아이디</th>
