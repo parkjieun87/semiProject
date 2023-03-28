@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-    <div class="container-1100 center">
+<div class="container-1100 center">
     	<div class="row">
     		<h3>상품 목록</h3>
     	</div>
@@ -11,33 +11,27 @@
             <table class="table table-border">
                 <thead>
                     <tr>
-                        <th>상품 번호</th>
-                        <th>카테고리 번호</th>
-                        <th>상품 이름</th>
-                        <th>상품 가격</th>
-                        <th>상품 재고</th>
-                        <th>상품 설명</th>
-                        <th>상품 등록일</th>
-                        <th>상품 할인률</th>
-                        <th>상품 조회수</th>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>가입일</th>
+                        <th>등급</th>
                         <th>관리</th>
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach items="${productList}" var="list">
+                	<c:forEach items="${memberList}" var="list">
 	                    <tr class="center">
-	                        <td >${list.productNo}</td>
-	                        <td>${list.categoryCode}</td>
-	                        <td>${list.productName}</td>
-	                        <td>${list.productPrice}원</td>
-	                        <td>${list.productStock}개</td>
-	                        <td>${list.productDesc}</td>
-	                        <td>${list.productRegdate}</td>
-	                        <td>${list.productDiscount}</td>
-	                        <td>${list.productViews}</td>
+	                        <td>${list.memberId}</td>
+	                        <td>${list.memberName}</td>
+	                        <td>${list.memberRegdate}</td>
+	                       	<td>
+	                       		<c:if test="${list.adminCk == 1 }"> 관리자 </c:if>
+                  				<c:if test="${list.adminCk == 0 }"> 일반회원 </c:if>
+	                       	</td>
 	                        <td>
-	                        	<a class="link" href="edit?productNo=${list.productNo}">수정</a>
-	                        	<a class="link" href="delete?productNo=${list.productNo}">삭제</a>
+	                        	<a class="link" href="detail?memberId=${list.memberId}">상세</a>
+	                        	<a class="link" href="edit?memberId=${list.memberId}">수정</a>
+	                        	<a class="link" href="delete?memberId=${list.memberId}">탈퇴</a>
 	                        </td>
 	                    </tr>
                 		
