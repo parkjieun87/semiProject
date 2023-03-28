@@ -178,6 +178,12 @@ public class MemberDao {
 	      jdbcTemplate.update(sql, param);
 	      }
 		
+	// 카운트 구하는 기능 (2023.03.28 성현)
+		public int selectCount() {
+					String sql = "select count(*) from member";
+					return jdbcTemplate.queryForObject(sql, int.class);
+				}	
+		
 		
 }
 	

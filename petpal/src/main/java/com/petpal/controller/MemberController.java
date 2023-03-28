@@ -220,5 +220,12 @@ public class MemberController {
 	 public String exitFinish() {
 		 return "/WEB-INF/views/member/exitFinish.jsp";
 	 }
+	 
+	 //장바구니 페이지 구현
+	 @GetMapping("/cart")
+	 public String cart() {
+		 return "/WEB-INF/views/member/cart.jsp";
+		 
+	 }
 }
 
