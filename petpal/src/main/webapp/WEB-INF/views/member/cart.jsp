@@ -37,10 +37,9 @@
         <div class="row">
            <table>
            	<colsgroup>
-           		<col style="width: 47%; color:white;">
-           		<col style="width: 9%;">
-           		<col style="width: 9%;">
-           		<col style="width: 7%;">
+           		<col style="width: 50%; color:white;">
+           		<col style="width: 10%;">
+           		<col style="width: 10%;">
            	</colsgroup>
            	
            	<thead>
@@ -48,7 +47,6 @@
                                     <th scope="col" >상품</th>
                                     <th scope="col">가격 & 수량</th>
                                     <th scope="col">총 금액</th>
-                                    <th scope="col"></th>
                                 </tr>
            	</thead>
            	
