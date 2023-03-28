@@ -1,24 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>상품 목록 페이지</title>
-<link rel="stylesheet" href="/static/css/commons.css">
-<link rel="stylesheet" href="/static/css/contact/notice.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<link rel="stylesheet" href="/static/css/test.css">
-</head>
-
-<body>
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
     <div class="container-1100 center">
     	<div class="row">
     		<h3>상품 목록</h3>
     	</div>
     	<!-- 상품 목록 테이블 -->
-        <div class="row">
+        <div class="row container-1200">
             <table class="table table-border">
                 <thead>
                     <tr>
@@ -73,5 +62,4 @@
 		</div>
        
     </div>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

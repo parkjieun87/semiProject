@@ -253,6 +253,16 @@
             width: 250px;
             z-index: 100;
         }
+        
+        input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+}
+
+
+        
+        
 
     </style>   
     
@@ -262,137 +272,91 @@
 
     <script type="text/javascript">
         $(function(){
+        	
+        	var sell_price = $("[name=sell_price]").val();
+        	
+        	var inputCount = 1;
+        	var originalPrice = parseInt($(".disPrice").text());
+        	
+        	
+        	
+        	
             //마이너스 버튼
             $(".btn-minus").click(function(){
-                var inputCount = parseInt($(this).next().val()); //input태그의 값을 변환
-                $("[name=quantity]").val(inputCount-1);
-                if(inputCount==2){
+            	
+       
+            
+                $("[name=productStock]").val(inputCount-1);
+                inputCount = parseInt($("#quantity").val());
+                console.log(inputCount);
+                
+				var sum = $("#cart_total_price_pc").val();
+			
+
+            	sum = parseInt(inputCount) * sell_price;
+            
+            	
+            	$(".disPrice").text(sum);
+            	
+                
+                if(inputCount==1){
                     $(this).attr("disabled",true); //마이너스 버튼 비활성화
                 }
             })
             //플러스 버튼
             $(".btn-plus").click(function(){
+   	
                 $(".btn-minus").attr("disabled",false); //마이너스 버튼 활성화
-                var inputCount = parseInt($(this).prev().val());
-                $("[name=quantity]").val(inputCount+1);
+              
+              
+               
+            	
+                var sum = $("#cart_total_price_pc").val();
+               
+                $("[name=productStock]").val(inputCount+1);
+              	inputCount = parseInt($("#quantity").val());
+              	$("#quantity").val(inputCount);
+                console.log(inputCount);
+        
+            	sum = inputCount * sell_price;
+            	$(".disPrice").text(sum);
+                
+            	
+                
+                if(inputCount == ${productDto.productStock}){
+                	 $(".btn-plus").attr("disabled",true);
+                }
             });
+            
+                   
         });
     </script>
 <head>
  
 </head>
-<body>
-    <div class="container-1000">
-    <header id="header">
-        <div id="header-area1">
-            <div class="wrap">
-                   <div class="img-search">
-                    <img src="./img/펫팔 로고.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
-                    <div id="search">
-                      <form name="frm_search" id="frm_search" method="#" action="#">
-                        <div class="inp-wrap">
-                           <input class="inp2" type="text" placeholder="검색어를 입력하세요" > 
-                           <div class="tag" style="float:left; margin-top: 0;">
-                             <ul>
-                               <li><a href="#">Mypage</a></li>
-                               <li><a href="#"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
-                               <li><a href="#">Login</a></li>
-                               <li><a href="#">Join</a></li>
-                             </ul>
-                           </div>                   
-                        </div>
-                    </div>
-                      </form>
-                   </div>
-                 </div>
-        </div>
-    
-        <div id="header-area2">
-          <div class="wrap2">
-            <ul class="contents">
-              <li>
-                <a href="#">사료</a>
-                <ul class="depth_1">
-                  <a href="#">전연령용</a>
-                  <a href="#">자견용</a>
-                  <a href="#">성견용</a>
-                  <a href="#">노견용</a>
-                  <a href="#">분유</a>
-                </ul>
-              </li>
-              <li>
-                <a href="#">간식</a>
-                <ul class="depth_1">
-                  <a href="#">육포/건조간식</a>
-                  <a href="#">트릿/스틱</a>
-                  <a href="#">껌/덴탈껌</a>
-                  <a href="#">캔/파우치</a>
-                  <a href="#">수제간식</a>
-                  <a href="#">파우더</a>
-                </ul>
-              </li>
-              <li>
-                <a href="#">장난감</a>
-                <ul class="depth_1">
-                  <a href="#">봉제장난감</a>
-                  <a href="#">공/원반</a>
-                  <a href="#">라텍스장난감</a>
-                  <a href="#">치실/로프</a>
-                  <a href="#">터그놀이</a>
-                  <a href="#">노즈워크</a>
-                </ul>
-              </li>
-              <li>
-                <a href="#">목욕용품</a>
-                <ul class="depth_1">
-                  <a href="#">샴푸/린스</a>
-                  <a href="#">타월/드라이</a>
-                  <a href="#">목욕용품</a>
-                </ul>
-              </li>
-              <li>
-                <a href="#">미용용품</a>
-                <ul class="depth_1">
-                  <a href="#">빗/브러쉬</a>
-                  <a href="#">클리퍼/미용가위</a>
-                  <a href="#">발/발톱관리</a>
-                  <a href="#">미스트/향수</a>
-                  <a href="#">털제거용품</a>
-                </ul>
-              </li>
-              <li>
-                <a href="#">산책용품</a>
-                <ul class="depth_1">
-                  <a href="#">목줄</a>
-                  <a href="#">하네스줄/가슴줄</a>
-                  <a href="#">리드줄</a>
-                  <a href="#">산책용품</a>
-                  <a href="#">이동가방</a>
-                </ul>
-              </li>
-          </div>
-        </div>
-      </main>
-            </header>
+<%@ include file="../template/header.jsp" %>
+
+
 
 
         <div class="row center">
             <h1></h1>
         </div>
-        <div class="row"  id="contents" style="width: 900px; margin-bottom: 10px; margin-left: 50px; margin-top:50px;">
+        <div class="row"  id="contents" style="width: 900px; margin-bottom: 10px; margin-left: 125px; margin-top:50px; text-align:center;">
             <a href="#" style="text-decoration: none;">산책/이동장</a> &gt; <a href="#" style="text-decoration: none;">이동가방</a></div>
-        <div id="contents-wrap"> 
+        <div id="contents-wrap" style="width:1000px; margin:0 auto;"> 
             <div id="contents">
                 <div class="photo-sell-wrap">
                     <div class="photo-wrap">
                         <div class="photo-view" data="#" style="cursor: pointer;">
-                        <img src="./img/9012_web_original_1673006075211726.jpg"  alt="이동장가방사진" id="photo_detail">
+                        <img src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg"  alt="이동장가방사진" id="photo_detail">
                         </div>
                         <div class="photo-indicate">
                             <ul id="photo_dumy">
-                                <li class="smallImg">
+                                <li class="smallImg">               
                                     <button class="active thumb-detail-list">
-                                        <img id="btn_img" src="./img/9012_web_original_1673006075211726.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
+                                        <img id="btn_img" src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
+                                   
                                     </button>
                                 </li>
                             </ul>
@@ -403,7 +367,7 @@
                             <a href="#" style="margin-left: 8px; letter-spacing: 0px; text-decoration: none;">힐링타임</a>
                         </div>
                         <h2 style="margin-bottom: 0px;">
-                            <span id="viewName">힐링타임 도전 스케어 백팩 그레이</span>
+                            <span id="viewName">${productDto.productName}</span>
                             <div class="star">
                                 <div class="view-info-new">
                                     <div class="grade">
@@ -417,14 +381,14 @@
                                 <dt>판매가</dt>
                                 <dd>
                                     <del class="num" style="color: gray;">
-                                        45,000원
+                                        ${productDto.productPrice}원
                                     </del>
                                 </dd>
                             </dl>
                             <dl class="price-sell">
                                 <dt>할인가</dt>
                                 <dd>
-                                    <strong class="num" style="color: red;">43,000원</strong>
+                                    <strong class="num" style="color: red;">${disPrice}원</strong>
                                 </dd>
                             </dl>
                         </div>
@@ -451,10 +415,10 @@
                                         <dd class="alarm yes-stock" style="background-color: #f4f4f5;">
                                             <div class="quantity-wrap" style="top:0">
                                                 <button class="btn-minus dim" style="background-color: #fff;">"빼기"</button>
-                                                <input type="tel" name="quantity" id="quantity" value="1" maxlength="2" minlength="1" autocapitalize="off" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" readonly>
+                                                <input type="number" name="productStock" id="quantity" value="1" autocapitalize="off" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" max="${productDto.productStock}" readonly>
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                             </div>
-                                            <span id="pass_quantity" class="pss_quantitys">(재고있음)</span>
+                                            <span id="pass_quantity" class="pss_quantitys">(재고 ${productDto.productStock}개 남음)</span>
                                         </dd>
                                     </div>
                                 </div>
@@ -464,7 +428,11 @@
                                     </div>
                                     <div class="jss817">
                                         <strong id="cart_total_price_pc">
-                                            86,000
+                                       
+                                        	<input type="hidden" name="sell_price" value="${disPrice}">
+                                        
+                                       		<span class="disPrice">${disPrice}</span>
+                                           
                                         </strong>
                                         원
                                     </div>
@@ -502,5 +470,4 @@
             
         </div>
     </div>
-</body>
-</html>
+<%@include file="../template/footer.jsp" %>

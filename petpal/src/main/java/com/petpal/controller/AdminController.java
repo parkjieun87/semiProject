@@ -106,7 +106,7 @@ public class AdminController {
 	public String productEdit(Model model, @RequestParam int productNo) {
 		ProductDto productDto = productDao.selectOne(productNo);
 		model.addAttribute("productDto", productDto);
-		return "WEB-INF/views/product/edit.jsp";
+		return "/WEB-INF/views/admin/product/edit.jsp";
 	}
 	
 	@PostMapping("/product/edit")
@@ -115,7 +115,7 @@ public class AdminController {
 		// 정보변경
 		productDao.changeProductInfo(productDto);
 		attr.addAttribute("productNo", productDto.getProductNo());
-		return "redirect:";
+		return "redirect:list";
 	}
 	
 	// 상품 삭제

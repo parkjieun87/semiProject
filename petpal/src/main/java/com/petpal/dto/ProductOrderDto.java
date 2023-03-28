@@ -1,6 +1,7 @@
 package com.petpal.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,4 +19,5 @@ public class ProductOrderDto {
 	private String receiverBasicAddr; //수취인 기본주소
 	private String receiverPost; // 수취인 우편번호
 	private String receiverDetailAddr; // 수취인 상세주소
+	List<OrderDetailDto> orderDetailList; // 주문상세 목록 
 }
