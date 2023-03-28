@@ -133,7 +133,7 @@ public class MemberDao {
           String api_secret = "9B1P2CLHGLLD1XBKPUQJ32PV4SN9EXLD";
           Message coolsms = new Message(api_key, api_secret);
 
-<<<<<<< HEAD
+
           // 4 params(to, from, type, text) are mandatory. must be filled
           HashMap<String, String> params = new HashMap<String, String>();
           params.put("to", userPhoneNumber);    // 수신전화번호
@@ -180,92 +180,9 @@ public class MemberDao {
          jdbcTemplate.update(sql, param);
          }
       
-      // 카운트 구하는 기능 (2023.03.28 성현)
-      public int selectCount() {
-               String sql = "select count(*) from member";
-               return jdbcTemplate.queryForObject(sql, int.class);
-            }   
-      
-      //회원 리스트 (2023.03.28 성현)
-      public List<MemberDto> selectList(PaginationVO vo){
-         String sql = "select * from("
-               + "select rownum rn, TMP.* from("
-               + "select * from member order by member_regdate desc"
-               +" )TMP"
-               + ")where rn between ? and ?";
-         
-         Object[] param = {vo.getBegin(), vo.getEnd()};
-         
-         return jdbcTemplate.query(sql,mapper,param);
-      }   
-      
-=======
-		    // 4 params(to, from, type, text) are mandatory. must be filled
-		    HashMap<String, String> params = new HashMap<String, String>();
-		    params.put("to", userPhoneNumber);    // 수신전화번호
-		    params.put("from", "01056967976");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
-		    params.put("type", "SMS");
-		    params.put("text", "[TEST] 인증번호는" + "["+randomNumber+"]" + "입니다."); // 문자 내용 입력
-		    params.put("app_version", "test app 1.2"); // application name and version
-		    
-		    
-		    try {
-		        JSONObject obj = (JSONObject) coolsms.send(params);
-		        System.out.println(obj.toString());
-		      } catch (CoolsmsException e) {
-		        System.out.println(e.getMessage());
-		        System.out.println(e.getCode());
-		      }
-	}
+    
 		
-		// MemberRestController 닉네임 중복검사를 위해 만든 DAO (형석2023.03.23) 
-		public MemberDto selectByNickname(String memberNick) {
-			String sql = "select * from member where member_nick = ?";
-			Object[] param = {memberNick};
-			List<MemberDto> list = jdbcTemplate.query(sql, mapper, param);
-			return list.isEmpty() ? null : list.get(0);
-		}
-		
-		// 	회원 탈퇴시 웨이팅 테이블로의 이동 (2023.03.24 형석)
-		public void insertWaiting(MemberDto memberDto) {
-	         String sql = "insert into member("
-	 	            + "member_id, member_pw, member_name, "
-		            + "member_email, member_tel, member_nick, "
-		            + "adminck, member_regdate, member_post, "
-		            + "member_basic_addr, member_detail_addr"
-		            + ")values("
-		            + "?, ?, ?, ?, ?, ?, 0, sysdate, ?, ?, ?"
-		            + ")";
-	      Object[] param = {
-	    		  memberDto.getMemberId(), memberDto.getMemberPw(),
-		            memberDto.getMemberName(), memberDto.getMemberEmail(),
-		            memberDto.getMemberTel(), memberDto.getMemberNick(),
-		            memberDto.getMemberPost(), memberDto.getMemberBasicAddr(),
-		            memberDto.getMemberDetailAddr()
-	      };
-	      jdbcTemplate.update(sql, param);
-	      }
-		
-		// 카운트 구하는 기능 (2023.03.28 성현)
-		public int selectCount() {
-					String sql = "select count(*) from member";
-					return jdbcTemplate.queryForObject(sql, int.class);
-				}	
-		
-		//회원 리스트 (2023.03.28 성현)
-		public List<MemberDto> selectList(PaginationVO vo){
-			String sql = "select * from("
-					+ "select rownum rn, TMP.* from("
-					+ "select * from member order by member_regdate desc"
-					+" )TMP"
-					+ ")where rn between ? and ?";
-			
-			Object[] param = {vo.getBegin(), vo.getEnd()};
-			
-			return jdbcTemplate.query(sql,mapper,param);
-		}	
-		
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
+
 }
       
    

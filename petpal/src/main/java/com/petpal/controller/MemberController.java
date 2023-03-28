@@ -170,13 +170,12 @@ public class MemberController {
 		 
 		 //비밀번호가 일치하지 않는다면 → 에러 표시 후 이전 페이지로 리다이렉트
 		 if(!findDto.getMemberPw().equals(memberDto.getMemberPw())) {
-<<<<<<< HEAD
+
 			 System.out.println(findDto.getMemberPw());
 			 
 			 attr.addAttribute("mode","error");
-=======
+
 			 attr.addAttribute("mode", "error");
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 			 return "redirect:edit";
 		 }
 		 
