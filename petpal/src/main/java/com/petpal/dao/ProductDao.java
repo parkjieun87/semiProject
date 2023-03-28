@@ -66,6 +66,7 @@ public class ProductDao {
 		return jdbcTemplate.query(sql,mapper,param);
 	}
 	
+	
 	//상품 조회 by categoryCode
 	
 	public List<ProductDto> selectList(String categoryCode){

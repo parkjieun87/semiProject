@@ -22,6 +22,7 @@ import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductImageDao;
 import com.petpal.dto.AttachmentDto;
+import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductDto;
 import com.petpal.dto.ProductImageDto;
 import com.petpal.vo.PaginationVO;
@@ -30,7 +31,7 @@ import com.petpal.vo.PaginationVO;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Autowired MemberDao memberdao;
+	@Autowired MemberDao memberDao;
 	
 	@Autowired ProductDao productDao;
 	
@@ -125,7 +126,38 @@ public class AdminController {
 		return "redirect:list";
 	}
 	
+	// 회원 리스트 페이지
+	@GetMapping("/member/list")
+	public String memberList(Model model, @ModelAttribute("vo") PaginationVO vo) {
+		int totalMemberCnt = memberDao.selectCount();
+		vo.setCount(totalMemberCnt);
+		model.addAttribute("memberList", memberDao.selectList(vo));
+		return "/WEB-INF/views/admin/member/list.jsp";
+	}
 	
+	// 회원정보 상세
+	@GetMapping("/member/detail")
+	public String memberDetail(Model model,
+						@RequestParam String memberId) {
+		model.addAttribute("memberDto", memberDao.selectOne(memberId));
+		return "/WEB-INF/views/admin/member/detail.jsp";
+	}
+	
+	// 회원정보 업데이트
+	@GetMapping("/member/edit")
+	public String memberEdit(Model model, @RequestParam String memberId) {
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		model.addAttribute("memberDto", memberDto);
+		return "WEB-INF/views/admin/member/edit.jsp";
+	}
+	@PostMapping("/member/edit")
+	public String memberEdit(@ModelAttribute MemberDto memberDto, 
+									RedirectAttributes attr) {
+		memberDao.changeInformationByAdmin(memberDto);
+		attr.addAttribute("memberId", memberDto.getMemberId());
+		return "redirect:detail";
+	}
 	
 	
 }
+

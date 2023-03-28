@@ -254,15 +254,38 @@
             z-index: 100;
         }
         
-        input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
 	  -webkit-appearance: none;
 	  margin: 0;
 }
 
+.tab-title{
+display:flex;
+border-top : 1px solid #ccc;
+border-bottom : 1px solid #ccc;
+border-left : 1px solid #ccc;
+border-right: 1px solid #ccc;
+text-align:center;
 
-        
-        
+}
+
+.tab-title > li{
+padding : 15px 20px 14px;
+width:25%;
+background-color: #f7f7f7;
+border-right: 1px solid #ccc;
+}
+
+.tab-title > li a{
+color : black;
+font-weight:700;
+}
+
+.benefit-wrap{
+	display:flex;
+	font-size : 24px;
+}
 
     </style>   
     
@@ -284,11 +307,15 @@ input[type='number']::-webkit-inner-spin-button {
             //마이너스 버튼
             $(".btn-minus").click(function(){
             	
-       
-            
+            	  if(inputCount==1){
+            		  $("[name=productStock]").val(inputCount);
+                  }else{
+                	  
                 $("[name=productStock]").val(inputCount-1);
                 inputCount = parseInt($("#quantity").val());
-                console.log(inputCount);
+             
+                  }
+            
                 
 				var sum = $("#cart_total_price_pc").val();
 			
@@ -299,32 +326,31 @@ input[type='number']::-webkit-inner-spin-button {
             	$(".disPrice").text(sum);
             	
                 
-                if(inputCount==1){
-                    $(this).attr("disabled",true); //마이너스 버튼 비활성화
-                }
+              
             })
             //플러스 버튼
             $(".btn-plus").click(function(){
    	
-                $(".btn-minus").attr("disabled",false); //마이너스 버튼 활성화
-              
-              
-               
-            	
+  	
                 var sum = $("#cart_total_price_pc").val();
                
-                $("[name=productStock]").val(inputCount+1);
+              
               	inputCount = parseInt($("#quantity").val());
               	$("#quantity").val(inputCount);
-                console.log(inputCount);
+               
         
             	sum = inputCount * sell_price;
             	$(".disPrice").text(sum);
                 
             	
                 
+            	
+            	
                 if(inputCount == ${productDto.productStock}){
-                	 $(".btn-plus").attr("disabled",true);
+                	$("[name=productStock]").val(inputCount);
+                }else if(inputCount < ${productDto.productStock}){
+          
+                	 $("[name=productStock]").val(inputCount+1);
                 }
             });
             
@@ -468,6 +494,44 @@ input[type='number']::-webkit-inner-spin-button {
                 </div>
             </div>
             
-        </div>
+                                     
+            
+    <div class="item-info" style="width:100%;">
+   		<div class="btn-tab">
+   			<ul class="tab-title">
+   				<li>
+   					<a href="#">상품정보</a>
+   				</li>
+   				<li>
+   					<a href="#">상품후기</a>
+   				</li>
+   				<li>
+   					<a href="#">상품문의</a>
+   				</li>
+   				<li>
+   					<a href="#">구매 확인사항</a>
+   				</li>
+   			</ul>
+   		</div>
     </div>
+ 
+                        
+	<div id="detail_img" class="add-content center">
+                                                
+                                                      
+    <div style="margin-top:20px;">
+  		${productDto.productDesc}                                             
+  	</div>
+                        
+</div>
+                        
+                        
+                 
+    
+       
+    </div>
+   
+
+    
+
 <%@include file="../template/footer.jsp" %>
