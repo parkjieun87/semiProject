@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.MemberDto;
+import com.petpal.vo.PaginationVO;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -178,12 +179,11 @@ public class MemberDao {
 	      jdbcTemplate.update(sql, param);
 	      }
 		
-	// 카운트 구하는 기능 (2023.03.28 성현)
+		// 카운트 구하는 기능 (2023.03.28 성현)
 		public int selectCount() {
 					String sql = "select count(*) from member";
 					return jdbcTemplate.queryForObject(sql, int.class);
 				}	
-		
 		
 }
 	
