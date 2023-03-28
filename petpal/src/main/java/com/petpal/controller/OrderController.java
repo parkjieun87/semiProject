@@ -37,9 +37,7 @@ public class OrderController {
 	public String order(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
 		System.out.println(memberId);
-		model.addAttribute("orderDto",orderDao.selectOne(memberId));
-		
-		
+		model.addAttribute("cartDto",cartDao.getCart(memberId));
 		return "/WEB-INF/views/member/order.jsp";
 	}
 	
