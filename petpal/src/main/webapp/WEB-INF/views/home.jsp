@@ -7,8 +7,8 @@
 </head>
 <body>
 	<div>
-		<a href="/shop/goods/goods_list?categoryCode=1010">사료</a>
-		<a href="/shop/goods/goods_list?categoryCode=3010">샴푸</a>
+		<a href="/shop/goods/goods_list?categoryCode=1010"></a>
+		<a href="/shop/goods/goods_list?categoryCode=3010"></a>
 	</div>
 </body>
 </html>
