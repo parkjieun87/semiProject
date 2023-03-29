@@ -30,7 +30,7 @@ import com.petpal.vo.PaginationVO;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
+	
 	@Autowired MemberDao memberDao;
 	
 	@Autowired ProductDao productDao;
@@ -165,6 +165,20 @@ public class AdminController {
 		attr.addAttribute("memberId", memberDto.getMemberId());
 		return "redirect:detail";
 	}
+	// 회원 강제 탈퇴 후 waiting 테이블에 추가
+	@GetMapping("/member/delete")
+	public String memberExit(
+			@RequestParam String memberId,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			RedirectAttributes attr) {
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		memberDao.delete(memberId);
+		memberDao.insertWaiting(memberDto);
+		
+		attr.addAttribute("page", page);
+		return "redirect:list";
+	}
+	
 	
 	
 }
