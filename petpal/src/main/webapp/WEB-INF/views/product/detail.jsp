@@ -256,8 +256,8 @@
         
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
-	  -webkit-appearance: none;
-	  margin: 0;
+     -webkit-appearance: none;
+     margin: 0;
 }
 
 .tab-title{
@@ -283,8 +283,8 @@ font-weight:700;
 }
 
 .benefit-wrap{
-	display:flex;
-	font-size : 24px;
+   display:flex;
+   font-size : 24px;
 }
 
     </style>   
@@ -295,95 +295,95 @@ font-weight:700;
 
     <script type="text/javascript">
         $(function(){
-        	
-        	
-        	var sell_price = $("[name=sell_price]").val();
-        	
-        	var inputCount = 1;
-        	var originalPrice = parseInt($(".disPrice").text());
-        	
-        	
-        	
-        	
+           
+           
+           var sell_price = $("[name=sell_price]").val();
+           
+           var inputCount = 1;
+           var originalPrice = parseInt($(".disPrice").text());
+           
+           
+           
+           
             //마이너스 버튼
             $(".btn-minus").click(function(){
-            	
-            	  if(inputCount==1){
-            		  $("[name=productStock]").val(inputCount);
+               
+                 if(inputCount==1){
+                    $("[name=productStock]").val(inputCount);
                   }else{
-                	  
+                     
                 $("[name=productStock]").val(inputCount-1);
                 inputCount = parseInt($("#quantity").val());
              
                   }
             
                 
-				var sum = $("#cart_total_price_pc").val();
-			
+            var sum = $("#cart_total_price_pc").val();
+         
 
-            	sum = parseInt(inputCount) * sell_price;
+               sum = parseInt(inputCount) * sell_price;
             
-            	
-            	$(".disPrice").text(sum);
-            	
+               
+               $(".disPrice").text(sum);
+               
                 
               
             })
             //플러스 버튼
             $(".btn-plus").click(function(){
-   	
-  	
+      
+     
                 var sum = $("#cart_total_price_pc").val();
                
               
-              	inputCount = parseInt($("#quantity").val());
-              	$("#quantity").val(inputCount);
+                 inputCount = parseInt($("#quantity").val());
+                 $("#quantity").val(inputCount);
                
         
-            	sum = inputCount * sell_price;
-            	$(".disPrice").text(sum);
+               sum = inputCount * sell_price;
+               $(".disPrice").text(sum);
                 
-            	
+               
                 
-            	
-            	
+               
+               
                 if(inputCount == ${productDto.productStock}){
-                	$("[name=productStock]").val(inputCount);
+                   $("[name=productStock]").val(inputCount);
                 }else if(inputCount < ${productDto.productStock}){
           
-                	 $("[name=productStock]").val(inputCount+1);
+                    $("[name=productStock]").val(inputCount+1);
                 }
             });
             
             // 서버로 전송할 데이터
             const form = {
-            		memberId : "${memberId}",
-            		productNo : "${productDto.productNo}",
-            		productCount : ''
+                  memberId : "${memberId}",
+                  productNo : "${productDto.productNo}",
+                  productCount : ''
             }
             
             $("#insert_cart").click(function(){
-            	form.productCount = inputCount;
-            	$.ajax({
-            		url : "/cart/add",
-            		type : "POST",
-            		data : form,
-            		success : function(result){
-            			cartAlert(result);
-            		}
-            	});
+               form.productCount = inputCount;
+               $.ajax({
+                  url : "/cart/add",
+                  type : "POST",
+                  data : form,
+                  success : function(result){
+                     cartAlert(result);
+                  }
+               });
             });
             
             function cartAlert(result){
-            	if(result == '0'){
-    				alert("장바구니에 추가를 하지 못하였습니다.");
-    			}else if(result == '1'){
-    				alert("장바구니에 추가되었습니다.");
-    			}else if(result == '2'){
-    				alert("장바구니에 이미 추가되어져 있습니다.");
-    			}else if(result == '5'){
-    				alert("로그인이 필요합니다.");
-    			}
+               if(result == '0'){
+                alert("장바구니에 추가를 하지 못하였습니다.");
+             }else if(result == '1'){
+                alert("장바구니에 추가되었습니다.");
+             }else if(result == '2'){
+                alert("장바구니에 이미 추가되어져 있습니다.");
+             }else if(result == '5'){
+                alert("로그인이 필요합니다.");
+             }
             }
             
                    
@@ -407,14 +407,16 @@ font-weight:700;
                 <div class="photo-sell-wrap">
                     <div class="photo-wrap">
                         <div class="photo-view" data="#" style="cursor: pointer;">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg"  alt="이동장가방사진" id="photo_detail">
-                        </div>
+                        <img src="${productDto.imageURL}" alt="이동장가방사진" id="photo_detail">
+                        <!-- <img src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg"  alt="이동장가방사진" id="photo_detail">
+  -->                       </div>
                         <div class="photo-indicate">
                             <ul id="photo_dumy">
                                 <li class="smallImg">               
                                     <button class="active thumb-detail-list">
-                                        <img id="btn_img" src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
-                                   
+                                        <img id="btn_img" src="${productDto.imageURL}" style="height: 60px; width: 60px;" alt="이동장가방사진">
+<!--                                         <img id="btn_img" src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
+  -->                                  
                                     </button>
                                 </li>
                             </ul>
@@ -487,9 +489,9 @@ font-weight:700;
                                     <div class="jss817">
                                         <strong id="cart_total_price_pc">
                                        
-                                        	<input type="hidden" name="sell_price" value="${disPrice}">
+                                           <input type="hidden" name="sell_price" value="${disPrice}">
                                         
-                                       		<span class="disPrice">${disPrice}</span>
+                                             <span class="disPrice">${disPrice}</span>
                                            
                                         </strong>
                                         원
@@ -529,31 +531,31 @@ font-weight:700;
                                      
             
     <div class="item-info" style="width:100%;">
-   		<div class="btn-tab">
-   			<ul class="tab-title">
-   				<li>
-   					<a href="#">상품정보</a>
-   				</li>
-   				<li>
-   					<a href="#">상품후기</a>
-   				</li>
-   				<li>
-   					<a href="#">상품문의</a>
-   				</li>
-   				<li>
-   					<a href="#">구매 확인사항</a>
-   				</li>
-   			</ul>
-   		</div>
+         <div class="btn-tab">
+            <ul class="tab-title">
+               <li>
+                  <a href="#">상품정보</a>
+               </li>
+               <li>
+                  <a href="#">상품후기</a>
+               </li>
+               <li>
+                  <a href="#">상품문의</a>
+               </li>
+               <li>
+                  <a href="#">구매 확인사항</a>
+               </li>
+            </ul>
+         </div>
     </div>
  
                         
-	<div id="detail_img" class="add-content center">
+   <div id="detail_img" class="add-content center">
                                                 
                                                       
     <div style="margin-top:20px;">
-  		${productDto.productDesc}                                             
-  	</div>
+        ${productDto.productDesc}                                             
+     </div>
                         
 </div>
                         

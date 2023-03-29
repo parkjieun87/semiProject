@@ -14,6 +14,7 @@ public class CartDto {
 	private String productName;
 	private int productPrice;
 	private int productDiscount;
+	private int productStock;
 	
 	
 	// 추가 (할인을 적용한 상품의 한개 가격과 판매 가격에 수량까지 곱한 총가격을 의미)
