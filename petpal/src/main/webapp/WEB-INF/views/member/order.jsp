@@ -82,10 +82,7 @@
                     }
                 });
             });
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
-        
-<<<<<<< HEAD
-=======
+
             //내용 삭제
             $(".btn-clear1").click(function(){
                 $("#phone").val("");
@@ -138,7 +135,6 @@
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
         
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 <div class="container-1000">
     <div id="pay-step" class="order">
             <h1 id="logo">
