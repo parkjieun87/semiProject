@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
         $(function(){
-
+		
             //주소 
             $(".btn-post").click(function(){
                        
@@ -85,10 +85,7 @@
                     }
                 });
             });
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
-        
-<<<<<<< HEAD
-=======
+
             //내용 삭제
             $(".btn-clear1").click(function(){
                 $("#phone").val("");
@@ -133,20 +130,31 @@
                     $("[name=txt-p3]").hide().css("display");
                 }
             });
-            //
+            //체크박스 누르면 수령인,전화번호 불러오기
+            $("[name=order_copy]").change(function(){
+               var txt = "";
+               var vailName = "${findDto.memberName}";
+               var vailTel = "${findDto.memberTel}"
+           
+               
+               var txt2 = $("[name=order_copy]").prop("checked");
+           
+               if(!txt2){
+                $("input[name=receiveName]").val(txt);
+                $("input[name=receiveMobile]").val(txt);
+               }else{
+            	   $("input[name=receiveName]").val(vailName);
+            	   $("input[name=receiveMobile]").val(vailTel);
+               }
+            });
 
     });  
-        </script>
+</script>
         <!-- 우편cdn -->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-        
-<<<<<<< HEAD
+ 
 <div class="container-1000" style="font-family: '카페24 써라운드 에어';">
-=======
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
-<div class="container-1000">
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
     <div id="pay-step" class="order">
             <h1 id="logo">
                 <a href="#">펫팔</a>
