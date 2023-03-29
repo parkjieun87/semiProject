@@ -140,6 +140,19 @@ td{
          background: #909090;
      }
  
+ 	.input_size_20{
+			width:20px;
+			height:20px;
+		}
+		.all_check_input{
+			margin: 18px 0 18px 18px;
+		}
+		.all_chcek_span{
+			padding-left: 8px;
+	    	font-size: 20px;
+	    	font-weight: bold;		
+		}
+ 
  
 	</style>
 	
@@ -153,16 +166,54 @@ td{
     <script type="text/javascript">
         $(function(){
         	
-        	// 수량 버튼 조작
-        	let quantity = $("#quantity").val();  	
+        	 	
         	
         	/* 장바구니 종합 정보 삽입 */
         	setTotalInfo();
         	
-        	/* 체크 여부에 따른 종합 정보 변화 */
-        	$(".individual_cart_checkbox").change(function(){
+        	/* 체크여부에따른 종합 정보 변화 */
+        	$(".individual_cart_checkbox").on("change", function(){
+        		/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+        		setTotalInfo($(".cart_info_td"));
+        	});
+        	
+        	
+        	/* 체크박스 전체 선택 */
+        	$(".all_check_input").on("click", function(){
+        		/* 체크박스 체크/해제 */
+        		if($(".all_check_input").prop("checked")){
+        			$(".individual_cart_checkbox").prop("checked", true);
+        		} else{
+        			$(".individual_cart_checkbox").prop("checked", false);
+        			$(".totalPrice_span").text(0);
+            		$(".totalCount_span").text(0);
+            		$(".totalKind_span").text(0);
+        		}
+        		
+        		/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+        		setTotalInfo($(".cart_info_td"));	
         		
         	});
+        	
+        	/* 수량 수정 버튼 */
+        	$(".quantity_modify_btn").click(function(){
+        		let cartNo = $(this).data("cartno");
+        		let productCount = $(this).parent("div").find("input").val();
+        		$(".update_cartNo").val(cartNo);
+        		$(".update_productCount").val(productCount);
+        		$(".quantity_update_form").submit();
+        		
+        	});
+        	
+        	/* 장바구니 삭제 버튼 */
+        	$(".delete_btn").click(function(e){
+        		e.preventDefault();
+        		
+        		let cartNo = $(this).data("cartno");
+        		$(".delete_cartNo").val(cartNo);
+        		$(".delete_form").submit();
+        	});
+        	
         	
         	
         	
@@ -171,10 +222,12 @@ td{
         	let totalPrice = 0; // 총 가격
         	let totalCount = 0; // 총 개수
         	let totalKind = 0; // 총 종류
-        	let finalTotalPrice = 0; // 최종 가격
+     
         	
         	$(".cart_info_td").each(function(index,element){
         		
+        		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+        			
         		// 총 가격
         		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
         		// 총 개수
@@ -186,23 +239,35 @@ td{
         		// 값 삽입
         		$(".totalPrice_span").text(totalPrice.toLocaleString());
         		$(".totalCount_span").text(totalCount);
-        		$(".totalKind_span").text(totalKind)
+        		$(".totalKind_span").text(totalKind);
+        	}
         		
         	});
+        	
+        	
         	}
         	
-     
-        	
+ 	
         	//마이너스 버튼
             $(".btn-minus").click(function(){
+            	
+            	// 수량 버튼 조작
+            	let quantity = $(this).parent("div").find("input").val();
+            	
             	if(quantity > 1){
  				$("#quantity").val(--quantity);
             	}
             });
             //플러스 버튼
             $(".btn-plus").click(function(){
+            	
+            	// 수량 버튼 조작
+            	let quantity = $(this).parent("div").find("input").val();
+            	
+            	
             	if(quantity < 5){
    				$("#quantity").val(++quantity);
+   			
             	}
   	                  
             });      
@@ -213,6 +278,10 @@ td{
 <body>
 
 <div class="container-1500 mt-50">
+		 	<!-- 체크박스 전체 여부 -->
+		<div class="all_check_input_div">
+			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+		</div>
  	
         <div class="row">
            <table style="width: 60%; margin-left:200px;">
@@ -223,6 +292,8 @@ td{
            		<col style="width: 20%;">
            		
            	</colgroup>
+           	
+         
            	
            	<thead>
            						<tr style="background:#b1b2ff;" id="colss">
@@ -258,14 +329,27 @@ td{
            <td>
    			 <div class="row" style="width:100%; display:flex; align-items:center;">
                             <div class="jss821">
-                                        <dd class="alarm yes-stock" style="background-color: #f4f4f5;">
+                                        
                                             <div class="quantity-wrap" style="top:0">
-                                                <button class="btn-minus dim" style="background-color: #fff;">"빼기"</button>
+                                                <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
                                                 <input type="text" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}">
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                             </div>
-                                        </dd>
-                                    </div>             
+                                            <a class="quantity_modify_btn" data-cartno="${list.cartNo}">변경</a>
+                
+                                    </div>  
+                                    <!-- 수량 조정 form -->
+                                    <form action="/cart/update" method="post" class="quantity_update_form">
+                                    	<input type="hidden" name="cartNo" class="update_cartNo">
+                                    	<input type="hidden" name="productCount" class="update_productCount">
+                                    	<input type="hidden" name="memberId" value="${memberId}">
+                                    </form>   
+                                    
+                                    <!-- 삭제 form -->
+                                    <form action="/cart/delete" method="post" class="delete_form">
+                                    	<input type="hidden" name="cartNo" class="delete_cartNo">
+                                    	<input type="hidden" name="memberId" value="${memberId}">
+                                    </form>        
                               
 		 	</div>
           </td>
@@ -273,7 +357,7 @@ td{
           	<span class="row price spans">${list.productPrice}</span>원
           </td>
          <td style="text-align: center;">
-         <button>삭제</button>
+         <button class="delete_btn" data-cartno="${list.cartNo}">삭제</button>
          </td>
            
             </tr>

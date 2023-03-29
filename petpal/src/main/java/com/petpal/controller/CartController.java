@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.petpal.dao.CartDao;
 import com.petpal.dto.CartDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.service.CartService;
@@ -20,6 +21,9 @@ public class CartController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private CartDao cartDao;
 	
 	@PostMapping("/cart/add")
 	@ResponseBody
@@ -45,5 +49,23 @@ public class CartController {
 		model.addAttribute("cartInfo", cartService.getCartList(memberId));
 		
 		return "/WEB-INF/views/cart/cart.jsp";
+	}
+	
+	// 장바구니 수량 수정
+	@PostMapping("/cart/update")
+	public String updateCart(CartDto cart) {
+		
+		cartDao.modifyCount(cart);
+		
+		return "redirect:/cart/"+cart.getMemberId();
+	}
+	
+	// 장바구니 삭제
+	@PostMapping("/cart/delete")
+	public String deleteCart(CartDto cart) {
+		
+		cartDao.deleteCart(cart.getCartNo());
+		
+		return "redirect:/cart/"+cart.getMemberId();
 	}
 }
