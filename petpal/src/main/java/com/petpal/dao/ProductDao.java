@@ -4,11 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.tree.TreePath;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.CategoryDto;
 import com.petpal.dto.ProductDto;
 import com.petpal.vo.PaginationVO;
 
@@ -45,6 +48,22 @@ public class ProductDao {
 			productDto.setProductViews(rs.getInt("product_views"));
 			return productDto;
 		}
+	};
+	
+	// 카테고리 테이블 조회를 위한 mapper
+	private RowMapper<CategoryDto> categoryMapper = new RowMapper<CategoryDto>() {
+
+		@Override
+		public CategoryDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			CategoryDto dto = new CategoryDto();
+			dto.setTier(rs.getInt("tier"));
+			dto.setCategoryCode(rs.getString("category_code"));
+			dto.setCategoryName(rs.getString("category_name"));
+			dto.setCategoryParent(rs.getString("category_parent"));
+			
+			return dto;
+		}
+		
 	};
 	
 	//상품 번호 생성
@@ -108,6 +127,13 @@ public class ProductDao {
 	public int totalProductCnt() {
 		String sql = "select count(*) from product";
 		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+	
+	// 카테고리 리스트
+	public List<CategoryDto> categoryList(){
+		String sql = "select * from product_cate order by category_code";
+		
+		return jdbcTemplate.query(sql, categoryMapper);
 	}
 
 }

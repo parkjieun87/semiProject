@@ -10,6 +10,64 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
         $(function(){
+        	
+        	
+        	/* 카테고리 */
+        	let categoryList = JSON.parse('${cateList}');
+        	
+        	let cate1Array = new Array();
+        	let cate2Array = new Array();
+        	
+        	let cate1Obj = new Object();
+        	let cate2Obj = new Object();
+        	
+        	let cateSelect1 = $(".cate1");
+        	let cateSelect2 = $(".cate2");
+        	
+        	
+        	/* 카테고리 배열 초기화 메서드 */
+        	function makeCateArray(obj,array,categoryList,tier){
+        		
+        		for(let i = 0; i< categoryList.length; i++){
+            		if(categoryList[i].tier === tier){
+            			obj = new Object();
+            			
+            			obj.categoryName = categoryList[i].categoryName;
+            			obj.categoryCode = categoryList[i].categoryCode;
+            			obj.categoryParent = categoryList[i].categoryParent;
+            			
+            			array.push(obj);
+            		}
+            	}
+        	}
+        	
+        	/* 배열 초기화 */
+        	makeCateArray(cate1Obj,cate1Array,categoryList,1);
+        	makeCateArray(cate2Obj,cate2Array,categoryList,2);
+        	
+        	/* 대분류 <option> 태그 */
+        	for(let i = 0; i<cate1Array.length; i++){
+        		cateSelect1.append("<option value='"+cate1Array[i].categoryCode+"'>" + cate1Array[i].categoryName + "</option>");
+        	}
+        	
+        	/* 중분류 <option> 태그 */
+        	$(cateSelect1).change(function(){
+        		let selectVal1 = $(this).find("option:selected").val();
+        		cateSelect2.children().remove();
+        		cateSelect2.append("<option value='none'>선택</option>");
+        		
+        		for(let i = 0; i<cate2Array.length; i++){
+        			if(selectVal1 === cate2Array[i].categoryParent){
+        				cateSelect2.append("<option value='"+cate2Array[i].categoryCode+"'>"+cate2Array[i].categoryName+"</option>");
+        			}
+        		}
+        		
+        	});
+        	
+        	
+        	
+        	
+        	
             $('[name=productDesc]').summernote({
         placeholder: '내용을 작성하세요.',
         tabsize: 4, // 탭키를 누르면 띄어쓰기 몇 번 할지
@@ -23,16 +81,37 @@
           ['insert', ['link', 'picture']],
           
         ]
-      });      
+      });  
+            
+            
+            
+            
+            
+            
         });
+        
+        
+        
+       
+        
     </script>
 </head>
 <body>
 	<h1>상품 입력 페이지</h1>
 	<form action="insertProcess" method="post" enctype="multipart/form-data">
 		<div>
-		<label>카테고리코드</label>
-		<input type="text" name="categoryCode">
+		<div class="category_wrap">
+		<span>대분류</span>
+		<select class="cate1">
+			<option selected value="none">선택</option>
+		</select>
+		</div>
+		<div class="category_wrap">
+		<span>중분류</span>
+		<select class="cate2" name="categoryCode">
+			<option selected value="none">선택</option>
+		</select>
+		</div>
 		</div>
 		<div>
 		<label>상품명</label>
