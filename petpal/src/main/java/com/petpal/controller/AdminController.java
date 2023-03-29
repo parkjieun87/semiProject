@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petpal.component.RandomComponent;
 import com.petpal.configuration.CustomFileuploadProperties;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductImageDao;
+import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.AttachmentDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductDto;
@@ -30,16 +33,20 @@ import com.petpal.vo.PaginationVO;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
-	@Autowired MemberDao memberDao;
 	
-	@Autowired ProductDao productDao;
+	@Autowired private MemberDao memberDao;
 	
-	@Autowired ProductAttachmentDao productAttachmentDao;
+	@Autowired private ProductDao productDao;
+	
+	@Autowired private ProductAttachmentDao productAttachmentDao;
 	
 	@Autowired private CustomFileuploadProperties fileuploadProperties;
 	
 	@Autowired private ProductImageDao productImageDao;
+	
+	@Autowired private ProductWithImageDao productWithImageDao;
+	
+	@Autowired private RandomComponent randomComponent;
 	
 	private File dir;
 	@PostConstruct
@@ -106,7 +113,7 @@ public class AdminController {
 	@GetMapping("/product/detail")
 	public String productDetail(Model model, 
 							@RequestParam int productNo) {
-		model.addAttribute("productDto", productDao.selectOne(productNo));
+		model.addAttribute("productDto", productWithImageDao.selectOne(productNo));
 		return "/WEB-INF/views/admin/product/detail.jsp";
 	}
 	
@@ -164,6 +171,37 @@ public class AdminController {
 		memberDao.changeInformationByAdmin(memberDto);
 		attr.addAttribute("memberId", memberDto.getMemberId());
 		return "redirect:detail";
+	}
+	// 회원 강제 탈퇴 후 waiting 테이블에 추가
+	@GetMapping("/member/delete")
+	public String memberExit(
+			@RequestParam String memberId,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			RedirectAttributes attr) {
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		memberDao.delete(memberId);
+		memberDao.insertWaiting(memberDto);
+		
+		attr.addAttribute("page", page);
+		return "redirect:list";
+	}
+	// 일회용 비밀번호 설정
+	@GetMapping("/member/password")
+	public String memberPassword(@RequestParam String memberId, HttpSession session) {
+		String memberPw = randomComponent.generateString(10);
+		memberDao.changePassword(memberId, memberPw);
+		session.setAttribute("memberPw", memberPw);
+		return "redirect:passwordFinish";
+	}
+	
+	@GetMapping("/member/passwordFinish")
+	public String passwordFinish(HttpSession session, Model model) {
+		String memberPw = (String)session.getAttribute("memberPw");
+		session.removeAttribute("memberPw");
+		model.addAttribute("memberPw", memberPw);
+		return "/WEB-INF/views/admin/member/password.jsp";
+		
+		
 	}
 	
 	

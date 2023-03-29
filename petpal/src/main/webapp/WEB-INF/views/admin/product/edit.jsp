@@ -27,7 +27,7 @@
 				<tr>
 					<th>상품 상세설명</th>
 					<td>
-						<input type="text" name="productDesc" value="${productDto.productDesc}">
+						<input type="hidden" name="productDesc" value="${productDto.productDesc}">
 					</td>
 				</tr>
 				<tr>

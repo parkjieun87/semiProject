@@ -4,10 +4,11 @@
 
 <div class="container-1200">
 	<div class="row center">
-		<h2>상품 상세설명</h2>
+		<h2>${productDto.productName}</h2>
 	</div>
 	<div class="row center mt-30">
 		${productDto.productDesc }
+		<img src="${productDto.imageURL}">
 	</div>
 </div>
 

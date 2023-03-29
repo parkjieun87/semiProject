@@ -30,6 +30,7 @@ public class CartDao {
 			dto.setProductName(rs.getString("product_name"));
 			dto.setProductDiscount(rs.getInt("product_discount"));
 			dto.setProductPrice(rs.getInt("product_price"));
+			dto.setProductStock(rs.getInt("product_stock"));
 	
 			return dto;
 		}
@@ -63,7 +64,7 @@ public class CartDao {
 	// 장바구니 목록
 	public List<CartDto> getCart(String memberId){
 		String sql ="select a.cart_no, a.member_id, a.product_no, a.product_count,"+
-		"b.product_name, b.product_price, b.product_discount from cart "+
+		"b.product_name, b.product_price, b.product_discount, b.product_stock from cart "+
 		"a left outer join product b on a.product_no = b.product_no where "+
 		"member_id = ?";
 		Object[] param = {memberId};

@@ -2,22 +2,22 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-    <div class="container-1100 center">
+    <div class="container-1500 center">
     	<!-- 상품 목록 테이블 -->
-        <div class="row container-1200">
+        <div class="row container-1500">
             <table class="table table-slit">
                 <thead>
                     <tr>
-                        <th>상품 번호</th>
-                        <th>카테고리 번호</th>
+                        <th width="80px">상품 번호</th>
+                        <th width="110px">카테고리 번호</th>
                         <th>상품 이름</th>
-                        <th>상품 가격</th>
-                        <th>상품 재고</th>
+                        <th width="90px">상품 가격</th>
+                        <th width="80px">상품 재고</th>
                         <th>상품 설명</th>
-                        <th>상품 등록일</th>
+                        <th width="100px">상품 등록일</th>
                         <th>상품 할인률</th>
                         <th>상품 조회수</th>
-                        <th>관리</th>
+                        <th width="70px">관리</th>
                     </tr>
                 </thead>
                 <tbody>
