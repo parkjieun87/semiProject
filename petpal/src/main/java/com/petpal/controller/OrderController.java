@@ -32,7 +32,7 @@ public class OrderController {
 	@Autowired
 	private MemberDao dao;
 	
-	//1.주문내역 불러오기
+	//1.주문내역 
 	@GetMapping("/order")
 	public String order(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
