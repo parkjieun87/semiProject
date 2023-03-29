@@ -407,14 +407,16 @@ font-weight:700;
                 <div class="photo-sell-wrap">
                     <div class="photo-wrap">
                         <div class="photo-view" data="#" style="cursor: pointer;">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg"  alt="이동장가방사진" id="photo_detail">
-                        </div>
+                        <img src="${productDto.imageURL}" alt="이동장가방사진" id="photo_detail">
+                        <!-- <img src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg"  alt="이동장가방사진" id="photo_detail">
+  -->                       </div>
                         <div class="photo-indicate">
                             <ul id="photo_dumy">
                                 <li class="smallImg">               
                                     <button class="active thumb-detail-list">
-                                        <img id="btn_img" src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
-                                   
+                                        <img id="btn_img" src="${productDto.imageURL}" style="height: 60px; width: 60px;" alt="이동장가방사진">
+<!--                                         <img id="btn_img" src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
+  -->                                  
                                     </button>
                                 </li>
                             </ul>
