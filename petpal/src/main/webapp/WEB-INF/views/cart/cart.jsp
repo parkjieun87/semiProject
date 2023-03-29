@@ -153,7 +153,42 @@ td{
 	    	font-weight: bold;		
 		}
  
- 
+ .finalTotalPrice_span{
+				color: #854A72;
+				font-size: 17px;
+				font-weight: bold;
+			}
+			.totalPoint_span{
+				font-size: 17px;
+				font-weight: bold;		
+			}
+			.boundary_div{
+				font-size: 0;
+			    border: 1px dotted #d1c7c7;
+			    margin: 5px 0 5px 0;		
+			}
+  .content_totalCount_section{
+	 	margin-bottom: 12px;
+	 }
+.content_total_section{
+	background-color: rgb(227, 237, 247);
+}
+	 
+	 .total_wrap{
+			width: 80%;
+		    margin: auto;
+		    padding: 10px 0 10px 0;	
+		}
+			
+			.finalTotalPrice_span{
+				color: #854A72;
+				font-size: 17px;
+				font-weight: bold;
+			}
+			.totalPoint_span{
+				font-size: 17px;
+				font-weight: bold;		
+			}
 	</style>
 	
 
@@ -310,9 +345,9 @@ td{
            	<tr>
                   <td scope="row" class="cart_info_td">
                   <input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
-                  <input type="hidden" class="individual_productPrice_input" value="${list.productPrice}">
+                  <input type="hidden" class="individual_productPrice_input" value="${list.salePrice}">
                   <input type="hidden" class="individual_productCount_input" value="${list.productCount}">
-                  <input type="hidden" class="individual_totalPrice_input" value="${list.productPrice * list.productCount}">
+                  <input type="hidden" class="individual_totalPrice_input" value="${list.salePrice * list.productCount}">
                   
                   
                   
@@ -332,7 +367,7 @@ td{
                                         
                                             <div class="quantity-wrap" style="top:0">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
-                                                <input type="text" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}">
+                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}">
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                             </div>
                                             <a class="quantity_modify_btn" data-cartno="${list.cartNo}">변경</a>
@@ -355,6 +390,7 @@ td{
           </td>
           <td>
           	<span class="row price spans">${list.productPrice}</span>원
+          	<span class="row price spans">${list.salePrice}</span>원
           </td>
          <td style="text-align: center;">
          <button class="delete_btn" data-cartno="${list.cartNo}">삭제</button>
@@ -368,9 +404,71 @@ td{
 			
            	        	
            </table>
+           <!-- 가격 종합 -->
+			<div class="content_total_section">
+				<div class="total_wrap">
+					<table>
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<td>총 상품 가격</td>
+										<td>
+											<span class="totalPrice_span">70000</span> 원
+										</td>
+									</tr>
+									<tr>
+										<td>배송비</td>
+										<td>
+											<span class="delivery_price">무료</span>
+										</td>
+									</tr>									
+									<tr>
+										<td>총 주문 상품 개수</td>
+										<td><span class="totalKind_span"></span>개</td>
+									</tr>
+								</table>
+							</td>
+							<td>
+								<table>
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
+								</table>							
+							</td>
+						</tr>
+					</table>
+           <div class="boundary_div">구분선</div>
+					<table>
+						<tr>
+							<td>
+								<table>
+									<tbody>
+										<tr>
+											<td>
+												<strong>총 결제 예상 금액</strong>
+											</td>
+											<td>
+												<span class="totalPrice_span"></span> 원
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td>
+								<table>
+									<tbody>
+										
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
   
-   		총 상품 가격 :<span class="totalPrice_span"></span>원 <br>
-   		총 주문 상품 개수 : <span class="totalCount_span"></span>개 <br>
+   		
+   	
    		총 종류 : <span class="totalKind_span"></span>개
    		
   

@@ -22,7 +22,7 @@ public class CartDto {
 	private int totalPrice;
 	
 	public void initSaleTotal() {
-		this.salePrice = (int)(this.productPrice * (1-this.productDiscount));
+		this.salePrice = (int)(this.productPrice * ((100-this.productDiscount) / 100.0));
 		this.totalPrice = this.salePrice * this.productCount;
 	}
 
