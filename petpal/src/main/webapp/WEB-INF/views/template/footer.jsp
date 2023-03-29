@@ -34,10 +34,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
     
-  
 
-
- </section>
     
         
 <footer>
