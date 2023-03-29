@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.petpal.dto.OrderDetailDto;
+
 import com.petpal.dto.ProductOrderDto;
 
 import net.nurigo.java_sdk.api.Message;
@@ -42,6 +42,11 @@ public class OrderDao {
 		productOrderDto.setReceiverBasicAddr(rs.getString("receiver_basic_addr"));
 		productOrderDto.setReceiverPost(rs.getString("receiver_post"));
 		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
+		productOrderDto.setOrderDetailNo(rs.getInt("order_detail_no"));
+		productOrderDto.setProductNo(rs.getInt("product_no"));
+		productOrderDto.setCategoryCode(rs.getString("category_code"));
+		productOrderDto.setProductCount(rs.getInt("product_count"));
+		productOrderDto.setProductPrice(rs.getInt("product_price"));
 		return productOrderDto;
 	}};
 	
@@ -80,17 +85,7 @@ public class OrderDao {
 			jdbcTemplate.update(sql,param);
 	}
 	
-//	//2.주문내역 조회
-//	public ProductOrderDto selectOne(String memberId) {
-//		String sql="select a.cart_no, a.member_id, a.product_no, a.product_count,"
-//				+ "      b.product_name, b.product_price, b.product_discount from cart "
-//				+ "      a left outer join product b on a.product_no = b.product_no where "
-//				+ "      member_id = ?";
-//		Object[] param = {memberId};
-//		List<ProductOrderDto>	 list = jdbcTemplate.query(sql, mapper, param);
-//		return list.isEmpty()?null:list.get(0);
-//	}
-	
+
 	//3.구매하기(등록)
 	
 	

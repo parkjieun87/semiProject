@@ -316,6 +316,7 @@ clear: both;
   background-size: 50%;
   outline: none;
   cursor: pointer;
+  background-color:white;
 }
 #rowbtn2{position: relative;height: 30px;display: inline-block;}
 #rowbtn2 input {padding-right: 5px;height: inherit; border-right: none;}
@@ -329,6 +330,7 @@ clear: both;
   background-size: 50%;
   outline: none;
   cursor: pointer;
+  background-color:white;
 }
 
 #row-btnC3 #btnC3 {
@@ -386,8 +388,7 @@ clear: both;
             color: #145eaa;
             font-weight: 1000;
         }
-        .chk-wrap input[type='checkbox'], .chk-wrap input[type='radio'] {
-    position: fixed;
+.chk-wrap input[type='checkbox'], .chk-wrap input[type='radio'] {
     top: 2px;
     left: 2px;
 }

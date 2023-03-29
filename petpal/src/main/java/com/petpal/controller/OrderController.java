@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.petpal.dao.CartDao;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.OrderDao;
-import com.petpal.dto.OrderDetailDto;
 import com.petpal.dto.ProductOrderDto;
 
 @Controller
@@ -32,7 +31,7 @@ public class OrderController {
 	@Autowired
 	private MemberDao dao;
 	
-	//1.주문내역 
+	//1.주문내역 (cartDao에서 가져옴)
 	@GetMapping("/order")
 	public String order(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
@@ -41,7 +40,7 @@ public class OrderController {
 		return "/WEB-INF/views/member/order.jsp";
 	}
 	
-//	@PostMapping("/order")
+
 	
 
 

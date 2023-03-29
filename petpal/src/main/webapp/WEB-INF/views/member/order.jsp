@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
@@ -132,6 +135,7 @@
     <div id="pay-step" class="order">
             <h1 id="logo">
                 <a href="#">펫팔</a>
+               
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500; margin-left:10px;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
@@ -162,19 +166,22 @@
                                    </span> 
                                 </div>
                             <div class="bunle-info__item-list">
+                            <c:forEach items="${cartDto}" var="list">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
                                         <img src="./img/9012_web_original_1673006075211726.jpg"
-                                        alt="가방" height="40px">
+                                         height="20px">
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
                                         <p>
-                                            <span class="bundle-info__vendor-item__offer-condition">가방</span>
+                                            <span class="bundle-info__vendor-item__offer-condition">${list.productName}</span>
+                                            <span>: ${list.productCount}개</span>
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
-                                    <div class="bundle-info__item-description" style="padding-left: 50px; width: 100%;">수량:1개</div>
+                                    <div class="bundle-info__item-description" style="padding-left: 50px; width: 100%;"></div>
                                 </div>
+                             </c:forEach>       
                             </div>
                             </div>
                             <div class="bunle-info__item-list"></div>
@@ -296,19 +303,19 @@
                                 <div class="inp-wrap type03" style="width: 100%;">
                                     <label>결제</label>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-naver" name="order-payment" value="NAVER">
+                                        <input type="radio" id="payment-naver" name="order-payment" value="NAVER" style="display:none";>
                                         <label for="payment-naver">네이버페이</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO">
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none";>
                                         <label for="payment-kakao">카카오페이</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-payco" name="order-payment" value="PAYCO">
+                                        <input type="radio" id="payment-payco" name="order-payment" value="PAYCO" style="display:none";>
                                         <label for="payment-payco">페이코</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS">
+                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none";>
                                         <label for="payment-toss">토스</label>
                                     </div>
                                 </div>
@@ -345,7 +352,7 @@
                                 </ol>
                             </div>
                             <div class="chk-wrap">
-                                <input type="checkbox" id="puchase-ok">
+                                <input type="checkbox" id="puchase-ok" style="display:none";>
                                 <label for="puchase-ok">
                                     본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.
                                 </label>
