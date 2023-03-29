@@ -2,6 +2,7 @@ package com.petpal.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
@@ -17,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpal.configuration.CustomFileuploadProperties;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductImageDao;
 import com.petpal.dto.AttachmentDto;
+import com.petpal.dto.CategoryDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductDto;
 import com.petpal.dto.ProductImageDto;
@@ -58,7 +61,18 @@ public class AdminController {
 	
 	// 관리자 상품등록 페이지
 	@GetMapping("/product/insert")
-	public String insert() {
+	public String insert(Model model) throws Exception{
+		ObjectMapper objm = new ObjectMapper();
+		
+		// 카테고리 리스트
+		List<CategoryDto> list = productDao.categoryList();
+		
+		// 자바 객체를 String 타입의 JSON 형식 데이터로 변환
+		String categoryList = objm.writeValueAsString(list);
+		model.addAttribute("cateList",categoryList);
+		
+		
+		
 		return "/WEB-INF/views/admin/product/insert.jsp";
 	}
 	
