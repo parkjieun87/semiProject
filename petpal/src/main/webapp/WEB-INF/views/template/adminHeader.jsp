@@ -16,22 +16,10 @@
     <link rel="stylesheet" type="text/css" href="/static/css/test.css">
 
    
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- header css -->
     <link rel="stylesheet" type="text/css" href="/static/css/header.css">
     
     <style>
-	.footMent
-   {
-   	font-size : 15px;
-    font-weight: lighter;  	
-   }
-   .tel
-   {
-   	font-size : 20px;
-    font-weight: bold;  
-    color: #9c88ff;	
-   }
    a
    {
    	text-decoration: none;
@@ -118,9 +106,19 @@
 		display: flex;
 		margin-top:100px; margin-bottom:100px;
 	}
+	
 </style>
 	<!-- jQuery Cdn -->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+        $(function () {
+            var hasImage = $('td').has('img').length > 0;
+            console.log(hasImage);
+
+        });
+    </script>
+
 </head>
 	
 <body>

@@ -7,7 +7,7 @@
 		<h2>${productDto.productName}</h2>
 	</div>
 	<div class="row center mt-30">
-		${productDto.productDesc }
+		${productDto.productDesc}
 		<img src="${productDto.imageURL}">
 	</div>
 </div>
