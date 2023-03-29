@@ -198,6 +198,7 @@ public class MemberDao {
          return jdbcTemplate.query(sql,mapper,param);
       }   
       
+
 }
       
    

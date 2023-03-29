@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>홈페이지 레이아웃</title>
+    <title>PetPal 관리자 페이지</title>
     <link rel="stylesheet" type="text/css" href="/static/css/load.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
@@ -52,18 +52,18 @@
    .table.table-slit>tbody>tr:not(:last-child) {
        border-bottom: 1px #b2bec3 solid;
    }
+   .flex-vertical > div {
+   		width: 200px;
+   }
 </style>
 	<!-- jQuery Cdn -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 	
 <body>
-<main class="container-1500">
-        <header style="border-bottom: 1px solid gray">
+<main style="margin-left:100px;">
+        <header>
             <div class="row">
-                <div class="center">
-                    <img src="/static/image/petpal.png" width="170" height="120" style="padding-left: 20px; margin-right: 20px;" 로고">
-                </div>
             </div>
         </header>
         <section>
@@ -75,6 +75,7 @@
                     </div>
                     <div class="p-10"><a href="/admin/member/list" class="link">회원 관리</a></div>
                     <div class="p-10"><a href="/admin/product/list" class="link">상품 관리</a></div>
+                    <div class="p-10"><a href="/admin/" class="link">매출 관리</a></div>
                     <div class="p-10"><a href="/admin/" class="link">주문 관리</a></div>
                 </div>
             </aside>

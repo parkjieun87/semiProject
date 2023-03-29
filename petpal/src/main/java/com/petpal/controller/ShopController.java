@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petpal.dao.ProductDao;
-import com.petpal.dao.ProductWithImageDao;
-import com.petpal.dto.ProductWithImageDto;
+//import com.petpal.dao.ProductWithImageDao;
+//import com.petpal.dto.ProductWithImageDto;
 
 @Controller
 @RequestMapping("/shop")
 public class ShopController {
 	@Autowired private ProductDao productDao;
-	@Autowired private ProductWithImageDao productWithImageDao;
+//	@Autowired private ProductWithImageDao productWithImageDao;
 	
 	@GetMapping("")
 	@ResponseBody
@@ -27,12 +27,12 @@ public class ShopController {
 		return "aa";
 	}
 	
-	@GetMapping("/goods/goods_list")
-	public String list(Model model, @RequestParam(required=false, defaultValue="") String categoryCode) {
-		List<ProductWithImageDto> list = productWithImageDao.selectList(categoryCode);
-		model.addAttribute("list", list);
-		return "/WEB-INF/views/shop/list.jsp";
-	}
+//	@GetMapping("/goods/goods_list")
+//	public String list(Model model, @RequestParam(required=false, defaultValue="") String categoryCode) {
+//		List<ProductWithImageDto> list = productWithImageDao.selectList(categoryCode);
+//		model.addAttribute("list", list);
+//		return "/WEB-INF/views/shop/list.jsp";
+//	}
 	
 
 }

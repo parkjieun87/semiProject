@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,6 @@ import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductImageDao;
-import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.AttachmentDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductDto;
@@ -32,17 +32,17 @@ import com.petpal.vo.PaginationVO;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	@Autowired MemberDao memberDao;
+	@Autowired private MemberDao memberDao;
 	
-	@Autowired ProductDao productDao;
+	@Autowired private ProductDao productDao;
 	
-	@Autowired ProductAttachmentDao productAttachmentDao;
+	@Autowired private ProductAttachmentDao productAttachmentDao;
 	
 	@Autowired private CustomFileuploadProperties fileuploadProperties;
 	
 	@Autowired private ProductImageDao productImageDao;
 	
-	@Autowired private ProductWithImageDao productWithImageDao;
+	
 	
 	private File dir;
 	@PostConstruct
@@ -109,7 +109,6 @@ public class AdminController {
 	@GetMapping("/product/detail")
 	public String productDetail(Model model, 
 							@RequestParam int productNo) {
-		model.addAttribute("productDto", productWithImageDao.selectOne(productNo));
 		return "/WEB-INF/views/admin/product/detail.jsp";
 	}
 	
@@ -181,7 +180,24 @@ public class AdminController {
 		attr.addAttribute("page", page);
 		return "redirect:list";
 	}
-	
+//	// 일회용 비밀번호 설정
+//	@GetMapping("/member/password")
+//	public String memberPassword(@RequestParam String memberId, HttpSession session) {
+//		String memberPw = randomComponent.generateString(10);
+//		memberDao.changePassword(memberId, memberPw);
+//		session.setAttribute("memberPw", memberPw);
+//		return "redirect:passwordFinish";
+//	}
+//	
+	@GetMapping("/member/passwordFinish")
+	public String passwordFinish(HttpSession session, Model model) {
+		String memberPw = (String)session.getAttribute("memberPw");
+		session.removeAttribute("memberPw");
+		model.addAttribute("memberPw", memberPw);
+		return "/WEB-INF/views/admin/member/password.jsp";
+		
+		
+	}
 	
 	
 }

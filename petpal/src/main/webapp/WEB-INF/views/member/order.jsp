@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
@@ -135,6 +138,9 @@
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
         
+
+<div class="container-1000" style="font-family: '카페24 써라운드 에어';">
+
 <div class="container-1000">
     <div id="pay-step" class="order">
             <h1 id="logo">
@@ -169,19 +175,23 @@
                                    </span> 
                                 </div>
                             <div class="bunle-info__item-list">
+                            <c:forEach items="${cartList}" var="list">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
                                         <img src="./img/9012_web_original_1673006075211726.jpg"
-                                        alt="가방" height="40px">
+                                         height="20px">
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
                                         <p>
-                                            <span class="bundle-info__vendor-item__offer-condition">가방</span>
+                                            <span class="bundle-info__vendor-item__offer-condition">${list.productName}</span>
+                                            <br>
+                                            <span>수량 : ${list.productCount}개</span>
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
-                                    <div class="bundle-info__item-description" style="padding-left: 50px; width: 100%;">수량:1개</div>
+                                    <div class="bundle-info__item-description" style="padding-left: 50px; width: 100%;"></div>
                                 </div>
+                             </c:forEach>       
                             </div>
                             </div>
                             <div class="bunle-info__item-list"></div>
@@ -198,11 +208,11 @@
                         <div class="sec type03">
                             <div class="inp-wrap val type03">
                                 <strong>이름</strong>
-                            <span class="val" id="order-name">박구름</span>
+                            <span class="val" id="order-name">${findDto.memberName}</span>
                             </div>
                             <div class="inp-wrap val type03">
                                 <strong>이메일</strong>
-                                <span class="val" id="order-email">cloud@gmail.com</span>
+                                <span class="val" id="order-email">${findDto.memberEmail}</span>
                             </div>
 
                             <div class="inp-wrap type03 btn-add wide">
@@ -210,13 +220,12 @@
                                 <span class="val">
                                     <span class="num" id="member_tel">휴대폰 번호를 입력해주세요</span>
                                 </span>
-                                <div class="row" id="rowbtn1">
-                                    <input type="tel" name="memberTel" class="form-input w-60" id="phone" placeholder="대시(-)를 제외하고 작성">
-                                    <button id="btnC1" type="button" class="btn-clear1"></button>
+                                <div class="row" id="rowbtn1" style="margin-top:0px;">
+                                    <input type="tel" name="memberTel" class="form-input w-60" value="${findDto.memberTel}" id="phone" placeholder="대시(-)를 제외하고 작성" style="width:200px; height:35px; border:1px solid #ddd;">
                                     <div class="invalid-message">올바른 휴대전화번호가 아닙니다</div>
-                                    <button type="button" class="form-btn positive w-30 ms-50" id="phoneChk">번호인증</button>
+                                    <button type="button" class="form-btn positive w-30 ms-50" id="phoneChk" style="margin-left:30px">번호인증</button>
                                  </div>
-                                 <div class="row" id="rowbtn2">
+                                 <div class="row" id="rowbtn2" style="margin-top:40px;">
                                  <input id="phone2" type="text"  class="form-input w-100"  name="phone2" placeholder="인증번호 입력"  required/>
                                  <button id="btnC2" type="button" class="btn-clear2"></button>  
                                     <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
@@ -303,19 +312,19 @@
                                 <div class="inp-wrap type03" style="width: 100%;">
                                     <label>결제</label>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-naver" name="order-payment" value="NAVER">
+                                        <input type="radio" id="payment-naver" name="order-payment" value="NAVER" style="display:none";>
                                         <label for="payment-naver">네이버페이</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO">
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none";>
                                         <label for="payment-kakao">카카오페이</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-payco" name="order-payment" value="PAYCO">
+                                        <input type="radio" id="payment-payco" name="order-payment" value="PAYCO" style="display:none";>
                                         <label for="payment-payco">페이코</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS">
+                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none";>
                                         <label for="payment-toss">토스</label>
                                     </div>
                                 </div>
@@ -352,7 +361,7 @@
                                 </ol>
                             </div>
                             <div class="chk-wrap">
-                                <input type="checkbox" id="puchase-ok">
+                                <input type="checkbox" id="puchase-ok" style="display:none";>
                                 <label for="puchase-ok">
                                     본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.
                                 </label>

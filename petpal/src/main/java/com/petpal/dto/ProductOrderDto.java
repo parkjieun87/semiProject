@@ -19,5 +19,13 @@ public class ProductOrderDto {
 	private String receiverBasicAddr; //수취인 기본주소
 	private String receiverPost; // 수취인 우편번호
 	private String receiverDetailAddr; // 수취인 상세주소
-	List<OrderDetailDto> orderDetailList; // 주문상세 목록 
+	
+	//주문상세(OrderDetail) 필드
+	private int orderDetailNo; // 주문상세번호
+//	private int orderNo; // 주문 번호
+	private int productNo; // 상품 번호
+//	private String memberId; // 아이디
+	private String categoryCode; // 카테고리 코드
+	private int productCount; // 주문상품수량
+	private int productPrice; // 주문상품가격
 }
