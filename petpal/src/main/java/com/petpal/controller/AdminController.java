@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petpal.component.RandomComponent;
 import com.petpal.configuration.CustomFileuploadProperties;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductAttachmentDao;
@@ -32,17 +34,19 @@ import com.petpal.vo.PaginationVO;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	@Autowired MemberDao memberDao;
+	@Autowired private MemberDao memberDao;
 	
-	@Autowired ProductDao productDao;
+	@Autowired private ProductDao productDao;
 	
-	@Autowired ProductAttachmentDao productAttachmentDao;
+	@Autowired private ProductAttachmentDao productAttachmentDao;
 	
 	@Autowired private CustomFileuploadProperties fileuploadProperties;
 	
 	@Autowired private ProductImageDao productImageDao;
 	
 	@Autowired private ProductWithImageDao productWithImageDao;
+	
+	@Autowired private RandomComponent randomComponent;
 	
 	private File dir;
 	@PostConstruct
@@ -181,7 +185,24 @@ public class AdminController {
 		attr.addAttribute("page", page);
 		return "redirect:list";
 	}
+	// 일회용 비밀번호 설정
+	@GetMapping("/member/password")
+	public String memberPassword(@RequestParam String memberId, HttpSession session) {
+		String memberPw = randomComponent.generateString(10);
+		memberDao.changePassword(memberId, memberPw);
+		session.setAttribute("memberPw", memberPw);
+		return "redirect:passwordFinish";
+	}
 	
+	@GetMapping("/member/passwordFinish")
+	public String passwordFinish(HttpSession session, Model model) {
+		String memberPw = (String)session.getAttribute("memberPw");
+		session.removeAttribute("memberPw");
+		model.addAttribute("memberPw", memberPw);
+		return "/WEB-INF/views/admin/member/password.jsp";
+		
+		
+	}
 	
 	
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-<div class="container-1100 center">
+<div class="container-1200 center">
     	<!-- 상품 목록 테이블 -->
         <div class="row container-1200">
             <table class="table table-slit">
@@ -28,7 +28,7 @@
 	                        <td>
 	                        	<a class="link" href="detail?memberId=${list.memberId}">상세</a>
 	                        	<a class="link" href="edit?memberId=${list.memberId}">수정</a>
-	                        	<a class="link" href="delete?memberId=${list.memberId}">탈퇴</a>
+	                        	<a class="link" href="delete?memberId=${list.memberId}&page=${vo.page}">탈퇴</a>
 	                        </td>
 	                    </tr>
                 		
