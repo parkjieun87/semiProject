@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-
+import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductOrderDto;
 
 import net.nurigo.java_sdk.api.Message;
@@ -76,7 +76,7 @@ public class OrderDao {
 		}
 	
 			
-	//1.주문 정보 등록
+	//주문 정보 등록
 	public void insert(ProductOrderDto productOrderDto) {
 		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr)\r\n"
 				+ "values(product_order_seq.nextval,?,sysdate,?,?,?,?,?);";
@@ -85,8 +85,8 @@ public class OrderDao {
 			jdbcTemplate.update(sql,param);
 	}
 	
+	//아이디로 주문자 이름,이메일 조회 - memberDao에 작성
 
-	//3.구매하기(등록)
-	
+
 	
 }

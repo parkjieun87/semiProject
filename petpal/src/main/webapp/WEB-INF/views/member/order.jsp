@@ -131,11 +131,10 @@
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
         
-<div class="container-1000">
+<div class="container-1000" style="font-family: '카페24 써라운드 에어';">
     <div id="pay-step" class="order">
             <h1 id="logo">
                 <a href="#">펫팔</a>
-               
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500; margin-left:10px;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
@@ -166,7 +165,7 @@
                                    </span> 
                                 </div>
                             <div class="bunle-info__item-list">
-                            <c:forEach items="${cartDto}" var="list">
+                            <c:forEach items="${cartList}" var="list">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
                                         <img src="./img/9012_web_original_1673006075211726.jpg"
@@ -175,7 +174,8 @@
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
                                         <p>
                                             <span class="bundle-info__vendor-item__offer-condition">${list.productName}</span>
-                                            <span>: ${list.productCount}개</span>
+                                            <br>
+                                            <span>수량 : ${list.productCount}개</span>
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
@@ -198,11 +198,11 @@
                         <div class="sec type03">
                             <div class="inp-wrap val type03">
                                 <strong>이름</strong>
-                            <span class="val" id="order-name">박구름</span>
+                            <span class="val" id="order-name">${findDto.memberName}</span>
                             </div>
                             <div class="inp-wrap val type03">
                                 <strong>이메일</strong>
-                                <span class="val" id="order-email">cloud@gmail.com</span>
+                                <span class="val" id="order-email">${findDto.memberEmail}</span>
                             </div>
 
                             <div class="inp-wrap type03 btn-add wide">
@@ -210,13 +210,12 @@
                                 <span class="val">
                                     <span class="num" id="member_tel">휴대폰 번호를 입력해주세요</span>
                                 </span>
-                                <div class="row" id="rowbtn1">
-                                    <input type="tel" name="memberTel" class="form-input w-60" id="phone" placeholder="대시(-)를 제외하고 작성">
-                                    <button id="btnC1" type="button" class="btn-clear1"></button>
+                                <div class="row" id="rowbtn1" style="margin-top:0px;">
+                                    <input type="tel" name="memberTel" class="form-input w-60" value="${findDto.memberTel}" id="phone" placeholder="대시(-)를 제외하고 작성" style="width:200px; height:35px; border:1px solid #ddd;">
                                     <div class="invalid-message">올바른 휴대전화번호가 아닙니다</div>
-                                    <button type="button" class="form-btn positive w-30 ms-50" id="phoneChk">번호인증</button>
+                                    <button type="button" class="form-btn positive w-30 ms-50" id="phoneChk" style="margin-left:30px">번호인증</button>
                                  </div>
-                                 <div class="row" id="rowbtn2">
+                                 <div class="row" id="rowbtn2" style="margin-top:40px;">
                                  <input id="phone2" type="text"  class="form-input w-100"  name="phone2" placeholder="인증번호 입력"  required/>
                                  <button id="btnC2" type="button" class="btn-clear2"></button>  
                                     <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>

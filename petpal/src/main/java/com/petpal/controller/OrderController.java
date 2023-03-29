@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.petpal.dao.CartDao;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.OrderDao;
+import com.petpal.dto.CartDto;
+import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductOrderDto;
 
 @Controller
@@ -29,19 +31,30 @@ public class OrderController {
 	private CartDao cartDao;
 	
 	@Autowired
-	private MemberDao dao;
+	private MemberDao memberDao;
+
 	
-	//1.주문내역 (cartDao에서 가져옴)
+	//1.주문내역 (cartDao에서 가져옴) , 주문자 이름,이메일 가져오기
 	@GetMapping("/order")
 	public String order(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("memberId");
-		System.out.println(memberId);
-		model.addAttribute("cartDto",cartDao.getCart(memberId));
+		
+		//주문내역
+		List<CartDto> cartList= cartDao.getCart(memberId);
+		model.addAttribute("cartList",cartList);
+		
+		//주문자 이름,이메일
+		MemberDto findDto = memberDao.selectOne(memberId);
+		model.addAttribute("findDto",findDto);
 		return "/WEB-INF/views/member/order.jsp";
 	}
 	
-
-	
+//	//2.주문자 이름,이메일 가져오기
+//	@GetMapping("/")
+//	public String orderInfo(HttpSession session,Model model) {
+//		String memberId = (String) session.getAttribute("memberId");
+//		return "WEB-INF/views/member/order.jsp";
+//	}
 
 
 }
