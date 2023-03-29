@@ -46,8 +46,6 @@ public class OrderDao {
 	}};
 	
 	
-	//mapper 생성
-	
 	// 번호 인증 기능
 			public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
 				String api_key = "NCSLCNN6RKJJ6KZD";
@@ -72,6 +70,7 @@ public class OrderDao {
 			      }
 		}
 	
+			
 	//1.주문 정보 등록
 	public void insert(ProductOrderDto productOrderDto) {
 		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr)\r\n"

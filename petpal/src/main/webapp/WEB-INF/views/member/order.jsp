@@ -2,16 +2,12 @@
     pageEncoding="UTF-8"%>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
 
-
-
-
-    <!--Jquery Cdn-->
+    <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="/static/js/cart.js"></script>
-    <script type="text/javascript">
+
+<script type="text/javascript">
         $(function(){
 
             //주소 
@@ -130,13 +126,13 @@
         </script>
         <!-- 우편cdn -->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
         
-<body>
+<div class="container-1000">
     <div id="pay-step" class="order">
-        <div class="wrap">
             <h1 id="logo">
                 <a href="#">펫팔</a>
-                <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500;">강아지용폼 전문몰 펫팔</sub>
+                <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500; margin-left:10px;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
                 <ul style="margin-left: 70px;">
@@ -364,8 +360,7 @@
                     </div>
                 </div>
             </form>
-        </div>
     </div>
-</body>        
+</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
