@@ -42,4 +42,9 @@ public class ProductWithImageDao {
 		return jdbcTemplate.query(sql, mapper, param);
 	}
 	
+	public ProductWithImageDto selectOne(int productNo){
+		String sql = "select * from product_with_image where product_no=?";
+		Object[] param = {productNo};
+		return jdbcTemplate.query(sql, mapper, param).get(0);
+	}
 }
