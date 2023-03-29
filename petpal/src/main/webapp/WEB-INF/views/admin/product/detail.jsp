@@ -8,6 +8,7 @@
 	</div>
 	<div class="row center mt-30">
 		${productDto.productDesc }
+		<img src="${productDto.imageURL}">
 	</div>
 </div>
 

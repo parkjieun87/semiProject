@@ -21,6 +21,7 @@ import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductImageDao;
+import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.AttachmentDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductDto;
@@ -40,6 +41,8 @@ public class AdminController {
 	@Autowired private CustomFileuploadProperties fileuploadProperties;
 	
 	@Autowired private ProductImageDao productImageDao;
+	
+	@Autowired private ProductWithImageDao productWithImageDao;
 	
 	private File dir;
 	@PostConstruct
@@ -106,7 +109,7 @@ public class AdminController {
 	@GetMapping("/product/detail")
 	public String productDetail(Model model, 
 							@RequestParam int productNo) {
-		model.addAttribute("productDto", productDao.selectOne(productNo));
+		model.addAttribute("productDto", productWithImageDao.selectOne(productNo));
 		return "/WEB-INF/views/admin/product/detail.jsp";
 	}
 	

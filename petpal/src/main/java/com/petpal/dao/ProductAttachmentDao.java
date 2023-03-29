@@ -2,6 +2,7 @@ package com.petpal.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -41,5 +42,11 @@ public class ProductAttachmentDao {
 		jdbcTemplate.update(sql, param);
 	}
 	
+	public AttachmentDto selectOne(int attachmentNo) {
+		String sql = "select * from product_attachment where attachment_no=?";
+		Object[] param = {attachmentNo};
+		List<AttachmentDto> list = jdbcTemplate.query(sql, mapper, param);
+		return list.isEmpty() ? null : list.get(0);
+	}
 	
 }
