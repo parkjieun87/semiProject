@@ -37,7 +37,7 @@ public class OrderController {
 	
 	//주문내역 (cartDao에서 가져옴) , 주문자 이름,이메일 가져오기
 	@GetMapping("/order")
-	public String order(HttpSession session, Model model,@ModelAttribute ProductOrderDto productOrderDto,@ModelAttribute CartDto cartDto) {
+	public String order(HttpSession session, Model model,@ModelAttribute ProductOrderDto productOrderDto) {
 		String memberId = (String) session.getAttribute("memberId");
 		
 		//주문내역

@@ -110,9 +110,13 @@ $(function(){
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
                                         <p>
-                                            <span class="bundle-info__vendor-item__offer-condition">${list.productName}</span>
+                                            <span class="bundle-info__vendor-item__offer-condition">${list.productName} ${list.initSaleTotal()}</span>
                                             <br>
                                             <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.productPrice}</span>
+                                            
+                                            <c:set var="salePrice" value="${salePrice + list.salePrice}"/> 
+                           					<c:set var="totalPrice" value="${totalPrice + list.productCount*list.productPrice}"/> 
+                           					
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
@@ -220,11 +224,11 @@ $(function(){
                         <div class="sec type03">
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
-                                <span class="val" name="totalPrice1"></span>
+                                <span class="val" name="totalPrice1">${totalPrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
-                                <span class="val" id="discountval">-12,200원</span>
+                                <span class="val" id="discountval">${salePrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>배송비</strong>
@@ -234,7 +238,7 @@ $(function(){
                                 <strong>
                                     <b>총 결제금액</b>
                                 </strong>
-                                <strong class="val malgun">203,500원</strong>
+                                <strong class="val malgun">${totalPrice-salePrice}원</strong>
                             </div>
                         </div>
    
