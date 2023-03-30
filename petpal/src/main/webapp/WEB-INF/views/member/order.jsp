@@ -18,7 +18,6 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script type="text/javascript">
-<<<<<<< HEAD
  
 
 $(function(){
@@ -42,7 +41,6 @@ $(function(){
 		});
 
 
-=======
        
             //체크박스 누르면 수령인,전화번호 불러오기
             $("[name=order_copy]").change(function(){
@@ -61,8 +59,7 @@ $(function(){
             	   $("input[name=receiveMobile]").val(vailTel);
                }
             });
-            
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
+});      
          
 
 </script>
