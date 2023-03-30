@@ -52,12 +52,13 @@ public class CartController {
 	}
 	
 	// 장바구니 수량 수정
+	@ResponseBody
 	@PostMapping("/cart/update")
-	public String updateCart(CartDto cart) {
+	public void updateCart(CartDto cart) {
 		
 		cartDao.modifyCount(cart);
 		
-		return "redirect:/cart/"+cart.getMemberId();
+//		return "redirect:/cart/"+cart.getMemberId();
 	}
 	
 	// 장바구니 삭제

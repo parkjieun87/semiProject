@@ -147,12 +147,15 @@
             	   $("input[name=receiveMobile]").val(vailTel);
                }
             });
+            
+         
 
     });  
 </script>
         <!-- 우편cdn -->
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+ 
  
 <div class="container-1000" style="font-family: '카페24 써라운드 에어';">
     <div id="pay-step" class="order">
@@ -176,7 +179,8 @@
                     </li>
                 </ul>
             </div>
-            <form name="frmSettle">
+            
+    
                 <div id="contents">
                     <div class="sec">
                         <h2>주문내역</h2>
@@ -213,6 +217,7 @@
                         <div></div>
                         <div></div>
                     </div>
+                    
                     <!-- 구매자 정보 div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -247,7 +252,10 @@
 
                         </div>
                     </div>
-                    <form>
+                    
+                      <!-- 받는사람 정보 div -->
+                    
+                    <form action="order" method="post">
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>받는사람 정보</b>
@@ -289,10 +297,11 @@
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
-
+							<button type="submit">등록</button>
                         </div>
                     </div>
-                    </form>
+                     </form>
+                    
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>결제금액</b>
@@ -388,7 +397,8 @@
                         </button>
                     </div>
                 </div>
-            </form>
+               
+      
     </div>
 </div>
 
