@@ -18,136 +18,29 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script type="text/javascript">
-        $(function(){
-		
-            //주소 
-            $(".btn-post").click(function(){
-                       
-                new daum.Postcode({ //new는 객체를 만드는 함수
-                    oncomplete: function(data) {
-                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+ 
 
-                        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                        var addr = ''; // 주소 변수
-                        var extraAddr = ''; // 참고항목 변수
+$(function(){
 
-                        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                            addr = data.roadAddress;
-                        } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                            addr = data.jibunAddress;
-                        }
-
-                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                        document.querySelector("[name=receiveZipcode]").value = data.zonecode;
-                        document.querySelector("[name=receiveAddress]").value = addr;
-                        // 커서를 상세주소 필드로 이동한다.
-                        document.querySelector("[name=receiveAddressSub]").focus();
-                    }
-                    }).open();
-            
-        });
-         
+	//체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
+	$("[name=order_copy]").change(function(){
+		   var txt = "";
+		   var vailName = "${findDto.memberName}";
+		   var vailTel = "${findDto.memberTel}";
 
 
-            //휴대폰 번호 인증
-            var code2 = "";
-            $("#phoneChk").click(function(){
-            alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-            var phone = $("#phone").val();   
-            
-            
-            $.ajax({   
-                    type:"GET",
-                    url:"/member/phoneCheck?phone=" + phone,
-                    cache : false,
-                    success:function(data){
-                    
-                    console.log(data);
-                    
-                    $("#phone2").on("propertychange change keyup paste input",function(){
-                        var phone2 = $("#phone2").val();
-                        console.log(phone2);
-                        
-                        if(data == phone2){
-                            $(".successPhoneChk").text("올바른 번호입니다.");
-                            $(".successPhoneChk").css("color","green");
-            
-                        }else{
-                            $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
-                            $(".successPhoneChk").css("color","red")
-                        }
-                    });
-                    
-                
-                    
-                    }
-                });
-            });
+		   var txt2 = $("[name=order_copy]").prop("checked");
 
-            //내용 삭제
-            $(".btn-clear1").click(function(){
-                $("#phone").val("");
-            })           
-            $(".btn-clear2").click(function(){
-                $("#phone2").val("");
-            })           
-            $(".btn-clear3").click(function(){
-                $("#receive-name").val("");
-            })           
-            $(".btn-clear4").click(function(){
-                $("#receive-tel").val("");
-            })           
-            $(".btn-clear5").click(function(){
-                $("#receive-address-detail").val("");
-            })    
-            
-            //수령인 미 입력시 문구 나오게 하기
-            $("[name=receiveName]").blur(function(){
-                var isValid = $(this).val().length>0;
-                if(!isValid){
-                    $("[name=txt-p1]").show().css("display");
-                }else{
-                    $("[name=txt-p1]").hide().css("display");
-                }
-            });
-            //휴대폰 번호 미 입력시 문구 나오게 하기
-                $("[name=receiveMobile]").blur(function(){
-                    var isValid = $(this).val().length>0;
-                    if(!isValid){
-                        $("[name=txt-p2]").show().css("display");
-                    }else{
-                        $("[name=txt-p2]").hide().css("display");
-                    }
-                });
-            //상세주소 미 입력시 문구 나오게 하기
-            $("[name=receiveAddressSub]").blur(function(){
-                var isValid = $(this).val().length>0;
-                if(!isValid){
-                    $("[name=txt-p3]").show().css("display");
-                }else{
-                    $("[name=txt-p3]").hide().css("display");
-                }
-            });
-            //체크박스 누르면 수령인,전화번호 불러오기
-            $("[name=order_copy]").change(function(){
-               var txt = "";
-               var vailName = "${findDto.memberName}";
-               var vailTel = "${findDto.memberTel}"
-           
-               
-               var txt2 = $("[name=order_copy]").prop("checked");
-           
-               if(!txt2){
-                $("input[name=receiveName]").val(txt);
-                $("input[name=receiveMobile]").val(txt);
-               }else{
-            	   $("input[name=receiveName]").val(vailName);
-            	   $("input[name=receiveMobile]").val(vailTel);
-               }
-            });
-            
+		   if(!txt2){
+		    $("input[name=receiverName]").val(txt);
+		    $("input[name=receiverTel]").val(txt);
+		   }else{
+			   $("input[name=receiverName]").val(vailName);
+			   $("input[name=receiverTel]").val(vailTel);
+		   }
+		});
+
+
          
 
     });  
@@ -179,8 +72,7 @@
                     </li>
                 </ul>
             </div>
-            
-    
+                
                 <div id="contents">
                     <div class="sec">
                         <h2>주문내역</h2>
@@ -202,7 +94,7 @@
                                         <p>
                                             <span class="bundle-info__vendor-item__offer-condition">${list.productName}</span>
                                             <br>
-                                            <span>수량 : ${list.productCount}개</span>
+                                            <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.productPrice}</span>
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
@@ -217,7 +109,7 @@
                         <div></div>
                         <div></div>
                     </div>
-                    
+             
                     <!-- 구매자 정보 div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -267,7 +159,7 @@
                             
                             <div class="inp-wrap type03" id="row-btnC3">
                                 <label for="receive-name">수령인</label>
-                                <input type="text" name="receiveName" id="receive-name" style="margin-bottom: 10px;">
+                                <input type="text" name="receiverName" id="receive-name" style="margin-bottom: 10px;">
                                 <button id="btnC3" type="button" class="btn-clear3" style="left: 480px;"></button>
                             </div>
                             <p id="receive-name-txt" class="warning-txt" name="txt-p1" style="margin-top: -2px;">수령인을 입력해주세요.</p>
@@ -275,25 +167,25 @@
 
                             <div class="inp-wrap type03" id="row-btnC4">
                                 <label for="receive-tel">휴대폰</label>
-                                <input type="tel" name="receiveMobile" id="receive-tel" value="" style="margin-bottom: 10px;">
+                                <input type="tel" name="receiverTel" id="receive-tel" value="" style="margin-bottom: 10px;">
                                 <button id="btnC4" type="button" class="btn-clear4" style="left: 480px;"></button>
                             </div>
                             <p id="receive-tel-txt" class="warning-txt" name="txt-p2">휴대폰 번호를 입력해주세요.</p>
                             
                             <div class="inp-wrap type03 btn-add" id="row-btn6">
                                 <label for="receive-address-num">우편번호</label>
-                                <input type="text" name="receiveZipcode" id="receive-address-num" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
+                                <input type="text" name="receiverPost" id="receive-address-num" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
                                 <button type="button" class="btn-post" id="zipcode_search">우편번호 찾기</button>
                             </div>
                     
                             <div class="inp-wrap type03">
                                 <label for="receive-address">주소</label>
-                                <input type="text" name="receiveAddress" id="receive-address" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
+                                <input type="text" name="receiverBasicAddr" id="receive-address" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
                             </div>
                     
                             <div class="inp-wrap type03" id="row-btnC5">
                                 <label for="receive-address-detail">상세주소</label>
-                                <input type="text" name="receiveAddressSub" id="receive-address-detail" value="">
+                                <input type="text" name="receiverDetailAddr" id="receive-address-detail" value="">
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
@@ -301,15 +193,16 @@
                         </div>
                     </div>
                      </form>
-                    
+					
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>결제금액</b>
                         </h2>
+
                         <div class="sec type03">
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
-                                <span class="val">215,700원</span>
+                                <span class="val" name="totalPrice1"></span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
@@ -326,6 +219,7 @@
                                 <strong class="val malgun">203,500원</strong>
                             </div>
                         </div>
+   
                         <div class="sec">
                             <h2 class="tit type02">
                                 <b>결제 수단</b>

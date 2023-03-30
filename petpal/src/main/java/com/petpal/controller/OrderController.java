@@ -35,9 +35,9 @@ public class OrderController {
 	private MemberDao memberDao;
 
 	
-	//1.주문내역 (cartDao에서 가져옴) , 주문자 이름,이메일 가져오기
+	//주문내역 (cartDao에서 가져옴) , 주문자 이름,이메일 가져오기
 	@GetMapping("/order")
-	public String order(HttpSession session, Model model,@ModelAttribute ProductOrderDto productOrderDto) {
+	public String order(HttpSession session, Model model,@ModelAttribute ProductOrderDto productOrderDto,@ModelAttribute CartDto cartDto) {
 		String memberId = (String) session.getAttribute("memberId");
 		
 		//주문내역
@@ -48,15 +48,12 @@ public class OrderController {
 		MemberDto findDto = memberDao.selectOne(memberId);
 		model.addAttribute("findDto",findDto);
 		
+		
+		
 		return "/WEB-INF/views/member/order.jsp";
 	}
 	
 	//2.주문정보 등록
-//	@GetMapping("/order")
-//	public String insert() {
-//		return "/WEB-INF/views/member/order.jsp";
-//	}
-	
 	@PostMapping("/order")
 	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session) {
 		String memberId = (String) session.getAttribute("memberId");
@@ -64,13 +61,15 @@ public class OrderController {
 		//주문정보 등록
 		productOrderDto.setMemberId(memberId);
 		orderDao.insert(productOrderDto);
-		System.out.println(orderDao);
-		
+
 		return "redirect:orderFinish";
 	}
+	
 	@GetMapping("/orderFinish")
 	public String orderFinish() {
 		return "/WEB-INF/views/member/orderFinish.jsp";
 	}
+	
+	
 
 }

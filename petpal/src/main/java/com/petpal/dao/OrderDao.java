@@ -79,7 +79,7 @@ public class OrderDao {
 	//주문 정보 등록
 	public void insert(ProductOrderDto productOrderDto) {
 		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr)\r\n"
-				+ "values(product_order_seq.nextval,?,sysdate,?,?,?,?,?);";
+				+ "values(product_order_seq.nextval,?,sysdate,?,?,?,?,?)";
 		Object param[] = {productOrderDto.getMemberId(),productOrderDto.getReceiverName(),productOrderDto.getReceiverTel(),productOrderDto.getReceiverBasicAddr(),
 							productOrderDto.getReceiverPost(),productOrderDto.getReceiverDetailAddr()};
 			jdbcTemplate.update(sql,param);
