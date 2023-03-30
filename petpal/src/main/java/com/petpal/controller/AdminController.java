@@ -71,8 +71,6 @@ public class AdminController {
 		String categoryList = objm.writeValueAsString(list);
 		model.addAttribute("cateList",categoryList);
 		
-		
-		
 		return "/WEB-INF/views/admin/product/insert.jsp";
 	}
 	
