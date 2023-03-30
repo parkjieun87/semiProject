@@ -164,15 +164,19 @@ public class MemberDao {
       //    회원 탈퇴시 웨이팅 테이블로의 이동 (2023.03.28 수정 형석)
       public void insertWaiting(MemberDto memberDto) {
             String sql = "insert into waiting("
- 	               + "member_id, member_pw, member_nick,"
- 	               + "member_tel, member_email, member_birth,"
- 	               + "member_post, member_basic_addr, member_detail_addr,"
- 	               + "member_level, member_point, member_join, member_login"
- 	               + ") values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            		+ "member_id, member_pw, member_name, "
+                    + "member_email, member_tel, member_nick, "
+                    + "adminck, member_regdate, member_post, "
+                    + "member_basic_addr, member_detail_addr"
+                    + ")values("
+                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
+                    + ")";
+                    
          Object[] param = {
-               memberDto.getMemberId(), memberDto.getMemberPw(),
+        		 memberDto.getMemberId(), memberDto.getMemberPw(),
                   memberDto.getMemberName(), memberDto.getMemberEmail(),
                   memberDto.getMemberTel(), memberDto.getMemberNick(),
+                  memberDto.getAdminCk(), memberDto.getMemberRegdate(),
                   memberDto.getMemberPost(), memberDto.getMemberBasicAddr(),
                   memberDto.getMemberDetailAddr()
          };
