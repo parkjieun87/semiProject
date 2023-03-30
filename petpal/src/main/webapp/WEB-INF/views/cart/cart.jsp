@@ -207,7 +207,25 @@ td{
 		width:17%;
 		border: 1px solid #ccc;
 		height: 230px;
+		margin-left: 15px;
+		background: #fafafa;
 	
+	}
+	
+	.total_section > *{
+		margin-left: 10px;
+		margin-top : 10px;
+	}
+	.order_btn{
+		min-width:215px;
+		height:50px;
+		font-size:15px;
+		border-radius:3px;
+		color: white;
+		border-color: #9091E6;
+	    background-color: #9091E6;
+	    border-bottom: #9091E6;
+	    border-right: #9091E6;
 	}
 	
 		
@@ -304,6 +322,8 @@ td{
         	
         	}
         	
+        	
+        	
         
         	
         	//마이너스 버튼
@@ -330,11 +350,12 @@ td{
             			
             		}
             	});
+            		$(".totalPrice_span").text((1700 *quantityInput.val()).toLocaleString());
             	
             });
             //플러스 버튼
             $(".btn-plus").click(function(){
-            	
+            	let memberId = '${memberId}';
             	// 수량 버튼 조작
             	let quantity = $(this).parent("div").find("input").val();
             	let quantityInput = $(this).parent("div").find("#quantity");
@@ -354,25 +375,28 @@ td{
             		data : {cartNo : cartNo, productCount : quantity},
             		dataType:"json",
             		success:function(result){
-            			
+   			
                     	$(".update_cartNo").val(cartNo);
                 		$(".update_productCount").val(quantity);
                 		$(".quantity_update_form").submit();
-            			
+                		
             	
             		}
+            	
             	});
-            	
-            	
-            	
-  	                  
-            });      
+    	
+    		
+        		$(".totalPrice_span").text((1700 *quantityInput.val()).toLocaleString());
+         });      
+            
+         
+          
+           
         });
     </script>
     
 </head>
 <body>
-
 <div class="container-1500 mt-50">
 		 	<!-- 체크박스 전체 여부 
 		<div class="all_check_input_div">
@@ -430,7 +454,7 @@ td{
                                         
                                             <div class="quantity-wrap" style="top:0; margin: 0 auto;">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
-                                                <input type="text" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}">
+                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}">
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                                 <input type="hidden" id="cartNo" value="${list.cartNo}">
                                             </div>
@@ -469,21 +493,26 @@ td{
            
          </table>
          
-         <div class="total_section" style="width:23%;">
+         <div class="total_section">
 	         <div class="totalPrice">
-	         	<span>총 상품 가격 </span> <span class="totalPrice_span"></span> 원
+	         	<span>
+	         	<span >상품(<span class="totalKind_span"></span>)개 </span> 
+	         	<span class="totalPrice_span"></span> 원
+	         	</span>
 	         </div>	
 	         <div class="delivery">
 	         	<span>배송비 &nbsp;</span>무료
 	         </div>
-	         <div class="totalKind">
-	         	<span>총 주문 상품 개수</span>
-	         	<span class="totalKind_span"></span>개
-	         </div>
+	         <br>
+	
 	         <div class="totalPrice">
-	         	<strong>총 결제 예상 금액</strong>
-	         	<span class="totalPrice_span"></span> 원
+	         	<strong>총 결제 금액</strong>
+	         	<span class="totalPrice_span" style="color:red; font-weight:700;"></span> 원
 	         </div>
+	         <div class="orderBtn_section">
+	         	<button class="order_btn">주문하기</button>
+	         </div>
+	         
          
          
          </div>
