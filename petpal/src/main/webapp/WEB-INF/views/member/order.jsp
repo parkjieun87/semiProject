@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
@@ -59,6 +59,45 @@ $(function(){
             	   $("input[name=receiveMobile]").val(vailTel);
                }
             });
+            
+            
+            var IMP = window.IMP; // 생략 가능
+            IMP.init("imp55345065"); 
+            
+            
+            function requestPay() {
+                
+                
+                // IMP.request_pay(param, callback) 결제창 호출
+                IMP.request_pay({ // param
+                    pg: "kakaopay",
+                    pay_method: "card",
+                    merchant_uid : 'merchant_' + new Date().getTime(),
+                    name : '결제테스트',   //필수 파라미터 입니다.
+                    amount : 14000,
+                    buyer_email : 'iamport@siot.do1',
+                    buyer_name : '구매자이름',
+                    buyer_tel : '010-1234-5678',
+                    buyer_addr : '서울특별시 강남구 삼성동',
+                    buyer_postcode : '123-456'
+                }, function (rsp) { // callback
+                    if (rsp.success) { 
+                      alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+                      $("#enrollForm").attr("action", "/ReserveFinish");
+                     $("#enrollForm").submit();   
+                        // 결제 성공 시 로직,
+                    
+                    } else {
+                       var msg = '결제에 실패하였습니다.';
+                           
+                       
+                   
+                        // 결제 실패 시 로직,
+                     
+                    }
+
+                });
+              }
 });      
          
 
@@ -131,7 +170,7 @@ $(function(){
                         <div></div>
                         <div></div>
                     </div>
-             
+              <button onclick="requestPay();" class="btn"><span class="span">카카오</span></button>
                     <!-- 구매자 정보 div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -228,7 +267,7 @@ $(function(){
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
-                                <span class="val" id="discountval">${salePrice}원</span>
+                                <span class="val" id="discountval" style="color:red;">${salePrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>배송비</strong>
