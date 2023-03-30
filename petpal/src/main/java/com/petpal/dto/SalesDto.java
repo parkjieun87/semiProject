@@ -14,12 +14,8 @@ public class SalesDto {
 	private int productPrice;
 	private long totalSale;
 	
-	public void setTotalSale(){
-		this.totalSale = productCount * productPrice;
-	}
-	
 	public long getTotalSale() {
-		return totalSale;
+		return productCount * productPrice;
 	}
 	
 	
