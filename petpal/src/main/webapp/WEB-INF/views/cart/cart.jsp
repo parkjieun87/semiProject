@@ -227,11 +227,7 @@ td{
        border-bottom: #9091E6;
        border-right: #9091E6;
    }
-   .no-spin::-webkit-inner-spin-button,
-   .no-spin::-webkit-outer-spin-button {
-     -webkit-appearance: none;
-     margin: 0;
-   }
+ 
    
       
    </style>
@@ -249,29 +245,9 @@ td{
            /* 장바구니 종합 정보 삽입 */
            setTotalInfo();
            
-           /* 체크여부에따른 종합 정보 변화 */
-           $(".individual_cart_checkbox").on("change", function(){
-              /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-              setTotalInfo();
-           });
+         
            
-           
-           /* 체크박스 전체 선택 */
-           $(".all_check_input").on("click", function(){
-              /* 체크박스 체크/해제 */
-              if($(".all_check_input").prop("checked")){
-                 $(".individual_cart_checkbox").prop("checked", true);
-              } else{
-                 $(".individual_cart_checkbox").prop("checked", false);
-                 $(".totalPrice_span").text(0);
-                  $(".totalCount_span").text(0);
-                  $(".totalKind_span").text(0);
-              }
-              
-              /* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-              setTotalInfo();   
-              
-           });
+    
            
            /* 수량 수정 버튼 */
            $(".quantity_modify_btn").click(function(){
@@ -353,8 +329,16 @@ td{
                      
                   }
                });
-               var salePrice = $("#salePrice").val();
-               $(".totalPrice_span").text((salePrice *quantityInput.val()).toLocaleString());
+               var totalPrice = 0;
+               $(".quantity-wrap").each(function(){
+            	   var salePrice = parseInt($(this).parent("div").find("#salePrice").val());
+            	   var quan = parseInt($(this).parent("div").find("#quantity").val());
+            	   var itemTotalPrice = salePrice * quan;
+            	  
+            	   $(this).find("#totalPrice").text(itemTotalPrice);
+            	   totalPrice += itemTotalPrice;
+               });
+              	$(".totalPrice_span").text(totalPrice.toLocaleString());
             });
             //플러스 버튼
             $(".btn-plus").click(function(){
@@ -373,28 +357,43 @@ td{
                }
                
                $.ajax({
-                  type:"POST",
+                  method:"POST",
                   url : "/cart/update",
                   data : {cartNo : cartNo, productCount : quantity},
                   dataType:"json",
                   success:function(result){
-            
+                	 
                        $(".update_cartNo").val(cartNo);
                       $(".update_productCount").val(quantity);
                       $(".quantity_update_form").submit();
-                      
-               
+                    
                   }
-               
+                
+                
                });
-       
-          	
-   
-              $(".totalPrice_span").text((1 *quantityInput.val()).toLocaleString());
-         });      
+               
             
-         
+               var totalPrice = 0;
+               $(".quantity-wrap").each(function(){
+            	   var salePrice = parseInt($(this).parent("div").find("#salePrice").val());
+            	   var quan = parseInt($(this).parent("div").find("#quantity").val());
+            	   var itemTotalPrice = salePrice * quan;
+            	  
+            	   $(this).find("#totalPrice").text(itemTotalPrice);
+            	   totalPrice += itemTotalPrice;
+               });
+              	$(".totalPrice_span").text(totalPrice.toLocaleString());
+            	 
+               
+           	
           
+           		
+           		
+           
+   
+            });
+            
+        
            
         });
     </script>
@@ -458,11 +457,12 @@ td{
                                         
                                             <div class="quantity-wrap" style="top:0; margin: 0 auto;">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
-                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin">
+                                                <input type=number id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin">
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                                 <input type="hidden" id="cartNo" value="${list.cartNo}">
                                                 <input type="hidden" id="salePrice" value="${list.salePrice}">
                                                 <input type="hidden" id="productCount" value="${list.productCount}">
+                                                <input type="hidden" id="totalPrice" value="${list.salePrice * list.productCount}">
                                             </div>
                                             
                 
@@ -485,6 +485,7 @@ td{
           <td style="text-align:center;">
              <span class="row price spans" style="text-decoration: line-through; color:#ccc;">${list.productPrice}원</span> <br>
              <span class="row price spans" style="color:#b12603; font-weight:800;">${list.salePrice}원</span>
+             <span class="aa"></span>
           </td>
         
        
