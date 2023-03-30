@@ -241,8 +241,6 @@ td{
     <script type="text/javascript">
         $(function(){
         	
-        	 	
-        	
         	/* 장바구니 종합 정보 삽입 */
         	setTotalInfo();
         	
