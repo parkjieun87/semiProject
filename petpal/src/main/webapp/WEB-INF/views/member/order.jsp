@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
 
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
@@ -17,7 +18,7 @@
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
  
 
 $(function(){
@@ -61,13 +62,13 @@ $(function(){
             });
             
             
+            
+            
             var IMP = window.IMP; // 생략 가능
             IMP.init("imp55345065"); 
             
             
             function requestPay() {
-                
-                
                 // IMP.request_pay(param, callback) 결제창 호출
                 IMP.request_pay({ // param
                     pg: "kakaopay",
@@ -97,7 +98,8 @@ $(function(){
                     }
 
                 });
-              }
+            }
+            
 });      
          
 
@@ -170,7 +172,7 @@ $(function(){
                         <div></div>
                         <div></div>
                     </div>
-              <button onclick="requestPay();" class="btn"><span class="span">카카오</span></button>
+              
                     <!-- 구매자 정보 div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -267,7 +269,7 @@ $(function(){
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
-                                <span class="val" id="discountval" style="color:red;">${salePrice}원</span>
+                                <span class="val" id="discountval" style="color:red;">${totalPrice-salePrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>배송비</strong>
@@ -277,7 +279,7 @@ $(function(){
                                 <strong>
                                     <b>총 결제금액</b>
                                 </strong>
-                                <strong class="val malgun">${totalPrice-salePrice}원</strong>
+                                <strong class="val malgun"> ${salePrice}원</strong>
                             </div>
                         </div>
    
@@ -293,8 +295,9 @@ $(function(){
                                         <label for="payment-naver">네이버페이</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none";>
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" onclick="requestPay();" >
                                         <label for="payment-kakao">카카오페이</label>
+                                        <button onclick="requestPay();" class="btn"><span class="span">카카오</span></button>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
                                         <input type="radio" id="payment-payco" name="order-payment" value="PAYCO" style="display:none";>
