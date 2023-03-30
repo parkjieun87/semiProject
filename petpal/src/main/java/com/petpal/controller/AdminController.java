@@ -24,6 +24,7 @@ import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductImageDao;
+import com.petpal.dao.SalesDao;
 import com.petpal.dto.AttachmentDto;
 import com.petpal.dto.CategoryDto;
 import com.petpal.dto.MemberDto;
@@ -44,6 +45,8 @@ public class AdminController {
 	@Autowired private CustomFileuploadProperties fileuploadProperties;
 	
 	@Autowired private ProductImageDao productImageDao;
+	
+	@Autowired private SalesDao salesDao;
 	
 	
 	
@@ -207,9 +210,18 @@ public class AdminController {
 		session.removeAttribute("memberPw");
 		model.addAttribute("memberPw", memberPw);
 		return "/WEB-INF/views/admin/member/password.jsp";
-		
-		
 	}
+	
+	// 매출 목록
+	@GetMapping("/stat/sales")
+	public String Salse(Model model, @ModelAttribute("vo") PaginationVO vo
+				) {
+		int totalSalesCnt = salesDao.selectCount();
+		vo.setCount(totalSalesCnt);
+		model.addAttribute("list", salesDao.selectList(vo));
+		return "/WEB-INF/views/admin/stat/sales.jsp";
+	}
+	
 	
 	
 }
