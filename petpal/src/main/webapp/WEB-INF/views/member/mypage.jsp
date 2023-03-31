@@ -42,9 +42,8 @@
                     <div class="p-20">
                         <h3>내 활동 </h3>
                     </div>
-                    <div class="p-20"><a href="/member/wishList" class="link">찜 목록</a></div>
                     <div class="p-20"><a href="/member/orderPage" class="link">주문 목록</a></div>
-                    <div class="p-20"><a href="/member/cart" class="link">장바 구니</a></div>
+                    <div class="p-20"><a href="/cart/add" class="link">장바 구니</a></div>
                 </div>
                 
             </aside>

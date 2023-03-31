@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
 
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
@@ -17,8 +18,12 @@
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+<<<<<<< HEAD
 <script type="text/javascript">
 \
+=======
+	<script type="text/javascript">
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
  
 
 $(function(){
@@ -41,7 +46,70 @@ $(function(){
 		   }
 		});
 
+<<<<<<< HEAD
 });
+=======
+
+       
+            //체크박스 누르면 수령인,전화번호 불러오기
+            $("[name=order_copy]").change(function(){
+               var txt = "";
+               var vailName = "${findDto.memberName}";
+               var vailTel = "${findDto.memberTel}"
+           
+               
+               var txt2 = $("[name=order_copy]").prop("checked");
+           
+               if(!txt2){
+                $("input[name=receiveName]").val(txt);
+                $("input[name=receiveMobile]").val(txt);
+               }else{
+            	   $("input[name=receiveName]").val(vailName);
+            	   $("input[name=receiveMobile]").val(vailTel);
+               }
+            });
+            
+            
+            
+            
+            var IMP = window.IMP; // 생략 가능
+            IMP.init("imp55345065"); 
+            
+            
+            function requestPay() {
+                // IMP.request_pay(param, callback) 결제창 호출
+                IMP.request_pay({ // param
+                    pg: "kakaopay",
+                    pay_method: "card",
+                    merchant_uid : 'merchant_' + new Date().getTime(),
+                    name : '결제테스트',   //필수 파라미터 입니다.
+                    amount : 14000,
+                    buyer_email : 'iamport@siot.do1',
+                    buyer_name : '구매자이름',
+                    buyer_tel : '010-1234-5678',
+                    buyer_addr : '서울특별시 강남구 삼성동',
+                    buyer_postcode : '123-456'
+                }, function (rsp) { // callback
+                    if (rsp.success) { 
+                      alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+                      $("#enrollForm").attr("action", "/ReserveFinish");
+                     $("#enrollForm").submit();   
+                        // 결제 성공 시 로직,
+                    
+                    } else {
+                       var msg = '결제에 실패하였습니다.';
+                           
+                       
+                   
+                        // 결제 실패 시 로직,
+                     
+                    }
+
+                });
+            }
+            
+});      
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
          
 
 </script>
@@ -92,9 +160,13 @@ $(function(){
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
                                         <p>
-                                            <span class="bundle-info__vendor-item__offer-condition">${list.productName}</span>
+                                            <span class="bundle-info__vendor-item__offer-condition">${list.productName} ${list.initSaleTotal()}</span>
                                             <br>
                                             <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.productPrice}</span>
+                                            
+                                            <c:set var="salePrice" value="${salePrice + list.salePrice}"/> 
+                           					<c:set var="totalPrice" value="${totalPrice + list.productCount*list.productPrice}"/> 
+                           					
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
@@ -109,7 +181,7 @@ $(function(){
                         <div></div>
                         <div></div>
                     </div>
-             
+              
                     <!-- 구매자 정보 div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -202,11 +274,11 @@ $(function(){
                         <div class="sec type03">
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
-                                <span class="val" name="totalPrice1"></span>
+                                <span class="val" name="totalPrice1">${totalPrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
-                                <span class="val" id="discountval">-12,200원</span>
+                                <span class="val" id="discountval" style="color:red;">${totalPrice-salePrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>배송비</strong>
@@ -216,7 +288,7 @@ $(function(){
                                 <strong>
                                     <b>총 결제금액</b>
                                 </strong>
-                                <strong class="val malgun">203,500원</strong>
+                                <strong class="val malgun"> ${salePrice}원</strong>
                             </div>
                         </div>
    
@@ -232,8 +304,9 @@ $(function(){
                                         <label for="payment-naver">네이버페이</label>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none";>
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" onclick="requestPay();" >
                                         <label for="payment-kakao">카카오페이</label>
+                                        <button onclick="requestPay();" class="btn"><span class="span">카카오</span></button>
                                     </div>
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
                                         <input type="radio" id="payment-payco" name="order-payment" value="PAYCO" style="display:none";>
