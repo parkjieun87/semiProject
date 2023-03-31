@@ -24,10 +24,10 @@
 			</c:forEach>
 			
 			<!-- 월별 매출 -->
+			<h3>월별 매출</h3>
 			<c:forEach items="${monthly}" var="monthlyDto">
-				<h3>월별 매출</h3>
 				
-						${monthlyDto.month} 매출 : ${monthlyDto.total }
+					<div> ${monthlyDto.month} 매출 : ${monthlyDto.total }</div>
 			</c:forEach>
 			
 		</div>
