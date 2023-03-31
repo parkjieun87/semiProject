@@ -114,7 +114,6 @@
 <script>
         $(function () {
             var hasImage = $('td').has('img').length > 0;
-            
 
         });
     </script>
@@ -132,8 +131,8 @@
                     </div>
                     <div class="p-10"><a href="/admin/member/list" class="link">회원 관리</a></div>
                     <div class="p-10"><a href="/admin/product/list" class="link">상품 관리</a></div>
-                    <div class="p-10"><a href="/admin/stat/sales" class="link">매출 관리</a></div>
-                    <div class="p-10"><a href="/admin/" class="link">주문 관리</a></div>
+                    <div class="p-10"><a href="/admin/sales/list" class="link">매출 관리</a></div>
+                    <div class="p-10"><a href="/admin/order/list" class="link">주문 관리</a></div>
                 </div>
             </aside>
             <article>

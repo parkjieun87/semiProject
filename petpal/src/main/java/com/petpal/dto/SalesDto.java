@@ -10,14 +10,5 @@ import lombok.Data;
 public class SalesDto {
 	
 	private Date orderDate;
-	private int productCount;
-	private int productPrice;
-	private long totalSale;
-	
-	public long getTotalSale() {
-		return productCount * productPrice;
-	}
-	
-	
-	
+	private long total;
 }
