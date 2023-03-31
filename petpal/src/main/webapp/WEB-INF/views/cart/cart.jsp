@@ -14,19 +14,19 @@
 
         
 #colss{
-	color:white;
+   color:white;
 }
  #colss{
- 	color:white;
+    color:white;
 }
   
 #spans {
-	 display: flex;
-	align-items: center;
+    display: flex;
+   align-items: center;
 justfy-content: center;
 }
 td{
-	vertical-align: none;
+   vertical-align: none;
 }
 .jss811 {
    width: 100%;
@@ -140,39 +140,40 @@ td{
          background: #909090;
      }
  
- 	.input_size_20{
-			width:20px;
-			height:20px;
-		}
-		.all_check_input{
-			margin: 18px 0 18px 18px;
-		}
-		.all_chcek_span{
-			padding-left: 8px;
-	    	font-size: 20px;
-	    	font-weight: bold;		
-		}
+    .input_size_20{
+         width:20px;
+         height:20px;
+      }
+      .all_check_input{
+         margin: 18px 0 18px 18px;
+      }
+      .all_chcek_span{
+         padding-left: 8px;
+          font-size: 20px;
+          font-weight: bold;      
+      }
  
  .finalTotalPrice_span{
-				color: #854A72;
-				font-size: 17px;
-				font-weight: bold;
-			}
-			.totalPoint_span{
-				font-size: 17px;
-				font-weight: bold;		
-			}
-			.boundary_div{
-				font-size: 0;
-			    border: 1px dotted #d1c7c7;
-			    margin: 5px 0 5px 0;		
-			}
+            color: #854A72;
+            font-size: 17px;
+            font-weight: bold;
+         }
+         .totalPoint_span{
+            font-size: 17px;
+            font-weight: bold;      
+         }
+         .boundary_div{
+            font-size: 0;
+             border: 1px dotted #d1c7c7;
+             margin: 5px 0 5px 0;      
+         }
   .content_totalCount_section{
-	 	margin-bottom: 12px;
-	 }
+       margin-bottom: 12px;
+    }
 .content_total_section{
-	background-color: rgb(227, 237, 247);
+   background-color: rgb(227, 237, 247);
 }
+<<<<<<< HEAD
 	 
 	 .total_wrap{
 			width: 80%;
@@ -207,12 +208,95 @@ td{
 		width:17%;
 		border: 1px solid #ccc;
 		height: 230px;
+		margin-left: 15px;
+		background: #fafafa;
 	
+	}
+	
+	.total_section > *{
+		margin-left: 10px;
+		margin-top : 10px;
+	}
+	.order_btn{
+		min-width:215px;
+		height:50px;
+		font-size:15px;
+		border-radius:3px;
+		color: white;
+		border-color: #9091E6;
+	    background-color: #9091E6;
+	    border-bottom: #9091E6;
+	    border-right: #9091E6;
+	}
+	.no-spin::-webkit-inner-spin-button,
+	.no-spin::-webkit-outer-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
 	}
 	
 		
 	</style>
 	
+=======
+    
+    .total_wrap{
+         width: 80%;
+          margin: auto;
+          padding: 10px 0 10px 0;   
+      }
+         
+         .finalTotalPrice_span{
+            color: #854A72;
+            font-size: 17px;
+            font-weight: bold;
+         }
+         .totalPoint_span{
+            font-size: 17px;
+            font-weight: bold;      
+         }
+         
+         
+         
+   .delete_btn{
+      border-radius:3px;
+      width:72px;
+      padding-bottom:5px;
+      color:#fff;
+      background: #aaa;
+      border: 1px solid #aaa;
+      margin-bottom : 2px;
+      
+   }   
+   
+   .total_section{
+      width:17%;
+      border: 1px solid #ccc;
+      height: 230px;
+      margin-left: 15px;
+      background: #fafafa;
+   
+   }
+   
+   .total_section > *{
+      margin-left: 10px;
+      margin-top : 10px;
+   }
+   .order_btn{
+      min-width:215px;
+      height:50px;
+      font-size:15px;
+      border-radius:3px;
+      color: white;
+      border-color: #9091E6;
+       background-color: #9091E6;
+       border-bottom: #9091E6;
+       border-right: #9091E6;
+   }
+ 
+   
+      
+   </style>
+   
 
 
     <script src="/static/js/cart.js"></script>
@@ -222,189 +306,197 @@ td{
 
     <script type="text/javascript">
         $(function(){
-        	
-        	 	
-        	
-        	/* 장바구니 종합 정보 삽입 */
-        	setTotalInfo();
-        	
-        	/* 체크여부에따른 종합 정보 변화 */
-        	$(".individual_cart_checkbox").on("change", function(){
-        		/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-        		setTotalInfo();
-        	});
-        	
-        	
-        	/* 체크박스 전체 선택 */
-        	$(".all_check_input").on("click", function(){
-        		/* 체크박스 체크/해제 */
-        		if($(".all_check_input").prop("checked")){
-        			$(".individual_cart_checkbox").prop("checked", true);
-        		} else{
-        			$(".individual_cart_checkbox").prop("checked", false);
-        			$(".totalPrice_span").text(0);
-            		$(".totalCount_span").text(0);
-            		$(".totalKind_span").text(0);
-        		}
-        		
-        		/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-        		setTotalInfo();	
-        		
-        	});
-        	
-        	/* 수량 수정 버튼 */
-        	$(".quantity_modify_btn").click(function(){
-        		let cartNo = $(this).data("cartno");
-        		let productCount = $(this).parent("div").find("input").val();
-        		$(".update_cartNo").val(cartNo);
-        		$(".update_productCount").val(productCount);
-        		$(".quantity_update_form").submit();
-        		
-        	});
-        	
-        	/* 장바구니 삭제 버튼 */
-        	$(".delete_btn").click(function(e){
-        		e.preventDefault();
-        		
-        		let cartNo = $(this).data("cartno");
-        		$(".delete_cartNo").val(cartNo);
-        		$(".delete_form").submit();
-        	});
-        	
-        	
-        	
-        	function setTotalInfo(){
-        	
-        		
-        	let totalPrice = 0; // 총 가격
-        	let totalCount = 0; // 총 개수
-        	let totalKind = 0; // 총 종류
+           
+           /* 장바구니 종합 정보 삽입 */
+           setTotalInfo();
+           
+         
+           
+    
+           
+           /* 수량 수정 버튼 */
+           $(".quantity_modify_btn").click(function(){
+              let cartNo = $(this).data("cartno");
+              let productCount = $(this).parent("div").find("input").val();
+              $(".update_cartNo").val(cartNo);
+              $(".update_productCount").val(productCount);
+              $(".quantity_update_form").submit();
+              
+           });
+           
+           /* 장바구니 삭제 버튼 */
+           $(".delete_btn").click(function(e){
+              e.preventDefault();
+              
+              let cartNo = $(this).data("cartno");
+              $(".delete_cartNo").val(cartNo);
+              $(".delete_form").submit();
+           });
+           
+           
+           
+           function setTotalInfo(){
+           
+              
+           let totalPrice = 0; // 총 가격
+           let totalCount = 0; // 총 개수
+           let totalKind = 0; // 총 종류
      
-        	
-        	$(".cart_info_td").each(function(index,element){
-        		
-        	//체크여부
-        			
-        		// 총 가격
-        		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-        		// 총 개수
-        		totalCount += parseInt($(element).find(".individual_productCount_input").val());
-        		
-        		// 총 종류
-        		totalKind +=1;
-        		
-        		// 값 삽입
-        		$(".totalPrice_span").text(totalPrice.toLocaleString());
-        		$(".totalCount_span").text(totalCount);
-        		$(".totalKind_span").text(totalKind);
-        	
-        		
-        	});
-        	
-        	
-        	}
-        	
+           
+           $(".cart_info_td").each(function(index,element){
+              
+           //체크여부
+                 
+              // 총 가격
+              totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+              // 총 개수
+              totalCount += parseInt($(element).find(".individual_productCount_input").val());
+              
+              // 총 종류
+              totalKind +=1;
+              
+              // 값 삽입
+              $(".totalPrice_span").text(totalPrice.toLocaleString());
+              $(".totalCount_span").text(totalCount);
+              $(".totalKind_span").text(totalKind);
+           
+              
+           });
+           
+           
+           }
+           
+           
+           
         
-        	
-        	//마이너스 버튼
+           
+           //마이너스 버튼
             $(".btn-minus").click(function(){
-            	
-            	// 수량 버튼 조작
-            	let quantity = $(this).parent("div").find("input").val();
-            	let quantityInput = $(this).parent("div").find("#quantity");
-            	let cartNo = $(this).parent("div").find("#cartNo").val();
-            	if(quantity > 1){
-            		$(quantityInput).val(--quantity);
-            	}
-            	
-            	$.ajax({
-            		type:"POST",
-            		url : "/cart/update",
-            		data : {cartNo : cartNo, productCount : quantity},
-            		dataType:"json",
-            		success:function(result){
-            			
-                    	$(".update_cartNo").val(cartNo);
-                		$(".update_productCount").val(quantity);
-                		$(".quantity_update_form").submit();
-            			
-            		}
-            	});
-            	
+               
+               // 수량 버튼 조작
+               let quantity = $(this).parent("div").find("input").val();
+               let quantityInput = $(this).parent("div").find("#quantity");
+               let cartNo = $(this).parent("div").find("#cartNo").val();
+               if(quantity > 1){
+                  $(quantityInput).val(--quantity);
+               }
+               
+               $.ajax({
+                  type:"POST",
+                  url : "/cart/update",
+                  data : {cartNo : cartNo, productCount : quantity},
+                  dataType:"json",
+                  success:function(result){
+                     
+                       $(".update_cartNo").val(cartNo);
+                      $(".update_productCount").val(quantity);
+                      $(".quantity_update_form").submit();
+                     
+                  }
+               });
+               var totalPrice = 0;
+               $(".quantity-wrap").each(function(){
+            	   var salePrice = parseInt($(this).parent("div").find("#salePrice").val());
+            	   var quan = parseInt($(this).parent("div").find("#quantity").val());
+            	   var itemTotalPrice = salePrice * quan;
+            	  
+            	   $(this).find("#totalPrice").text(itemTotalPrice);
+            	   totalPrice += itemTotalPrice;
+               });
+              	$(".totalPrice_span").text(totalPrice.toLocaleString());
             });
             //플러스 버튼
             $(".btn-plus").click(function(){
-            	
-            	// 수량 버튼 조작
-            	let quantity = $(this).parent("div").find("input").val();
-            	let quantityInput = $(this).parent("div").find("#quantity");
-            	
-            	let cartNo = $(this).parent("div").find("#cartNo").val();
-            	
-            	if(quantity < 5){
-            		
-            		$(quantityInput).val(++quantity);
-            		
-   					
-            	}
-            	
-            	$.ajax({
-            		type:"POST",
-            		url : "/cart/update",
-            		data : {cartNo : cartNo, productCount : quantity},
-            		dataType:"json",
-            		success:function(result){
-            			
-                    	$(".update_cartNo").val(cartNo);
-                		$(".update_productCount").val(quantity);
-                		$(".quantity_update_form").submit();
-            			
-            	
-            		}
-            	});
-            	
-            	
-            	
-  	                  
-            });      
+               let memberId = '${memberId}';
+               // 수량 버튼 조작
+               let quantity = $(this).parent("div").find("input").val();
+               let quantityInput = $(this).parent("div").find("#quantity");
+               
+               let cartNo = $(this).parent("div").find("#cartNo").val();
+               
+               if(quantity < 5){
+                  
+                  $(quantityInput).val(++quantity);
+                  
+                  
+               }
+               
+               $.ajax({
+                  method:"POST",
+                  url : "/cart/update",
+                  data : {cartNo : cartNo, productCount : quantity},
+                  dataType:"json",
+                  success:function(result){
+                	 
+                       $(".update_cartNo").val(cartNo);
+                      $(".update_productCount").val(quantity);
+                      $(".quantity_update_form").submit();
+                    
+                  }
+                
+                
+               });
+               
+            
+               var totalPrice = 0;
+               $(".quantity-wrap").each(function(){
+            	   var salePrice = parseInt($(this).parent("div").find("#salePrice").val());
+            	   var quan = parseInt($(this).parent("div").find("#quantity").val());
+            	   var itemTotalPrice = salePrice * quan;
+            	  
+            	   $(this).find("#totalPrice").text(itemTotalPrice);
+            	   totalPrice += itemTotalPrice;
+               });
+              	$(".totalPrice_span").text(totalPrice.toLocaleString());
+            	 
+               
+           	
+          
+           		
+           		
+           
+   
+            });
+            
+        
+           
         });
     </script>
     
 </head>
 <body>
-
 <div class="container-1500 mt-50">
-		 	<!-- 체크박스 전체 여부 
-		<div class="all_check_input_div">
-			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
-		</div>
-		 	  -->
- 	
+          <!-- 체크박스 전체 여부 
+      <div class="all_check_input_div">
+         <input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+      </div>
+            -->
+    
         <div class="row" style="display:flex;">
            <table style="width: 60%; margin-left:200px;">
-           	<colgroup>
-           		<col style="width: 40%; color:white;">
-           		<col style="width: 10%;">
-           		<col style="width: 20%;">
-           		<col style="width: 20%;">
-           		
-           	</colgroup>
-           	
+              <colgroup>
+                 <col style="width: 40%; color:white;">
+                 <col style="width: 10%;">
+                 <col style="width: 20%;">
+                 <col style="width: 20%;">
+                 
+              </colgroup>
+              
          
-           	
-           	<thead>
-           						<tr style="background:#b1b2ff;" id="colss">
+              
+              <thead>
+                             <tr style="background:#b1b2ff;" id="colss">
                                     <th scope="col">상품</th>
                                     <th scope="col">수량</th>
                                     <th scope="col">금액</th> 
-                                    <th scope="col"></th>         	
+                                    <th scope="col"></th>            
                                 </tr>
-           	</thead>
-           	
+              </thead>
+              
            
-           	<tbody>
-           	<c:forEach items="${cartInfo}" var="list">
-           	<tr>
+              <tbody>
+              <c:forEach items="${cartInfo}" var="list">
+              <tr>
                   <td scope="row" class="cart_info_td">
                   <!-- 
                   <input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"> -->
@@ -418,43 +510,48 @@ td{
                     <div class="item-info" style="display:flex;">                     
                           <a href=" " class="photo">
                           <img src="https://cdnimg.dogpang.com/catpang/data/goods/10/9232_web_list_L1_1664878617838762.jpg" width="120" height="120">
-                   		</a>
+                         </a>
                  <span id="spans"> <a href="/product/P000010819">${list.productName}</a></span>                             
                       </div>
                  </td>
                      
                      
            <td>
-   			 <div class="row" style="width:100%; display:flex; align-items:center;">
+             <div class="row" style="width:100%; display:flex; align-items:center;">
                             <div class="jss821">
                                         
                                             <div class="quantity-wrap" style="top:0; margin: 0 auto;">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
-                                                <input type="text" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}">
-                                                <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
+                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin">
+                                                <button class="btn-plus" style="background-color: #fff;">"더하기"</button
+                                                >
                                                 <input type="hidden" id="cartNo" value="${list.cartNo}">
+                                                <input type="hidden" id="salePrice" value="${list.salePrice}">
+                                                <input type="hidden" id="productCount" value="${list.productCount}">
+                                                <input type="hidden" id="totalPrice" value="${list.salePrice * list.productCount}">
                                             </div>
                                             
                 
                                     </div>  
                                     <!-- 수량 조정 form -->
                                     <form action="/cart/update" method="post" class="quantity_update_form">
-                                    	<input type="hidden" name="cartNo" class="update_cartNo">
-                                    	<input type="hidden" name="productCount" class="update_productCount">
-                                    	<input type="hidden" name="memberId" value="${memberId}">
+                                       <input type="hidden" name="cartNo" class="update_cartNo">
+                                       <input type="hidden" name="productCount" class="update_productCount">
+                                       <input type="hidden" name="memberId" value="${memberId}">
                                     </form>   
                                     
                                     <!-- 삭제 form -->
                                     <form action="/cart/delete" method="post" class="delete_form">
-                                    	<input type="hidden" name="cartNo" class="delete_cartNo">
-                                    	<input type="hidden" name="memberId" value="${memberId}">
+                                       <input type="hidden" name="cartNo" class="delete_cartNo">
+                                       <input type="hidden" name="memberId" value="${memberId}">
                                     </form>        
                               
-		 	</div>
+          </div>
           </td>
           <td style="text-align:center;">
-          	<span class="row price spans" style="text-decoration: line-through; color:#ccc;">${list.productPrice}원</span> <br>
-          	<span class="row price spans" style="color:#b12603; font-weight:800;">${list.salePrice}원</span>
+             <span class="row price spans" style="text-decoration: line-through; color:#ccc;">${list.productPrice}원</span> <br>
+             <span class="row price spans" style="color:#b12603; font-weight:800;">${list.salePrice}원</span>
+             <span class="aa"></span>
           </td>
         
        
@@ -464,26 +561,31 @@ td{
            
             </tr>
                            
-           	</c:forEach>
-           	</tbody>     	        	
+              </c:forEach>
+              </tbody>                   
            
          </table>
          
-         <div class="total_section" style="width:23%;">
-	         <div class="totalPrice">
-	         	<span>총 상품 가격 </span> <span class="totalPrice_span"></span> 원
-	         </div>	
-	         <div class="delivery">
-	         	<span>배송비 &nbsp;</span>무료
-	         </div>
-	         <div class="totalKind">
-	         	<span>총 주문 상품 개수</span>
-	         	<span class="totalKind_span"></span>개
-	         </div>
-	         <div class="totalPrice">
-	         	<strong>총 결제 예상 금액</strong>
-	         	<span class="totalPrice_span"></span> 원
-	         </div>
+         <div class="total_section">
+            <div class="totalPrice">
+               <span>
+               <span >상품(<span class="totalKind_span"></span>)개 </span> 
+               <span class="totalPrice_span"></span> 원
+               </span>
+            </div>   
+            <div class="delivery">
+               <span>배송비 &nbsp;</span>무료
+            </div>
+            <br>
+   
+            <div class="totalPrice">
+               <strong>총 결제 금액</strong>
+               <span class="totalPrice_span" style="color:red; font-weight:700;"></span> 원
+            </div>
+            <div class="orderBtn_section">
+               <button class="order_btn">주문하기</button>
+            </div>
+            
          
          
          </div>
@@ -493,72 +595,72 @@ td{
            
            
            <!-- 가격 종합 
-			<div class="content_total_section">
-				<div class="total_wrap">
-					<table>
-						<tr>
-							<td>
-								<table>
-									<tr>
-										<td>총 상품 가격</td>
-										<td>
-											<span class="totalPrice_span">70000</span> 원
-										</td>
-									</tr>
-									<tr>
-										<td>배송비</td>
-										<td>
-											<span class="delivery_price">무료</span>
-										</td>
-									</tr>									
-									<tr>
-										<td>총 주문 상품 개수</td>
-										<td><span class="totalKind_span"></span>개</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table>
-									<tr>
-										<td></td>
-										<td></td>
-									</tr>
-								</table>							
-							</td>
-						</tr>
-					</table>
+         <div class="content_total_section">
+            <div class="total_wrap">
+               <table>
+                  <tr>
+                     <td>
+                        <table>
+                           <tr>
+                              <td>총 상품 가격</td>
+                              <td>
+                                 <span class="totalPrice_span">70000</span> 원
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>배송비</td>
+                              <td>
+                                 <span class="delivery_price">무료</span>
+                              </td>
+                           </tr>                           
+                           <tr>
+                              <td>총 주문 상품 개수</td>
+                              <td><span class="totalKind_span"></span>개</td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td>
+                        <table>
+                           <tr>
+                              <td></td>
+                              <td></td>
+                           </tr>
+                        </table>                     
+                     </td>
+                  </tr>
+               </table>
            <div class="boundary_div">구분선</div>
-					<table>
-						<tr>
-							<td>
-								<table>
-									<tbody>
-										<tr>
-											<td>
-												<strong>총 결제 예상 금액</strong>
-											</td>
-											<td>
-												<span class="totalPrice_span"></span> 원
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-							<td>
-								<table>
-									<tbody>
-										
-									</tbody>
-								</table>
-							</td>
-						</tr>
-					</table>
-				</div>
+               <table>
+                  <tr>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <strong>총 결제 예상 금액</strong>
+                                 </td>
+                                 <td>
+                                    <span class="totalPrice_span"></span> 원
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td>
+                        <table>
+                           <tbody>
+                              
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </table>
+            </div>
   
-   		
-   	
-   		총 종류 : <span class="totalKind_span"></span>개
-   		
+         
+      
+         총 종류 : <span class="totalKind_span"></span>개
+         
   
         </div>
         -->
