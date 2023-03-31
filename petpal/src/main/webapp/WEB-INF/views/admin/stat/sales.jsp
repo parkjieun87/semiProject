@@ -25,45 +25,64 @@
 <body>
     <div class="container-600">
         
-    	<!-- 상품 목록 테이블 -->
+    	<!-- 정렬  --> 
 	    <div class="row" style="margin:auto;">
-			<a href="sales">날짜순↑</a>
-			<a href="sales">날짜순↓</a>
-			<a href="sales?sort=">낮은 매출 순</a>
-			<a href="sales?sort=">높은 매출 순</a>
+			<a href="sales"></a>
+			<a href="sales"></a>
+			<a href="sales?sort="></a>
+			<a href="sales?sort="></a>
+		</div>
+		<div class="row">
+			<!-- ì¼ë³ ë§¤ì¶ -->
+			<c:forEach items="${daily}" var="dailyDto">
+				<h3>일별 매출</h3>
+				
+						${dailyDto.day} 매출 : ${dailyDto.total }
+					
+			</c:forEach>
+			
+			<!-- 월별 매출 -->
+			<c:forEach items="${monthly}" var="monthlyDto">
+				<h3>월별 매출</h3>
+				
+						${monthlyDto.month} 매출 : ${monthlyDto.total }
+			</c:forEach>
+			
 		</div>
 		<div class="container-1000 ms-20">
-			
 			<table class="table table-slit center" > 
 			<thead>
 				<tr>
-					<th>주문 일자</th>
-					<th>상품 가격</th>
-					<th>주문 수량</th>
-					<th>총 주문액</th>
+					<th>주문 날짜</th>
+					<th>가격</th>
+					<th>개수</th>
+					<th>총 주문 금액</th>
 				</tr>
 			</thead>
 			<tbody>
+			
+			<!-- 주문별 매출 -->
 			<c:forEach items="${list}" var="salesDto">
 				<tr>
 					<td>
 						${salesDto.orderDate}
 					</td>
 					<td>
-						${salesDto.productPrice }원
+						${salesDto.productPrice }원
 					</td>
 					<td>
-						${salesDto.productCount}개
+						${salesDto.productCount}개
 					</td>
 					<td>
-						${salesDto.totalSale}원
+						${salesDto.totalSale}ì
 					</td>
 				</tr>
 			</c:forEach>
+			
 			</tbody>
 			</table>
 		</div>
-		<!-- 페이징 영역 -->
+		<!-- íì´ì§ ìì­ -->
 		<div class="page_wrap">
 			<div class="page_nation">
 				<c:if test="${vo.startBlock != 1}">
