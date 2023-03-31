@@ -42,11 +42,6 @@ public class OrderDao {
 		productOrderDto.setReceiverBasicAddr(rs.getString("receiver_basic_addr"));
 		productOrderDto.setReceiverPost(rs.getString("receiver_post"));
 		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
-		productOrderDto.setOrderDetailNo(rs.getInt("order_detail_no"));
-		productOrderDto.setProductNo(rs.getInt("product_no"));
-		productOrderDto.setCategoryCode(rs.getString("category_code"));
-		productOrderDto.setProductCount(rs.getInt("product_count"));
-		productOrderDto.setProductPrice(rs.getInt("product_price"));
 		return productOrderDto;
 	}};
 	
@@ -76,7 +71,7 @@ public class OrderDao {
 		}
 	
 			
-	//주문 정보 등록
+	//주문 정보 등록(주문테이블)
 	public void insert(ProductOrderDto productOrderDto) {
 		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr)\r\n"
 				+ "values(product_order_seq.nextval,?,sysdate,?,?,?,?,?)";
