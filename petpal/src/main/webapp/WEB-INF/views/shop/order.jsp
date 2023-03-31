@@ -7,11 +7,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
 
-	<!-- 결제 api -->
+   <!-- 결제 api -->
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	
-	
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   
+   
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
@@ -21,63 +21,267 @@
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+
    <script type="text/javascript">
  
+   
+   
 
-		$(function(){
-		
-				   //체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
-				   $("[name=order_copy]").change(function(){
-					         var txt = "";
-					         var vailName = "${findDto.memberName}";
-					         var vailTel = "${findDto.memberTel}";
-					
-					
-					         var txt2 = $("[name=order_copy]").prop("checked");
-					
-					         if(!txt2){
-					          $("input[name=receiverName]").val(txt);
-					          $("input[name=receiverTel]").val(txt);
-					         }else{
-					            $("input[name=receiverName]").val(vailName);
-					            $("input[name=receiverTel]").val(vailTel);
-					         }
-				      });
-				            
-				            
-				     //결제 api    
-				   const IMP = window.IMP; // 생략 가능
-				   IMP.init("imp55345065"); // 예: imp00000000a
-				             
-				     $(".btn").click(function(){
+      $(function(){
+<<<<<<< HEAD
+            
+       //체크박스 누르면 수령인,전화번호,주소 불러오기(findDto때문에 여기에다가 작성)
+          $("[name=order_copy]").change(function(){
+                var txt = "";
+                var vailName = "${findDto.memberName}";
+                var vailTel = "${findDto.memberTel}";
+                var vailPost = "${findDto.memberPost}";
+                var vailBasicAddr = "${findDto.memberBasicAddr}";
+                var vailDetailAddr = "${findDto.memberDetailAddr}";
+       
+                var txt2 = $("[name=order_copy]").prop("checked");
+       
+                if(!txt2){
+                    $("input[name=receiverName]").val(txt);
+                    $("input[name=receiverTel]").val(txt);
+                    $("input[name=receiverPost]").val(txt);
+                    $("input[name=receiverBasicAddr]").val(txt);
+                    $("input[name=receiverDetailAddr]").val(txt);
 
-				   IMP.request_pay({
-				     pg: "kcp.{TC0ONETIME}",
-				     pay_method: "card",
-				     merchant_uid: "${orderDetailDto.orderDetailNo}",   // 주문번호
-				     name: "노르웨이 회전 의자",
-				     amount: 64900,                         // 숫자 타입
-				     buyer_email: "gildong@gmail.com",
-				     buyer_name: "홍길동",
-				     buyer_tel: "010-4242-4242",
-				     buyer_addr: "서울특별시 강남구 신사동",
-				     buyer_postcode: "01181"
-				   }, function (rsp) { // callback
-				     if (rsp.success) {
-				       // 결제 성공 시 로직
-				     } else {
-				       // 결제 실패 시 로직
-				     }
-				   });
-				});
-		
+                } else {
+                    $("input[name=receiverName]").val(vailName);
+                    $("input[name=receiverTel]").val(vailTel);
+                    $("input[name=receiverPost]").val(vailPost);
+                    $("input[name=receiverBasicAddr]").val(vailBasicAddr);
+                    $("input[name=receiverDetailAddr]").val(vailDetailAddr);
+                }
+
+                  });
+                        
+     
+               
+              
+               
+              // 할인 전 최종 금액        
+               var totalPrice = 0;
+                 var count = 0; //상품의 총 갯수를 위해 변수 선언
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#basicPrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                   totalPrice += productPrice;
+                   count += parseInt($("#productCount").val());
+                   
+               });
+               count -=1 ; //상품 외 -개
+               
+               var disCountPrice = $("#disCountPrice").val();
+               $("#totalBasicPrice").text(totalPrice.toLocaleString());
+               
+               // 할인 후 최종 금액
+               var discountTotalPrice = 0;
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#salePrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                  discountTotalPrice += productPrice;
+               });
+               $("#realTotalPrice").text(discountTotalPrice.toLocaleString());
+               
+               // 할인 금액
+               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
+            
+                
+        
+                  
+          
+               //카카오페이 api    
+               const IMP = window.IMP; // 생략 가능
+          IMP.init("imp55345065");  // 예: imp00000000a
+           
+          var name = $("#productName").val(); //상품이름 변수로 선언
+      
+         $(".btn").click(function(){         
+               IMP.request_pay({
+               pg: "kcp.{TC0ONETIME}",
+               pay_method: "card",
+               merchant_uid: "ORD20180131-0000011",   // 주문번호
+               name: name +" "+ count +"개 외",
+               amount: parseInt(discountTotalPrice), // 숫자 타입
+               buyer_email: "gildong@gmail.com",
+               buyer_name: "홍길동",
+               buyer_tel: "010-4242-4242",
+               buyer_addr: "서울특별시 강남구 신사동",
+               buyer_postcode: "01181"
+               }, function (rsp) { // callback
+               if (rsp.success) {
+                // 결제 성공 시 로직
+               } else {
+                // 결제 실패 시 로직
+               }
+               });
+         });
+          
+          
+          
+         //토스페이 api 
+         $(".tossBtn").click(function(){
+            
+          // IMP.request_pay(param, callback) 결제창 호출
+          IMP.request_pay({ // param
+              pg: "tosspay",
+              pay_method: "card",
+              merchant_uid : 'merchant_' + new Date().getTime(),
+              name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+              amount: parseInt(discountTotalPrice),
+              buyer_email : 'iamport@siot.do1',
+              buyer_name : '구매자이름',
+              buyer_tel : '010-1234-5678',
+              buyer_addr : '서울특별시 강남구 삼성동',
+              buyer_postcode : '123-456'
+          }, function (rsp) { // callback
+              if (rsp.success) { 
+                alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+                $("#enrollForm").attr("action", "/ReserveFinish");
+               $("#enrollForm").submit();   
+                  // 결제 성공 시 로직,
+              
+              } else {
+                 var msg = '결제에 실패하였습니다.';
+
+                  // 결제 실패 시 로직,
+
+              }
+
+          });
+         }); 
+       
+ 
+=======
+      		
+               //체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
+               $("[name=order_copy]").change(function(){
+                        var txt = "";
+                        var vailName = "${findDto.memberName}";
+                        var vailTel = "${findDto.memberTel}";
+               
+               
+                        var txt2 = $("[name=order_copy]").prop("checked");
+               
+                        if(!txt2){
+                         $("input[name=receiverName]").val(txt);
+                         $("input[name=receiverTel]").val(txt);
+                        }else{
+                           $("input[name=receiverName]").val(vailName);
+                           $("input[name=receiverTel]").val(vailTel);
+                        }
+                  });
+                        
+     
+               
+              
+               
+              // 할인 전 최종 금액        
+               var totalPrice = 0;
+              	var count = 0; //상품의 총 갯수를 위해 변수 선언
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#basicPrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                   totalPrice += productPrice;
+                   count += parseInt($("#productCount").val());
+                   
+               });
+               count -=1 ; //상품 외 -개
+               
+               var disCountPrice = $("#disCountPrice").val();
+               $("#totalBasicPrice").text(totalPrice.toLocaleString());
+               
+               // 할인 후 최종 금액
+               var discountTotalPrice = 0;
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#salePrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                  discountTotalPrice += productPrice;
+               });
+               $("#realTotalPrice").text(discountTotalPrice.toLocaleString());
+               
+               // 할인 금액
+               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
+            
+                
+            console.log(discountTotalPrice);
 		            
-		});      
+		    
+         	   //카카오페이 api    
+               const IMP = window.IMP; // 생략 가능
+			 IMP.init("imp55345065");  // 예: imp00000000a
+			  
+			 var name = $("#productName").val(); //상품이름 변수로 선언
+		
+			$(".btn").click(function(){			
+					IMP.request_pay({
+					pg: "kcp.{TC0ONETIME}",
+					pay_method: "card",
+					merchant_uid: "ORD20180131-0000011",   // 주문번호
+					name: name +" "+ count +"개 외",
+					amount: parseInt(discountTotalPrice), // 숫자 타입
+					buyer_email: "gildong@gmail.com",
+					buyer_name: "홍길동",
+					buyer_tel: "010-4242-4242",
+					buyer_addr: "서울특별시 강남구 신사동",
+					buyer_postcode: "01181"
+					}, function (rsp) { // callback
+					if (rsp.success) {
+					 // 결제 성공 시 로직
+					} else {
+					 // 결제 실패 시 로직
+					}
+					});
+			});
+			 
+	       
+			 
+			//토스페이 api 
+			$(".tossBtn").click(function(){
+				
+	       // IMP.request_pay(param, callback) 결제창 호출
+	       IMP.request_pay({ // param
+	           pg: "tosspay",
+	           pay_method: "card",
+	           merchant_uid : 'merchant_' + new Date().getTime(),
+	           name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+	           amount: parseInt(discountTotalPrice),
+	           buyer_email : 'iamport@siot.do1',
+	           buyer_name : '구매자이름',
+	           buyer_tel : '010-1234-5678',
+	           buyer_addr : '서울특별시 강남구 삼성동',
+	           buyer_postcode : '123-456'
+	       }, function (rsp) { // callback
+	           if (rsp.success) { 
+	             alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+	             $("#enrollForm").attr("action", "/ReserveFinish");
+	            $("#enrollForm").submit();   
+	               // 결제 성공 시 로직,
+	           
+	           } else {
+	              var msg = '결제에 실패하였습니다.';
+	                  
+	              
+	          
+	               // 결제 실패 시 로직,
+	            
+	           }
+
+	       });
+			}); 
+	    
+	     
+           
+                  
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
+      });      
          
 
 </script>
-        <!-- 우편cdn -->
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
  
  
@@ -122,14 +326,21 @@
                                          height="20px">
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
-                                        <p>
+                                        <p class ="p">
                                             <span class="bundle-info__vendor-item__offer-condition">${list.productName} ${list.initSaleTotal()}</span>
                                             <br>
                                             <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.salePrice}</span>
-                                            
+                                            <input type="hidden" value="${list.productCount*list.productPrice}" id="basicPrice">
+                                            <input type="hidden" value="${list.productCount*list.salePrice}" id="salePrice">
+                                            <input type="hidden" value="${list.productCount}" id="productCount">
+                                            <input type="hidden" value="${totalPrice}" id="disCountPrice">
+                                            <input type="hidden" value="${list.productName}" id="productName">
+                                          
+                                           
+                                            <c:set var="productName" value="${list.productName}"/>
+                                             <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
                                             <c:set var="basicPrice" value="${productPrice+list.totalBasicPrice}"/>
                                             <c:set var="salePrice" value="${(productPrice+list.totalBasicPrice)-(totalPrice+list.totalPrice)}"/> 
-                                          <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
                                           
                                         </p>
                                     </div>
@@ -181,9 +392,10 @@
                         </div>
                     </div>
                     
-                      <!-- 받는사람 정보 div -->
-                    
+                       <!-- 받는사람 정보 div -->
+              
                     <form action="order" method="post">
+                    
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>받는사람 정보</b>
@@ -207,7 +419,7 @@
                                 <button id="btnC4" type="button" class="btn-clear4" style="left: 480px;"></button>
                             </div>
                             <p id="receive-tel-txt" class="warning-txt" name="txt-p2">휴대폰 번호를 입력해주세요.</p>
-                            
+     
                             <div class="inp-wrap type03 btn-add" id="row-btn6">
                                 <label for="receive-address-num">우편번호</label>
                                 <input type="text" name="receiverPost" id="receive-address-num" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
@@ -216,7 +428,7 @@
                     
                             <div class="inp-wrap type03">
                                 <label for="receive-address">주소</label>
-                                <input type="text" name="receiverBasicAddr" id="receive-address" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
+                                <input type="text" name="receiverBasicAddr" id="receive-address" value=""readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
                             </div>
                     
                             <div class="inp-wrap type03" id="row-btnC5">
@@ -227,6 +439,8 @@
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
                      <button type="submit">등록</button>
                         </div>
+                        
+                        
                     </div>
                      </form>
                
@@ -238,11 +452,11 @@
                         <div class="sec type03">
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
-                                <span class="val" name="totalPrice1">${basicPrice}원</span>
+                                <span class="val" name="totalPrice1" id="totalBasicPrice"></span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
-                                <span class="val" id="discountval" style="color:red;"}>${salePrice}원</span>
+                                <span class="val" id="discountval" style="color:red;"></span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>배송비</strong>
@@ -252,7 +466,7 @@
                                 <strong>
                                     <b>총 결제금액</b>
                                 </strong>
-                                <strong class="val malgun">${totalPrice}원</strong>
+                                <strong class="val malgun" id="realTotalPrice"></strong>
                             </div>
                         </div>
    
@@ -263,22 +477,17 @@
                             <div class="sec type03">
                                 <div class="inp-wrap type03" style="width: 100%;">
                                     <label>결제</label>
+
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-naver" name="order-payment" value="NAVER" style="display:none";>
-                                        <label for="payment-naver">네이버페이</label>
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" >
+                                        <label for="payment-kakao" onclick="requestPay();" class="btn">카카오페이</label>
+                                        <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
-                                    <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" onclick="requestPay();" >
-                                        <label for="payment-kakao">카카오페이</label>
-                                        <button onclick="requestPay();" class="btn"><span class="span">카카오</span></button>
-                                    </div>
-                                    <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-payco" name="order-payment" value="PAYCO" style="display:none";>
-                                        <label for="payment-payco">페이코</label>
-                                    </div>
+
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
                                         <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none";>
-                                        <label for="payment-toss">토스</label>
+                                        <label for="payment-toss" onclick="requestPay2()" class="tossBtn">토스페이</label>
+                                        <img src="/static/image/tosspay.png" style="height: 17px; width: 38px; border-radius: 10px 10px 10px 10px;">
                                     </div>
                                 </div>
                             </div>

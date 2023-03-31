@@ -60,15 +60,23 @@ public class OrderController {
 		MemberDto findDto = memberDao.selectOne(memberId);
 		model.addAttribute("findDto",findDto);
 		
-		//주문상세조회
-		
+		//주문상세조회(시퀀스 받아서, 주문상세번호로 조회)
 		int orderDetailNo = orderDao.sequence();
 		System.out.println(orderDetailNo);
-		
 		orderDetailDto.setOrderDetailNo(orderDetailNo);
 		OrderDetailDto orderDetailDto1 = orderDao.selectOne(orderDetailNo);
 		
 		model.addAttribute("orderDetailDto",orderDetailDto1);
+		
+		//주문정보조회(시퀀스 받아서, 주문번호로 조회)
+		int orderNo = orderDao.sequence();
+		System.out.println(orderNo);
+		productOrderDto.setOrderNo(orderNo);
+		ProductOrderDto productOrderDto2 = orderDao.select(orderNo);
+		
+		model.addAttribute("productOrderDto",productOrderDto2);
+		
+	
 		
 		
 		return "/WEB-INF/views/shop/order.jsp";
