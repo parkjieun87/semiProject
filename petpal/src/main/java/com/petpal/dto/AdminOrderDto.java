@@ -1,27 +1,20 @@
 package com.petpal.dto;
 
-
-
 import java.sql.Date;
 
 import lombok.Data;
 
 @Data
-public class SalesDto {
-	
-	private Date orderDate;
-	private int productCount;
-	private int productPrice;
-	private long total;
+public class AdminOrderDto {
+
 	private String receiverName;
-	private String receiverBasicAddr;
+	private Date orderDate;
 	private String receiverPost;
+	private String receiverBasicAddr;
 	private String receiverDetailAddr;
 	private String receiverTel;
 	private String productName;
-	
-	
-	
-	
-	
+	private int productCount;
+	private int productPrice;
+	private long total;
 }
