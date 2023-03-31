@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+
 <div class="container-1200 ms-10">
     	<!-- 상품 목록 테이블 -->
         <div class="row" style="margin:auto;">
