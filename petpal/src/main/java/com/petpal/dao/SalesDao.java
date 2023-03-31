@@ -21,14 +21,13 @@ public class SalesDao {
    JdbcTemplate jdbcTemplate;
    
    // 주문별 매출
-   RowMapper<SalesDto> salesRowMapper = new RowMapper<SalesDto>() {
+   RowMapper<SalesDto> adminSalesMapper = new RowMapper<SalesDto>() {
 
       @Override
       public SalesDto mapRow(ResultSet rs, int rowNum) throws SQLException {
          SalesDto dto = new SalesDto();
          dto.setOrderDate(rs.getDate("order_date"));
-         dto.setProductPrice(rs.getInt("product_price"));
-         dto.setProductCount(rs.getInt("product_count"));
+         dto.setTotal(rs.getLong("total"));
          return dto;
       }
       
@@ -60,19 +59,20 @@ public class SalesDao {
    // 기본 조회
    public List<SalesDto> selectList(){
       String sql = "select * from sales order by order_date desc";
-      return jdbcTemplate.query(sql, salesRowMapper);
+      return jdbcTemplate.query(sql, adminSalesMapper);
    }
    
-   // 조건에 따른 정렬
-   public List<SalesDto> selectList(PaginationVO vo){
+   // 조건에 따른 정렬 및 조회
+   public List<SalesDto> selectList(PaginationVO vo, String sort){
       String sql = "select * from("
                 + "select rownum rn, TMP.* from("
                 + "select * from admin_sales)TMP"
-                + ")where rn between ? and ?";
+                + ")where rn between ? and ?"
+                + "order by "+sort;
         
         Object[] param = {vo.getBegin(), vo.getEnd()};
         
-        return jdbcTemplate.query(sql, salesRowMapper, param);
+        return jdbcTemplate.query(sql, adminSalesMapper, param);
    }
    
    // 판매 카운트
@@ -92,7 +92,7 @@ public class SalesDao {
       
    }
    
-   // 월별 매출 조회
+   // 일별 매출 조회
       public List<DailySalesDto> selectDailyList() {
          String sql = "select "
                + "sum(total) total, to_char(order_date, 'YYYY-MM-DD') day "
@@ -100,7 +100,6 @@ public class SalesDao {
                + "group by to_char(order_date, 'YYYY-MM-DD')";
          
          return jdbcTemplate.query(sql, dailyRowMapper);
-         
       }
    
    

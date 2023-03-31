@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpal.configuration.CustomFileuploadProperties;
+import com.petpal.dao.AdminOrderDao;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductAttachmentDao;
 import com.petpal.dao.ProductDao;
@@ -30,7 +31,6 @@ import com.petpal.dto.CategoryDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductDto;
 import com.petpal.dto.ProductImageDto;
-import com.petpal.dto.SalesDto;
 import com.petpal.vo.PaginationVO;
 
 @Controller
@@ -48,6 +48,8 @@ public class AdminController {
    @Autowired private ProductImageDao productImageDao;
    
    @Autowired private SalesDao salesDao;
+   
+   @Autowired private AdminOrderDao adminOrderDao;
    
    
    
@@ -214,22 +216,29 @@ public class AdminController {
    }
    
    // 매출 목록
-   @GetMapping("/stat/sales")
-   public String Salse(Model model, @ModelAttribute("vo") PaginationVO vo
-            ) {
+   @GetMapping("/sales/list")
+   public String Salse(Model model, @ModelAttribute("vo") PaginationVO vo,
+	   @RequestParam(required=false, defaultValue=" order_date desc") String sort) {
       int totalSalesCnt = salesDao.selectCount();
       vo.setCount(totalSalesCnt);
       
-      model.addAttribute("list", salesDao.selectList(vo));
+      model.addAttribute("salesDto", salesDao.selectList(vo, sort));
       model.addAttribute("monthly", salesDao.selectMonthlyList());
       model.addAttribute("daily", salesDao.selectDailyList());
       
-//      List<SalesDto> list = salesDao.selectList(vo);
-//      for(int i=0;i<list.size();i++) {
-//         list.get(i).setTotalSale();
-//      }
-//      model.addAttribute("list", list);
-      return "/WEB-INF/views/admin/stat/sales.jsp";
+      return "/WEB-INF/views/admin/sales/list.jsp";
+   }
+   
+   // 주문 목록
+   @GetMapping("/order/list")
+   public String Order(Model model, @ModelAttribute("vo") PaginationVO vo,
+	   @RequestParam(required=false, defaultValue="  order_date desc") String sort) {
+      int totalOrderCnt = adminOrderDao.selectCount();
+      vo.setCount(totalOrderCnt);
+      
+      model.addAttribute("orderDto", adminOrderDao.selectList(vo, sort));
+      
+      return "/WEB-INF/views/admin/order/list.jsp";
    }
    
    

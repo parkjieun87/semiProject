@@ -4,20 +4,12 @@
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
     <div class="container-600">
-        
-    	<!-- 정렬  --> 
-	    <div class="row" style="margin:auto;">
-			<a href="sales"></a>
-			<a href="sales"></a>
-			<a href="sales?sort="></a>
-			<a href="sales?sort="></a>
-		</div>
 		<div class="row">
 			<!--일별 매출-->
-			<h3>일별 매출</h3>
+			<h3>일별 매출</h3>
 			<c:forEach items="${daily}" var="dailyDto">
 				
-				<div>${dailyDto.day} 매출 : ${dailyDto.total } </div>
+				<div>${dailyDto.day} 매출 : ${dailyDto.total}원</div>
 					
 			</c:forEach>
 			
@@ -25,36 +17,59 @@
 			<h3>월별 매출</h3>
 			<c:forEach items="${monthly}" var="monthlyDto">
 				
-					<div> ${monthlyDto.month} 매출 : ${monthlyDto.total }</div>
+					<div> ${monthlyDto.month} 매출 : ${monthlyDto.total}원</div>
 			</c:forEach>
 			
+			<!-- 주문별 매출 -->
+			<h3>주문별 매출</h3>
+			<c:forEach items="${monthly}" var="monthlyDto">
+				
+					<div> ${monthlyDto.month} 매출 : ${monthlyDto.total}원</div>
+			</c:forEach>
+			
+			
+    	
 		</div>
 		<div class="container-1000 ms-20">
-			<table class="table table-slit center" > 
+			<table class="table table-slit center" >
 			<thead>
 				<tr>
+					<th>성명</th>
 					<th>주문 날짜</th>
-					<th>가격</th>
-					<th>개수</th>
+					<th>수취인 주소</th>
+					<th>연락처</th>
+					<th>주문상품(상품 * 수량)</th>
 					<th>총 주문 금액</th>
+					<th>관리</th>
 				</tr>
 			</thead>
 			<tbody>
 			
 			<!-- 주문별 매출 -->
-			<c:forEach items="${list}" var="salesDto">
+			<c:forEach items="${salesDto}" var="list">
 				<tr>
 					<td>
-						${salesDto.orderDate}
+						${list.receiverName}
 					</td>
 					<td>
-						${salesDto.productPrice }원
+						${list.orderDate}
 					</td>
 					<td>
-						${salesDto.productCount}개
+						${list.receiverPost}
+						${list.receiverBasicAddr}
+						${list.receiverDetailAddr}
 					</td>
 					<td>
-						${salesDto.totalSale}
+						${list.orderDate}
+					</td>
+					<td>
+						${list.productName} * ${list.productCount}개
+					</td>
+					<td>
+						${list.total}원	
+					</td>
+					<td>
+                       	<a class="link" href=""></a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -76,8 +91,6 @@
 				</c:if>
 			</div>
 		</div>
-       
-        
         
         
     </div>

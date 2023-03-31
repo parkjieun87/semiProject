@@ -168,4 +168,10 @@ public class ProductDao {
 		Object[] param = {parentCode};
 		return jdbcTemplate.query(sql, countMapper, param);
 	}
+	
+	public String parentName(String parentCode) {
+		String sql = "select category_name from product_cate where category_code=?";
+		Object[] param = {parentCode};
+		return jdbcTemplate.queryForObject(sql, String.class, param);
+	}
 }

@@ -1,8 +1,13 @@
 package com.petpal.dto;
 
-import lombok.Data;
+import java.sql.Date;
 
-@Data
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
 public class CategoryCountDto {
 				
 		// 카테고리 이름

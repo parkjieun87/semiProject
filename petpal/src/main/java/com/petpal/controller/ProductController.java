@@ -47,20 +47,30 @@ public class ProductController {
 	
 	@GetMapping("/list")
 	public String list(Model model, @RequestParam(required=false, defaultValue="") String categoryCode,
-			@RequestParam(required=false, defaultValue="") String CategoryParent) throws JsonProcessingException {
+			@RequestParam(required=false, defaultValue="") String parentCode) throws JsonProcessingException {
 		String parent;
-		if(CategoryParent.equals("")) {
+		List<ProductWithImageDto> list = new ArrayList<>();
+		if(parentCode.equals("")) {
 			parent = productDao.ParentCate(categoryCode);
+			list = productWithImageDao.selectList(categoryCode);
 		}else {
-			parent = CategoryParent;
+			parent = parentCode;
+			list = productWithImageDao.selectListFromParent(parent);
 		}
+		String parentName = productDao.parentName(parent);
+		int sum=0;
 		List<CategoryCountDto> cateList = productDao.categoryCountList(parent);
-		List<ProductWithImageDto> list = productWithImageDao.selectList(categoryCode);
+		for(int i=0;i<cateList.size();i++) {
+			sum+=cateList.get(i).getCategoryCount();
+		}
 		List<Integer> DisPrice = new ArrayList<>();
 		for(int i=0;i<list.size();i++) {
 			int disPrice = list.get(i).getProductPrice()*(100-list.get(i).getProductDiscount())/100;
 			DisPrice.add(disPrice);
 		}
+		model.addAttribute("parentName", parentName);
+		model.addAttribute("sum", sum);
+		model.addAttribute("parent", parent);
 		model.addAttribute("list", list);
 		model.addAttribute("cateList", cateList);
 		model.addAttribute("DisPrice", DisPrice);
