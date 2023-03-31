@@ -306,28 +306,7 @@ button, input, select, textarea {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
         $(function () {
-        	let categoryList = JSON.parse('${cateList}');
-        	console.log(categoryList);
-        	let catelist1;
-        	let catelist2;
-        	let arr1 = new Array();
-        	let arr2 = new Array();
         	
-        	function makeCateArray(tier, array) {
-        		for(let i=0;i<categoryList.length;i++){
-        			if(categoryList[i].tier === tier){
-        				obj = new Object();
-        				obj.categoryName = categoryList[i].categoryName;
-        				obj.categoryCode = categoryList[i].categoryCode;
-        				obj.categoryParent = categoryList[i].categoryParent;
-        				
-        				array.push(obj);
-        			}
-        			
-        		}
-        	}
-        	makeCateArray(1, arr1);
-        	makeCateArray(2, arr2);
         
         });
     </script>
@@ -358,7 +337,7 @@ button, input, select, textarea {
                                 <ul>
                                     <li>
                                         <a href="/shop/goods/goods_list?category=1001" class="cate-link" data="1001">
-                                            전연령용
+                                            ${cateList}
                                             <em class="ic-num">(401)</em>
                                         </a>
                                     </li>

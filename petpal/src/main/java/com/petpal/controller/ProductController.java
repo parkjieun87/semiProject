@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductWithImageDao;
-import com.petpal.dto.CategoryDto;
+import com.petpal.dto.CategoryCountDto;
 //import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.ProductDto;
 //import com.petpal.dto.ProductWithImageDto;
@@ -47,10 +46,15 @@ public class ProductController {
 	}
 	
 	@GetMapping("/list")
-	public String list(Model model, @RequestParam String categoryCode) throws JsonProcessingException {
-		ObjectMapper objm = new ObjectMapper();
-		List<CategoryDto> cateList = productDao.categoryList();
-		String categoryList = objm.writeValueAsString(cateList);
+	public String list(Model model, @RequestParam(required=false, defaultValue="") String categoryCode,
+			@RequestParam(required=false, defaultValue="") String CategoryParent) throws JsonProcessingException {
+		String parent;
+		if(CategoryParent.equals("")) {
+			parent = productDao.ParentCate(categoryCode);
+		}else {
+			parent = CategoryParent;
+		}
+		List<CategoryCountDto> cateList = productDao.categoryCountList(parent);
 		List<ProductWithImageDto> list = productWithImageDao.selectList(categoryCode);
 		List<Integer> DisPrice = new ArrayList<>();
 		for(int i=0;i<list.size();i++) {
@@ -58,7 +62,7 @@ public class ProductController {
 			DisPrice.add(disPrice);
 		}
 		model.addAttribute("list", list);
-		model.addAttribute("cateList", categoryList);
+		model.addAttribute("cateList", cateList);
 		model.addAttribute("DisPrice", DisPrice);
 		return "/WEB-INF/views/product/list.jsp";
 	}
