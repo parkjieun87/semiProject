@@ -227,6 +227,11 @@ td{
 	    border-bottom: #9091E6;
 	    border-right: #9091E6;
 	}
+	.no-spin::-webkit-inner-spin-button,
+	.no-spin::-webkit-outer-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+	}
 	
 		
 	</style>
@@ -452,7 +457,7 @@ td{
                                         
                                             <div class="quantity-wrap" style="top:0; margin: 0 auto;">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
-                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}">
+                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin">
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                                 <input type="hidden" id="cartNo" value="${list.cartNo}">
                                             </div>
