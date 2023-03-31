@@ -20,6 +20,7 @@ public class ProductWithImageDto {
 	private int productDiscount; // 상품할인율
 	private int productViews; //조회수
 	private Integer attachmentNo;
+	private String categoryParent;
 	
 	//이미지의 URL을 반환하는 메소드
 	public String getImageURL() {
