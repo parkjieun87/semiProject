@@ -84,12 +84,23 @@ public class OrderController {
 	
 	//2.주문정보 등록
 	@PostMapping("/order")
-	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session) {
+	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session,@ModelAttribute OrderDetailDto orderDetailDto) {
 		String memberId = (String) session.getAttribute("memberId");
 		
 		//주문정보 등록
 		productOrderDto.setMemberId(memberId);
 		orderDao.insert(productOrderDto);
+		//상세정보 등록
+		
+		int orderNo = orderDao.sequence();
+		orderDetailDto.setOrderNo(orderNo);
+	
+		orderDao.insert2(orderDetailDto);
+		
+//		orderDetailDto.setMemberId(memberId);
+//		orderDao.insert2(orderDetailDto);
+		
+		
 
 		return "redirect:orderFinish";
 	}

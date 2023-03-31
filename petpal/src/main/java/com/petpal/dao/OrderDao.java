@@ -113,6 +113,15 @@ public class OrderDao {
 		List<ProductOrderDto>list = jdbcTemplate.query(sql, mapper,param);
 		return list.isEmpty() ? null: list.get(0);
 	}
+	
+	//주문 상세 등록(주문상세테이블)
+	public void insert2(OrderDetailDto orderDetailDto) {
+		String sql = "insert into order_detail(order_detail_no,order_no,product_no,member_id,category_code,product_count,product_price) "
+				+ "values(order_detail_seq.nextval,?,?,?,?,?,?)";
+		Object[]param = {orderDetailDto.getOrderNo(),orderDetailDto.getProductNo(),orderDetailDto.getMemberId(),
+				orderDetailDto.getCategoryCode(),orderDetailDto.getProductCount(),orderDetailDto.getProductPrice()};
+		jdbcTemplate.update(sql,param);
+	}
 
 	
 }

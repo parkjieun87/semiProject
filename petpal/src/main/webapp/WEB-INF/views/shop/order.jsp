@@ -92,32 +92,45 @@
         
 		            
 		    
-         	   //카카오페이 api    
+             //카카오페이 api    
                const IMP = window.IMP; // 생략 가능
-			 IMP.init("imp55345065");  // 예: imp00000000a
-			  
-			 var name = $("#productName").val(); //상품이름 변수로 선언
-		
-			$(".btn").click(function(){			
-					IMP.request_pay({
-					pg: "kcp.{TC0ONETIME}",
-					pay_method: "card",
-					merchant_uid: "ORD20180131-0000011",   // 주문번호
-					name: name +" "+ count +"개 외",
-					amount: parseInt(discountTotalPrice), // 숫자 타입
-					buyer_email: "gildong@gmail.com",
-					buyer_name: "홍길동",
-					buyer_tel: "010-4242-4242",
-					buyer_addr: "서울특별시 강남구 신사동",
-					buyer_postcode: "01181"
-					}, function (rsp) { // callback
-					if (rsp.success) {
-					 // 결제 성공 시 로직
-					} else {
-					 // 결제 실패 시 로직
-					}
-					});
-			});
+         	 IMP.init("imp55345065");  // 예: imp00000000a
+           
+          	var name = $("#productName").val(); //상품이름 변수로 선언
+      
+        
+          //카카오 api 
+			$(".kakaoBtn").click(function(){
+				
+	       // IMP.request_pay(param, callback) 결제창 호출
+	       IMP.request_pay({ // param
+	           pg: "kakaopay",
+	           pay_method: "card",
+	           merchant_uid : 'merchant_' + new Date().getTime(),
+	           name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+	           amount: parseInt(discountTotalPrice), //숫자타입
+	           buyer_email : 'iamport@siot.do1',
+	           buyer_name : '구매자이름',
+	           buyer_tel : '010-1234-5678',
+	           buyer_addr : '서울특별시 강남구 삼성동',
+	           buyer_postcode : '123-456'
+	       }, function (rsp) { // callback
+	           if (rsp.success) { 
+	             alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+	             $("#enrollForm").attr("action", "/ReserveFinish");
+	            $("#enrollForm").submit();   
+	               // 결제 성공 시 로직,
+	           
+	           } else {
+	              var msg = '결제에 실패하였습니다.';
+
+	               // 결제 실패 시 로직,
+
+	           }
+
+	       });
+			}); 
+
 			 
 	       
 			 
@@ -152,9 +165,22 @@
 
 	       });
 			}); 
+			
+			
+            // 체크박스 동의 시 결제하기 버튼을 누를 수 있게 구현
+            function checkAgree(){
+              var checkbox = document.querySelector("#puchase-ok");
+              var button = document.querySelector("#submitSettleBtn");
+              button.disabled = !checkbox.checked;
+            }
+        
+			
+			
 	    
  
       });      
+      
+      
          
 
 </script>
@@ -185,7 +211,9 @@
                 </ul>
             </div>
              
+           
                 <div id="contents">
+                  <form action="order" method="post">
                     <div class="sec">
                         <h2>주문내역</h2>
                         <div class="bundle__retail" data-componet="bundleInfo-retail">
@@ -232,8 +260,10 @@
                         <div class="bundle-info__bdd-group-title"></div>
                         <div></div>
                         <div></div>
+                        <button type="submit">등록</button>
+                           </form>
                     </div>
-              
+             
                     <!-- 구매자 정보 div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -284,7 +314,7 @@
                             
                             <div class="inp-wrap type03" id="row-btnC3">
                                 <label for="receive-name">수령인</label>
-                                <input type="text" name="receiverName" id="receive-name" style="margin-bottom: 10px;">
+                                <input type="text" name="receiverName" id="receive-name" style="margin-bottom: 10px;" required>
                                 <button id="btnC3" type="button" class="btn-clear3" style="left: 480px;"></button>
                             </div>
                             <p id="receive-name-txt" class="warning-txt" name="txt-p1" style="margin-top: -2px;">수령인을 입력해주세요.</p>
@@ -292,7 +322,7 @@
 
                             <div class="inp-wrap type03" id="row-btnC4">
                                 <label for="receive-tel">휴대폰</label>
-                                <input type="tel" name="receiverTel" id="receive-tel" value="" style="margin-bottom: 10px;">
+                                <input type="tel" name="receiverTel" id="receive-tel" value="" style="margin-bottom: 10px;" required>
                                 <button id="btnC4" type="button" class="btn-clear4" style="left: 480px;"></button>
                             </div>
                             <p id="receive-tel-txt" class="warning-txt" name="txt-p2">휴대폰 번호를 입력해주세요.</p>
@@ -310,14 +340,12 @@
                     
                             <div class="inp-wrap type03" id="row-btnC5">
                                 <label for="receive-address-detail">상세주소</label>
-                                <input type="text" name="receiverDetailAddr" id="receive-address-detail" value="">
+                                <input type="text" name="receiverDetailAddr" id="receive-address-detail" value="" required>
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
                      <button type="submit">등록</button>
                         </div>
-                        
-                        
                     </div>
                      </form>
                
@@ -357,12 +385,12 @@
 
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
                                         <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" >
-                                        <label for="payment-kakao" onclick="requestPay();" class="btn">카카오페이</label>
+                                        <label for="payment-kakao" onclick="requestPay();" class="kakaoBtn">카카오페이</label>
                                         <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
 
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none";>
+                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none;">
                                         <label for="payment-toss" onclick="requestPay2()" class="tossBtn">토스페이</label>
                                         <img src="/static/image/tosspay.png" style="height: 17px; width: 38px; border-radius: 10px 10px 10px 10px;">
                                     </div>
@@ -400,7 +428,7 @@
                                 </ol>
                             </div>
                             <div class="chk-wrap">
-                                <input type="checkbox" id="puchase-ok" style="display:none";>
+                                <input type="checkbox" id="puchase-ok" style="display:none;" onchange="checkAgree();">
                                 <label for="puchase-ok">
                                     본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.
                                 </label>
@@ -409,12 +437,14 @@
                         <span></span>
                     </div>
                     <div class="btn-area">
-                        <button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;">
+                   
+                        <button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;" type="submit">
                             <b>결제하기</b>
                         </button>
+                 
                     </div>
                 </div>
-               
+             
       
     </div>
 </div>
