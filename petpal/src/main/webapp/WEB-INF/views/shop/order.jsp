@@ -21,27 +21,40 @@
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+
    <script type="text/javascript">
  
+   
+   
 
       $(function(){
       		
-               //체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
-               $("[name=order_copy]").change(function(){
-                        var txt = "";
-                        var vailName = "${findDto.memberName}";
-                        var vailTel = "${findDto.memberTel}";
-               
-               
-                        var txt2 = $("[name=order_copy]").prop("checked");
-               
-                        if(!txt2){
-                         $("input[name=receiverName]").val(txt);
-                         $("input[name=receiverTel]").val(txt);
-                        }else{
-                           $("input[name=receiverName]").val(vailName);
-                           $("input[name=receiverTel]").val(vailTel);
-                        }
+    	//체크박스 누르면 수령인,전화번호,주소 불러오기(findDto때문에 여기에다가 작성)
+          $("[name=order_copy]").change(function(){
+                var txt = "";
+                var vailName = "${findDto.memberName}";
+                var vailTel = "${findDto.memberTel}";
+                var vailPost = "${findDto.memberPost}";
+                var vailBasicAddr = "${findDto.memberBasicAddr}";
+                var vailDetailAddr = "${findDto.memberDetailAddr}";
+       
+                var txt2 = $("[name=order_copy]").prop("checked");
+       
+                if(!txt2){
+                    $("input[name=receiverName]").val(txt);
+                    $("input[name=receiverTel]").val(txt);
+                    $("input[name=receiverPost]").val(txt);
+                    $("input[name=receiverBasicAddr]").val(txt);
+                    $("input[name=receiverDetailAddr]").val(txt);
+
+                } else {
+                    $("input[name=receiverName]").val(vailName);
+                    $("input[name=receiverTel]").val(vailTel);
+                    $("input[name=receiverPost]").val(vailPost);
+                    $("input[name=receiverBasicAddr]").val(vailBasicAddr);
+                    $("input[name=receiverDetailAddr]").val(vailDetailAddr);
+                }
+
                   });
                         
      
@@ -76,7 +89,7 @@
                $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
             
                 
-            console.log(discountTotalPrice);
+        
 		            
 		    
          	   //카카오페이 api    
@@ -132,25 +145,20 @@
 	           
 	           } else {
 	              var msg = '결제에 실패하였습니다.';
-	                  
-	              
-	          
+
 	               // 결제 실패 시 로직,
-	            
+
 	           }
 
 	       });
 			}); 
 	    
-	     
-           
-                  
+ 
       });      
          
 
 </script>
-        <!-- 우편cdn -->
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
  
  
@@ -261,9 +269,10 @@
                         </div>
                     </div>
                     
-                      <!-- 받는사람 정보 div -->
-                    
+                       <!-- 받는사람 정보 div -->
+              
                     <form action="order" method="post">
+                    
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>받는사람 정보</b>
@@ -287,7 +296,7 @@
                                 <button id="btnC4" type="button" class="btn-clear4" style="left: 480px;"></button>
                             </div>
                             <p id="receive-tel-txt" class="warning-txt" name="txt-p2">휴대폰 번호를 입력해주세요.</p>
-                            
+     
                             <div class="inp-wrap type03 btn-add" id="row-btn6">
                                 <label for="receive-address-num">우편번호</label>
                                 <input type="text" name="receiverPost" id="receive-address-num" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
@@ -296,7 +305,7 @@
                     
                             <div class="inp-wrap type03">
                                 <label for="receive-address">주소</label>
-                                <input type="text" name="receiverBasicAddr" id="receive-address" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
+                                <input type="text" name="receiverBasicAddr" id="receive-address" value=""readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
                             </div>
                     
                             <div class="inp-wrap type03" id="row-btnC5">
@@ -307,6 +316,8 @@
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
                      <button type="submit">등록</button>
                         </div>
+                        
+                        
                     </div>
                      </form>
                
