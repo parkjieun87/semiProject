@@ -107,7 +107,12 @@ public class OrderDao {
 	}
 	
 	//주문정보 조회
-
+	public ProductOrderDto select(int orderNo) {
+		String sql="select*from product_order where order_no=?";
+		Object[]param = {orderNo};
+		List<ProductOrderDto>list = jdbcTemplate.query(sql, mapper,param);
+		return list.isEmpty() ? null: list.get(0);
+	}
 
 	
 }
