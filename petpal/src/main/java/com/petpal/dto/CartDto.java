@@ -20,10 +20,12 @@ public class CartDto {
 	// 추가 (할인을 적용한 상품의 한개 가격과 판매 가격에 수량까지 곱한 총가격을 의미)
 	private int salePrice;
 	private int totalPrice;
+	private int totalBasicPrice;
 	
 	public void initSaleTotal() {
 		this.salePrice = (int)(this.productPrice * ((100-this.productDiscount) / 100.0));
 		this.totalPrice = this.salePrice * this.productCount;
+		this.totalBasicPrice = this.productCount*this.productPrice;
 	}
 
 }

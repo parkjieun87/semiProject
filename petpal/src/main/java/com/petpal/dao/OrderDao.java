@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.MemberDto;
+import com.petpal.dto.OrderDetailDto;
 import com.petpal.dto.ProductOrderDto;
 
 import net.nurigo.java_sdk.api.Message;
@@ -29,7 +30,7 @@ public class OrderDao {
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 	
-	//mapper 생성
+	//product_order mapper 생성
 	private RowMapper<ProductOrderDto> mapper = new RowMapper<ProductOrderDto>() {
 	@Override
 	public ProductOrderDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -44,6 +45,23 @@ public class OrderDao {
 		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
 		return productOrderDto;
 	}};
+	
+	//order_detail mapper 생성
+	private RowMapper<OrderDetailDto> mapper1 = new RowMapper<OrderDetailDto>() {
+		
+		@Override
+		public OrderDetailDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			OrderDetailDto orderDetailDto = new OrderDetailDto();
+			orderDetailDto.setOrderDetailNo(rs.getInt("order_detail_no"));
+			orderDetailDto.setOrderNo(rs.getInt("order_no"));
+			orderDetailDto.setProductNo(rs.getInt("product_no"));
+			orderDetailDto.setMemberId(rs.getString("member_id"));
+			orderDetailDto.setCategoryCode(rs.getString("category_code"));
+			orderDetailDto.setProductCount(rs.getInt("product_count"));
+			orderDetailDto.setProductPrice(rs.getInt("product_price"));
+			return null;
+		}
+	};
 	
 	
 	// 번호 인증 기능
@@ -80,7 +98,15 @@ public class OrderDao {
 			jdbcTemplate.update(sql,param);
 	}
 	
-	//아이디로 주문자 이름,이메일 조회 - memberDao에 작성
+	//주문상세 조회
+	public OrderDetailDto selectOne(int orderDtailNo) {
+		String sql="select*from order_detail where order_detail_no=?";
+		Object[]param = {orderDtailNo};
+		List<OrderDetailDto>list = jdbcTemplate.query(sql, mapper1,param);
+		return list.isEmpty() ? null: list.get(0);
+	}
+	
+	//주문정보 조회
 
 
 	

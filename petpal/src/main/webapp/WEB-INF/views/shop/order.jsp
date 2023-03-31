@@ -7,8 +7,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
 
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<!-- 결제 api -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	
+	
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
@@ -18,79 +21,63 @@
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-
-<script type="text/javascript">
-
+   <script type="text/javascript">
  
 
 		$(function(){
-			
 		
-			//체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
-			$("[name=order_copy]").change(function(){
-				   var txt = "";
-				   var vailName = "${findDto.memberName}";
-				   var vailTel = "${findDto.memberTel}";
-		
-		
-				   var txt2 = $("[name=order_copy]").prop("checked");
-		
-				   if(!txt2){
-				    $("input[name=receiverName]").val(txt);
-				    $("input[name=receiverTel]").val(txt);
-				   }else{
-					   $("input[name=receiverName]").val(vailName);
-					   $("input[name=receiverTel]").val(vailTel);
-				   }
+				   //체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
+				   $("[name=order_copy]").change(function(){
+					         var txt = "";
+					         var vailName = "${findDto.memberName}";
+					         var vailTel = "${findDto.memberTel}";
+					
+					
+					         var txt2 = $("[name=order_copy]").prop("checked");
+					
+					         if(!txt2){
+					          $("input[name=receiverName]").val(txt);
+					          $("input[name=receiverTel]").val(txt);
+					         }else{
+					            $("input[name=receiverName]").val(vailName);
+					            $("input[name=receiverTel]").val(vailTel);
+					         }
+				      });
+				            
+				            
+				     //결제 api    
+				   const IMP = window.IMP; // 생략 가능
+				   IMP.init("imp55345065"); // 예: imp00000000a
+				             
+				     $(".btn").click(function(){
+
+				   IMP.request_pay({
+				     pg: "kcp.{TC0ONETIME}",
+				     pay_method: "card",
+				     merchant_uid: "${orderDetailDto.orderDetailNo}",   // 주문번호
+				     name: "노르웨이 회전 의자",
+				     amount: 64900,                         // 숫자 타입
+				     buyer_email: "gildong@gmail.com",
+				     buyer_name: "홍길동",
+				     buyer_tel: "010-4242-4242",
+				     buyer_addr: "서울특별시 강남구 신사동",
+				     buyer_postcode: "01181"
+				   }, function (rsp) { // callback
+				     if (rsp.success) {
+				       // 결제 성공 시 로직
+				     } else {
+				       // 결제 실패 시 로직
+				     }
+				   });
 				});
-
-
-            
-            
-            
-            
-            var IMP = window.IMP; // 생략 가능
-            IMP.init("imp55345065"); 
-            
-            
-            function requestPay() {
-                // IMP.request_pay(param, callback) 결제창 호출
-                IMP.request_pay({ // param
-                    pg: "kakaopay",
-                    pay_method: "card",
-                    merchant_uid : 'merchant_' + new Date().getTime(),
-                    name : '결제테스트',   //필수 파라미터 입니다.
-                    amount : 14000,
-                    buyer_email : 'iamport@siot.do1',
-                    buyer_name : '구매자이름',
-                    buyer_tel : '010-1234-5678',
-                    buyer_addr : '서울특별시 강남구 삼성동',
-                    buyer_postcode : '123-456'
-                }, function (rsp) { // callback
-                    if (rsp.success) { 
-                      alert("결제성공. 예매 완료 페이지로 이동합니다.");   
-                      $("#enrollForm").attr("action", "/ReserveFinish");
-                     $("#enrollForm").submit();   
-                        // 결제 성공 시 로직,
-                    
-                    } else {
-                       var msg = '결제에 실패하였습니다.';
-                           
-                       
-                   
-                        // 결제 실패 시 로직,
-                     
-                    }
-
-                });
-            }
-            
-});      
-
+		
+		            
+		});      
          
 
 </script>
-
+        <!-- 우편cdn -->
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
  
  
@@ -116,7 +103,7 @@
                     </li>
                 </ul>
             </div>
-                
+             
                 <div id="contents">
                     <div class="sec">
                         <h2>주문내역</h2>
@@ -138,11 +125,12 @@
                                         <p>
                                             <span class="bundle-info__vendor-item__offer-condition">${list.productName} ${list.initSaleTotal()}</span>
                                             <br>
-                                            <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.productPrice}</span>
+                                            <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.salePrice}</span>
                                             
-                                            <c:set var="salePrice" value="${salePrice + list.salePrice}"/> 
-                           					<c:set var="totalPrice" value="${totalPrice + list.productCount*list.productPrice}"/> 
-                           					
+                                            <c:set var="basicPrice" value="${productPrice+list.totalBasicPrice}"/>
+                                            <c:set var="salePrice" value="${(productPrice+list.totalBasicPrice)-(totalPrice+list.totalPrice)}"/> 
+                                          <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
+                                          
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
@@ -237,11 +225,11 @@
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
-							<button type="submit">등록</button>
+                     <button type="submit">등록</button>
                         </div>
                     </div>
                      </form>
-					
+               
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>결제금액</b>
@@ -250,11 +238,11 @@
                         <div class="sec type03">
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
-                                <span class="val" name="totalPrice1">${totalPrice}원</span>
+                                <span class="val" name="totalPrice1">${basicPrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
-                                <span class="val" id="discountval" style="color:red;">${totalPrice-salePrice}원</span>
+                                <span class="val" id="discountval" style="color:red;"}>${salePrice}원</span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>배송비</strong>
@@ -264,7 +252,7 @@
                                 <strong>
                                     <b>총 결제금액</b>
                                 </strong>
-                                <strong class="val malgun"> ${salePrice}원</strong>
+                                <strong class="val malgun">${totalPrice}원</strong>
                             </div>
                         </div>
    

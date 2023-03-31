@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  
  <style>
        
@@ -297,62 +298,54 @@ font-weight:700;
         $(function(){
            
            
-           var sell_price = $("[name=sell_price]").val();
            
            var inputCount = 1;
-           var originalPrice = parseInt($(".disPrice").text());
            
-           
-           
-           
+        
             //마이너스 버튼
             $(".btn-minus").click(function(){
                
-                 if(inputCount==1){
-                    $("[name=productStock]").val(inputCount);
-                  }else{
-                     
-                $("[name=productStock]").val(inputCount-1);
-                inputCount = parseInt($("#quantity").val());
-             
-                  }
+            	 // 수량 버튼 조작
+                let quantity = $(this).parent("div").find("input").val();
+                let quantityInput = $(this).parent("div").find("#quantity");
+       
+                if(quantity > 1){
+                   
+                   $(quantityInput).val(--quantity);
+                   
+                   
+                }
             
                 
-            var sum = $("#cart_total_price_pc").val();
-         
-
-               sum = parseInt(inputCount) * sell_price;
-            
-               
-               $(".disPrice").text(sum);
-               
-                
+                 var sum = 0;
+                 
+                 sum += $("#disprice").val() * quantity;
               
+                 
+                 $(".disPrice").text(sum.toLocaleString());
+         
             })
             //플러스 버튼
+           //플러스 버튼
             $(".btn-plus").click(function(){
-      
-     
-                var sum = $("#cart_total_price_pc").val();
-               
               
-                 inputCount = parseInt($("#quantity").val());
-                 $("#quantity").val(inputCount);
+               // 수량 버튼 조작
+               let quantity = $(this).parent("div").find("input").val();
+               let quantityInput = $(this).parent("div").find("#quantity");
+      
+               if(quantity < '${productDto.productStock}'){
+                  
+                  $(quantityInput).val(++quantity);
+                  
+                  
+               }
                
-        
-               sum = inputCount * sell_price;
-               $(".disPrice").text(sum);
-                
+               var sum = 0;
+ 
+               sum += $("#disprice").val() * quantity;
+            
                
-                
-               
-               
-                if(inputCount == ${productDto.productStock}){
-                   $("[name=productStock]").val(inputCount);
-                }else if(inputCount < ${productDto.productStock}){
-          
-                    $("[name=productStock]").val(inputCount+1);
-                }
+               $(".disPrice").text(sum.toLocaleString());
             });
             
             // 서버로 전송할 데이터
@@ -441,14 +434,18 @@ font-weight:700;
                                 <dt>판매가</dt>
                                 <dd>
                                     <del class="num" style="color: gray;">
-                                        ${productDto.productPrice}원
+                                    <fmt:formatNumber value="${productDto.productPrice}" pattern="#,###"/>원  
                                     </del>
                                 </dd>
                             </dl>
                             <dl class="price-sell">
                                 <dt>할인가</dt>
                                 <dd>
-                                    <strong class="num" style="color: red;">${disPrice}원</strong>
+                                 <strong class="num" style="color: red;" >
+                                     <fmt:formatNumber value="${disPrice}" pattern="#,###"/>원
+                                  </strong>
+                                     
+                                      
                                 </dd>
                             </dl>
                         </div>
@@ -489,9 +486,11 @@ font-weight:700;
                                     <div class="jss817">
                                         <strong id="cart_total_price_pc">
                                        
-                                           <input type="hidden" name="sell_price" value="${disPrice}">
+                                           <input type="hidden" name="sell_price" value="${disPrice}" id="disprice">
                                         
-                                             <span class="disPrice">${disPrice}</span>
+                                             <span class="disPrice">
+                                                 <fmt:formatNumber value="${disPrice}" pattern="#,###"/>
+                                             </span>
                                            
                                         </strong>
                                         원
