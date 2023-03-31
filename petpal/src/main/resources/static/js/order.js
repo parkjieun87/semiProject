@@ -20,10 +20,10 @@ $(function(){
                         }
 
                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                        document.querySelector("[name=receiveZipcode]").value = data.zonecode;
-                        document.querySelector("[name=receiveAddress]").value = addr;
+                        document.querySelector("[name=receiverPost]").value = data.zonecode;
+                        document.querySelector("[name=receiverBasicAddr]").value = addr;
                         // 커서를 상세주소 필드로 이동한다.
-                        document.querySelector("[name=receiveAddressSub]").focus();
+                        document.querySelector("[name=receiverDetailAddr]").focus();
                     }
                     }).open();
             
@@ -83,8 +83,9 @@ $(function(){
                 $("#receive-address-detail").val("");
             })    
             
+
             //수령인 미 입력시 문구 나오게 하기
-            $("[name=receiveName]").blur(function(){
+            $("[name=receiverName]").blur(function(){
                 var isValid = $(this).val().length>0;
                 if(!isValid){
                     $("[name=txt-p1]").show().css("display");
@@ -92,8 +93,10 @@ $(function(){
                     $("[name=txt-p1]").hide().css("display");
                 }
             });
+            
+    
             //휴대폰 번호 미 입력시 문구 나오게 하기
-                $("[name=receiveMobile]").blur(function(){
+                $("[name=receiverTel]").blur(function(){
                     var isValid = $(this).val().length>0;
                     if(!isValid){
                         $("[name=txt-p2]").show().css("display");
@@ -110,6 +113,8 @@ $(function(){
                     $("[name=txt-p3]").hide().css("display");
                 }
             });
-            //
+            
+
+            
 
     });  
