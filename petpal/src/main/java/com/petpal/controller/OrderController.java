@@ -33,7 +33,7 @@ import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductOrderDto;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/shop")
 public class OrderController {
 	
 	@Autowired
@@ -61,7 +61,7 @@ public class OrderController {
 		
 		
 		
-		return "/WEB-INF/views/member/order.jsp";
+		return "/WEB-INF/views/shop/order.jsp";
 	}
 	
 	//2.주문정보 등록
@@ -78,7 +78,7 @@ public class OrderController {
 	
 	@GetMapping("/orderFinish")
 	public String orderFinish() {
-		return "/WEB-INF/views/member/orderFinish.jsp";
+		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}
 	
 	//카카오페이연동
