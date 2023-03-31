@@ -6,15 +6,34 @@
 
 
 
-    	<!-- 상품 목록 테이블 -->
 	    <div class="row" style="margin:auto;">
 			<a href="sales">날짜순↑</a>
 			<a href="sales">날짜순↓</a>
 			<a href="sales?sort=">낮은 매출 순</a>
 			<a href="sales?sort=">높은 매출 순</a>
 		</div>
-		<div class="container-1000 ms-20">
+		<div class="row">
+			<!-- 일별 매출 -->
+			<c:forEach items="${daily}" var="dailyDto">
+				<h3>일별 매출</h3>
+				
+						주문 날짜 : ${dailyDto.day}
+					
+						주문 금액 : ${dailyDto.total }원
+					
+			</c:forEach>
 			
+			<!-- 월별 매출 -->
+			<c:forEach items="${monthly}" var="monthlyDto">
+				<h3>월별 매출</h3>
+				
+						주문 날짜 : ${monthlyDto.month}
+					
+						주문 금액 : ${monthlyDto.total }원
+			</c:forEach>
+			
+		</div>
+		<div class="container-1000 ms-20">
 			<table class="table table-slit center" > 
 			<thead>
 				<tr>
@@ -25,6 +44,8 @@
 				</tr>
 			</thead>
 			<tbody>
+			
+			<!-- 주문별 매출 -->
 			<c:forEach items="${list}" var="salesDto">
 				<tr>
 					<td>
@@ -41,6 +62,7 @@
 					</td>
 				</tr>
 			</c:forEach>
+			
 			</tbody>
 			</table>
 		</div>

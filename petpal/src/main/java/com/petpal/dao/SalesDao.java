@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.DailySalesDto;
+import com.petpal.dto.MonthlySalesDto;
 import com.petpal.dto.SalesDto;
 import com.petpal.vo.PaginationVO;
 
@@ -18,7 +20,8 @@ public class SalesDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	RowMapper<SalesDto> mapper = new RowMapper<SalesDto>() {
+	// 주문별 매출
+	RowMapper<SalesDto> salesRowMapper = new RowMapper<SalesDto>() {
 
 		@Override
 		public SalesDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -28,31 +31,78 @@ public class SalesDao {
 			dto.setProductCount(rs.getInt("product_count"));
 			return dto;
 		}
+		
+	};
+	// 일별 매출
+	RowMapper<DailySalesDto> dailyRowMapper = new RowMapper<DailySalesDto>() {
+
+		@Override
+		public DailySalesDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			DailySalesDto dto = new DailySalesDto();
+			dto.setDay(rs.getString("day"));
+			dto.setTotal(rs.getLong("total"));
+			return dto;
+		}
+		
+	};
+	// 월별 매출
+	RowMapper<MonthlySalesDto> monthlyRowMapper = new RowMapper<MonthlySalesDto>() {
+		
+		@Override
+		public MonthlySalesDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			MonthlySalesDto dto = new MonthlySalesDto();
+			dto.setMonth(rs.getString("month"));
+			dto.setTotal(rs.getLong("total"));
+			return dto;			
+		}
 	};
 	
 	// 기본 조회
 	public List<SalesDto> selectList(){
 		String sql = "select * from sales order by order_date desc";
-		return jdbcTemplate.query(sql, mapper);
+		return jdbcTemplate.query(sql, salesRowMapper);
 	}
 	
 	// 조건에 따른 정렬
 	public List<SalesDto> selectList(PaginationVO vo){
 		String sql = "select * from("
                 + "select rownum rn, TMP.* from("
-                + "select * from sales)TMP"
+                + "select * from admin_sales)TMP"
                 + ")where rn between ? and ?";
         
         Object[] param = {vo.getBegin(), vo.getEnd()};
         
-        return jdbcTemplate.query(sql, mapper, param);
+        return jdbcTemplate.query(sql, salesRowMapper, param);
 	}
 	
 	// 판매 카운트
 	public int selectCount() {
-		String sql = "select count(*) from sales";
+		String sql = "select count(*) from admin_sales";
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
+	
+	// 월별 매출 조회
+	public List<MonthlySalesDto> selectMonthlyList() {
+		String sql = "select "
+				+ "sum(total) total, to_char(order_date, 'YYYY-MM') month "
+				+ "from admin_sales "
+				+ "group by to_char(order_date, 'YYYY-MM')";
+		
+		return jdbcTemplate.query(sql, monthlyRowMapper);
+		
+	}
+	
+	// 월별 매출 조회
+		public List<DailySalesDto> selectDailyList() {
+			String sql = "select "
+					+ "sum(total) total, to_char(order_date, 'YYYY-MM-DD') day "
+					+ "from admin_sales "
+					+ "group by to_char(order_date, 'YYYY-MM-DD')";
+			
+			return jdbcTemplate.query(sql, dailyRowMapper);
+			
+		}
+	
 	
 	
 }
