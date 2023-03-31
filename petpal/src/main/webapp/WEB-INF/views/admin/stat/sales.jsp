@@ -1,11 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
 
-
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/load.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/commons.css">
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <link rel="stylesheet" type="text/css" href="css/test.css">
+    
+    <!--jquery cdn-->
+    <script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            console.log(${list});
+        });
+    </script>
+</head>
+<body>
+    <div class="container-600">
+        
     	<!-- 상품 목록 테이블 -->
 	    <div class="row" style="margin:auto;">
 			<a href="sales">날짜순</a>
@@ -47,6 +66,6 @@
         
         
         
-       
-
-<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
+    </div>
+</body>
+</html>

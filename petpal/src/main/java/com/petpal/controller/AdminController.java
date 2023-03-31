@@ -30,6 +30,7 @@ import com.petpal.dto.CategoryDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.ProductDto;
 import com.petpal.dto.ProductImageDto;
+import com.petpal.dto.SalesDto;
 import com.petpal.vo.PaginationVO;
 
 @Controller
@@ -218,7 +219,11 @@ public class AdminController {
 				) {
 		int totalSalesCnt = salesDao.selectCount();
 		vo.setCount(totalSalesCnt);
-		model.addAttribute("list", salesDao.selectList(vo));
+		List<SalesDto> list = salesDao.selectList(vo);
+		for(int i=0;i<list.size();i++) {
+			list.get(i).setTotalSale();
+		}
+		model.addAttribute("list", list);
 		return "/WEB-INF/views/admin/stat/sales.jsp";
 	}
 	

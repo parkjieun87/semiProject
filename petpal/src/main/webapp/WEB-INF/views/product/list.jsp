@@ -307,13 +307,28 @@ button, input, select, textarea {
     <script type="text/javascript">
         $(function () {
         	let categoryList = JSON.parse('${cateList}');
+        	console.log(categoryList);
         	let catelist1;
         	let catelist2;
+        	let arr1 = new Array();
+        	let arr2 = new Array();
         	
-        	var a = function(){
-        		
-        	};
-        	
+        	function makeCateArray(tier, array) {
+        		for(let i=0;i<categoryList.length;i++){
+        			if(categoryList[i].tier === tier){
+        				obj = new Object();
+        				obj.categoryName = categoryList[i].categoryName;
+        				obj.categoryCode = categoryList[i].categoryCode;
+        				obj.categoryParent = categoryList[i].categoryParent;
+        				
+        				array.push(obj);
+        			}
+        			
+        		}
+        	}
+        	makeCateArray(1, arr1);
+        	makeCateArray(2, arr2);
+        
         });
     </script>
 </head>
