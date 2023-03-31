@@ -220,9 +220,7 @@ public class AdminController {
 		int totalSalesCnt = salesDao.selectCount();
 		vo.setCount(totalSalesCnt);
 		List<SalesDto> list = salesDao.selectList(vo);
-		for(int i=0;i<list.size();i++) {
-			list.get(i).setTotalSale();
-		}
+		
 		model.addAttribute("list", list);
 		return "/WEB-INF/views/admin/stat/sales.jsp";
 	}
