@@ -173,7 +173,7 @@ td{
 .content_total_section{
    background-color: rgb(227, 237, 247);
 }
-<<<<<<< HEAD
+
 	 
 	 .total_wrap{
 			width: 80%;

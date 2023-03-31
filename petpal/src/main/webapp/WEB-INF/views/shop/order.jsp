@@ -28,6 +28,134 @@
    
 
       $(function(){
+<<<<<<< HEAD
+            
+       //체크박스 누르면 수령인,전화번호,주소 불러오기(findDto때문에 여기에다가 작성)
+          $("[name=order_copy]").change(function(){
+                var txt = "";
+                var vailName = "${findDto.memberName}";
+                var vailTel = "${findDto.memberTel}";
+                var vailPost = "${findDto.memberPost}";
+                var vailBasicAddr = "${findDto.memberBasicAddr}";
+                var vailDetailAddr = "${findDto.memberDetailAddr}";
+       
+                var txt2 = $("[name=order_copy]").prop("checked");
+       
+                if(!txt2){
+                    $("input[name=receiverName]").val(txt);
+                    $("input[name=receiverTel]").val(txt);
+                    $("input[name=receiverPost]").val(txt);
+                    $("input[name=receiverBasicAddr]").val(txt);
+                    $("input[name=receiverDetailAddr]").val(txt);
+
+                } else {
+                    $("input[name=receiverName]").val(vailName);
+                    $("input[name=receiverTel]").val(vailTel);
+                    $("input[name=receiverPost]").val(vailPost);
+                    $("input[name=receiverBasicAddr]").val(vailBasicAddr);
+                    $("input[name=receiverDetailAddr]").val(vailDetailAddr);
+                }
+
+                  });
+                        
+     
+               
+              
+               
+              // 할인 전 최종 금액        
+               var totalPrice = 0;
+                 var count = 0; //상품의 총 갯수를 위해 변수 선언
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#basicPrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                   totalPrice += productPrice;
+                   count += parseInt($("#productCount").val());
+                   
+               });
+               count -=1 ; //상품 외 -개
+               
+               var disCountPrice = $("#disCountPrice").val();
+               $("#totalBasicPrice").text(totalPrice.toLocaleString());
+               
+               // 할인 후 최종 금액
+               var discountTotalPrice = 0;
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#salePrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                  discountTotalPrice += productPrice;
+               });
+               $("#realTotalPrice").text(discountTotalPrice.toLocaleString());
+               
+               // 할인 금액
+               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
+            
+                
+        
+                  
+          
+               //카카오페이 api    
+               const IMP = window.IMP; // 생략 가능
+          IMP.init("imp55345065");  // 예: imp00000000a
+           
+          var name = $("#productName").val(); //상품이름 변수로 선언
+      
+         $(".btn").click(function(){         
+               IMP.request_pay({
+               pg: "kcp.{TC0ONETIME}",
+               pay_method: "card",
+               merchant_uid: "ORD20180131-0000011",   // 주문번호
+               name: name +" "+ count +"개 외",
+               amount: parseInt(discountTotalPrice), // 숫자 타입
+               buyer_email: "gildong@gmail.com",
+               buyer_name: "홍길동",
+               buyer_tel: "010-4242-4242",
+               buyer_addr: "서울특별시 강남구 신사동",
+               buyer_postcode: "01181"
+               }, function (rsp) { // callback
+               if (rsp.success) {
+                // 결제 성공 시 로직
+               } else {
+                // 결제 실패 시 로직
+               }
+               });
+         });
+          
+          
+          
+         //토스페이 api 
+         $(".tossBtn").click(function(){
+            
+          // IMP.request_pay(param, callback) 결제창 호출
+          IMP.request_pay({ // param
+              pg: "tosspay",
+              pay_method: "card",
+              merchant_uid : 'merchant_' + new Date().getTime(),
+              name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+              amount: parseInt(discountTotalPrice),
+              buyer_email : 'iamport@siot.do1',
+              buyer_name : '구매자이름',
+              buyer_tel : '010-1234-5678',
+              buyer_addr : '서울특별시 강남구 삼성동',
+              buyer_postcode : '123-456'
+          }, function (rsp) { // callback
+              if (rsp.success) { 
+                alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+                $("#enrollForm").attr("action", "/ReserveFinish");
+               $("#enrollForm").submit();   
+                  // 결제 성공 시 로직,
+              
+              } else {
+                 var msg = '결제에 실패하였습니다.';
+
+                  // 결제 실패 시 로직,
+
+              }
+
+          });
+         }); 
+       
+ 
+=======
       		
     	//체크박스 누르면 수령인,전화번호,주소 불러오기(findDto때문에 여기에다가 작성)
           $("[name=order_copy]").change(function(){
@@ -153,7 +281,14 @@
 	       });
 			}); 
 	    
+<<<<<<< HEAD
  
+=======
+	     
+           
+                  
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
       });      
          
 
