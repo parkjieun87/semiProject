@@ -19,7 +19,7 @@
 			<h3>일별 매출</h3>
 			<c:forEach items="${daily}" var="dailyDto">
 				
-						${dailyDto.day} 매출 : ${dailyDto.total }
+				<div>${dailyDto.day} 매출 : ${dailyDto.total } </div>
 					
 			</c:forEach>
 			
