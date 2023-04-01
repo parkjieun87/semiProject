@@ -209,7 +209,7 @@
 <div class="container-1000" style="font-family: '카페24 써라운드 에어';">
     <div id="pay-step" class="order">
             <h1 id="logo">
-                <a href="#">펫팔</a>
+                <a href="/">펫팔</a>
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500; margin-left:10px;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
@@ -228,10 +228,10 @@
                     </li>
                 </ul>
             </div>
-             <form id="jb-form" action="order" method="post">
+             
            
                 <div id="contents">
-   
+         <form id="jb-form" action="order" method="post">
                     <div class="sec">
                         <h2>주문내역</h2> <!-- 주문내역은 form태그로 감싸지 않은 이유는 컨트롤러를 다시 갈 필요가없어서 -->
                         <div class="bundle__retail" data-componet="bundleInfo-retail">
@@ -324,7 +324,7 @@
                        <!-- 받는사람 정보 div -->
               
                     
-                    
+              
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>받는사람 정보</b>

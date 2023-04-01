@@ -23,7 +23,7 @@ ol, ul, li {
 /* 주문/결제페이지 상단*/
 .wrap{position: relative; margin: 0 auto; width: 1200px;}
 #pay-step{background-color: #f9f9f9;}
-#pay-step .wrap{padding: 0 50px 70px; border-top: 2px solid #dfdfdf; border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdfdf; background: #fff;}
+#pay-step .wrap{padding: 0 50px 70px; border-top: 1px solid #dfdfdf; border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdfdf; border-bottom:1px solid #dfdfdf; background: #fff;}
 #pay-step .wrap #logo{position: relative; top: 0; left: 0; padding: 16px 0;}
 #logo sub{top: 0;left: 227px;font-size: 14px;white-space: nowrap;}
 #pay-step .wrap #logo sub{top: 33px;left: auto;right: 0;color: #9091E6;font-weight: 500;}
@@ -111,7 +111,6 @@ li.active::before{
     background-repeat: no-repeat;
     background-position-x: 173px;
     background-position-y: 10px;
-    background-color: #c7d2ff;
 }
 .step-location ul .step03{
     background-image: url(/static/image/check.png);
@@ -119,6 +118,7 @@ li.active::before{
     background-repeat: no-repeat;
     background-position-x: 172px;
     background-position-y: 10px;
+    background-color: #c7d2ff;
 }
 
 
@@ -233,233 +233,9 @@ width: 500px;
     z-index: 1;
 }
 
-.inp-wrap.type02:after, .inp-wrap.type03:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 7px;
-    left: 118px;
-    width: 1px;
-    height: 15px;
-    background: #ddd;
-    z-index: 10;
-}
-
-.sec:after {
-content: "";
-display: block;
-clear: both;
-}
-.inp-wrap.type03 .val {
-    border-color: transparent;
-}
-.order .inp-wrap.type03.wide {
-    width: auto;
-    word-break: break-all;
-    word-wrap: break-word;
-    word-break: keep-all;
-}
-.inp-wrap.type03+.warning-txt {
-    padding-left: 137px;
-}
-.order .warning-txt {
-    padding: 0 0 5px 137px;
-}
-.inp-wrap+.warning-txt {
-    margin-top: 5px;
-}
-.warning-txt {
-    display: none;
-    padding: 0 0 5px 11px;
-    color: #145eaa;
-    font-size: small;
-}
-
-/* 받는 사람 css */
-.inp-wrap .btn-clear:hover:after, .inp-wrap .btn-clear:focus:after {
-    opacity: 1 !important;
-}
-
-.inp-wrap.type03 .btn-clear, .inp-wrap.type03.btn-add .btn-clear {
-    top: 14px;
-    left: auto;
-    right: 4px;
-    margin-left: 0;
-    border: 0 none;
-}
-.order .inp-wrap.type03 {
-    display: block;
-    /* position: relative;display: inline-block; */
-}
-.order .inp-wrap.type03 {
-    width: 500px;
-}
-.inp-wrap.type03 input[type='text'], .inp-wrap.type03 input[type='password'], .inp-wrap.type03 input[type='search'], .inp-wrap.type03 input[type='tel'], .inp-wrap.type03 input[type='number'] {
-    padding-right: 30px;
-    border: 1px solid #ddd;
-}
-.order .inp-wrap.type03.btn-add {
-    width: 401px;
-}
 
 
-/* 입력창 x표시 */
-#rowbtn1{position: relative;height: 30px;display: flex;}
-#rowbtn1 input {padding-right: 5px;height: inherit; border-right: none;}
-#rowbtn1 #btnC1 {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: inherit;
-  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
-  background-size: 50%;
-  outline: none;
-  cursor: pointer;
-  background-color:white;
-}
-#rowbtn2{position: relative;height: 30px;display: inline-block;}
-#rowbtn2 input {padding-right: 5px;height: inherit; border-right: none; margin-top:-30px;}
-#rowbtn2 #btnC2 {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: inherit;
-  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
-  background-size: 50%;
-  outline: none;
-  cursor: pointer;
-  background-color:white;
-  margin-top:-30px;
-}
-
-#row-btnC3 #btnC3 {
-  position: absolute;
-  width: 30px;
-  height: 35px;
-  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
-  background-size: 50%;
-  outline: none;
-  cursor: pointer;
-  z-index: 1;
-  border: none;
-}
-#row-btnC4 #btnC4 {
-  position: absolute;
-  width: 30px;
-  height: 35px;
-  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
-  background-size: 50%;
-  outline: none;
-  cursor: pointer;
-  z-index: 1;
-  border: none;
-}
-#row-btnC5 #btnC5 {
-  position: absolute;
-  width: 30px;
-  height: 35px;
-  background: url(https://img.icons8.com/pastel-glyph/2x/cancel.png) center center no-repeat;
-  background-size: 50%;
-  outline: none;
-  cursor: pointer;
-  z-index: 1;
-  border: none;
-}
-#row-btn6 #zipcode_search{
-    position: absolute;
-    width: 100px;
-    height: 35px;
-    margin-left: 0px;
-    left: 420px;
-    outline: none;
-    cursor: pointer;
-    margin-bottom: 0px;
-    border: none;
-}
-
-/* 결제금액 css */
-.inp-wrap #discountval{
-    color: #158;
-    font-weight: 500;
-}
-.order .inp-wrap strong.val {
-            font-size: 16px;
-            color: #145eaa;
-            font-weight: 1000;
-        }
-.chk-wrap input[type='checkbox'], .chk-wrap input[type='radio'] {
-    top: 2px;
-    left: 2px;
-}
-input[type="checkbox"], input[type="radio"] {
-    width: 13px;
-    height: 13px;
-    box-sizing: border-box;
-    -webkit-border-radius: 0;
-    cursor: pointer;
-}
-.chk-wrap label {
-    display: inline-block;
-    position: relative;
-    padding-left: 22px;
-    line-height: 18px;
-    z-index: 1;
-}
-.chk-wrap input[type='radio']+label:after {
-    border-radius: 100px;
-}
-.chk-wrap input:checked+label:after {
-    border-color: #e699a2;
-    background-position: 0 bottom;
-}
-.chk-wrap label:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 1px;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    background: #fff url(/static/image/ico_inp.png) 0 0 no-repeat;
-}
-.inp-wrap.type02:after, .inp-wrap.type03:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 7px;
-    left: 118px;
-    width: 1px;
-    height: 15px;
-    background: #ddd;
-    z-index: 10;
-}
-.term-pay-wrap .scroll-wrap {
-    height: 150px;
-    overflow-y: auto;
-}
-ol {
-    display: block;
-    list-style-type: decimal;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-}
-.term-pay-wrap .scroll-wrap strong {
-    display: block;
-    margin-bottom: 10px;
-}
-.sec:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-/* 최종결제버튼 */
+/* 버튼 */
 .order .btn-area {
     margin-top: 50px;
     text-align: center;
@@ -488,3 +264,5 @@ ol {
     background-color: #c9dcfd;
     border: none;
 }
+
+

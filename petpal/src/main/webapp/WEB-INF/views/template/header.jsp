@@ -39,10 +39,11 @@
                 <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
                 <div id="search">
-                  <form name="frm_search" id="frm_search" method="#" action="#">
                     <div class="inp-wrap">
-                       <input class="inp2" type="text" placeholder="검색어를 입력하세요" > 
+                  <form name="frm_search" id="frm_search" method="get" action="/product/list">
+                       <input class="inp2" type="text" placeholder="검색어를 입력하세요"  value="${vo.getColumn()}"> 
                        <div class="tag" style="float:left; margin-top: 0;">
+                         </form>
                          <ul>
                          	<!-- 로그아웃 상태 -->
                            <c:if test="${memberId == null}">
@@ -60,7 +61,6 @@
                        </div>                   
                     </div>
                 </div>
-                  </form>
                </div>
              </div>
     </div>

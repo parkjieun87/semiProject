@@ -69,7 +69,6 @@ public class OrderController {
 		
 		//주문정보조회(시퀀스 받아서, 주문번호로 조회)
 		int orderNo = orderDao.sequence();
-		System.out.println(orderNo);
 		productOrderDto.setOrderNo(orderNo);
 		ProductOrderDto productOrderDto2 = orderDao.select(orderNo);
 		
@@ -80,10 +79,10 @@ public class OrderController {
 	
 	//2.주문정보 등록
 	@PostMapping("/order")
-	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session) {
+	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session,Model model) {
 		String memberId = (String) session.getAttribute("memberId");
 		
-		//주문번호(시퀀스) = 주문테이블에서의 주문번호와 주문상세테이블에서의 주문번호는 동일해야한다.
+		//주문번호(시퀀스) = 주문테이블에서의 주문번호와 주문상세테이블에서의 주문번호는 동일해야한다.(같은 시퀀스부여)
 		
 		int orderNo = orderDao.sequence();
 		
@@ -102,13 +101,15 @@ public class OrderController {
 			orderDetailDto.setOrderNo(orderNo);
 			orderDao.insert2(orderDetailDto);
 		}
-	
+		
+
 
 		return "redirect:orderFinish";
 	}
 	
 	@GetMapping("/orderFinish")
-	public String orderFinish() {
+	public String orderFinish(Model model) {
+		
 		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}
 	
