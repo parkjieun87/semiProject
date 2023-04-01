@@ -85,6 +85,9 @@
                });
                $("#realTotalPrice").text(discountTotalPrice.toLocaleString());
                
+               //hidden totalprice에 가격 넣어주기
+               $("#totalPrice").val(discountTotalPrice);
+               
                // 할인 금액
                $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
             
@@ -167,19 +170,34 @@
 			}); 
 			
 			
-            // 체크박스 동의 시 결제하기 버튼을 누를 수 있게 구현
-            function checkAgree(){
-              var checkbox = document.querySelector("#puchase-ok");
-              var button = document.querySelector("#submitSettleBtn");
-              button.disabled = !checkbox.checked;
-            }
+            
         
 			
 			
 	    
  
       });      
-      
+   // 체크박스 동의 시 결제하기 버튼을 누를 수 있게 구현
+    //  function checkAgree(){
+   //     var checkbox = document.querySelector("#puchase-ok");
+   //     var button = document.querySelector("#submitSettleBtn");
+   //     var count = 2;
+   //     var checkRadio = document.querySelector("#payment-kakao");
+   //     var checkRadio2 = document.querySelector("#payment-toss");
+        
+//var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
+        
+        
+  //      button.disabled = !checkbox.checked;
+//      }
+   
+   
+   //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
+   $( document ).ready( function() {
+        $( '#submitSettleBtn' ).click( function() {
+          $( '#jb-form' ).submit();
+        } );
+   } );
       
          
 
@@ -210,12 +228,12 @@
                     </li>
                 </ul>
             </div>
-             
+             <form id="jb-form" action="order" method="post">
            
                 <div id="contents">
-                  <form action="order" method="post">
+   
                     <div class="sec">
-                        <h2>주문내역</h2>
+                        <h2>주문내역</h2> <!-- 주문내역은 form태그로 감싸지 않은 이유는 컨트롤러를 다시 갈 필요가없어서 -->
                         <div class="bundle__retail" data-componet="bundleInfo-retail">
                             <div class="bundle-info__pdd-group-box">
                                 <div class="bundle-info__expected-delivery-date-box">
@@ -224,7 +242,7 @@
                                    </span> 
                                 </div>
                             <div class="bunle-info__item-list">
-                            <c:forEach items="${cartList}" var="list">
+                            <c:forEach items="${cartList}" var="list" varStatus="status">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
                                         <img src="./img/9012_web_original_1673006075211726.jpg"
@@ -236,8 +254,12 @@
                                             <br>
                                             <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.salePrice}</span>
                                             <input type="hidden" value="${list.productCount*list.productPrice}" id="basicPrice">
-                                            <input type="hidden" value="${list.productCount*list.salePrice}" id="salePrice">
-                                            <input type="hidden" value="${list.productCount}" id="productCount">
+                                            
+                                            <!-- public List<OrderDetailDto> orderDetailDto 를 화면에서 불러올수있는 코드 -->
+                                            <input type="hidden" name="orderDetailDto[${status.index}].productPrice" value="${list.productCount*list.salePrice}" id="salePrice">
+                                            <input type="hidden" name="orderDetailDto[${status.index}].productCount"  value="${list.productCount}" id="productCount">
+                                            <input type="hidden" name="orderDetailDto[${status.index}].productNo"  value="${list.productNo}" id="productNo">
+                                            
                                             <input type="hidden" value="${totalPrice}" id="disCountPrice">
                                             <input type="hidden" value="${list.productName}" id="productName">
                                           
@@ -260,8 +282,8 @@
                         <div class="bundle-info__bdd-group-title"></div>
                         <div></div>
                         <div></div>
-                        <button type="submit">등록</button>
-                           </form>
+
+ 
                     </div>
              
                     <!-- 구매자 정보 div -->
@@ -301,7 +323,7 @@
                     
                        <!-- 받는사람 정보 div -->
               
-                    <form action="order" method="post">
+                    
                     
                     <div class="sec">
                         <h2 class="tit type02">
@@ -344,10 +366,10 @@
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
-                     <button type="submit">등록</button>
+                    
                         </div>
                     </div>
-                     </form>
+                   
                
                     <div class="sec">
                         <h2 class="tit type02">
@@ -372,8 +394,10 @@
                                     <b>총 결제금액</b>
                                 </strong>
                                 <strong class="val malgun" id="realTotalPrice"></strong>
+                                <input type="hidden" id="totalPrice" name="totalPrice"  value="0" >
                             </div>
                         </div>
+                        </form>
    
                         <div class="sec">
                             <h2 class="tit type02">

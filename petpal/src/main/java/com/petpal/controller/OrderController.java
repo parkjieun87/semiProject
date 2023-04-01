@@ -62,7 +62,6 @@ public class OrderController {
 		
 		//주문상세조회(시퀀스 받아서, 주문상세번호로 조회)
 		int orderDetailNo = orderDao.sequence();
-		System.out.println(orderDetailNo);
 		orderDetailDto.setOrderDetailNo(orderDetailNo);
 		OrderDetailDto orderDetailDto1 = orderDao.selectOne(orderDetailNo);
 		
@@ -75,32 +74,35 @@ public class OrderController {
 		ProductOrderDto productOrderDto2 = orderDao.select(orderNo);
 		
 		model.addAttribute("productOrderDto",productOrderDto2);
-		
-	
-		
-		
+
 		return "/WEB-INF/views/shop/order.jsp";
 	}
 	
 	//2.주문정보 등록
 	@PostMapping("/order")
-	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session,@ModelAttribute OrderDetailDto orderDetailDto) {
+	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session) {
 		String memberId = (String) session.getAttribute("memberId");
+		
+		//주문번호(시퀀스) = 주문테이블에서의 주문번호와 주문상세테이블에서의 주문번호는 동일해야한다.
+		
+		int orderNo = orderDao.sequence();
 		
 		//주문정보 등록
 		productOrderDto.setMemberId(memberId);
+		productOrderDto.setOrderNo(orderNo);
+		
 		orderDao.insert(productOrderDto);
-		//상세정보 등록
 		
-		int orderNo = orderDao.sequence();
-		orderDetailDto.setOrderNo(orderNo);
+
+		
+		//주문상세정보 등록(주문번호,아이디는 가져오고, 상품번호,수량,가격은 jsp에서 등록한다.
+			
+		for(OrderDetailDto orderDetailDto : productOrderDto.orderDetailDto) { //값:리스트
+			orderDetailDto.setMemberId(memberId);
+			orderDetailDto.setOrderNo(orderNo);
+			orderDao.insert2(orderDetailDto);
+		}
 	
-		orderDao.insert2(orderDetailDto);
-		
-//		orderDetailDto.setMemberId(memberId);
-//		orderDao.insert2(orderDetailDto);
-		
-		
 
 		return "redirect:orderFinish";
 	}

@@ -43,6 +43,7 @@ public class OrderDao {
 		productOrderDto.setReceiverBasicAddr(rs.getString("receiver_basic_addr"));
 		productOrderDto.setReceiverPost(rs.getString("receiver_post"));
 		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
+		productOrderDto.setTotalPrice(rs.getInt("total_price"));
 		return productOrderDto;
 	}};
 	
@@ -56,7 +57,7 @@ public class OrderDao {
 			orderDetailDto.setOrderNo(rs.getInt("order_no"));
 			orderDetailDto.setProductNo(rs.getInt("product_no"));
 			orderDetailDto.setMemberId(rs.getString("member_id"));
-			orderDetailDto.setCategoryCode(rs.getString("category_code"));
+//			orderDetailDto.setCategoryCode(rs.getString("category_code"));
 			orderDetailDto.setProductCount(rs.getInt("product_count"));
 			orderDetailDto.setProductPrice(rs.getInt("product_price"));
 			return null;
@@ -91,10 +92,10 @@ public class OrderDao {
 			
 	//주문 정보 등록(주문테이블)
 	public void insert(ProductOrderDto productOrderDto) {
-		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr)\r\n"
-				+ "values(product_order_seq.nextval,?,sysdate,?,?,?,?,?)";
-		Object param[] = {productOrderDto.getMemberId(),productOrderDto.getReceiverName(),productOrderDto.getReceiverTel(),productOrderDto.getReceiverBasicAddr(),
-							productOrderDto.getReceiverPost(),productOrderDto.getReceiverDetailAddr()};
+		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr,total_price)\r\n"
+				+ "values(?,?,sysdate,?,?,?,?,?,?)";
+		Object param[] = {productOrderDto.getOrderNo(),productOrderDto.getMemberId(),productOrderDto.getReceiverName(),productOrderDto.getReceiverTel(),productOrderDto.getReceiverBasicAddr(),
+							productOrderDto.getReceiverPost(),productOrderDto.getReceiverDetailAddr(),productOrderDto.getTotalPrice()};
 			jdbcTemplate.update(sql,param);
 	}
 	
@@ -116,12 +117,10 @@ public class OrderDao {
 	
 	//주문 상세 등록(주문상세테이블)
 	public void insert2(OrderDetailDto orderDetailDto) {
-		String sql = "insert into order_detail(order_detail_no,order_no,product_no,member_id,category_code,product_count,product_price) "
-				+ "values(order_detail_seq.nextval,?,?,?,?,?,?)";
+		String sql = "insert into order_detail(order_detail_no,order_no,product_no,member_id,product_count,product_price) "
+				+ "values(order_detail_seq.nextval,?,?,?,?,?)";
 		Object[]param = {orderDetailDto.getOrderNo(),orderDetailDto.getProductNo(),orderDetailDto.getMemberId(),
-				orderDetailDto.getCategoryCode(),orderDetailDto.getProductCount(),orderDetailDto.getProductPrice()};
+				orderDetailDto.getProductCount(),orderDetailDto.getProductPrice()};
 		jdbcTemplate.update(sql,param);
 	}
-
-	
 }
