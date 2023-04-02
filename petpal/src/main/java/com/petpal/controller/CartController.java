@@ -43,9 +43,9 @@ public class CartController {
 	}
 
 	
-	@GetMapping("/cart/{memberId}")
-	public String cartPage(@PathVariable("memberId") String memberId, Model model) {
-		
+	@GetMapping("/cart")
+	public String cartPage( Model model, HttpSession session) {
+		String memberId = (String)session.getAttribute("memberId");
 		model.addAttribute("cartInfo", cartService.getCartList(memberId));
 		
 		return "/WEB-INF/views/cart/cart.jsp";
