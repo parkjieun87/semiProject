@@ -55,7 +55,7 @@
                             <!-- 로그인 상태 -->
                            <c:if test="${memberId != null}">
                            <li><a href="http://localhost:8080/member/mypage">Mypage</a></li>
-                           <li><a href="/cart/${memberId}"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
+                           <li><a href="/cart"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
                            <li><a href="http://localhost:8080/member/logout">Logout</a></li>
                            </c:if>
                             <!-- 로그인 상태 -->
