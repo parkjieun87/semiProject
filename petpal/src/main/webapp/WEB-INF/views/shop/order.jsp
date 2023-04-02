@@ -255,7 +255,7 @@
                                             <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.salePrice}</span>
                                             <input type="hidden" value="${list.productCount*list.productPrice}" id="basicPrice">
                                             
-                                            <!-- public List<OrderDetailDto> orderDetailDto 를 화면에서 불러올수있는 코드 -->
+                                            <!-- public List<OrderDetailDto> orderDetailDto 를 화면에서 불러올수있는 코드 // varStatus="status" //이친구들을 날릴꺼면 form태그안에 생성-->
                                             <input type="hidden" name="orderDetailDto[${status.index}].productPrice" value="${list.productCount*list.salePrice}" id="salePrice">
                                             <input type="hidden" name="orderDetailDto[${status.index}].productCount"  value="${list.productCount}" id="productCount">
                                             <input type="hidden" name="orderDetailDto[${status.index}].productNo"  value="${list.productNo}" id="productNo">

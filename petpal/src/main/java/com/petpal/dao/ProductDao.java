@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.CategoryDto;
 import com.petpal.dto.ProductDto;
+import com.petpal.dto.ProductWithImageDto;
 import com.petpal.vo.PaginationVO;
 
 @Repository
@@ -175,5 +176,5 @@ public class ProductDao {
 		return jdbcTemplate.queryForObject(sql, String.class, param);
 	}
 	
-	
+
 }

@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,10 +34,16 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.petpal.dao.CartDao;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.OrderDao;
+import com.petpal.dao.ProductDao;
+import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.CartDto;
+import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.OrderDetailDto;
+import com.petpal.dto.ProductDto;
 import com.petpal.dto.ProductOrderDto;
+import com.petpal.dto.ProductWithImageDto;
+import com.petpal.vo.PaginationVO;
 
 @Controller
 @RequestMapping("/shop")
@@ -50,6 +57,12 @@ public class OrderController {
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private ProductWithImageDao productWithImageDao;
+	
+	@Autowired
+	private ProductDao productDao;
 
 	
 	//주문내역 (cartDao에서 가져옴) , 주문자 이름,이메일 가져오기
@@ -124,8 +137,37 @@ public class OrderController {
 		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}
 	
+	//header 검색 구현(수정해야함)
+	@PostMapping("/searchList")
+	public String searchList(Model model,@RequestParam(required = false, defaultValue = "") String column,
+			@RequestParam(required = false, defaultValue = "") String keyword, @ModelAttribute("vo") PaginationVO vo) {
+		List<ProductWithImageDto> list = productWithImageDao.selectList1(vo, column, keyword);
+		
+		String parent;
+		
+			parent = productDao.ParentCate("");
+			list = productWithImageDao.selectList("");
 
-	
+
+		String parentName = productDao.parentName(parent);
+		int sum=0;
+		List<CategoryCountDto> cateList = productDao.categoryCountList(parent);
+		for(int i=0;i<cateList.size();i++) {
+			sum+=cateList.get(i).getCategoryCount();
+		}
+		List<Integer> DisPrice = new ArrayList<>();
+		for(int i=0;i<list.size();i++) {
+			int disPrice = list.get(i).getProductPrice()*(100-list.get(i).getProductDiscount())/100;
+			DisPrice.add(disPrice);
+		}
+		model.addAttribute("parentName", parentName);
+		model.addAttribute("sum", sum);
+		model.addAttribute("parent", parent);
+		model.addAttribute("list", list);
+		model.addAttribute("cateList", cateList);
+		model.addAttribute("DisPrice", DisPrice);
+		return "/WEB-INF/views/product/list.jsp";
+	}
 	
 	
 

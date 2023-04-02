@@ -41,7 +41,7 @@
                 
                 <div id="search">
                     <div class="inp-wrap">
-                  <form name="frm_search" id="frm_search" method="get" action="/product/list">
+                  <form name="frm_search" id="frm_search" method="post" action="shop/searchList">
                        <input class="inp2" type="text" placeholder="검색어를 입력하세요"  value="${vo.getColumn()}"> 
                        <div class="tag" style="float:left; margin-top: 0;">
                          </form>

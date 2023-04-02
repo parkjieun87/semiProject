@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.ProductWithImageDto;
+import com.petpal.vo.PaginationVO;
 
 @Repository
 public class ProductWithImageDao {
@@ -76,5 +77,18 @@ public class ProductWithImageDao {
 		String sql = "select * from product_with_image where product_no=?";
 		Object[] param = {productNo};
 		return jdbcTemplate.query(sql, mapper, param).get(0);
+	}
+	
+	//상품 검색(검색) - 2023.04.02 박지은(수정필요)
+	public List<ProductWithImageDto> selectList1(PaginationVO vo,String column,String keyword){
+		String sql = "select * from("
+				+ "select rownum rn, TMP.* from("
+				+ "select * from product where instr(#1,?)>0 order by product_regdate desc"
+				+" )TMP"
+				+ ")where rn between ? and ?";
+		sql=sql.replace("#1",column);
+		Object[] param = {keyword,vo.getBegin(), vo.getEnd()};
+				
+		return jdbcTemplate.query(sql,mapper,param);
 	}
 }
