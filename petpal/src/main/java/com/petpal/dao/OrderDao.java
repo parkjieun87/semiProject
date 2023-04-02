@@ -91,7 +91,7 @@ public class OrderDao {
 	
 			
 	//주문 정보 등록(주문테이블)
-	public void insert(ProductOrderDto productOrderDto) {
+	public void insert(ProductOrderDto productOrderDto) {//order_detail_seq.nextval 안쓴이유는 주문,주문상세에 같은 orderNo가 들어가야해서.
 		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr,total_price)\r\n"
 				+ "values(?,?,sysdate,?,?,?,?,?,?)";
 		Object param[] = {productOrderDto.getOrderNo(),productOrderDto.getMemberId(),productOrderDto.getReceiverName(),productOrderDto.getReceiverTel(),productOrderDto.getReceiverBasicAddr(),
@@ -120,8 +120,6 @@ public class OrderDao {
 		List<ProductOrderDto>list = jdbcTemplate.query(sql, mapper,param);
 		return list.isEmpty() ? null: list.get(0);
 	}
-	
-	
 	
 
 	

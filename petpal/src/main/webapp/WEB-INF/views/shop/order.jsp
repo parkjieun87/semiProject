@@ -28,6 +28,10 @@
    
 
       $(function(){
+    	  
+    	  //휴대폰 번호 숫자 미입력시 오류문자뜨게
+    	  
+    	  
       		
     	//체크박스 누르면 수령인,전화번호,주소 불러오기(findDto때문에 여기에다가 작성)
           $("[name=order_copy]").change(function(){
@@ -178,18 +182,18 @@
  
       });      
    // 체크박스 동의 시 결제하기 버튼을 누를 수 있게 구현
-    //  function checkAgree(){
-   //     var checkbox = document.querySelector("#puchase-ok");
-   //     var button = document.querySelector("#submitSettleBtn");
-   //     var count = 2;
-   //     var checkRadio = document.querySelector("#payment-kakao");
-   //     var checkRadio2 = document.querySelector("#payment-toss");
+      function checkAgree(){
+       var checkbox = document.querySelector("#puchase-ok");
+       var button = document.querySelector("#submitSettleBtn");
+       var count = 2;
+       var checkRadio = document.querySelector("#payment-kakao");
+       var checkRadio2 = document.querySelector("#payment-toss");
         
-//var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
+var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
         
         
-  //      button.disabled = !checkbox.checked;
-//      }
+      button.disabled = !checkbox.checked;
+      }
    
    
    //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
@@ -344,10 +348,11 @@
 
                             <div class="inp-wrap type03" id="row-btnC4">
                                 <label for="receive-tel">휴대폰</label>
-                                <input type="tel" name="receiverTel" id="receive-tel" value="" style="margin-bottom: 10px;" required>
+                                <input type="tel" name="receiverTel" id="receive-tel" value="" style="margin-bottom: 10px;" size="11" maxlength="11" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 <button id="btnC4" type="button" class="btn-clear4" style="left: 480px;"></button>
                             </div>
                             <p id="receive-tel-txt" class="warning-txt" name="txt-p2">휴대폰 번호를 입력해주세요.</p>
+                            <p id="receive-tel-txt" class="warning-txt" name="txt-p3">잘못된 입력형식입니다. 다시 입력해주세요</p>
      
                             <div class="inp-wrap type03 btn-add" id="row-btn6">
                                 <label for="receive-address-num">우편번호</label>
@@ -379,7 +384,7 @@
                         <div class="sec type03">
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
-                                <span class="val" name="totalPrice1" id="totalBasicPrice"></span>
+                                <span class="val" name="totalPrice1" id="totalBasicPrice" ></span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>

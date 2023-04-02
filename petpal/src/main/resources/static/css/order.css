@@ -275,6 +275,7 @@ clear: both;
     font-size: small;
 }
 
+
 /* 받는 사람 css */
 .inp-wrap .btn-clear:hover:after, .inp-wrap .btn-clear:focus:after {
     opacity: 1 !important;
