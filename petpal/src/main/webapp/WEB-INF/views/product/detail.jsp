@@ -476,6 +476,7 @@ font-weight:700;
             }
             
             $("#insert_cart").click(function(){
+            	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();
                form.productCount = productCnt;
                $.ajax({
