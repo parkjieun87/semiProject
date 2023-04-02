@@ -67,6 +67,6 @@ public class CartController {
 		
 		cartDao.deleteCart(cart.getCartNo());
 		
-		return "redirect:/cart/"+cart.getMemberId();
+		return "redirect:/cart";
 	}
 }

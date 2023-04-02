@@ -467,7 +467,7 @@ font-weight:700;
                
                $(".disPrice").text(sum.toLocaleString());
             });
-            
+           
             // 서버로 전송할 데이터
             const form = {
                   memberId : "${memberId}",
@@ -476,12 +476,14 @@ font-weight:700;
             }
             
             $("#insert_cart").click(function(){
-               form.productCount = inputCount;
+               var productCnt = $(this).parent().parent().parent().parent().find("input").val();
+               form.productCount = productCnt;
                $.ajax({
                   url : "/cart/add",
                   type : "POST",
                   data : form,
                   success : function(result){
+                	 
                      cartAlert(result);
                   }
                });
@@ -506,12 +508,12 @@ font-weight:700;
             
          // 장바구니 등록 창 닫기 버튼   
        	$(".exit_btn").click(function(){
-       		$(".cart-layer").css("display","none");
+       		$(".cart-layer").css("display","none"); 
        	});
        	
          // 장바구니로 가기 버튼
        	$(".cartView_btn").click(function(){
-       		location.href = "/cart/"+memberId;
+       		location.href = "/cart";
        	});
          
          
