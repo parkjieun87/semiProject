@@ -10,7 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.eclipse.jdt.internal.compiler.env.IUpdatableModule.AddReads;
@@ -23,7 +25,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.petpal.dao.CartDao;
 import com.petpal.dao.MemberDao;
@@ -60,29 +65,29 @@ public class OrderController {
 		MemberDto findDto = memberDao.selectOne(memberId);
 		model.addAttribute("findDto",findDto);
 		
-		//주문상세조회(시퀀스 받아서, 주문상세번호로 조회)
-		int orderDetailNo = orderDao.sequence();
-		orderDetailDto.setOrderDetailNo(orderDetailNo);
-		OrderDetailDto orderDetailDto1 = orderDao.selectOne(orderDetailNo);
-		
-		model.addAttribute("orderDetailDto",orderDetailDto1);
-		
-		//주문정보조회(시퀀스 받아서, 주문번호로 조회)
-		int orderNo = orderDao.sequence();
-		productOrderDto.setOrderNo(orderNo);
-		ProductOrderDto productOrderDto2 = orderDao.select(orderNo);
-		
-		model.addAttribute("productOrderDto",productOrderDto2);
+//		//주문상세조회(, 주문상세번호로 조회)-사용할꺼면 다시 만들어야함.
+//		
+//		orderDetailDto.setOrderDetailNo(orderDetailNo);
+//		OrderDetailDto orderDetailDto1 = orderDao.selectOne(orderDetailNo);
+//		
+//		model.addAttribute("orderDetailDto",orderDetailDto1);
+//		
+//		//주문정보조회(주문번호로 조회)-사용할꺼면 다시 만들어야함.
+//		
+//		productOrderDto.setOrderNo(orderNo);
+//		ProductOrderDto productOrderDto2 = orderDao.select(orderNo);
+//		
+//		model.addAttribute("productOrderDto",productOrderDto2);
 
 		return "/WEB-INF/views/shop/order.jsp";
 	}
 	
 	//2.주문정보 등록
 	@PostMapping("/order")
-	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session,Model model) {
+	public String insert(@ModelAttribute ProductOrderDto productOrderDto,HttpSession session,RedirectAttributes attr) {
 		String memberId = (String) session.getAttribute("memberId");
 		
-		//주문번호(시퀀스) = 주문테이블에서의 주문번호와 주문상세테이블에서의 주문번호는 동일해야한다.(같은 시퀀스부여)
+		//주문번호(시퀀스) = 주문테이블에서의 주문번호와 주문상세테이블에서의 주문번호는 동일해야한다.(같은 시퀀스부여)-등록할때만 시퀀스!
 		
 		int orderNo = orderDao.sequence();
 		
@@ -102,13 +107,19 @@ public class OrderController {
 			orderDao.insert2(orderDetailDto);
 		}
 		
+		attr.addAttribute("orderNo",orderNo); //redirect로 보낼때 쓰는 코드(RedirectAttributes),orderFinish로 보냄
+		
 
 
 		return "redirect:orderFinish";
 	}
 	
+	//결제완료페이지에 주문정보 뿌려주기
 	@GetMapping("/orderFinish")
-	public String orderFinish(Model model) {
+	public String orderFinish(Model model,@ModelAttribute ProductOrderDto productOrderDto, @RequestParam int orderNo ) { //위에있는orderno를 @RequestParam 어노테이션으로 받아옴
+		
+		ProductOrderDto dto =  orderDao.select(orderNo);
+		model.addAttribute("dto",dto);
 		
 		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}

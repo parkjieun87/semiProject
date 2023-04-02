@@ -174,4 +174,6 @@ public class ProductDao {
 		Object[] param = {parentCode};
 		return jdbcTemplate.queryForObject(sql, String.class, param);
 	}
+	
+	
 }

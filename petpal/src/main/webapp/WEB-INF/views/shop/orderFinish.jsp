@@ -8,7 +8,14 @@
         <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
      <script type="text/javascript">
+     
+     
+     
+     
      </script>
+     
+
+     
 <div id="pay-step" class="order">
         <div class="wrap">
             <h1 id="logo">
@@ -27,15 +34,15 @@
                     </li>
                     <li class="step03">
                         <sup>03</sup>
-                        결제완료
+                        결제완료 
                     </li>
                 </ul>
             </div>
-            <form name="frmSettle">
+   
                 <div id="contents">
                     <div class="sec">
                         <h2>주문이 정상적으로 완료되었습니다!</h2>
-            
+
                     <!-- 결제완료div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -45,47 +52,58 @@
 
                             <div class="inp-wrap val type03">
                                 <strong>주문번호</strong>
-                            <input type="text" class="val" id="orderNo" name="orderNo">
-                            <c:set var="orderNo" value="${dto.orderNo}"/>
-                            </div>
-
-                            <div class="inp-wrap val type03">
-                                <strong>구매자이름</strong>
-                                <span class="val" id="order-email">cloud@gmail.com</span>
+                            <span class="val" id="memberName" name="memberName">${dto.orderNo}</span>
+                       
                             </div>
 
                             <div class="inp-wrap val type03">
                                 <strong>수취인이름</strong>
-                                <span class="val" id="order-email">cloud@gmail.com</span>
+                                <span class="val" id="order-email">${dto.receiverName} 님</span>
                             </div>
 
                             <div class="inp-wrap val type03">
-                                <strong>배송지주소</strong>
-                                <span class="val" id="order-email">cloud@gmail.com</span>
+                                <strong>배송지기본주소</strong>
+                                <span class="val" id="order-email">${dto.receiverBasicAddr}</span>
+                            </div>
+                            
+                            <div class="inp-wrap val type03">
+                                <strong>배송지우편번호</strong>
+                                <span class="val" id="order-email">${dto.receiverPost}</span>
+                            </div>
+                            
+                     		<div class="inp-wrap val type03">
+                                <strong>배송지상세주소</strong>
+                                <span class="val" id="order-email">${dto.receiverDetailAddr}</span>
                             </div>
 
                             <div class="inp-wrap val type03">
                                 <strong>수취인연락처</strong>
-                                <span class="val" id="order-email">cloud@gmail.com</span>
+                                <span class="val" id="order-email">${dto.receiverTel}</span>
+                            </div>
+
+							<div class="inp-wrap val type03">
+                                <strong>주문날짜</strong>
+                                <span class="val" id="order-email">${dto.orderDate}</span>
                             </div>
 
                             <div class="inp-wrap val type03">
                                 <strong>총구매금액</strong>
-                                <span class="val" id="order-email"></span>
+                                <span class="val" id="order-email"><fmt:formatNumber value="${dto.totalPrice}" pattern="#,###" />원</span>
                             </div>
 
                         </div>
                     </div>
-                    <form>
+
                    
                     
                     <div class="btn-area">
-                        <button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;">
+                        <a href="/"><button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;">
                             <b>홈으로가기</b>
                         </button>
+                        </a>
                     </div>
                 </div>
-            </form>
+
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

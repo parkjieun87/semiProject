@@ -24,11 +24,6 @@ public class OrderDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	//시퀀스 생성
-	public int sequence() {
-		String sql = "select product_order_seq.nextval from dual";
-		return jdbcTemplate.queryForObject(sql, int.class);
-	}
 	
 	//product_order mapper 생성
 	private RowMapper<ProductOrderDto> mapper = new RowMapper<ProductOrderDto>() {
@@ -60,10 +55,15 @@ public class OrderDao {
 //			orderDetailDto.setCategoryCode(rs.getString("category_code"));
 			orderDetailDto.setProductCount(rs.getInt("product_count"));
 			orderDetailDto.setProductPrice(rs.getInt("product_price"));
-			return null;
+			return orderDetailDto;
 		}
 	};
 	
+	//시퀀스 생성
+	public int sequence() {
+		String sql = "select product_order_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
 	
 	// 번호 인증 기능
 			public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
@@ -107,6 +107,12 @@ public class OrderDao {
 		return list.isEmpty() ? null: list.get(0);
 	}
 	
+	//주문리스트
+	public List<ProductOrderDto> list(){
+		String sql = "select*from product_order";
+		return jdbcTemplate.query(sql, mapper);
+	}
+	
 	//주문정보 조회
 	public ProductOrderDto select(int orderNo) {
 		String sql="select*from product_order where order_no=?";
@@ -114,6 +120,10 @@ public class OrderDao {
 		List<ProductOrderDto>list = jdbcTemplate.query(sql, mapper,param);
 		return list.isEmpty() ? null: list.get(0);
 	}
+	
+	
+	
+
 	
 	//주문 상세 등록(주문상세테이블)
 	public void insert2(OrderDetailDto orderDetailDto) {

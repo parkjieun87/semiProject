@@ -233,7 +233,7 @@
                 <div id="contents">
          <form id="jb-form" action="order" method="post">
                     <div class="sec">
-                        <h2>주문내역</h2> <!-- 주문내역은 form태그로 감싸지 않은 이유는 컨트롤러를 다시 갈 필요가없어서 -->
+                        <h2>주문내역</h2>
                         <div class="bundle__retail" data-componet="bundleInfo-retail">
                             <div class="bundle-info__pdd-group-box">
                                 <div class="bundle-info__expected-delivery-date-box">
@@ -262,7 +262,7 @@
                                             
                                             <input type="hidden" value="${totalPrice}" id="disCountPrice">
                                             <input type="hidden" value="${list.productName}" id="productName">
-                                          
+                                          	
                                            
                                             <c:set var="productName" value="${list.productName}"/>
                                              <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
@@ -300,7 +300,7 @@
                                 <strong>이메일</strong>
                                 <span class="val" id="order-email">${findDto.memberEmail}</span>
                             </div>
-
+		
                             <div class="inp-wrap type03 btn-add wide">
                                 <strong>휴대폰</strong>
                                 <span class="val">
