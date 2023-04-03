@@ -11,7 +11,6 @@
      display: block;
      margin: auto;
    }
-
 </style>  
 
 <!-- 다음 우편 API 사용을 위한 CDN -->
@@ -117,7 +116,6 @@ $("#phoneChk").click(function(){
               if(data == phone2){
                  $(".successPhoneChk").text("올바른 번호입니다.");
                  $(".successPhoneChk").css("color","green");
-
               }else{
                  $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
                    $(".successPhoneChk").css("color","red")
@@ -129,7 +127,6 @@ $("#phoneChk").click(function(){
         }
     });
 });
-
 </script>
  
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

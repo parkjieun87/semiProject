@@ -287,6 +287,56 @@ font-weight:700;
    font-size : 24px;
 }
 
+
+/* 상품 정보, 상품 후기, 상품 문의, 구매 확인사항*/
+
+    /* 사용자 주소 정보 */
+    .addressInfo_div{
+        margin-top: 30px;  
+        
+    }
+    .addressInfo_input_div_wrap{
+        border-bottom: 1px solid #f3f3f3;
+        height: 225px;
+        
+        
+    }
+    .address_btn {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 25%;
+    }
+
+    .address_btn:hover{
+        background-color: #777;
+    }
+    .addressInfo_button_div::after{
+        content:'';
+        display:block;
+        clear:both;
+    }
+     .addressInfo_input_div{
+                padding:12px;
+                text-align: left;
+                display: none;
+                line-height: 40px;                
+        }
+           
+	footer {
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  height:  150px;
+}
+   
+
+
     </style>   
     
     
@@ -385,17 +435,32 @@ font-weight:700;
                 alert("로그인이 필요합니다.");
              }
             }
-            
+           
                    
         });
     </script>
+    
+     <script type="text/javascript">
+            /* 주소입력란 버튼 동작(숨김, 등장) */
+        function showAdress(className){
+            /* 컨텐츠 동작 */
+                /* 모두 숨기기 */
+                $(".addressInfo_input_div").css('display', 'none');
+                /* 컨텐츠 보이기 */
+                $(".addressInfo_input_div_" + className).css('display', 'block');		
+            
+            /* 버튼 색상 변경 */
+                /* 모든 색상 동일 */
+                    $(".address_btn").css('backgroundColor', '#a29bfe');
+                /* 지정 색상 변경 */
+                    $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');	
+        }
+            
+      </script>
 <head>
  
 </head>
 <%@ include file="../template/header.jsp" %>
-
-
-
 
         <div class="row center">
             <h1></h1>
@@ -530,38 +595,31 @@ font-weight:700;
             
                                      
             
-    <div class="item-info" style="width:100%;">
-         <div class="btn-tab">
-            <ul class="tab-title">
-               <li>
-                  <a href="#">상품정보</a>
-               </li>
-               <li>
-                  <a href="#">상품후기</a>
-               </li>
-               <li>
-                  <a href="#">상품문의</a>
-               </li>
-               <li>
-                  <a href="#">구매 확인사항</a>
-               </li>
-            </ul>
-         </div>
+    <div class="addressInfo_div">
+        <div class="addressInfo_button_div">
+            <button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #a29bfe;">상품 정보</button>
+            <button class="address_btn address_btn_2" onclick="showAdress('2')" style="background-color: #a29bfe;">상품 후기</button>
+             <button class="address_btn address_btn_3" onclick="showAdress('3')" style="background-color: #a29bfe;">상품 문의</button>
+             <button class="address_btn address_btn_4" onclick="showAdress('4')" style="background-color: #a29bfe;">구매 확인사항</button>
+            
+        </div>
+        <div class="addressInfo_input_div_wrap">
+            <div class="addressInfo_input_div addressInfo_input_div_1" style="display: block">
+            			       
+            			        ${productDto.productDesc}                                             
+            </div>
+            <div class="addressInfo_input_div addressInfo_input_div_2">
+                테스트2
+            </div>
+            <div class="addressInfo_input_div addressInfo_input_div_3" >
+                테스트3
+            </div>
+            <div class="addressInfo_input_div addressInfo_input_div_4">
+                테스트4
+            </div>
+        </div>
     </div>
  
-                        
-   <div id="detail_img" class="add-content center">
-                                                
-                                                      
-    <div style="margin-top:20px;">
-        ${productDto.productDesc}                                             
-     </div>
-                        
-</div>
-                        
-                        
-                 
-    
        
     </div>
    
