@@ -24,12 +24,9 @@ import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.ProductDto;
 //import com.petpal.dto.ProductWithImageDto;
 import com.petpal.dto.ProductWithImageDto;
-<<<<<<< HEAD
 import com.petpal.dto.ReplyDto;
 import com.petpal.service.ReplyService;
-=======
 import com.petpal.vo.PaginationVO;
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 
 @Controller
 @RequestMapping("/product")

@@ -197,7 +197,7 @@ public class ProductDao {
 		String sql = "select * from product where product_no = ?";
 		Object[] param = {productNo};
 		
-		List<ProductDto> list = jdbcTemplate.query(sql,mapper,param);
+		List<ProductDto> list = jdbcTemplate.query(sql,productMapper,param);
 		
 		return list.isEmpty() ? null : list.get(0);
 	}
