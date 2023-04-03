@@ -33,6 +33,7 @@ public class AdminOrderDao {
 			dto.setProductCount(rs.getInt("product_count"));
 			dto.setProductPrice(rs.getInt("product_price"));
 			dto.setTotal(rs.getLong("total"));
+			dto.setOrderDetailNo(rs.getLong("order_detail_no"));
 			return dto;
 		}
 		
@@ -56,6 +57,14 @@ public class AdminOrderDao {
 	        
 	        return jdbcTemplate.query(sql, orderOrderMapper, param);
 	   }
+	   
+	   // 주문관리 삭제
+	      public boolean delete(int detailNo) {
+	    	  String sql = "delete admin_order where order_detail_no = ?";
+	    	  Object[] param = {detailNo};
+	    	  return jdbcTemplate.update(sql, param) > 0;
+	      }
+	   
 	   
 	   
 

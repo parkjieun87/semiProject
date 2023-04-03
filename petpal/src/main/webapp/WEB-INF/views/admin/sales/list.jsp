@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
     <div class="container-600">
@@ -9,7 +11,11 @@
 			<h3>일별 매출</h3>
 			<c:forEach items="${daily}" var="dailyDto">
 				
-				<div>${dailyDto.day} 매출 : ${dailyDto.total}원</div>
+				<div>
+				${dailyDto.day} 매출 : 
+				<fmt:formatNumber pattern="##,#00">${dailyDto.total}</fmt:formatNumber>
+				원
+				</div>
 					
 			</c:forEach>
 			
@@ -17,14 +23,21 @@
 			<h3>월별 매출</h3>
 			<c:forEach items="${monthly}" var="monthlyDto">
 				
-					<div> ${monthlyDto.month} 매출 : ${monthlyDto.total}원</div>
+					<div> 
+					${monthlyDto.month} 매출 :
+					<fmt:formatNumber pattern="##,#00">${monthlyDto.total}</fmt:formatNumber>
+					원
+					</div>
 			</c:forEach>
 			
 			<!-- 주문별 매출 -->
 			<h3>주문별 매출</h3>
-			<c:forEach items="${monthly}" var="monthlyDto">
-				
-					<div> ${monthlyDto.month} 매출 : ${monthlyDto.total}원</div>
+			<c:forEach items="${sales}" var="salesDto">
+					<div>
+					${salesDto.orderDate} : 
+					<fmt:formatNumber pattern="##,#00">${salesDto.total}</fmt:formatNumber>
+					원
+					</div>
 			</c:forEach>
 			
 		</div>

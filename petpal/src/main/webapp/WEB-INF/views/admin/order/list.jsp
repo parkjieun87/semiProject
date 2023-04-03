@@ -3,7 +3,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
+<script>
+	$(function(){
+		$(".del-btn").click(function(e){
+			e.preventDefault();
+			
+			var choice = confirm("삭제하시겠습니까?");
+
+			if(choice == false) return;
+			
+			let detailNo = $(this).data("detailno");
+			$(".delete_detailNo").val(detailNo);
+			$(".delete_form").submit();
+			
+		});
+	});
+</script>
+
 <div class="container-1200 ms-10">
+		<!-- 삭제 form -->
+       <form action="delete" method="post" class="delete_form">
+          <input type="hidden" name="orderDetailNo" class="delete_detailNo">
+       </form>   
     	<!-- 주문 목록 테이블 -->
         <div class="row">
         	<!-- 정렬  -->
@@ -16,6 +37,7 @@
        		<table class="table table-slit">
                <thead>
                     <tr>
+                        <th>주문번호</th>
                         <th>성명</th>
                         <th>주문 날짜</th>
                         <th>수령인 주소</th>
@@ -28,6 +50,7 @@
                 <tbody>
                 	<c:forEach items="${orderDto}" var="list">
 	                    <tr class="center">
+	                        <td>${list.orderDetailNo}</td>
 	                        <td>${list.receiverName}</td>
 	                        <td>${list.orderDate}</td>
 	                        <td>
@@ -40,8 +63,8 @@
 	                        ${list.productName}*${list.productCount}개
 	                        </td>
 	                        <td>${list.total}</td>
-	                        <td>	
-                       <a class="link" href="#">삭제</a>
+	                        <td class="target">	
+                       			<a class="link del-btn" data-detailno="${list.orderDetailNo}">삭제</a>
 	                        </td>
 	                    </tr>
                 		
@@ -49,7 +72,6 @@
                 </tbody>
             </table>
         </div>
-        
         <!-- 페이징 영역 -->
 		<div class="page_wrap">
 			<div class="page_nation">
@@ -64,6 +86,7 @@
 				</c:if>
 			</div>
 		</div>
-       
     </div>
+    
+    
 <jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

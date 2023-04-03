@@ -2,6 +2,28 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+
+	<script>
+	$(function(){
+		$(".del-btn").click(function(e){
+			e.preventDefault();
+			
+			var choice = confirm("삭제하시겠습니까?");
+
+			if(choice == false) return;
+			
+			let productNo = $(this).data("productno");
+			$(".delete_productNo").val(productNo);
+			$(".delete_form").submit();
+			
+		});
+	});
+	</script>
+	<!-- 삭제 form -->
+       <form action="delete" method="post" class="delete_form">
+          <input type="hidden" name="productNo" class="delete_productNo">
+       </form>
+
     <div class="container-1500 ms-10">
     	<!-- 상품 목록 테이블 -->
         <div class="row">
@@ -38,7 +60,7 @@
 	                        <td>${list.productViews}</td>
 	                        <td>
 	                        	<a class="link" href="edit?productNo=${list.productNo}">수정</a>
-	                        	<a class="link" href="delete?productNo=${list.productNo}">삭제</a>
+	                        	<a class="link del-btn" data-productno="${list.productNo }">삭제</a>
 	                        </td>
 	                    </tr>
                 		
