@@ -11,8 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.CategoryDto;
 import com.petpal.dto.ProductDto;
+import com.petpal.dto.ProductWithImageDto;
 import com.petpal.vo.PaginationVO;
 
 @Repository
@@ -61,6 +63,20 @@ public class ProductDao {
 			dto.setCategoryName(rs.getString("category_name"));
 			dto.setCategoryParent(rs.getString("category_parent"));
 			
+			return dto;
+		}
+		
+	};
+	
+	private RowMapper<CategoryCountDto> countMapper = new RowMapper<CategoryCountDto>() {
+
+		@Override
+		public CategoryCountDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			CategoryCountDto dto = new CategoryCountDto();
+			dto.setCategoryName(rs.getString("category_name"));
+			dto.setCategoryCode(rs.getString("category_code"));
+			dto.setCategoryCount(rs.getInt("category_count"));
 			return dto;
 		}
 		
@@ -135,5 +151,30 @@ public class ProductDao {
 		
 		return jdbcTemplate.query(sql, categoryMapper);
 	}
+	
+	// 카테고리코드 -> 부모 카테고리 코드 추출
+	public String ParentCate(String categoryCode) {
+		String sql = "select category_parent from product_cate where category_code = ?";
+		Object[] param = {categoryCode};
+		return jdbcTemplate.queryForObject(sql, String.class,param);
+	}
+	
+	//카테고리 카운트 
+	public List<CategoryCountDto> categoryCountList(String parentCode){
+		String sql = "select category_name, category_code, count(*) as category_count "
+				+ "from category_with_parent "
+				+ "where category_parent=? "
+				+ "group by category_code, category_name";
+		
+		Object[] param = {parentCode};
+		return jdbcTemplate.query(sql, countMapper, param);
+	}
+	
+	public String parentName(String parentCode) {
+		String sql = "select category_name from product_cate where category_code=?";
+		Object[] param = {parentCode};
+		return jdbcTemplate.queryForObject(sql, String.class, param);
+	}
+	
 
 }

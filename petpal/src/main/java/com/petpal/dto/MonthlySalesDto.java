@@ -1,14 +1,10 @@
 package com.petpal.dto;
 
-
-
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
-public class SalesDto {
+public class MonthlySalesDto {
 	
-	private Date orderDate;
+	private String month;
 	private long total;
 }

@@ -305,15 +305,8 @@ button, input, select, textarea {
     <!--jquery cdn-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-        	let categoryList = JSON.parse('${cateList}');
-        	let catelist1;
-        	let catelist2;
-        	
-        	var a = function(){
-        		
-        	};
-        	
+    	$(function () {	
+        		$("a").removeClass('active');
         });
     </script>
 </head>
@@ -327,50 +320,27 @@ button, input, select, textarea {
                     <div class="ctg-area">
                         <ul>
                             <li>
-                                <h2 style="width:200px;">
-                                    <a href="?category=1001" data="1001">사료</a>
+                                <h2 style="width:200px;" id="tag">
+                                    <a href="?parentCode=${parent}">${parentName}</a>
                                 </h2>
 
                                 <ul>
                                     <li style="line-height:24px;">
-                                        <a href="/shop/goods/goods_list?category=1001" class="cate-link active"
-                                            data="1001">
+                                        <a href="?parentCode=${parent}" class="cate-link">
                                             전체
-                                            <span class="ic-num">(783)</span>
+                                            <span class="ic-num">(${sum})</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul>
+                                	<c:forEach var="cateList" items="${cateList}"> 
                                     <li>
-                                        <a href="/shop/goods/goods_list?category=1001" class="cate-link" data="1001">
-                                            전연령용
-                                            <em class="ic-num">(401)</em>
+                                        <a href="?categoryCode=${cateList.categoryCode}" data="${cateList.categoryCode}" class="cate-link">
+                                            ${cateList.categoryName}
+                                            <em class="ic-num">(${cateList.categoryCount})</em>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="/shop/goods/goods_list?category=1001" class="cate-link" data="1001">
-                                            자묘용
-                                            <em class="ic-num">(401)</em>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/goods/goods_list?category=1001" class="cate-link" data="1001">
-                                            성묘용
-                                            <em class="ic-num">(401)</em>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/goods/goods_list?category=1001" class="cate-link" data="1001">
-                                            노묘용
-                                            <em class="ic-num">(401)</em>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/shop/goods/goods_list?category=1001" class="cate-link" data="1001">
-                                            분유
-                                            <em class="ic-num">(401)</em>
-                                        </a>
-                                    </li>
+                                    </c:forEach>                              
                                 </ul>
                             </li>
                         </ul>

@@ -7,8 +7,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/order.css">
 
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   <!-- 결제 api -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   
+   
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
@@ -22,6 +25,7 @@
 <script type="text/javascript">
 		
 
+   
 		$(function(){
 			//체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
 			$("[name=order_copy]").change(function(){
@@ -41,59 +45,159 @@
 					    $("input[name=receiverBasicAddr]").val(txt);
 					    $("input[name=receiverDetailAddr]").val(txt);
 
-					} else {
-					    $("input[name=receiverName]").val(vailName);
-					    $("input[name=receiverTel]").val(vailTel);
-					    $("input[name=receiverPost]").val(vailPost);
-					    $("input[name=receiverBasicAddr]").val(vailBasicAddr);
-					    $("input[name=receiverDetailAddr]").val(vailDetailAddr);
-					}
-				   
-				});
 
+                } else {
+                    $("input[name=receiverName]").val(vailName);
+                    $("input[name=receiverTel]").val(vailTel);
+                    $("input[name=receiverPost]").val(vailPost);
+                    $("input[name=receiverBasicAddr]").val(vailBasicAddr);
+                    $("input[name=receiverDetailAddr]").val(vailDetailAddr);
+                }
 
-            
-            
-            
-            
-            var IMP = window.IMP; // 생략 가능
-            IMP.init("imp55345065"); 
-            
-            
-            function requestPay() {
-                // IMP.request_pay(param, callback) 결제창 호출
-                IMP.request_pay({ // param
-                    pg: "kakaopay",
-                    pay_method: "card",
-                    merchant_uid : 'merchant_' + new Date().getTime(),
-                    name : '결제테스트',   //필수 파라미터 입니다.
-                    amount : 14000,
-                    buyer_email : 'iamport@siot.do1',
-                    buyer_name : '구매자이름',
-                    buyer_tel : '010-1234-5678',
-                    buyer_addr : '서울특별시 강남구 삼성동',
-                    buyer_postcode : '123-456'
-                }, function (rsp) { // callback
-                    if (rsp.success) { 
-                      alert("결제성공. 예매 완료 페이지로 이동합니다.");   
-                      $("#enrollForm").attr("action", "/ReserveFinish");
-                     $("#enrollForm").submit();   
-                        // 결제 성공 시 로직,
-                    
-                    } else {
-                       var msg = '결제에 실패하였습니다.';
-                           
-                       
+                  });
+                        
+     
+               
+              
+               
+              // 할인 전 최종 금액        
+               var totalPrice = 0;
+              	var count = 0; //상품의 총 갯수를 위해 변수 선언
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#basicPrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                   totalPrice += productPrice;
+                   count += parseInt($("#productCount").val());
                    
-                        // 결제 실패 시 로직,
-                     
-                    }
-
-                });
-            }
+               });
+               count -=1 ; //상품 외 -개
+               
+               var disCountPrice = $("#disCountPrice").val();
+               $("#totalBasicPrice").text(totalPrice.toLocaleString());
+               
+               // 할인 후 최종 금액
+               var discountTotalPrice = 0;
+               $(".p").each(function(){
+                  var productPrice = parseInt($(this).parent().find("#salePrice").val());
+                  var productCount = parseInt($(this).parent().find("#productCount").val());
+                  discountTotalPrice += productPrice;
+               });
+               $("#realTotalPrice").text(discountTotalPrice.toLocaleString());
+               
+               //hidden totalprice에 가격 넣어주기
+               $("#totalPrice").val(discountTotalPrice);
+               
+               // 할인 금액
+               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
             
-});      
+                
+        
+		            
+		    
+             //카카오페이 api    
+               const IMP = window.IMP; // 생략 가능
+         	 IMP.init("imp55345065");  // 예: imp00000000a
+           
+          	var name = $("#productName").val(); //상품이름 변수로 선언
+      
+        
+          //카카오 api 
+			$(".kakaoBtn").click(function(){
+				
+	       // IMP.request_pay(param, callback) 결제창 호출
+	       IMP.request_pay({ // param
+	           pg: "kakaopay",
+	           pay_method: "card",
+	           merchant_uid : 'merchant_' + new Date().getTime(),
+	           name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+	           amount: parseInt(discountTotalPrice), //숫자타입
+	           buyer_email : 'iamport@siot.do1',
+	           buyer_name : '구매자이름',
+	           buyer_tel : '010-1234-5678',
+	           buyer_addr : '서울특별시 강남구 삼성동',
+	           buyer_postcode : '123-456'
+	       }, function (rsp) { // callback
+	           if (rsp.success) { 
+	             alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+	             $("#enrollForm").attr("action", "/ReserveFinish");
+	            $("#enrollForm").submit();   
+	               // 결제 성공 시 로직,
+	           
+	           } else {
+	              var msg = '결제에 실패하였습니다.';
 
+	               // 결제 실패 시 로직,
+
+	           }
+
+	       });
+			}); 
+
+			 
+	       
+			 
+			//토스페이 api 
+			$(".tossBtn").click(function(){
+				
+	       // IMP.request_pay(param, callback) 결제창 호출
+	       IMP.request_pay({ // param
+	           pg: "tosspay",
+	           pay_method: "card",
+	           merchant_uid : 'merchant_' + new Date().getTime(),
+	           name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+	           amount: parseInt(discountTotalPrice),
+	           buyer_email : 'iamport@siot.do1',
+	           buyer_name : '구매자이름',
+	           buyer_tel : '010-1234-5678',
+	           buyer_addr : '서울특별시 강남구 삼성동',
+	           buyer_postcode : '123-456'
+	       }, function (rsp) { // callback
+	           if (rsp.success) { 
+	             alert("결제성공. 예매 완료 페이지로 이동합니다.");   
+	             $("#enrollForm").attr("action", "/ReserveFinish");
+	            $("#enrollForm").submit();   
+	               // 결제 성공 시 로직,
+	           
+	           } else {
+	              var msg = '결제에 실패하였습니다.';
+
+	               // 결제 실패 시 로직,
+
+	           }
+
+	       });
+			}); 
+			
+			
+            
+        
+			
+			
+	    
+ 
+      });      
+   // 체크박스 동의 시 결제하기 버튼을 누를 수 있게 구현
+      function checkAgree(){
+       var checkbox = document.querySelector("#puchase-ok");
+       var button = document.querySelector("#submitSettleBtn");
+       var count = 2;
+       var checkRadio = document.querySelector("#payment-kakao");
+       var checkRadio2 = document.querySelector("#payment-toss");
+        
+var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
+        
+        
+      button.disabled = !checkbox.checked;
+      }
+   
+   
+   //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
+   $( document ).ready( function() {
+        $( '#submitSettleBtn' ).click( function() {
+          $( '#jb-form' ).submit();
+        } );
+   } );
+      
          
 
 </script>
@@ -105,7 +209,7 @@
 <div class="container-1000" style="font-family: '카페24 써라운드 에어';">
     <div id="pay-step" class="order">
             <h1 id="logo">
-                <a href="#">펫팔</a>
+                <a href="/">펫팔</a>
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500; margin-left:10px;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
@@ -124,8 +228,10 @@
                     </li>
                 </ul>
             </div>
-                
+             
+           
                 <div id="contents">
+         <form id="jb-form" action="order" method="post">
                     <div class="sec">
                         <h2>주문내역</h2>
                         <div class="bundle__retail" data-componet="bundleInfo-retail">
@@ -136,21 +242,33 @@
                                    </span> 
                                 </div>
                             <div class="bunle-info__item-list">
-                            <c:forEach items="${cartList}" var="list">
+                            <c:forEach items="${cartList}" var="list" varStatus="status">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
                                         <img src="./img/9012_web_original_1673006075211726.jpg"
                                          height="20px">
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
-                                        <p>
+                                        <p class ="p">
                                             <span class="bundle-info__vendor-item__offer-condition">${list.productName} ${list.initSaleTotal()}</span>
                                             <br>
-                                            <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.productPrice}</span>
+                                            <span>수량 : ${list.productCount}개<br>가격 : ${list.productCount*list.salePrice}</span>
+                                            <input type="hidden" value="${list.productCount*list.productPrice}" id="basicPrice">
                                             
-                                            <c:set var="salePrice" value="${salePrice + list.salePrice}"/> 
-                           					<c:set var="totalPrice" value="${totalPrice + list.productCount*list.productPrice}"/> 
-                           					
+                                            <!-- public List<OrderDetailDto> orderDetailDto 를 화면에서 불러올수있는 코드 // varStatus="status" //이친구들을 날릴꺼면 form태그안에 생성-->
+                                            <input type="hidden" name="orderDetailDto[${status.index}].productPrice" value="${list.productCount*list.salePrice}" id="salePrice">
+                                            <input type="hidden" name="orderDetailDto[${status.index}].productCount"  value="${list.productCount}" id="productCount">
+                                            <input type="hidden" name="orderDetailDto[${status.index}].productNo"  value="${list.productNo}" id="productNo">
+                                            
+                                            <input type="hidden" value="${totalPrice}" id="disCountPrice">
+                                            <input type="hidden" value="${list.productName}" id="productName">
+                                          	
+                                           
+                                            <c:set var="productName" value="${list.productName}"/>
+                                             <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
+                                            <c:set var="basicPrice" value="${productPrice+list.totalBasicPrice}"/>
+                                            <c:set var="salePrice" value="${(productPrice+list.totalBasicPrice)-(totalPrice+list.totalPrice)}"/> 
+                                          
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
@@ -164,8 +282,10 @@
                         <div class="bundle-info__bdd-group-title"></div>
                         <div></div>
                         <div></div>
+
+ 
                     </div>
-              
+             
                     <!-- 구매자 정보 div -->
                     <div class="sec">
                         <h2 class="tit type02">
@@ -180,7 +300,7 @@
                                 <strong>이메일</strong>
                                 <span class="val" id="order-email">${findDto.memberEmail}</span>
                             </div>
-
+		
                             <div class="inp-wrap type03 btn-add wide">
                                 <strong>휴대폰</strong>
                                 <span class="val">
@@ -205,6 +325,7 @@
               
                     <form action="order" method="post">
                     
+              
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>받는사람 정보</b>
@@ -216,7 +337,7 @@
                             
                             <div class="inp-wrap type03" id="row-btnC3">
                                 <label for="receive-name">수령인</label>
-                                <input type="text" name="receiverName" id="receive-name" style="margin-bottom: 10px;">
+                                <input type="text" name="receiverName" id="receive-name" style="margin-bottom: 10px;" required>
                                 <button id="btnC3" type="button" class="btn-clear3" style="left: 480px;"></button>
                             </div>
                             <p id="receive-name-txt" class="warning-txt" name="txt-p1" style="margin-top: -2px;">수령인을 입력해주세요.</p>
@@ -224,10 +345,11 @@
 
                             <div class="inp-wrap type03" id="row-btnC4">
                                 <label for="receive-tel">휴대폰</label>
-                                <input type="tel" name="receiverTel" id="receive-tel" value="" style="margin-bottom: 10px;">
+                                <input type="tel" name="receiverTel" id="receive-tel" value="" style="margin-bottom: 10px;" size="11" maxlength="11" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                                 <button id="btnC4" type="button" class="btn-clear4" style="left: 480px;"></button>
                             </div>
                             <p id="receive-tel-txt" class="warning-txt" name="txt-p2">휴대폰 번호를 입력해주세요.</p>
+                            <p id="receive-tel-txt" class="warning-txt" name="txt-p3">잘못된 입력형식입니다. 다시 입력해주세요</p>
      
                             <div class="inp-wrap type03 btn-add" id="row-btn6">
                                 <label for="receive-address-num">우편번호</label>
@@ -242,11 +364,11 @@
                     
                             <div class="inp-wrap type03" id="row-btnC5">
                                 <label for="receive-address-detail">상세주소</label>
-                                <input type="text" name="receiverDetailAddr" id="receive-address-detail" value="">
+                                <input type="text" name="receiverDetailAddr" id="receive-address-detail" value="" required>
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
-							<button type="submit">등록</button>
+                    
                         </div>
                         
                         
@@ -256,6 +378,8 @@
 
 
 
+                   
+               
                     <div class="sec">
                         <h2 class="tit type02">
                             <b>결제금액</b>
@@ -264,11 +388,11 @@
                         <div class="sec type03">
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
-                                <span class="val" name="totalPrice1">${totalPrice}원</span>
+                                <span class="val" name="totalPrice1" id="totalBasicPrice" ></span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
-                                <span class="val" id="discountval" style="color:red;">${totalPrice-salePrice}원</span>
+                                <span class="val" id="discountval" style="color:red;"></span>
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>배송비</strong>
@@ -278,9 +402,11 @@
                                 <strong>
                                     <b>총 결제금액</b>
                                 </strong>
-                                <strong class="val malgun"> ${salePrice}원</strong>
+                                <strong class="val malgun" id="realTotalPrice"></strong>
+                                <input type="hidden" id="totalPrice" name="totalPrice"  value="0" >
                             </div>
                         </div>
+                        </form>
    
                         <div class="sec">
                             <h2 class="tit type02">
@@ -289,22 +415,17 @@
                             <div class="sec type03">
                                 <div class="inp-wrap type03" style="width: 100%;">
                                     <label>결제</label>
+
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-naver" name="order-payment" value="NAVER" style="display:none";>
-                                        <label for="payment-naver">네이버페이</label>
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" >
+                                        <label for="payment-kakao" onclick="requestPay();" class="kakaoBtn">카카오페이</label>
+                                        <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
+
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" onclick="requestPay();" >
-                                        <label for="payment-kakao">카카오페이</label>
-                                        <button onclick="requestPay();" class="btn"><span class="span">카카오</span></button>
-                                    </div>
-                                    <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-payco" name="order-payment" value="PAYCO" style="display:none";>
-                                        <label for="payment-payco">페이코</label>
-                                    </div>
-                                    <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none";>
-                                        <label for="payment-toss">토스</label>
+                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none;">
+                                        <label for="payment-toss" onclick="requestPay2()" class="tossBtn">토스페이</label>
+                                        <img src="/static/image/tosspay.png" style="height: 17px; width: 38px; border-radius: 10px 10px 10px 10px;">
                                     </div>
                                 </div>
                             </div>
@@ -340,7 +461,7 @@
                                 </ol>
                             </div>
                             <div class="chk-wrap">
-                                <input type="checkbox" id="puchase-ok" style="display:none";>
+                                <input type="checkbox" id="puchase-ok" style="display:none;" onchange="checkAgree();">
                                 <label for="puchase-ok">
                                     본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.
                                 </label>
@@ -349,12 +470,14 @@
                         <span></span>
                     </div>
                     <div class="btn-area">
-                        <button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;">
+                   
+                        <button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;" type="submit">
                             <b>결제하기</b>
                         </button>
+                 
                     </div>
                 </div>
-               
+             
       
     </div>
 </div>

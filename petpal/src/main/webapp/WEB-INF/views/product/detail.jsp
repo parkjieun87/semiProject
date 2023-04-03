@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  
  <style>
        
@@ -205,7 +206,7 @@
         }
         /* 장바구니 버튼 */
         .sell-wrap .btn-area {
-        /* position: absolute; */
+        
         bottom: 0;
         right: 0;
         padding-top: 10px;
@@ -239,7 +240,7 @@
         .sell-wrap .cart-layer .cart-wrap {
             /* display: none; */
             width: 240px;
-            height: 0;
+        
             border: 1px solid #c8c8c8;
             box-shadow: 0 2px 2px rgba(0, 0, 0, 0.13);
             background: #fff;
@@ -247,8 +248,7 @@
         }
         .sell-wrap .cart-layer {
             position: absolute;
-            bottom: 60px;
-            left: 0;
+            bottom: 150px;
             margin-top: 4px;
             width: 250px;
             z-index: 100;
@@ -286,6 +286,126 @@ font-weight:700;
    display:flex;
    font-size : 24px;
 }
+.cart-txt{
+	padding: 20px 0 0 0;
+    line-height: 40px;
+    color: #373737;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: center;
+}
+.btn-close1{
+	width: 48%;
+    font-size: 13px;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 30px;
+    line-height: 28px;
+    float : right;
+}
+
+.btn-type_cart{
+	width: 48%;
+    font-size: 13px;
+        display: block;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 30px;
+    line-height: 28px;
+    font-size: 14px;
+}
+.btn-area{
+	position: static;
+    margin: 0 0 0 0;
+    padding-top: 0;
+    width: auto;
+    border: 0 none;
+    text-align: center;
+    clear: both;
+    display:flex;
+    justify-content: space-between;
+    margin-left : 10px;
+}
+.cart-body{
+	padding: 0px 15px 15px 15px;
+}
+.cart-wrap{
+	margin-bottom : 30px;
+}
+
+.cartView_btn{
+	width : 50%;
+	height: 30px;
+	margin-right : 8px;
+	background-color: #9091E6;
+	border : 1px solid #9091E6;
+	opacity : 0.7;
+	color: white;
+}
+.exit_btn{
+	width : 50%;
+	height: 30px;
+	margin-right : 8px;
+}
+
+.cart-layer{
+	display:none;
+}
+
+
+/* 상품 정보, 상품 후기, 상품 문의, 구매 확인사항*/
+
+    /* 사용자 주소 정보 */
+    .addressInfo_div{
+        margin-top: 30px;  
+        
+    }
+    .addressInfo_input_div_wrap{
+        border-bottom: 1px solid #f3f3f3;
+        height: 225px;
+        
+        
+    }
+    .address_btn {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 25%;
+    }
+
+    .address_btn:hover{
+        background-color: #777;
+    }
+    .addressInfo_button_div::after{
+        content:'';
+        display:block;
+        clear:both;
+    }
+     .addressInfo_input_div{
+                padding:12px;
+                text-align: left;
+                display: none;
+                line-height: 40px;                
+        }
+           
+   footer {
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  height:  150px;
+}
+
+
+
+
 
 
 /* 상품 정보, 상품 후기, 상품 문의, 구매 확인사항*/
@@ -347,64 +467,57 @@ font-weight:700;
         $(function(){
            
            
-           var sell_price = $("[name=sell_price]").val();
            
            var inputCount = 1;
-           var originalPrice = parseInt($(".disPrice").text());
+           var memberId = "${memberId}";
            
-           
-           
-           
+        
             //마이너스 버튼
             $(".btn-minus").click(function(){
                
-                 if(inputCount==1){
-                    $("[name=productStock]").val(inputCount);
-                  }else{
-                     
-                $("[name=productStock]").val(inputCount-1);
-                inputCount = parseInt($("#quantity").val());
-             
-                  }
+            	 // 수량 버튼 조작
+                let quantity = $(this).parent("div").find("input").val();
+                let quantityInput = $(this).parent("div").find("#quantity");
+       
+                if(quantity > 1){
+                   
+                   $(quantityInput).val(--quantity);
+                   
+                   
+                }
             
                 
-            var sum = $("#cart_total_price_pc").val();
-         
-
-               sum = parseInt(inputCount) * sell_price;
-            
-               
-               $(".disPrice").text(sum);
-               
-                
+                 var sum = 0;
+                 
+                 sum += $("#disprice").val() * quantity;
               
+                 
+                 $(".disPrice").text(sum.toLocaleString());
+         
             })
             //플러스 버튼
+           //플러스 버튼
             $(".btn-plus").click(function(){
-      
-     
-                var sum = $("#cart_total_price_pc").val();
-               
               
-                 inputCount = parseInt($("#quantity").val());
-                 $("#quantity").val(inputCount);
+               // 수량 버튼 조작
+               let quantity = $(this).parent("div").find("input").val();
+               let quantityInput = $(this).parent("div").find("#quantity");
+      
+               if(quantity < '${productDto.productStock}'){
+                  
+                  $(quantityInput).val(++quantity);
+                  
+                  
+               }
                
-        
-               sum = inputCount * sell_price;
-               $(".disPrice").text(sum);
-                
-               
-                
-               
-               
-                if(inputCount == ${productDto.productStock}){
-                   $("[name=productStock]").val(inputCount);
-                }else if(inputCount < ${productDto.productStock}){
-          
-                    $("[name=productStock]").val(inputCount+1);
-                }
-            });
+               var sum = 0;
+ 
+               sum += $("#disprice").val() * quantity;
             
+               
+               $(".disPrice").text(sum.toLocaleString());
+            });
+           
             // 서버로 전송할 데이터
             const form = {
                   memberId : "${memberId}",
@@ -413,12 +526,15 @@ font-weight:700;
             }
             
             $("#insert_cart").click(function(){
-               form.productCount = inputCount;
+            	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
+               var productCnt = $(this).parent().parent().parent().parent().find("input").val();
+               form.productCount = productCnt;
                $.ajax({
                   url : "/cart/add",
                   type : "POST",
                   data : form,
                   success : function(result){
+                	 
                      cartAlert(result);
                   }
                });
@@ -428,16 +544,52 @@ font-weight:700;
                if(result == '0'){
                 alert("장바구니에 추가를 하지 못하였습니다.");
              }else if(result == '1'){
-                alert("장바구니에 추가되었습니다.");
+               // alert("장바구니에 추가되었습니다.");
              }else if(result == '2'){
                 alert("장바구니에 이미 추가되어져 있습니다.");
-             }else if(result == '5'){
+             }/*else if(result == '5'){
                 alert("로그인이 필요합니다.");
-             }
+             }*/
             }
-           
-                   
+
+            
+         // 장바구니 등록  
+         $("#insert_cart").click(function(){
+        	 $(".cart-layer").css("display","block");
+         });   
+            
+         // 장바구니 등록 창 닫기 버튼   
+       	$(".exit_btn").click(function(){
+       		$(".cart-layer").css("display","none"); 
+       	});
+       	
+         // 장바구니로 가기 버튼
+       	$(".cartView_btn").click(function(){
+       		location.href = "/cart";
+       	});
+         
+         
+        /* 주소입력란 버튼 동작(숨김, 등장) */
+        function showAdress(className){
+            /* 컨텐츠 동작 */
+                /* 모두 숨기기 */
+                $(".addressInfo_input_div").css('display', 'none');
+                /* 컨텐츠 보이기 */
+                $(".addressInfo_input_div_" + className).css('display', 'block');      
+            
+            /* 버튼 색상 변경 */
+                /* 모든 색상 동일 */
+                    $(".address_btn").css('backgroundColor', '#a29bfe');
+                /* 지정 색상 변경 */
+                    $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');   
+        }
+
         });
+        
+        
+        
+        
+        
     </script>
     
      <script type="text/javascript">
@@ -506,14 +658,18 @@ font-weight:700;
                                 <dt>판매가</dt>
                                 <dd>
                                     <del class="num" style="color: gray;">
-                                        ${productDto.productPrice}원
+                                    <fmt:formatNumber value="${productDto.productPrice}" pattern="#,###"/>원  
                                     </del>
                                 </dd>
                             </dl>
                             <dl class="price-sell">
                                 <dt>할인가</dt>
                                 <dd>
-                                    <strong class="num" style="color: red;">${disPrice}원</strong>
+                                 <strong class="num" style="color: red;" >
+                                     <fmt:formatNumber value="${disPrice}" pattern="#,###"/>원
+                                  </strong>
+                                     
+                                      
                                 </dd>
                             </dl>
                         </div>
@@ -554,9 +710,11 @@ font-weight:700;
                                     <div class="jss817">
                                         <strong id="cart_total_price_pc">
                                        
-                                           <input type="hidden" name="sell_price" value="${disPrice}">
+                                           <input type="hidden" name="sell_price" value="${disPrice}" id="disprice">
                                         
-                                             <span class="disPrice">${disPrice}</span>
+                                             <span class="disPrice">
+                                                 <fmt:formatNumber value="${disPrice}" pattern="#,###"/>
+                                             </span>
                                            
                                         </strong>
                                         원
@@ -567,19 +725,22 @@ font-weight:700;
                         </div>
                         <div class="basic-info">
                             <div class="btn-area" style="border-top: 1px solid #fff;">
+                            
                                 <div class="cart-layer">
-                                    <!-- <div class="cart-wrap" style="height: 0px;">
+                                     <div class="cart-wrap">
                                         <p class="cart-txt tit">상품이 장바구니에 담겼습니다.</p>
                                         <div class="cart-body">
                                             <div class="btn-area">
-                                                <a href="#" class="btn-type" style="width: 48%; font-size: 13px;">장바구니 보기</a>
-                                                <a href="#" class="btn-close" onclick="javascript:cart_layerclose();">닫기</a>
+                                                <button class="cartView_btn">장바구니 보기</button>
+                                                <button class="exit_btn">닫기</button>
                                             </div>
+                                            <!-- 
                                             <a href="#" class="btn-close" onclick="javascript:cart_layerclose">
                                                 <b>닫기</b>
                                             </a>
+                                             -->
                                         </div>
-                                    </div> -->
+                                    </div> 
                                 </div>
                                 <button type="button" class="btn-type type03" id="insert_cart" style="border-color: #9091E6; background-color: #9091E6; border-bottom: #9091E6;">
                                     <b>장바구니 담기</b>
@@ -595,7 +756,8 @@ font-weight:700;
             
                                      
             
-    <div class="addressInfo_div">
+                                              
+      <div class="addressInfo_div">
         <div class="addressInfo_button_div">
             <button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #a29bfe;">상품 정보</button>
             <button class="address_btn address_btn_2" onclick="showAdress('2')" style="background-color: #a29bfe;">상품 후기</button>
@@ -605,8 +767,8 @@ font-weight:700;
         </div>
         <div class="addressInfo_input_div_wrap">
             <div class="addressInfo_input_div addressInfo_input_div_1" style="display: block">
-            			       
-            			        ${productDto.productDesc}                                             
+                            
+                             ${productDto.productDesc}                                             
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_2">
                 테스트2
@@ -621,9 +783,9 @@ font-weight:700;
     </div>
  
        
-    </div>
+    
    
-
+</div>
     
 
 <%@include file="../template/footer.jsp" %>

@@ -173,7 +173,7 @@ td{
 .content_total_section{
    background-color: rgb(227, 237, 247);
 }
-<<<<<<< HEAD
+
 	 
 	 .total_wrap{
 			width: 80%;
@@ -235,9 +235,9 @@ td{
 	}
 	
 		
-	</style>
 	
-=======
+	
+
     
     .total_wrap{
          width: 80%;
@@ -309,10 +309,12 @@ td{
            
            /* 장바구니 종합 정보 삽입 */
            setTotalInfo();
-           
-         
-           
-    
+          if($(".individual_totalPrice_input").val() == undefined){
+        	  $(".totalPrice_span").text(0);   
+        	  $(".totalCount_span").text(0);
+              $(".totalKind_span").text(0);
+          }
+ 		
            
            /* 수량 수정 버튼 */
            $(".quantity_modify_btn").click(function(){
@@ -346,9 +348,10 @@ td{
            $(".cart_info_td").each(function(index,element){
               
            //체크여부
-                 
+              
               // 총 가격
               totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+           	
               // 총 개수
               totalCount += parseInt($(element).find(".individual_productCount_input").val());
               
@@ -356,8 +359,11 @@ td{
               totalKind +=1;
               
               // 값 삽입
-              $(".totalPrice_span").text(totalPrice.toLocaleString());
+             
+        
+              $(".totalPrice_span").text(totalPrice.toLocaleString());              
               $(".totalCount_span").text(totalCount);
+            
               $(".totalKind_span").text(totalKind);
            
               
@@ -449,13 +455,11 @@ td{
                });
               	$(".totalPrice_span").text(totalPrice.toLocaleString());
             	 
-               
-           	
-          
-           		
-           		
-           
-   
+			});
+            
+            // 주문하기 버튼
+            $(".order_btn").click(function(){
+            	location.href="/shop/order";
             });
             
         
@@ -495,11 +499,21 @@ td{
               
            
               <tbody>
+              <c:if test="${empty cartInfo}">
+              		<tr>
+              			<td colspan="6" style="text-align: center;">
+              				<h2>장바구니에 담긴 상품이 없습니다</h2>
+              				<br>
+              				<a class="form-btn" style="border: 2px solid #b1b2ff;">계속 쇼핑하기</a>
+              			</td>
+              		</tr>
+              		
+              		
+              </c:if>
               <c:forEach items="${cartInfo}" var="list">
               <tr>
                   <td scope="row" class="cart_info_td">
-                  <!-- 
-                  <input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked"> -->
+                
                   <input type="hidden" class="individual_productPrice_input" value="${list.salePrice}">
                   <input type="hidden" class="individual_productCount_input" value="${list.productCount}">
                   <input type="hidden" class="individual_totalPrice_input" value="${list.salePrice * list.productCount}">
@@ -523,8 +537,7 @@ td{
                                             <div class="quantity-wrap" style="top:0; margin: 0 auto;">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
                                                 <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin">
-                                                <button class="btn-plus" style="background-color: #fff;">"더하기"</button
-                                                >
+                                                <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                                 <input type="hidden" id="cartNo" value="${list.cartNo}">
                                                 <input type="hidden" id="salePrice" value="${list.salePrice}">
                                                 <input type="hidden" id="productCount" value="${list.productCount}">
@@ -569,6 +582,7 @@ td{
          <div class="total_section">
             <div class="totalPrice">
                <span>
+       
                <span >상품(<span class="totalKind_span"></span>)개 </span> 
                <span class="totalPrice_span"></span> 원
                </span>
@@ -593,77 +607,7 @@ td{
            
          </div>  
            
-           
-           <!-- 가격 종합 
-         <div class="content_total_section">
-            <div class="total_wrap">
-               <table>
-                  <tr>
-                     <td>
-                        <table>
-                           <tr>
-                              <td>총 상품 가격</td>
-                              <td>
-                                 <span class="totalPrice_span">70000</span> 원
-                              </td>
-                           </tr>
-                           <tr>
-                              <td>배송비</td>
-                              <td>
-                                 <span class="delivery_price">무료</span>
-                              </td>
-                           </tr>                           
-                           <tr>
-                              <td>총 주문 상품 개수</td>
-                              <td><span class="totalKind_span"></span>개</td>
-                           </tr>
-                        </table>
-                     </td>
-                     <td>
-                        <table>
-                           <tr>
-                              <td></td>
-                              <td></td>
-                           </tr>
-                        </table>                     
-                     </td>
-                  </tr>
-               </table>
-           <div class="boundary_div">구분선</div>
-               <table>
-                  <tr>
-                     <td>
-                        <table>
-                           <tbody>
-                              <tr>
-                                 <td>
-                                    <strong>총 결제 예상 금액</strong>
-                                 </td>
-                                 <td>
-                                    <span class="totalPrice_span"></span> 원
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </td>
-                     <td>
-                        <table>
-                           <tbody>
-                              
-                           </tbody>
-                        </table>
-                     </td>
-                  </tr>
-               </table>
-            </div>
-  
-         
-      
-         총 종류 : <span class="totalKind_span"></span>개
-         
-  
-        </div>
-        -->
+     
    </div>
 </body>
 </html>
