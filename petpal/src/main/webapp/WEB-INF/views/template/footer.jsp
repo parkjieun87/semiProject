@@ -3,6 +3,13 @@
  <html lang="ko">
  
  <style>
+ 	footer {
+      position: relative;
+      top: 50px;
+
+      width: 100%;
+    }
+ 	
 	.footMent
    {
    	font-size : 15px;

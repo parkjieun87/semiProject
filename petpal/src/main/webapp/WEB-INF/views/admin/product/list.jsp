@@ -6,6 +6,7 @@
 	<script>
 	$(function(){
 		$(".del-btn").click(function(e){
+			
 			e.preventDefault();
 			
 			var choice = confirm("삭제하시겠습니까?");

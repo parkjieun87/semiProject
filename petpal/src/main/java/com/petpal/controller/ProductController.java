@@ -59,13 +59,22 @@ public class ProductController {
 	public String list(Model model, @RequestParam(required=false, defaultValue="") String categoryCode,
 			@RequestParam(required=false, defaultValue="") String parentCode, @ModelAttribute("vo") PaginationVO vo) throws JsonProcessingException {
 		String parent;
+		int totalProductCnt;
 		List<ProductWithImageDto> list = new ArrayList<>();
 		if(parentCode.equals("")) {
 			parent = productDao.ParentCate(categoryCode);
 			list = productWithImageDao.selectList(categoryCode);
+			totalProductCnt = list.size();
+		    vo.setCount(totalProductCnt);
+			list = productWithImageDao.selectList(categoryCode, vo);
+			model.addAttribute("mode", true);
 		}else {
 			parent = parentCode;
 			list = productWithImageDao.selectListFromParent(parent);
+			totalProductCnt = list.size();
+		    vo.setCount(totalProductCnt);
+			list = productWithImageDao.selectListFromParent(parent, vo);
+			model.addAttribute("mode", false);
 		}
 		String parentName = productDao.parentName(parent);
 		int sum=0;
@@ -80,12 +89,9 @@ public class ProductController {
 			int disPrice = list.get(i).getProductPrice()*(100-list.get(i).getProductDiscount())/100;
 			DisPrice.add(disPrice);
 		}
-		
-		//페이징
-		int totalProductCnt = list.size();
-	    vo.setCount(totalProductCnt);
-	    model.addAttribute("productList", productDao.selectList(vo));
-		
+	
+	
+	    
 		model.addAttribute("parentName", parentName);
 		model.addAttribute("sum", sum);
 		model.addAttribute("parent", parent);
