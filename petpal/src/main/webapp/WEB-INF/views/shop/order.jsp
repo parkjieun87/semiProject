@@ -186,7 +186,6 @@
                     $("[name=phonecheck]").show().css("display");
                     $("[name=phonecheck2]").hide().css("display");
                     alert("인증번호입력해주세요")
-
                 }else if(number.length>4){
                     $("[name=phonecheck]").hide().css("display");
                     $("[name=phonecheck2]").show().css("display");
@@ -194,7 +193,10 @@
                     $("[name=phonecheck]").hide().css("display");
                     $("[name=phonecheck2]").hide().css("display");
                     var unitCheck1 = true;
+                }else if(number==null){
+                	var unitCheck1 =false;
                 }
+                
                 
             })
           //2. 수령인 한글or영어 정규표현식 검사,null
@@ -210,6 +212,8 @@
                     $("[name=txt-p1]").show().css("display");
                 }else if(!isOk){
                 	$("[name=txt-p1-2]").show().css("display");
+                }else if(check==null){
+                	var unitCheck2 = false;
                 }
                 else{
                     $("[name=txt-p1]").hide().css("display");
@@ -232,6 +236,8 @@
                     $("[name=txt-p5]").show().css("display");
                 }else if(!isOk){
                 	$("[name=txt-p5-2]").show().css("display");
+                }else if(check==null){
+                	var unitCheck3 = false;
                 }
                 else{
                     $("[name=txt-p5]").hide().css("display");
@@ -251,30 +257,27 @@
             		kakao1();
             	}else if(toss){
             		toss1();
-            	}else if(toss||kakao){
+            	}else if(toss&&kakao){
             		var unitCheck4 = true;
             	}
             	else{
             		alert("결제 선택해주세요");
             		var unitCheck4 = false;
             	}
-            });
-            
-            //5.체크박스 동의버튼을 하지않으면 alert
-             $("#submitSettleBtn").click(function(){
-             	var checkBox = $("#puchase-ok").is(":checked");
+            	
+            	var checkBox = $("#puchase-ok").is(":checked");
              	var unitCheck5 = false;
              	if(checkBox){
-             		var unitCheck5 = ture;
+             		var unitCheck5 = true;
              	}else{
              		alert("개인정보 제3자 제공 동의 체크 해주세요")
              		var unitCheck5 = false;
              	}
-          
-             });
-
+            });
             
-	
+            
+
+          
 			
 			
   		   //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
@@ -283,10 +286,11 @@
 	     //   $( '#submitSettleBtn' ).click( function() {
 	     //     $( '#jb-form' ).submit();
 	    //    });
-      $("#submitSettleBtn").click(function(e){
+      $("#submitSettleBtn").click(function(e){ //우선 버튼을 못 누르게 막아둠
           e.preventDefault();
-          var isAll = unitCheck1 == unitCheck2 == unitCheck3 == unitCheck4 == unitCheck5 ==true;
-          var isNot = isAll == false;
+          var isAll = unitCheck1 && unitCheck2 && unitCheck3 && unitCheck4 && unitCheck5 == true;
+          var isNot = unitCheck1 || unitCheck2 || unitCheck3 || unitCheck4 || unitCheck5 == false;
+
 			if(isAll){
 				$( '#jb-form' ).submit();
 			}else if(isNot){
@@ -521,7 +525,7 @@
                                     <label>결제</label>
 
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" >
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;"  checked="checked">
                                         <label for="payment-kakao"  class="kakaoBtn">카카오페이</label>
                                         <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
