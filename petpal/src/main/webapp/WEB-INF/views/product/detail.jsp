@@ -7,6 +7,8 @@
        
         body{
             font-family: '카페24 써라운드 에어';
+            /* body의 마진을 설정하여 footer와 겹치지 않게 함 */
+			  margin-bottom: 50px; /* footer 높이와 같게 설정 */
         }
 
         /* 상세페이지 사진 css */
@@ -396,65 +398,16 @@ font-weight:700;
                 line-height: 40px;                
         }
            
-   footer {
+  footer {
   position: fixed;
-  bottom: 50px;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  height:  150px;
+  height: 200px; /* footer 높이 */
+  background-color: #f5f5f5;
+  text-align: center;
 }
 
-
-
-
-
-
-/* 상품 정보, 상품 후기, 상품 문의, 구매 확인사항*/
-
-    /* 사용자 주소 정보 */
-    .addressInfo_div{
-        margin-top: 30px;  
-        
-    }
-    .addressInfo_input_div_wrap{
-        border-bottom: 1px solid #f3f3f3;
-        height: 225px;
-        
-        
-    }
-    .address_btn {
-        background-color: #555;
-        color: white;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        font-size: 17px;
-        width: 25%;
-    }
-
-    .address_btn:hover{
-        background-color: #777;
-    }
-    .addressInfo_button_div::after{
-        content:'';
-        display:block;
-        clear:both;
-    }
-     .addressInfo_input_div{
-                padding:12px;
-                text-align: left;
-                display: none;
-                line-height: 40px;                
-        }
-           
-	footer {
-  position: fixed;
-  bottom: 50px;
-  width: 100%;
-  height:  150px;
-}
-   
 
 
     </style>   
@@ -646,7 +599,7 @@ font-weight:700;
  
 </head>
 <%@ include file="../template/header.jsp" %>
-
+<body>
         <div class="row center">
             <h1></h1>
         </div>
@@ -824,7 +777,12 @@ font-weight:700;
     
    
 </div>
+<<<<<<< HEAD
     
 <%-- 
 <%@include file="../template/footer.jsp" %>
  --%>
+=======
+    </body>
+<%@include file="../template/footer.jsp" %>
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git

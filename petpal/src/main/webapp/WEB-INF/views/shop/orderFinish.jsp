@@ -42,7 +42,7 @@
                 <div id="contents">
                     <div class="sec">
                         <h2>주문이 정상적으로 완료되었습니다!</h2>
-${price}
+
                     <!-- 결제완료div -->
                     <div class="sec">
                         <h2 class="tit type02">

@@ -3,7 +3,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
+<script>
+	$(function(){
+		$(".del-btn").click(function(e){
+			e.preventDefault();
+			
+			var choice = confirm("삭제하시겠습니까?");
+
+			if(choice == false) return;
+			
+			var pageNo = $(this).data("page");
+			let memberId = $(this).data("memberid");
+			$(".delete_memberId").val(memberId);
+			$(".delete_page").val(pageNo);
+			$(".delete_form").submit();
+			
+					
+			
+			
+			
+		});
+	});
+</script>
+
 <div class="container-1200 ms-10">
+		<!-- 삭제 form -->
+       <form action="delete" method="post" class="delete_form">
+          <input type="hidden" name="memberId" class="delete_memberId">
+          <input type="hidden" name="page" class="delete_page">
+       </form>  
+       
     	<!-- 상품 목록 테이블 -->
         <div class="row" style="margin:auto;">
             <table class="table table-slit">
@@ -29,7 +58,7 @@
 	                        <td>
 	                        	<a class="link" href="detail?memberId=${list.memberId}">상세</a>
 	                        	<a class="link" href="edit?memberId=${list.memberId}">수정</a>
-	                        	<a class="link" href="delete?memberId=${list.memberId}&page=${vo.page}">탈퇴</a>
+	                        	<a class="link del-btn" data-memberid="${list.memberId}" data-page="${vo.page }">탈퇴</a>
 	                        </td>
 	                    </tr>
                 		

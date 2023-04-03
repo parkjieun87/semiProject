@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.CategoryCountDto;
@@ -23,8 +24,12 @@ import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.ProductDto;
 //import com.petpal.dto.ProductWithImageDto;
 import com.petpal.dto.ProductWithImageDto;
+<<<<<<< HEAD
 import com.petpal.dto.ReplyDto;
 import com.petpal.service.ReplyService;
+=======
+import com.petpal.vo.PaginationVO;
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 
 @Controller
 @RequestMapping("/product")
@@ -55,7 +60,7 @@ public class ProductController {
 	
 	@GetMapping("/list")
 	public String list(Model model, @RequestParam(required=false, defaultValue="") String categoryCode,
-			@RequestParam(required=false, defaultValue="") String parentCode) throws JsonProcessingException {
+			@RequestParam(required=false, defaultValue="") String parentCode, @ModelAttribute("vo") PaginationVO vo) throws JsonProcessingException {
 		String parent;
 		List<ProductWithImageDto> list = new ArrayList<>();
 		if(parentCode.equals("")) {
@@ -68,6 +73,8 @@ public class ProductController {
 		String parentName = productDao.parentName(parent);
 		int sum=0;
 		List<CategoryCountDto> cateList = productDao.categoryCountList(parent);
+		ObjectMapper objm = new ObjectMapper();
+		String categoryList = objm.writeValueAsString(cateList);
 		for(int i=0;i<cateList.size();i++) {
 			sum+=cateList.get(i).getCategoryCount();
 		}
@@ -76,11 +83,18 @@ public class ProductController {
 			int disPrice = list.get(i).getProductPrice()*(100-list.get(i).getProductDiscount())/100;
 			DisPrice.add(disPrice);
 		}
+		
+		//페이징
+		int totalProductCnt = list.size();
+	    vo.setCount(totalProductCnt);
+	    model.addAttribute("productList", productDao.selectList(vo));
+		
 		model.addAttribute("parentName", parentName);
 		model.addAttribute("sum", sum);
 		model.addAttribute("parent", parent);
 		model.addAttribute("list", list);
 		model.addAttribute("cateList", cateList);
+		model.addAttribute("cateList2",categoryList);
 		model.addAttribute("DisPrice", DisPrice);
 		return "/WEB-INF/views/product/list.jsp";
 	}

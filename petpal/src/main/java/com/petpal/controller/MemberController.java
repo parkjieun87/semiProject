@@ -230,7 +230,17 @@ public class MemberController {
 	 @GetMapping("/cart")
 	 public String cart() {
 		 return "/WEB-INF/views/member/cart.jsp";
-		 
 	 }
+	 
+	 //주문목록 페이지 구현 
+	 @GetMapping("/orderList")
+	 public String orderList(HttpSession session, Model model) {
+		 
+		 String memberId = (String)session.getAttribute("memberId");
+		 
+		 model.addAttribute("orderList",memberDao.orderList(memberId));
+		 return "/WEB-INF/views/member/orderList.jsp";
+	 }
+	 
 }
 

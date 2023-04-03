@@ -121,8 +121,12 @@ public class OrderController {
 		}
 		
 		attr.addAttribute("orderNo",orderNo); //redirect로 보낼때 쓰는 코드(RedirectAttributes),orderFinish로 보냄
-	
+		
 
+//		//주문완료 후 상품 수량 수정
+//		ProductDto productDto = new ProductDto();
+//		
+//		productDao.update(productDto.getProductStock()- ,productDto.getProductNo());
 
 		return "redirect:orderFinish";
 	}
@@ -134,7 +138,12 @@ public class OrderController {
 		ProductOrderDto dto =  orderDao.select(orderNo);
 		model.addAttribute("dto",dto);
 		
+<<<<<<< HEAD
 
+=======
+	
+		
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}
 	
