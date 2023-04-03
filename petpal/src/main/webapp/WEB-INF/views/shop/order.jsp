@@ -262,7 +262,7 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                             
                                             <input type="hidden" value="${totalPrice}" id="disCountPrice">
                                             <input type="hidden" value="${list.productName}" id="productName">
-                                          	
+                                          	 
                                            
                                             <c:set var="productName" value="${list.productName}"/>
                                              <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
@@ -373,7 +373,7 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                         
                         
                     </div>
-                     </form>
+                    
 				
 
 
@@ -403,7 +403,7 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                     <b>총 결제금액</b>
                                 </strong>
                                 <strong class="val malgun" id="realTotalPrice"></strong>
-                                <input type="hidden" id="totalPrice" name="totalPrice"  value="0" >
+                                <input type="hidden" id="totalPrice" name="totalPrice" >
                             </div>
                         </div>
                         </form>
