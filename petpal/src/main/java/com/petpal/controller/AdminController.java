@@ -127,7 +127,7 @@ public class AdminController {
 			model.addAttribute("productList", productDao.searchAndSelectList(column, keyword, vo, sort));
 		}
 		else {
-			model.addAttribute("productList", productDao.selectList(vo,sort));
+			model.addAttribute("productList", productDao.selectList2(vo,sort));
 		}
       return "/WEB-INF/views/admin/product/list.jsp";
    }

@@ -91,18 +91,31 @@ public class ProductDao {
 	}
 	
 	// 상품 리스트
-	public List<ProductDto> selectList(PaginationVO vo, String sort){
+	public List<ProductDto> selectList(PaginationVO vo){
 		String sql = "select * from("
 				+ "select rownum rn, TMP.* from("
 				+ "select * from product order by product_regdate desc"
 				+" )TMP"
-				+ ")where rn between ? and ? "
-				+ "order by "+sort;
+				+ ")where rn between ? and ?";
 		
 		Object[] param = {vo.getBegin(), vo.getEnd()};
 				
 		return jdbcTemplate.query(sql,productMapper,param);
 	}
+	
+	// 관리자 상품 리스트
+		public List<ProductDto> selectList2(PaginationVO vo, String sort){
+			String sql = "select * from("
+					+ "select rownum rn, TMP.* from("
+					+ "select * from product order by product_regdate desc"
+					+" )TMP"
+					+ ")where rn between ? and ? "
+					+ "order by "+sort;
+			
+			Object[] param = {vo.getBegin(), vo.getEnd()};
+					
+			return jdbcTemplate.query(sql,productMapper,param);
+		}
 	
 	
 	//상품 조회 by categoryCode
