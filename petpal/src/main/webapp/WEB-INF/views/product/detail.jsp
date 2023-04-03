@@ -403,9 +403,9 @@ font-weight:700;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 200px; /* footer 높이 */
+  height: 220px; /* footer 높이 */
   background-color: #f5f5f5;
-  text-align: center;
+  text-align: left;
 }
 
 

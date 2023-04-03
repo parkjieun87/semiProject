@@ -366,18 +366,18 @@ td{
          
             <div class="row" style="display:flex;">
            <table style="width: 80%; margin-left:200px;">
+             
               <colgroup>
                  <col style="width: 40%; color:white;">
                  <col style="width: 20%;">
                  <col style="width: 20%;">
-            	<col style="width: 20%;">
-                 
+            	<col style="width: 20%;">       
               </colgroup>
-              
+             
          
               
               <thead>
-			      <tr>
+			     <tr>
 			     <th colspan="4"><h1>${memberId}님의 주문목록</h1> </th> 
 			    </tr>
                              <tr style="background:#b1b2ff;" id="colss">
