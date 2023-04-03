@@ -356,6 +356,13 @@ td{
            	 const memberId = '${memberId}';
            	 const productNo = $(this).parent("td").find("#productNo").val();
            	 
+           	let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
+				console.log(popUrl);
+				let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+				
+				window.open(popUrl,"리뷰 쓰기",popOption);					
+           	 
+				/*
            	 $.ajax({
            		data : {
            			productNo : productNo,
@@ -374,7 +381,7 @@ td{
        					window.open(popUrl,"리뷰 쓰기",popOption);							
        				}
            		}
-           	 });
+           	 });*/
          
    	 
             });

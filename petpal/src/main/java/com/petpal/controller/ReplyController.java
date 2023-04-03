@@ -29,12 +29,14 @@ public class ReplyController {
 		replyDao.enrollReply(dto);
 	}
 	
+	/*
 	/* 리뷰 체크 */
-	/* 리뷰가 존재하면 1 존재하지 않으면 0 */
+	/* 리뷰가 존재하면 1 존재하지 않으면 0 
 	@PostMapping("/check")
 	public String replyCheck(ReplyDto dto) {
 		return replyService.replyCheck(dto);
 	}
+	*/
 	
 
 
