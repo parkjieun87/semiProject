@@ -5,6 +5,7 @@
 
 <script>
 	$(function(){
+			var vo = "${vo}";
 		$(".del-btn").click(function(e){
 			e.preventDefault();
 			
@@ -14,6 +15,7 @@
 			
 			var pageNo = $(this).data("page");
 			let memberId = $(this).data("memberid");
+			console.log(pageNo);
 			$(".delete_memberId").val(memberId);
 			$(".delete_page").val(pageNo);
 			$(".delete_form").submit();
@@ -58,7 +60,7 @@
 	                        <td>
 	                        	<a class="link" href="detail?memberId=${list.memberId}">상세</a>
 	                        	<a class="link" href="edit?memberId=${list.memberId}">수정</a>
-	                        	<a class="link del-btn" data-memberid="${list.memberId}" data-page="${vo.page }">탈퇴</a>
+	                        	<a class="link del-btn" data-memberid="${list.memberId}" data-page="${vo.page}">탈퇴</a>
 	                        </td>
 	                    </tr>
                 		

@@ -158,9 +158,11 @@ public class AdminController {
    
    // 상품 삭제
    @PostMapping("/product/delete")
+
    public String delete(@RequestParam int productNo,
 		   @RequestParam(required = false, defaultValue = "1") int page,
 		      RedirectAttributes attr) {
+
       productDao.delete(productNo);
       attr.addAttribute("page", page);
       return "redirect:list";

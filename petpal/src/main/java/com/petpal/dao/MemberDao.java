@@ -50,6 +50,7 @@ public class MemberDao {
 		@Override
 		public OrderListDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 			OrderListDto orderListDto = new OrderListDto();
+			orderListDto.setOrderNo(rs.getInt("order_no"));
 			orderListDto.setMemberId(rs.getString("member_id"));
 			orderListDto.setProductCount(rs.getInt("product_count"));
 			orderListDto.setProductName(rs.getString("product_name"));
