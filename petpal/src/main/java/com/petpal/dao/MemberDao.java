@@ -270,6 +270,8 @@ public class MemberDao {
   		Object[] param = {memberId};
   		return jdbcTemplate.query(sql,mapperFinish, param);
   	}
+  	
+  	
 
 }
       

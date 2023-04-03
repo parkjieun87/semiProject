@@ -157,6 +157,7 @@
 			<div class="rating_div">
 				<h4>평점</h4>
 				<select name="rating">
+					<option value="none">선택</option>
 					<option value="1">☆</option>
 					<option value="2">☆☆</option>
 					<option value="3">☆☆☆</option>

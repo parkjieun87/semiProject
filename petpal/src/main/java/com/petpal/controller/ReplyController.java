@@ -22,13 +22,10 @@ public class ReplyController {
 	@Autowired
 	private ReplyDao replyDao;
 	
-	@Autowired
-	private OrderDao orderDao;
 	
 	/* 리뷰 등록 */
 	@PostMapping("/enroll")
-	public void enrollReply(ReplyDto dto, OrderDetailDto dto2) {
-		orderDao.replyCheck(1834);
+	public void enrollReply(ReplyDto dto) {
 		replyDao.enrollReply(dto);
 		
 	}
