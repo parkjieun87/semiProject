@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- 
+ <link rel="stylesheet" href="/static/css/contact/reply.css">
  <style>
        
         body{
@@ -448,7 +448,7 @@ font-weight:700;
                  $(".disPrice").text(sum.toLocaleString());
          
             })
-            //플러스 버튼
+           
            //플러스 버튼
             $(".btn-plus").click(function(){
               
@@ -522,6 +522,39 @@ font-weight:700;
        	});
          
          
+         // 리뷰 쓰기 
+         $(".reply_button_wrap").click(function(e){
+        	 e.preventDefault();
+        	 
+        	 const memberId = '${memberId}';
+        	 const productNo = '${productDto.productNo}';
+        	 
+        	 $.ajax({
+        		data : {
+        			productNo : productNo,
+        			memberId : memberId
+        		},
+        		url : "/reply/check",
+        		type : "POST",
+        		success : function(result){
+        			if(result === '1'){
+    					alert("이미 등록된 리뷰가 존재 합니다.")
+    				} else{
+    					let popUrl = "/product/replyEnroll/" + memberId + "?productNo=" + productNo;
+    					console.log(popUrl);
+    					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+    					
+    					window.open(popUrl,"리뷰 쓰기",popOption);							
+    				}
+        		}
+        	 });
+        	 
+	 
+         });
+         
+    
+         
+        
         /* 주소입력란 버튼 동작(숨김, 등장) */
         function showAdress(className){
             /* 컨텐츠 동작 */
@@ -724,7 +757,12 @@ font-weight:700;
                              ${productDto.productDesc}                                             
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_2">
-                테스트2
+                <div class="reply_subject">
+					<h2>리뷰</h2>
+				</div>
+				<div class="reply_button_wrap">
+					<button>리뷰 쓰기</button>
+				</div>
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_3" >
                 테스트3
@@ -739,5 +777,12 @@ font-weight:700;
     
    
 </div>
+<<<<<<< HEAD
+    
+<%-- 
+<%@include file="../template/footer.jsp" %>
+ --%>
+=======
     </body>
 <%@include file="../template/footer.jsp" %>
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git

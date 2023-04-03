@@ -192,6 +192,16 @@ public class ProductDao {
 		return jdbcTemplate.queryForObject(sql, String.class, param);
 	}
 	
+	/* 상품 아이디 */
+	public ProductDto getProduct(int productNo) {
+		String sql = "select * from product where product_no = ?";
+		Object[] param = {productNo};
+		
+		List<ProductDto> list = jdbcTemplate.query(sql,mapper,param);
+		
+		return list.isEmpty() ? null : list.get(0);
+	}
+	
 
 	//주문완료 후 상품수량 수정(2023-04-03 박지은)
 	public boolean update(int productStock,int productNo) {
