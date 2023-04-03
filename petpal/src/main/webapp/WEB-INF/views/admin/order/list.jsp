@@ -4,6 +4,7 @@
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
 <script>
+
 	$(function(){
 		$(".del-btn").click(function(e){
 			e.preventDefault();

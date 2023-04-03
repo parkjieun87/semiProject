@@ -15,6 +15,7 @@ import com.petpal.dto.AdminOrderDto;
 import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.CategoryDto;
 import com.petpal.dto.ProductDto;
+import com.petpal.dto.ProductOrderDto;
 import com.petpal.dto.ProductWithImageDto;
 import com.petpal.vo.PaginationVO;
 
@@ -198,5 +199,6 @@ public class ProductDao {
 		    return jdbcTemplate.query(sql, productMapper, param);
 		}
 	
+
 
 }

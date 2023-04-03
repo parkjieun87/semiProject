@@ -24,7 +24,6 @@ public class ProductOrderDto {
 	private int totalPrice; // 주문 총 가격
 	
 	public List<OrderDetailDto> orderDetailDto ; // OrderDetailDto 를 list로 담았음.
-
 	
 }
 

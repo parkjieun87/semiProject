@@ -306,9 +306,30 @@ button, input, select, textarea {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
     	$(function () {	
-        		$("a").removeClass('active');
+    		
+    			let categoryList = JSON.parse('${cateList2}');
+				for(var i=0;i<categoryList.length;i++){
+					console.log(categoryList[i].categoryName);
+				}
+    			
+        		var params = new URLSearchParams(window.location.search);
+        		if(params.has("categoryCode")){
+        			var paramv = params.get("categoryCode");
+        			for(var i=0;i<categoryList.length;i++){
+    					if(categoryList[i].categoryCode == paramv){
+    						$("#tag2").append(">" + categoryList[i].categoryName);
+    					}
+    					
+    				} 			
+        		}
         });
     </script>
+    <script type="text/template" id="tag-template">
+		<h2>
+			<a href="?parentCode=${parent}">${parentName}</a>
+		</h2>
+</script>
+
 </head>
 
 <body>
@@ -319,8 +340,8 @@ button, input, select, textarea {
                 <div id="lnb" class="item-option">
                     <div class="ctg-area">
                         <ul>
-                            <li>
-                                <h2 style="width:200px;" id="tag">
+                            <li id="tag">
+                                <h2 id="tag2" style="width:200px;">
                                     <a href="?parentCode=${parent}">${parentName}</a>
                                 </h2>
 
