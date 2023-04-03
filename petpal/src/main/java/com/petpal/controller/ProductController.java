@@ -3,11 +3,14 @@ package com.petpal.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +23,8 @@ import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.ProductDto;
 //import com.petpal.dto.ProductWithImageDto;
 import com.petpal.dto.ProductWithImageDto;
+import com.petpal.dto.ReplyDto;
+import com.petpal.service.ReplyService;
 
 @Controller
 @RequestMapping("/product")
@@ -28,6 +33,9 @@ public class ProductController {
 	private ProductDao productDao;
 	@Autowired
 	private ProductWithImageDao productWithImageDao;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	@GetMapping("/insert")
 	public String insert() {
@@ -83,9 +91,24 @@ public class ProductController {
 		int disPrice = productWithImageDto.getProductPrice()*(100-productWithImageDto.getProductDiscount())/100;
 		model.addAttribute("productDto", productWithImageDto);
 		model.addAttribute("disPrice", disPrice);
+		
 		return "/WEB-INF/views/product/detail.jsp";
 		
 	}
+	
+	
+	/* 리뷰 쓰기 */
+	@GetMapping("/replyEnroll/{memberId}")
+	public String replyEnrollWindowGET(@PathVariable("memberId") String memberId, int productNo, Model model) {
+		ProductDto dto = productDao.getProduct(productNo);
+		model.addAttribute("productInfo",dto);
+		model.addAttribute("memberId",memberId);
+		return "/WEB-INF/views/product/replyEnroll.jsp";
+		
+	}
+	
+	
+	
 	
 	
 }

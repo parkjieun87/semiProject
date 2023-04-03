@@ -176,5 +176,15 @@ public class ProductDao {
 		return jdbcTemplate.queryForObject(sql, String.class, param);
 	}
 	
+	/* 상품 아이디 */
+	public ProductDto getProduct(int productNo) {
+		String sql = "select * from product where product_no = ?";
+		Object[] param = {productNo};
+		
+		List<ProductDto> list = jdbcTemplate.query(sql,mapper,param);
+		
+		return list.isEmpty() ? null : list.get(0);
+	}
+	
 
 }

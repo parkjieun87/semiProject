@@ -2,12 +2,14 @@ package com.petpal.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.ProductDto;
 import com.petpal.dto.ReplyDto;
 
 @Repository
@@ -30,9 +32,11 @@ public class ReplyDao {
 			
 			return dto;
 		}
+		
+		
 	};
 	
-	
+
 	/* 리뷰 등록 */
 	public void enrollReply(ReplyDto dto) {
 		String sql = "insert into reply(reply_id, product_no, member_id, content, rating) values(reply_seq.nextval,?,?,?,?)";
@@ -41,5 +45,21 @@ public class ReplyDao {
 		
 		jdbcTemplate.update(sql,param);
 	}
+	
+	/* 리뷰 존재 확인 */
+	public Integer checkReply(ReplyDto dto){
+		String sql = "select reply_id from reply where member_id = ? and product_no = ?";
+		Object[] param = {dto.getMemberId(), dto.getProductNo()};
+		
+			try {	
+				return jdbcTemplate.queryForObject(sql,Integer.class,param);
+			}catch(Exception e) {
+				return 0;
+			}
+		
+	
+	}
+	
+	
 
 }
