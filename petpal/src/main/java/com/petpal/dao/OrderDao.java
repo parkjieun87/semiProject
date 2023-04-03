@@ -55,6 +55,7 @@ public class OrderDao {
 //			orderDetailDto.setCategoryCode(rs.getString("category_code"));
 			orderDetailDto.setProductCount(rs.getInt("product_count"));
 			orderDetailDto.setProductPrice(rs.getInt("product_price"));
+			orderDetailDto.setProductName(rs.getString("product_name"));
 			return orderDetailDto;
 		}
 	};

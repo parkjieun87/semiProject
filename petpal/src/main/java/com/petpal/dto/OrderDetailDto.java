@@ -18,4 +18,7 @@ public class OrderDetailDto {
 //	private String categoryCode; // 카테고리 코드
 	private int productCount; // 주문상품수량
 	private int productPrice; // 주문상품가격
+	
+	// 조인 할 컬럼
+	private String productName;
 }

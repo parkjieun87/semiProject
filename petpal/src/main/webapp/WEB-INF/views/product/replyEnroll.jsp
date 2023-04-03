@@ -141,11 +141,11 @@
 		<div class="wrapper_div">
 		<div class="subject_div">
 			리뷰 등록
-		</div>
 		
+		</div>
 		<div class="input_wrap">			
 			<div class="bookName_div">
-				<h2>${productInfo.productName}</h2>
+				<h2>${orderList.productName}</h2>
 			</div>
 			<div class="rating_div">
 				<h4>평점</h4>

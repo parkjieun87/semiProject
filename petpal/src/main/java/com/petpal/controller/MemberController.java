@@ -1,5 +1,7 @@
 package com.petpal.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +9,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petpal.dao.MemberDao;
+import com.petpal.dao.ProductDao;
 import com.petpal.dto.MemberDto;
+import com.petpal.dto.OrderDetailDto;
+import com.petpal.dto.OrderListDto;
+import com.petpal.dto.ProductDto;
 
 @Controller
 @RequestMapping("/member")
@@ -22,6 +29,9 @@ public class MemberController {
    @Autowired
    private MemberDao memberDao;
    
+   @Autowired
+   private ProductDao productDao;
+
    
    //회원가입 구현 (형석)
    
@@ -232,15 +242,28 @@ public class MemberController {
 		 return "/WEB-INF/views/member/cart.jsp";
 	 }
 	 
-	 //주문목록 페이지 구현 
+	 //주문목록 페이지 구현  - (재영 수정)
 	 @GetMapping("/orderList")
 	 public String orderList(HttpSession session, Model model) {
 		 
 		 String memberId = (String)session.getAttribute("memberId");
 		 
-		 model.addAttribute("orderList",memberDao.orderList(memberId));
+		 List<OrderDetailDto> list = memberDao.orderList(memberId);
+		 model.addAttribute("orderList",list);
 		 return "/WEB-INF/views/member/orderList.jsp";
 	 }
+	 
+		/* 리뷰 쓰기 */
+		@GetMapping("/replyEnroll/{memberId}")
+		public String replyEnrollWindowGET(@PathVariable("memberId") String memberId, int productNo, Model model) {
+			ProductDto dto = productDao.getProduct(productNo);
+		
+
+			model.addAttribute("orderList",dto);
+			model.addAttribute("memberId",memberId);
+			return "/WEB-INF/views/product/replyEnroll.jsp";
+			
+		}
 	 
 }
 

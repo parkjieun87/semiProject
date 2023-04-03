@@ -350,12 +350,11 @@ td{
             
        
             // 리뷰 쓰기 
-        
             $(".order_btn").click(function(){
            
            	 
            	 const memberId = '${memberId}';
-           	 const productNo = $(this).parent("td").find("#orderNo").val();
+           	 const productNo = $(this).parent("td").find("#productNo").val();
            	 
            	 $.ajax({
            		data : {
@@ -368,7 +367,7 @@ td{
            			if(result === '1'){
        					alert("이미 등록된 리뷰가 존재 합니다.")
        				} else{
-       					let popUrl = "/product/replyEnroll/" + memberId + "?productNo=" + productNo;
+       					let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
        					console.log(popUrl);
        					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
        					
@@ -462,6 +461,9 @@ td{
           
           <td>
           			<input type="hidden" id="orderNo" value="${list.orderNo}">
+          			<input type="hidden" id="productNo" value="${list.productNo}">
+          	
+          			
            			<button class="order_btn">리뷰남기기</button> <br> 
           </td>
         

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.CartDto;
 import com.petpal.dto.MemberDto;
+import com.petpal.dto.OrderDetailDto;
 import com.petpal.dto.OrderListDto;
 import com.petpal.dto.ProductOrderDto;
 import com.petpal.vo.PaginationVO;
@@ -58,7 +59,27 @@ public class MemberDao {
 		
 			return orderListDto;
 		}};
+		
+		//order_detail mapper 생성
+		// 재영 (04/03)
+		private RowMapper<OrderDetailDto> mapperFinish = new RowMapper<OrderDetailDto>() {
+			
+			@Override
+			public OrderDetailDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+				OrderDetailDto orderDetailDto = new OrderDetailDto();
+				orderDetailDto.setOrderNo(rs.getInt("order_no"));
+				orderDetailDto.setProductNo(rs.getInt("product_no"));
+				orderDetailDto.setMemberId(rs.getString("member_id"));
+				orderDetailDto.setProductPrice(rs.getInt("product_price"));
+				orderDetailDto.setProductCount(rs.getInt("product_count"));
+				orderDetailDto.setProductName(rs.getString("product_name"));
+				return orderDetailDto;
+			}
+		};
 
+		
+		
+		
 	
       @Autowired
       private JdbcTemplate jdbcTemplate;
@@ -242,11 +263,11 @@ public class MemberDao {
       }   
       
     	
-      //주문 목록(2023.04.03 형석)
-  	public List<OrderListDto> orderList(String memberId) {
-  		String sql = "select * from orderlist where member_id =?";
+      //주문 목록(2023.04.03 형석) - 재영 수정
+  	public List<OrderDetailDto> orderList(String memberId) {
+  		String sql = "select a.order_no,a.product_no,a.member_id,a.product_price, a.product_count,b.product_name from order_detail a left outer join product b on a.product_no = b.product_no where member_id= ?";
   		Object[] param = {memberId};
-  		return jdbcTemplate.query(sql,mapper3, param);
+  		return jdbcTemplate.query(sql,mapperFinish, param);
   	}
 
 }
