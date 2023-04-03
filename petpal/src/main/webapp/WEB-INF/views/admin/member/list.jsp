@@ -5,6 +5,7 @@
 
 <script>
 	$(function(){
+			var vo = "${vo}";
 		$(".del-btn").click(function(e){
 			e.preventDefault();
 			
@@ -14,7 +15,9 @@
 			
 			let pageNo = $(this).data("page");
 			let memberId = $(this).data("memberid");
+			console.log(pageNo);
 			$(".delete_memberId").val(memberId);
+			$(".delete_page").val(pageNo);
 			$(".delete_form").submit();
 			
 			
@@ -28,6 +31,7 @@
 		<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="memberId" class="delete_memberId">
+          <input type="hidden" name="page" class="delete_page">
        </form>  
        
     	<!-- 상품 목록 테이블 -->
@@ -55,7 +59,7 @@
 	                        <td>
 	                        	<a class="link" href="detail?memberId=${list.memberId}">상세</a>
 	                        	<a class="link" href="edit?memberId=${list.memberId}">수정</a>
-	                        	<a class="link del-btn" data-memberid="${list.memberId}" data-page="${vo.page }">탈퇴</a>
+	                        	<a class="link del-btn" data-memberid="${list.memberId}" data-page="${vo.page}">탈퇴</a>
 	                        </td>
 	                    </tr>
                 		
