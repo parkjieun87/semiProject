@@ -115,11 +115,20 @@ public class AdminController {
    
    // 상품 리스트 페이지
    @GetMapping("/product/list")
-   public String productList(Model model, @ModelAttribute("vo") PaginationVO vo) {
+   public String productList(Model model, @ModelAttribute("vo") PaginationVO vo,
+		   @RequestParam(required=false, defaultValue="  product_regdate desc") String sort,
+		   @RequestParam(required=false, defaultValue="") String column,
+			@RequestParam(required=false, defaultValue="") String keyword) {
       
       int totalProductCnt = productDao.totalProductCnt();
       vo.setCount(totalProductCnt);
-      model.addAttribute("productList", productDao.selectList(vo));
+      boolean search = !column.equals("") && !keyword.equals("");
+		if(search) {
+			model.addAttribute("productList", productDao.searchAndSelectList(column, keyword, vo, sort));
+		}
+		else {
+			model.addAttribute("productList", productDao.selectList2(vo,sort));
+		}
       return "/WEB-INF/views/admin/product/list.jsp";
    }
    
@@ -149,9 +158,13 @@ public class AdminController {
    
    // 상품 삭제
    @PostMapping("/product/delete")
-   public String delete(@RequestParam int productNo) {
-	  
+
+   public String delete(@RequestParam int productNo,
+		   @RequestParam(required = false, defaultValue = "1") int page,
+		      RedirectAttributes attr) {
+
       productDao.delete(productNo);
+      attr.addAttribute("page", page);
       return "redirect:list";
    }
    
@@ -233,19 +246,30 @@ public class AdminController {
    // 주문 목록
    @GetMapping("/order/list")
    public String Order(Model model, @ModelAttribute("vo") PaginationVO vo,
-	   @RequestParam(required=false, defaultValue="  order_date desc") String sort) {
+	   @RequestParam(required=false, defaultValue="  order_date desc") String sort,
+	   @RequestParam(required=false, defaultValue="") String column,
+		@RequestParam(required=false, defaultValue="") String keyword) {
       int totalOrderCnt = adminOrderDao.selectCount();
       vo.setCount(totalOrderCnt);
+      boolean search = !column.equals("") && !keyword.equals("");
+		if(search) {
+			model.addAttribute("orderDto", adminOrderDao.searchAndSelectList(column, keyword, vo, sort));
+		}
+		else {
+			model.addAttribute("orderDto", adminOrderDao.selectList(vo,sort));
+		}
       
-      model.addAttribute("orderDto", adminOrderDao.selectList(vo, sort));
       
       return "/WEB-INF/views/admin/order/list.jsp";
    }
    
    // 주문 삭제
    @PostMapping("/order/delete")
-   public String deleteOrder(@RequestParam int orderDetailNo) {
+   public String deleteOrder(@RequestParam int orderDetailNo,
+		   @RequestParam(required = false, defaultValue = "1") int page,
+		      RedirectAttributes attr) {
 	   adminOrderDao.delete(orderDetailNo);
+	   attr.addAttribute("page", page);
 	   return "redirect:list";
    }
    

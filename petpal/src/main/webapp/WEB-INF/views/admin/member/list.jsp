@@ -13,13 +13,14 @@
 
 			if(choice == false) return;
 			
-			let pageNo = $(this).data("page");
+			var pageNo = $(this).data("page");
 			let memberId = $(this).data("memberid");
 			console.log(pageNo);
 			$(".delete_memberId").val(memberId);
 			$(".delete_page").val(pageNo);
 			$(".delete_form").submit();
 			
+					
 			
 			
 			

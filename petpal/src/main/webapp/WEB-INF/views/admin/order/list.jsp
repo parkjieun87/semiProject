@@ -4,6 +4,7 @@
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
 <script>
+
 	$(function(){
 		$(".del-btn").click(function(e){
 			e.preventDefault();
@@ -13,8 +14,11 @@
 			if(choice == false) return;
 			
 			let detailNo = $(this).data("detailno");
+			let pageNo = $(this).data("page");
 			$(".delete_detailNo").val(detailNo);
+			$(".delete_pageNo").val(pageNo);
 			$(".delete_form").submit();
+			
 			
 		});
 	});
@@ -24,6 +28,7 @@
 		<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="orderDetailNo" class="delete_detailNo">
+          <input type="hidden" name="page" class="delete_pageNo">
        </form>   
     	<!-- 주문 목록 테이블 -->
         <div class="row">
@@ -64,7 +69,7 @@
 	                        </td>
 	                        <td>${list.total}</td>
 	                        <td class="target">	
-                       			<a class="link del-btn" data-detailno="${list.orderDetailNo}">삭제</a>
+                       			<a class="link del-btn" data-detailno="${list.orderDetailNo}" data-page="${vo.page }">삭제</a>
 	                        </td>
 	                    </tr>
                 		
@@ -72,6 +77,20 @@
                 </tbody>
             </table>
         </div>
+        
+        <!-- 검색창  -->
+        <div class="row right">
+			<form action="list" method="get">
+				<select name="column" class="form-input">
+					<option value="receiver_name">성명</option>
+					<option value="order_detail_no">주문번호</option>
+					<option value="product_name">상품이름</option>
+				</select>
+				<input type="search" name="keyword" placeholder="검색어" value="${keyword}" class="form-input">
+				<button type="submit" class="form-btn neutral">검색</button>
+			</form>        
+        </div>
+        
         <!-- 페이징 영역 -->
 		<div class="page_wrap">
 			<div class="page_nation">
