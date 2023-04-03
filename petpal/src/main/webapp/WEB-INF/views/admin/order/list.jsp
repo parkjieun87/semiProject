@@ -3,7 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
+<script>
+
+	$(function(){
+		$(".del-btn").click(function(e){
+			e.preventDefault();
+			
+			var choice = confirm("삭제하시겠습니까?");
+
+			if(choice == false) return;
+			
+			let detailNo = $(this).data("detailno");
+			let pageNo = $(this).data("page");
+			$(".delete_detailNo").val(detailNo);
+			$(".delete_pageNo").val(pageNo);
+			$(".delete_form").submit();
+			
+			
+		});
+	});
+</script>
+
 <div class="container-1200 ms-10">
+		<!-- 삭제 form -->
+       <form action="delete" method="post" class="delete_form">
+          <input type="hidden" name="orderDetailNo" class="delete_detailNo">
+          <input type="hidden" name="page" class="delete_pageNo">
+       </form>   
     	<!-- 주문 목록 테이블 -->
         <div class="row">
         	<!-- 정렬  -->
@@ -16,6 +42,7 @@
        		<table class="table table-slit">
                <thead>
                     <tr>
+                        <th>주문번호</th>
                         <th>성명</th>
                         <th>주문 날짜</th>
                         <th>수령인 주소</th>
@@ -28,6 +55,7 @@
                 <tbody>
                 	<c:forEach items="${orderDto}" var="list">
 	                    <tr class="center">
+	                        <td>${list.orderDetailNo}</td>
 	                        <td>${list.receiverName}</td>
 	                        <td>${list.orderDate}</td>
 	                        <td>
@@ -40,14 +68,27 @@
 	                        ${list.productName}*${list.productCount}개
 	                        </td>
 	                        <td>${list.total}</td>
-	                        <td>	
-                       <a class="link" href="#">삭제</a>
+	                        <td class="target">	
+                       			<a class="link del-btn" data-detailno="${list.orderDetailNo}" data-page="${vo.page }">삭제</a>
 	                        </td>
 	                    </tr>
                 		
                 	</c:forEach>
                 </tbody>
             </table>
+        </div>
+        
+        <!-- 검색창  -->
+        <div class="row right">
+			<form action="list" method="get">
+				<select name="column" class="form-input">
+					<option value="receiver_name">성명</option>
+					<option value="order_detail_no">주문번호</option>
+					<option value="product_name">상품이름</option>
+				</select>
+				<input type="search" name="keyword" placeholder="검색어" value="${keyword}" class="form-input">
+				<button type="submit" class="form-btn neutral">검색</button>
+			</form>        
         </div>
         
         <!-- 페이징 영역 -->
@@ -64,6 +105,7 @@
 				</c:if>
 			</div>
 		</div>
-       
     </div>
+    
+    
 <jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

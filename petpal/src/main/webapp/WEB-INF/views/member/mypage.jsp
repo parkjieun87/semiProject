@@ -36,7 +36,6 @@
                         <h3>내 정보 </h3>
                     </div>
                     <div class="p-20"><a href="/member/edit" class="link">개인정보 관리</a></div>
-                    <div class="p-20"><a href="/member/shipping" class="link">배송지 관리</a></div>
               		 <div class="p-20"><a href="/member/password" class="link">비밀번호 변경</a></div>
                      <div class="p-20"><a href="/member/exit" class="link">회원 탈퇴</a></div>
                     
@@ -44,8 +43,8 @@
                     <div class="p-20">
                         <h3>내 활동 </h3>
                     </div>
-                    <div class="p-20"><a href="/member/order" class="link">주문 목록</a></div>
-                    <div class="p-20"><a href="/cart/add" class="link">장바 구니</a></div>
+                    <div class="p-20"><a href="/member/orderList" class="link">주문목록</a></div>
+                    <div class="p-20"><a href="/cart" class="link">장바구니</a></div>
                     
                 </div>
                 
