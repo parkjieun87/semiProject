@@ -176,5 +176,12 @@ public class ProductDao {
 		return jdbcTemplate.queryForObject(sql, String.class, param);
 	}
 	
+	//주문완료 후 상품수량 수정(2023-04-03 박지은)
+	public boolean update(int productStock,int productNo) {
+		String sql = "update product set product_stock = ? where product_no=?";
+		Object[] param = {productStock,productNo};
+		return jdbcTemplate.update(sql,param)>0;
+	}
+	
 
 }
