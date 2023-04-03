@@ -109,7 +109,7 @@ public class OrderController {
 		productOrderDto.setOrderNo(orderNo);
 		
 		orderDao.insert(productOrderDto);
-		
+		System.out.println(productOrderDto);
 
 		
 		//주문상세정보 등록(주문번호,아이디는 가져오고, 상품번호,수량,가격은 jsp에서 등록한다.
@@ -121,7 +121,7 @@ public class OrderController {
 		}
 		
 		attr.addAttribute("orderNo",orderNo); //redirect로 보낼때 쓰는 코드(RedirectAttributes),orderFinish로 보냄
-		
+	
 
 
 		return "redirect:orderFinish";
@@ -129,10 +129,11 @@ public class OrderController {
 	
 	//결제완료페이지에 주문정보 뿌려주기
 	@GetMapping("/orderFinish")
-	public String orderFinish(Model model,@ModelAttribute ProductOrderDto productOrderDto, @RequestParam int orderNo ) { //위에있는orderno를 @RequestParam 어노테이션으로 받아옴
+	public String orderFinish(Model model,@ModelAttribute ProductOrderDto productOrderDto, @RequestParam int orderNo) { //위에있는orderno를 @RequestParam 어노테이션으로 받아옴
 		
 		ProductOrderDto dto =  orderDao.select(orderNo);
 		model.addAttribute("dto",dto);
+
 		
 		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}
