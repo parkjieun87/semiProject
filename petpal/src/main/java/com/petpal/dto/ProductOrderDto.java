@@ -20,5 +20,11 @@ public class ProductOrderDto {
 	private String receiverPost; // 수취인 우편번호
 	private String receiverDetailAddr; // 수취인 상세주소
 	
+//	추가 컬럼 2023-04-01
+	private int totalPrice; // 주문 총 가격
+	
+	public List<OrderDetailDto> orderDetailDto ; // OrderDetailDto 를 list로 담았음.
 
+	
 }
+

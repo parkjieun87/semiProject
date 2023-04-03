@@ -24,11 +24,6 @@ public class OrderDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	//시퀀스 생성
-	public int sequence() {
-		String sql = "select product_order_seq.nextval from dual";
-		return jdbcTemplate.queryForObject(sql, int.class);
-	}
 	
 	//product_order mapper 생성
 	private RowMapper<ProductOrderDto> mapper = new RowMapper<ProductOrderDto>() {
@@ -43,6 +38,7 @@ public class OrderDao {
 		productOrderDto.setReceiverBasicAddr(rs.getString("receiver_basic_addr"));
 		productOrderDto.setReceiverPost(rs.getString("receiver_post"));
 		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
+		productOrderDto.setTotalPrice(rs.getInt("total_price"));
 		return productOrderDto;
 	}};
 	
@@ -56,13 +52,18 @@ public class OrderDao {
 			orderDetailDto.setOrderNo(rs.getInt("order_no"));
 			orderDetailDto.setProductNo(rs.getInt("product_no"));
 			orderDetailDto.setMemberId(rs.getString("member_id"));
-			orderDetailDto.setCategoryCode(rs.getString("category_code"));
+//			orderDetailDto.setCategoryCode(rs.getString("category_code"));
 			orderDetailDto.setProductCount(rs.getInt("product_count"));
 			orderDetailDto.setProductPrice(rs.getInt("product_price"));
-			return null;
+			return orderDetailDto;
 		}
 	};
 	
+	//시퀀스 생성
+	public int sequence() {
+		String sql = "select product_order_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
 	
 	// 번호 인증 기능
 			public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
@@ -90,11 +91,11 @@ public class OrderDao {
 	
 			
 	//주문 정보 등록(주문테이블)
-	public void insert(ProductOrderDto productOrderDto) {
-		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr)\r\n"
-				+ "values(product_order_seq.nextval,?,sysdate,?,?,?,?,?)";
-		Object param[] = {productOrderDto.getMemberId(),productOrderDto.getReceiverName(),productOrderDto.getReceiverTel(),productOrderDto.getReceiverBasicAddr(),
-							productOrderDto.getReceiverPost(),productOrderDto.getReceiverDetailAddr()};
+	public void insert(ProductOrderDto productOrderDto) {//order_detail_seq.nextval 안쓴이유는 주문,주문상세에 같은 orderNo가 들어가야해서.
+		String sql="insert into product_order(order_no,member_id,order_date,receiver_name,receiver_tel,receiver_basic_addr,receiver_post,receiver_detail_addr,total_price)\r\n"
+				+ "values(?,?,sysdate,?,?,?,?,?,?)";
+		Object param[] = {productOrderDto.getOrderNo(),productOrderDto.getMemberId(),productOrderDto.getReceiverName(),productOrderDto.getReceiverTel(),productOrderDto.getReceiverBasicAddr(),
+							productOrderDto.getReceiverPost(),productOrderDto.getReceiverDetailAddr(),productOrderDto.getTotalPrice()};
 			jdbcTemplate.update(sql,param);
 	}
 	
@@ -106,6 +107,12 @@ public class OrderDao {
 		return list.isEmpty() ? null: list.get(0);
 	}
 	
+	//주문리스트
+	public List<ProductOrderDto> list(){
+		String sql = "select*from product_order";
+		return jdbcTemplate.query(sql, mapper);
+	}
+	
 	//주문정보 조회
 	public ProductOrderDto select(int orderNo) {
 		String sql="select*from product_order where order_no=?";
@@ -113,6 +120,15 @@ public class OrderDao {
 		List<ProductOrderDto>list = jdbcTemplate.query(sql, mapper,param);
 		return list.isEmpty() ? null: list.get(0);
 	}
+	
 
 	
+	//주문 상세 등록(주문상세테이블)
+	public void insert2(OrderDetailDto orderDetailDto) {
+		String sql = "insert into order_detail(order_detail_no,order_no,product_no,member_id,product_count,product_price) "
+				+ "values(order_detail_seq.nextval,?,?,?,?,?)";
+		Object[]param = {orderDetailDto.getOrderNo(),orderDetailDto.getProductNo(),orderDetailDto.getMemberId(),
+				orderDetailDto.getProductCount(),orderDetailDto.getProductPrice()};
+		jdbcTemplate.update(sql,param);
+	}
 }

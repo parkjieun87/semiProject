@@ -305,9 +305,8 @@ button, input, select, textarea {
     <!--jquery cdn-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-        	
-        
+    	$(function () {	
+        		$("a").removeClass('active');
         });
     </script>
 </head>
@@ -321,13 +320,13 @@ button, input, select, textarea {
                     <div class="ctg-area">
                         <ul>
                             <li>
-                                <h2 style="width:200px;">
+                                <h2 style="width:200px;" id="tag">
                                     <a href="?parentCode=${parent}">${parentName}</a>
                                 </h2>
 
                                 <ul>
                                     <li style="line-height:24px;">
-                                        <a href="?parentCode=${parent}" class="cate-link active">
+                                        <a href="?parentCode=${parent}" class="cate-link">
                                             전체
                                             <span class="ic-num">(${sum})</span>
                                         </a>
@@ -336,7 +335,7 @@ button, input, select, textarea {
                                 <ul>
                                 	<c:forEach var="cateList" items="${cateList}"> 
                                     <li>
-                                        <a href="?categoryCode=${cateList.categoryCode}" class="cate-link">
+                                        <a href="?categoryCode=${cateList.categoryCode}" data="${cateList.categoryCode}" class="cate-link">
                                             ${cateList.categoryName}
                                             <em class="ic-num">(${cateList.categoryCount})</em>
                                         </a>

@@ -407,6 +407,56 @@ font-weight:700;
 
 
 
+
+/* 상품 정보, 상품 후기, 상품 문의, 구매 확인사항*/
+
+    /* 사용자 주소 정보 */
+    .addressInfo_div{
+        margin-top: 30px;  
+        
+    }
+    .addressInfo_input_div_wrap{
+        border-bottom: 1px solid #f3f3f3;
+        height: 225px;
+        
+        
+    }
+    .address_btn {
+        background-color: #555;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        width: 25%;
+    }
+
+    .address_btn:hover{
+        background-color: #777;
+    }
+    .addressInfo_button_div::after{
+        content:'';
+        display:block;
+        clear:both;
+    }
+     .addressInfo_input_div{
+                padding:12px;
+                text-align: left;
+                display: none;
+                line-height: 40px;                
+        }
+           
+	footer {
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  height:  150px;
+}
+   
+
+
     </style>   
     
     
@@ -467,7 +517,7 @@ font-weight:700;
                
                $(".disPrice").text(sum.toLocaleString());
             });
-            
+           
             // 서버로 전송할 데이터
             const form = {
                   memberId : "${memberId}",
@@ -476,12 +526,15 @@ font-weight:700;
             }
             
             $("#insert_cart").click(function(){
-               form.productCount = inputCount;
+            	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
+               var productCnt = $(this).parent().parent().parent().parent().find("input").val();
+               form.productCount = productCnt;
                $.ajax({
                   url : "/cart/add",
                   type : "POST",
                   data : form,
                   success : function(result){
+                	 
                      cartAlert(result);
                   }
                });
@@ -498,6 +551,7 @@ font-weight:700;
                 alert("로그인이 필요합니다.");
              }*/
             }
+
             
          // 장바구니 등록  
          $("#insert_cart").click(function(){
@@ -506,12 +560,12 @@ font-weight:700;
             
          // 장바구니 등록 창 닫기 버튼   
        	$(".exit_btn").click(function(){
-       		$(".cart-layer").css("display","none");
+       		$(".cart-layer").css("display","none"); 
        	});
        	
          // 장바구니로 가기 버튼
        	$(".cartView_btn").click(function(){
-       		location.href = "/cart/"+memberId;
+       		location.href = "/cart";
        	});
          
          
@@ -530,8 +584,6 @@ font-weight:700;
                     $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');   
         }
 
-            
-                   
         });
         
         
@@ -539,13 +591,28 @@ font-weight:700;
         
         
     </script>
+    
+     <script type="text/javascript">
+            /* 주소입력란 버튼 동작(숨김, 등장) */
+        function showAdress(className){
+            /* 컨텐츠 동작 */
+                /* 모두 숨기기 */
+                $(".addressInfo_input_div").css('display', 'none');
+                /* 컨텐츠 보이기 */
+                $(".addressInfo_input_div_" + className).css('display', 'block');		
+            
+            /* 버튼 색상 변경 */
+                /* 모든 색상 동일 */
+                    $(".address_btn").css('backgroundColor', '#a29bfe');
+                /* 지정 색상 변경 */
+                    $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');	
+        }
+            
+      </script>
 <head>
  
 </head>
 <%@ include file="../template/header.jsp" %>
-
-
-
 
         <div class="row center">
             <h1></h1>
@@ -689,6 +756,7 @@ font-weight:700;
             
                                      
             
+                                              
       <div class="addressInfo_div">
         <div class="addressInfo_button_div">
             <button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #a29bfe;">상품 정보</button>
