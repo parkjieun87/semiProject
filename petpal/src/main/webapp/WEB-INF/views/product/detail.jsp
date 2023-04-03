@@ -777,12 +777,12 @@ font-weight:700;
     
    
 </div>
-<<<<<<< HEAD
+
     
 <%-- 
 <%@include file="../template/footer.jsp" %>
  --%>
-=======
+
     </body>
-<%@include file="../template/footer.jsp" %>
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
+
+

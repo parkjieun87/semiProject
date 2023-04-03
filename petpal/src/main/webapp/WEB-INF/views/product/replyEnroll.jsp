@@ -16,7 +16,7 @@
   	});
   	// 등록 버튼
   	$(".enroll_btn").click(function(e){
-  		const productNo = '${productInfo.productNo}';
+  		const productNo = '${orderList.productNo}';
   		const memberId = '${memberId}';
   		const rating = $("select").val();
   		const content = $("textarea").val();
