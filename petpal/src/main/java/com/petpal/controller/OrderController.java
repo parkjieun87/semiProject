@@ -139,8 +139,11 @@ public class OrderController {
 		model.addAttribute("dto",dto);
 		
 
+<<<<<<< HEAD
 	
 		
+=======
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}
 	

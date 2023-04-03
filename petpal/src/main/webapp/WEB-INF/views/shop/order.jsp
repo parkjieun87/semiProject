@@ -247,6 +247,7 @@
             	var toss = $("#payment-toss").is(":checked");
             	var checkBox = $("#puchase-ok").is(":checked");
             	 var unitCheck4 = false;
+            	 
             	if(kakao){
             		kakao1();
             	}else if(toss){
