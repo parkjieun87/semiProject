@@ -17,4 +17,5 @@ public class AdminOrderDto {
 	private int productCount;
 	private int productPrice;
 	private long total;
+	private long orderDetailNo;
 }

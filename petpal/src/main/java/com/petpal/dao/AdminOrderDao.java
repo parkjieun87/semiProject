@@ -18,7 +18,7 @@ public class AdminOrderDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	RowMapper<AdminOrderDto> orderOrderMapper = new RowMapper<AdminOrderDto>() {
+	RowMapper<AdminOrderDto> orderMapper = new RowMapper<AdminOrderDto>() {
 
 		@Override
 		public AdminOrderDto mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -33,6 +33,7 @@ public class AdminOrderDao {
 			dto.setProductCount(rs.getInt("product_count"));
 			dto.setProductPrice(rs.getInt("product_price"));
 			dto.setTotal(rs.getLong("total"));
+			dto.setOrderDetailNo(rs.getLong("order_detail_no"));
 			return dto;
 		}
 		
@@ -54,8 +55,44 @@ public class AdminOrderDao {
 	        
 	        Object[] param = {vo.getBegin(), vo.getEnd()};
 	        
-	        return jdbcTemplate.query(sql, orderOrderMapper, param);
+	        return jdbcTemplate.query(sql, orderMapper, param);
 	   }
+	   
+	   // 검색 기능
+	   public List<AdminOrderDto> searchList(String column, String keyword){
+			String sql = "select * from admin_order where instr(#1, ?) > 0 order by #1 asc";
+			sql = sql.replace("#1", column);
+			Object[] param = {keyword};
+			return jdbcTemplate.query(sql, orderMapper, param);
+	   }
+	   
+	   // 검색 + 정렬 기능
+	   public List<AdminOrderDto> searchAndSelectList(String column, String keyword, PaginationVO vo, String sort) {
+		    String sql = "select * from ("
+		               + "select rownum rn, TMP.* from ("
+		               + "select * from admin_order "
+		               + "where instr(#1, ?) > 0 "
+		               + "order by #1"
+		               + ") TMP"
+		               + ") where rn between ? and ?";
+		    sql = sql.replace("#1", column);
+
+		    Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
+
+		    if (sort != null && !sort.isEmpty()) {
+		        sql += " order by " + sort;
+		    }
+
+		    return jdbcTemplate.query(sql, orderMapper, param);
+		}
+	   
+	   // 주문관리 삭제
+	      public boolean delete(int detailNo) {
+	    	  String sql = "delete admin_order where order_detail_no = ?";
+	    	  Object[] param = {detailNo};
+	    	  return jdbcTemplate.update(sql, param) > 0;
+	      }
+	   
 	   
 	   
 

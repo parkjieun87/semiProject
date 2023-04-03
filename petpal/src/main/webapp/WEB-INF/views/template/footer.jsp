@@ -3,6 +3,13 @@
  <html lang="ko">
  
  <style>
+ 	footer {
+      position: relative;
+      top: 50px;
+
+      width: 100%;
+    }
+ 	
 	.footMent
    {
    	font-size : 15px;
@@ -38,7 +45,7 @@
     
         
 <footer>
-<div class="container-1500">
+<div class="container-1500" >
 	<p class="row">
         <a href='https://www.petbabo.com/' target='_blank'>회사소개   |</a>
         <a href='https://www.dogpang.com/shop/service/term.php' target='_blank'>이용약관   |</a>  

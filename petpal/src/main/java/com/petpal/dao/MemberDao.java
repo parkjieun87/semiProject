@@ -11,7 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.CartDto;
 import com.petpal.dto.MemberDto;
+import com.petpal.dto.OrderListDto;
+import com.petpal.dto.ProductOrderDto;
 import com.petpal.vo.PaginationVO;
 
 import net.nurigo.java_sdk.api.Message;
@@ -21,6 +24,42 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class MemberDao {
 
    //형석
+	
+//	//product_order mapper 생성
+//	private RowMapper<ProductOrderDto> mapper2 = new RowMapper<ProductOrderDto>() {
+//	@Override
+//	public ProductOrderDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+//		ProductOrderDto productOrderDto = new ProductOrderDto();
+//		productOrderDto.setOrderNo(rs.getInt("order_no"));
+//		productOrderDto.setMemberId(rs.getString("member_id"));
+//		productOrderDto.setOrderDate(rs.getDate("order_date"));
+//		productOrderDto.setReceiverName(rs.getString("receiver_name"));
+//		productOrderDto.setReceiverTel(rs.getString("receiver_tel"));
+//		productOrderDto.setReceiverBasicAddr(rs.getString("receiver_basic_addr"));
+//		productOrderDto.setReceiverPost(rs.getString("receiver_post"));
+//		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
+//		productOrderDto.setTotalPrice(rs.getInt("total_price"));
+//		return productOrderDto;
+//	}};
+	
+	 //형석(2023.04.03
+	
+		//OrderListDto mapper 생성
+	
+		private RowMapper<OrderListDto> mapper3 = new RowMapper<OrderListDto>() {
+		@Override
+		public OrderListDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			OrderListDto orderListDto = new OrderListDto();
+			orderListDto.setOrderNo(rs.getInt("order_no"));
+			orderListDto.setMemberId(rs.getString("member_id"));
+			orderListDto.setProductCount(rs.getInt("product_count"));
+			orderListDto.setProductName(rs.getString("product_name"));
+			orderListDto.setProductPrice(rs.getInt("product_price"));
+		
+			return orderListDto;
+		}};
+
+	
       @Autowired
       private JdbcTemplate jdbcTemplate;
       
@@ -202,6 +241,13 @@ public class MemberDao {
          return jdbcTemplate.query(sql,mapper,param);
       }   
       
+    	
+      //주문 목록(2023.04.03 형석)
+  	public List<OrderListDto> orderList(String memberId) {
+  		String sql = "select * from orderlist where member_id =?";
+  		Object[] param = {memberId};
+  		return jdbcTemplate.query(sql,mapper3, param);
+  	}
 
 }
       

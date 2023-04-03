@@ -66,12 +66,26 @@ public class ProductWithImageDao {
 		return jdbcTemplate.query(sql, mapper, param);
 	}
 	
+	//카테고리코드 -> 리스트 페이지네이션
+		public List<ProductWithImageDto> selectList(String categoryCode, PaginationVO vo){
+			String sql = "select * from(select rownum rn, TMP.* from(select * from product_with_image where category_code=?)TMP)where rn between ? and ?";
+			Object[] param = {categoryCode, vo.getBegin(), vo.getEnd()};
+			return jdbcTemplate.query(sql, mapper, param);
+		}
+	
 	//부모카테코드 -> 리스트
 	public List<ProductWithImageDto> selectListFromParent(String parent){
 		String sql = "select * from product_with_image_parent where category_parent=?";
 		Object[] param = {parent};
 		return jdbcTemplate.query(sql, parentMapper, param);
 	}
+	
+	//부모카테코드 -> 리스트 페이지네이션
+		public List<ProductWithImageDto> selectListFromParent(String parent, PaginationVO vo){
+			String sql = "select * from(select rownum rn, TMP.* from(select * from product_with_image_parent where category_parent=?)TMP)where rn between ? and ?";
+			Object[] param = {parent, vo.getBegin(), vo.getEnd()};
+			return jdbcTemplate.query(sql, parentMapper, param);
+		}
 	
 	public ProductWithImageDto selectOne(int productNo){
 		String sql = "select * from product_with_image where product_no=?";

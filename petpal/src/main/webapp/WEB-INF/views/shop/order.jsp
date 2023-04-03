@@ -20,36 +20,31 @@
    
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
 
+<script type="text/javascript">
+		
 
-   <script type="text/javascript">
- 
    
-   
+		$(function(){
+			//체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
+			$("[name=order_copy]").change(function(){
+				   var txt = "";
+				   var vailName = "${findDto.memberName}";
+				   var vailTel = "${findDto.memberTel}";
+				   var vailPost = "${findDto.memberPost}";
+				   var vailBasicAddr = "${findDto.memberBasicAddr}";
+				   var vailDetailAddr = "${findDto.memberDetailAddr}";
+		
+				   var txt2 = $("[name=order_copy]").prop("checked");
+		
+				   if(!txt2){
+					    $("input[name=receiverName]").val(txt);
+					    $("input[name=receiverTel]").val(txt);
+					    $("input[name=receiverPost]").val(txt);
+					    $("input[name=receiverBasicAddr]").val(txt);
+					    $("input[name=receiverDetailAddr]").val(txt);
 
-      $(function(){
-    	  
-    	  //휴대폰 번호 숫자 미입력시 오류문자뜨게
-    	  
-    	  
-      		
-    	//체크박스 누르면 수령인,전화번호,주소 불러오기(findDto때문에 여기에다가 작성)
-          $("[name=order_copy]").change(function(){
-                var txt = "";
-                var vailName = "${findDto.memberName}";
-                var vailTel = "${findDto.memberTel}";
-                var vailPost = "${findDto.memberPost}";
-                var vailBasicAddr = "${findDto.memberBasicAddr}";
-                var vailDetailAddr = "${findDto.memberDetailAddr}";
-       
-                var txt2 = $("[name=order_copy]").prop("checked");
-       
-                if(!txt2){
-                    $("input[name=receiverName]").val(txt);
-                    $("input[name=receiverTel]").val(txt);
-                    $("input[name=receiverPost]").val(txt);
-                    $("input[name=receiverBasicAddr]").val(txt);
-                    $("input[name=receiverDetailAddr]").val(txt);
 
                 } else {
                     $("input[name=receiverName]").val(vailName);
@@ -106,8 +101,10 @@
           	var name = $("#productName").val(); //상품이름 변수로 선언
       
         
-          //카카오 api 
-			$(".kakaoBtn").click(function(){
+          //카카오 api (추후에 결제하기버튼을 누를때 호출하기위해 함수를 만들어줌)
+          function kakao1() {
+			
+
 				
 	       // IMP.request_pay(param, callback) 결제창 호출
 	       IMP.request_pay({ // param
@@ -123,9 +120,8 @@
 	           buyer_postcode : '123-456'
 	       }, function (rsp) { // callback
 	           if (rsp.success) { 
-	             alert("결제성공. 예매 완료 페이지로 이동합니다.");   
-	             $("#enrollForm").attr("action", "/ReserveFinish");
-	            $("#enrollForm").submit();   
+	             
+	            $("#jb-form").submit();   
 	               // 결제 성공 시 로직,
 	           
 	           } else {
@@ -135,15 +131,16 @@
 
 	           }
 
-	       });
+	  
 			}); 
+		}
 
 			 
 	       
 			 
-			//토스페이 api 
-			$(".tossBtn").click(function(){
-				
+			//토스페이 api (추후에 결제하기버튼을 누를때 호출하기위해 함수를 만들어줌)
+			function toss1() {
+						
 	       // IMP.request_pay(param, callback) 결제창 호출
 	       IMP.request_pay({ // param
 	           pg: "tosspay",
@@ -158,9 +155,8 @@
 	           buyer_postcode : '123-456'
 	       }, function (rsp) { // callback
 	           if (rsp.success) { 
-	             alert("결제성공. 예매 완료 페이지로 이동합니다.");   
-	             $("#enrollForm").attr("action", "/ReserveFinish");
-	            $("#enrollForm").submit();   
+	            
+	            $("#jb-form").submit();   //성공하면 버튼 눌러서 submit되게 수정함
 	               // 결제 성공 시 로직,
 	           
 	           } else {
@@ -171,43 +167,150 @@
 	           }
 
 	       });
-			}); 
+		
+				
+			}
 			
 			
             
+
         
+         //1.인증번호 입력창이 null, 4자리가 확인 후 출력
+            $("[name=phone2]").blur(function(){
+                
+                //this == 인증번호 입력창
+                
+                var number = $(this).val();
+                var unitCheck1 = false;
+                if(number.length==0){//null일때
+                    $("[name=phonecheck]").show().css("display");
+                    $("[name=phonecheck2]").hide().css("display");
+                    alert("인증번호입력해주세요")
+                }else if(number.length>4){
+                    $("[name=phonecheck]").hide().css("display");
+                    $("[name=phonecheck2]").show().css("display");
+                }else if(number.length==4){
+                    $("[name=phonecheck]").hide().css("display");
+                    $("[name=phonecheck2]").hide().css("display");
+                    var unitCheck1 = true;
+                }else if(number==null){
+                	var unitCheck1 =false;
+                }
+                
+                
+            })
+          //2. 수령인 한글or영어 정규표현식 검사,null
+            //수령인 미 입력시 문구 나오게 하기
+            $("[name=receiverName]").blur(function(){
+            	var check = $(this).val();
+                var isValid = $(this).val().length>0;
+                var memberRegex = /^[가-힣a-zA-Z]{5,10}$/;
+                var isOk = memberRegex.test(check);
+                var unitCheck2 = false;
+            //    console.log(!isOk);
+                if(!isValid){
+                    $("[name=txt-p1]").show().css("display");
+                }else if(!isOk){
+                	$("[name=txt-p1-2]").show().css("display");
+                }else if(check==null){
+                	var unitCheck2 = false;
+                }
+                else{
+                    $("[name=txt-p1]").hide().css("display");
+                    $("[name=txt-p1-2]").hide().css("display");
+                    var unitCheck2 = true;
+                    
+                }
+            });
+        
+        //3.상세주소 null, 한글 글자 입력
+         //상세주소 미 입력시 문구 나오게 하기
+            $("[name=receiverDetailAddr]").blur(function(){
+                var isValid = $(this).val().length>0;
+                var check = $(this).val();
+                var regex = /^[0-9가-힣]{2,20}$/;
+                var isOk = regex.test(check);
+               
+                var unitCheck3 = false;
+                if(!isValid){
+                    $("[name=txt-p5]").show().css("display");
+                }else if(!isOk){
+                	$("[name=txt-p5-2]").show().css("display");
+                }else if(check==null){
+                	var unitCheck3 = false;
+                }
+                else{
+                    $("[name=txt-p5]").hide().css("display");
+                    $("[name=txt-p5-2]").hide().css("display");
+                    var unitCheck3 = true;
+                }
+            });
+
+            
+            //4.결제하기를 누르면 카카오 또는 토스 결제 실행, 없으면 alert
+            $("#submitSettleBtn").click(function(){
+            	var kakao = $("#payment-kakao").is(":checked");
+            	var toss = $("#payment-toss").is(":checked");
+            	var checkBox = $("#puchase-ok").is(":checked");
+            	 var unitCheck4 = false;
+            	 
+            	if(kakao){
+            		kakao1();
+            	}else if(toss){
+            		toss1();
+            	}else if(toss&&kakao){
+            		var unitCheck4 = true;
+            	}
+            	else{
+            		alert("결제 선택해주세요");
+            		var unitCheck4 = false;
+            	}
+            	
+            	var checkBox = $("#puchase-ok").is(":checked");
+             	var unitCheck5 = false;
+             	if(checkBox){
+             		var unitCheck5 = true;
+             	}else{
+             		alert("개인정보 제3자 제공 동의 체크 해주세요")
+             		var unitCheck5 = false;
+             	}
+            });
+            
+            
+
+          
 			
 			
-	    
+  		   //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
+			   // 아래 코드와 겹쳐서 주석 처리하고 아래코드와 합침 $( '#jb-form' ).submit();
+
+	     //   $( '#submitSettleBtn' ).click( function() {
+	     //     $( '#jb-form' ).submit();
+	    //    });
+      $("#submitSettleBtn").click(function(e){ //우선 버튼을 못 누르게 막아둠
+          e.preventDefault();
+          var isAll = unitCheck1 && unitCheck2 && unitCheck3 && unitCheck4 && unitCheck5 == true;
+          var isNot = unitCheck1 || unitCheck2 || unitCheck3 || unitCheck4 || unitCheck5 == false;
+
+			if(isAll){
+				$( '#jb-form' ).submit();
+			}else if(isNot){
+				e.preventDefault();
+			}
+      })
  
-      });      
-   // 체크박스 동의 시 결제하기 버튼을 누를 수 있게 구현
-      function checkAgree(){
-       var checkbox = document.querySelector("#puchase-ok");
-       var button = document.querySelector("#submitSettleBtn");
-       var count = 2;
-       var checkRadio = document.querySelector("#payment-kakao");
-       var checkRadio2 = document.querySelector("#payment-toss");
-        
-var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
-        
-        
-      button.disabled = !checkbox.checked;
-      }
+      });    
+		
    
    
-   //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
-   $( document ).ready( function() {
-        $( '#submitSettleBtn' ).click( function() {
-          $( '#jb-form' ).submit();
-        } );
-   } );
+
       
          
 
 </script>
 
-
+  <!-- 우편cdn -->
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  
  
 <div class="container-1000" style="font-family: '카페24 써라운드 에어';">
@@ -266,7 +369,7 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                             
                                             <input type="hidden" value="${totalPrice}" id="disCountPrice">
                                             <input type="hidden" value="${list.productName}" id="productName">
-                                          	
+                                          	 
                                            
                                             <c:set var="productName" value="${list.productName}"/>
                                              <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
@@ -316,17 +419,18 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                     <button type="button" class="form-btn positive w-30 ms-50" id="phoneChk" style="margin-left:30px">번호인증</button>
                                  </div>
                                  <div class="row" id="rowbtn2" style="margin-top:40px;">
-                                 <input id="phone2" type="text"  class="form-input w-100"  name="phone2" placeholder="인증번호 입력"  required/>
+                                 <input id="phone2" type="text"  class="form-input w-100"  name="phone2" placeholder="인증번호 입력"  required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                                  <button id="btnC2" type="button" class="btn-clear2"></button>  
-                                    <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
+                                 <span class="point successPhoneChk" name="phonecheck" style="display: none; color:#145eaa;">인증번호 4자리를 입력 해주십시오.</span>
                                  </div>
                             </div>
 
                         </div>
                     </div>
                     
-                       <!-- 받는사람 정보 div -->
+                     <!-- 받는사람 정보 div -->
               
+                    <form action="order" method="post">
                     
               
                     <div class="sec">
@@ -344,6 +448,7 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                 <button id="btnC3" type="button" class="btn-clear3" style="left: 480px;"></button>
                             </div>
                             <p id="receive-name-txt" class="warning-txt" name="txt-p1" style="margin-top: -2px;">수령인을 입력해주세요.</p>
+                            <p id="receive-name-txt" class="warning-txt" name="txt-p1-2" style="margin-top: -2px;" style="display: none;">한글 또는 영어로 입력해주세요</p>
 
 
                             <div class="inp-wrap type03" id="row-btnC4">
@@ -370,10 +475,18 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                 <input type="text" name="receiverDetailAddr" id="receive-address-detail" value="" required>
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
-                            <p id="receive-address-detail-txt" class="warning-txt" name="txt-p3">상세주소를 입력해주세요.</p>
+                            <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5">상세주소를 입력해주세요.</p>
+                            <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5-2"  style="display: none;">한글 또는 영어로 입력해주세요</p>
                     
                         </div>
+                        
+                        
                     </div>
+                    
+				
+
+
+
                    
                
                     <div class="sec">
@@ -399,28 +512,28 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                     <b>총 결제금액</b>
                                 </strong>
                                 <strong class="val malgun" id="realTotalPrice"></strong>
-                                <input type="hidden" id="totalPrice" name="totalPrice"  value="0" >
+                                <input type="hidden" id="totalPrice" name="totalPrice" value="0">
                             </div>
                         </div>
-                        </form>
+                       
    
                         <div class="sec">
                             <h2 class="tit type02">
                                 <b>결제 수단</b>
                             </h2>
-                            <div class="sec type03">
+                            <div class="sec type03" >
                                 <div class="inp-wrap type03" style="width: 100%;">
                                     <label>결제</label>
 
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" >
-                                        <label for="payment-kakao" onclick="requestPay();" class="kakaoBtn">카카오페이</label>
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;"  checked="checked">
+                                        <label for="payment-kakao"  class="kakaoBtn">카카오페이</label>
                                         <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
 
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
                                         <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none;">
-                                        <label for="payment-toss" onclick="requestPay2()" class="tossBtn">토스페이</label>
+                                        <label for="payment-toss"  class="tossBtn">토스페이</label>
                                         <img src="/static/image/tosspay.png" style="height: 17px; width: 38px; border-radius: 10px 10px 10px 10px;">
                                     </div>
                                 </div>
@@ -457,7 +570,7 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                                 </ol>
                             </div>
                             <div class="chk-wrap">
-                                <input type="checkbox" id="puchase-ok" style="display:none;" onchange="checkAgree();">
+                                <input type="checkbox" id="puchase-ok" style="display:none;" onchange="checkAgree();" required>
                                 <label for="puchase-ok">
                                     본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.
                                 </label>
@@ -473,7 +586,7 @@ var isAllcheck = count== (checkbox+checkRadio+checkRadio2).length;
                  
                     </div>
                 </div>
-             
+              </form>
       
     </div>
 </div>

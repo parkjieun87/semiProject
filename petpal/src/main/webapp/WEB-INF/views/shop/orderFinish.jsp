@@ -38,7 +38,7 @@
                     </li>
                 </ul>
             </div>
-   
+ 
                 <div id="contents">
                     <div class="sec">
                         <h2>주문이 정상적으로 완료되었습니다!</h2>
@@ -88,7 +88,7 @@
 
                             <div class="inp-wrap val type03">
                                 <strong>총구매금액</strong>
-                                <span class="val" id="order-email"><fmt:formatNumber value="${dto.totalPrice}" pattern="#,###" />원</span>
+                                <span class="val" id="order-email"><fmt:formatNumber  value="${dto.totalPrice}" pattern="#,###" />원</span>
                             </div>
 
                         </div>

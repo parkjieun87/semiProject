@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- 
+ <link rel="stylesheet" href="/static/css/contact/reply.css">
  <style>
        
         body{
             font-family: '카페24 써라운드 에어';
+            /* body의 마진을 설정하여 footer와 겹치지 않게 함 */
+			  margin-bottom: 50px; /* footer 높이와 같게 설정 */
         }
 
         /* 상세페이지 사진 css */
@@ -396,14 +398,15 @@ font-weight:700;
                 line-height: 40px;                
         }
            
-   footer {
+  footer {
   position: fixed;
-  bottom: 50px;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  height:  150px;
+  height: 220px; /* footer 높이 */
+  background-color: #f5f5f5;
+  text-align: left;
 }
-
-
 
 
 
@@ -445,7 +448,7 @@ font-weight:700;
                  $(".disPrice").text(sum.toLocaleString());
          
             })
-            //플러스 버튼
+           
            //플러스 버튼
             $(".btn-plus").click(function(){
               
@@ -501,6 +504,7 @@ font-weight:700;
                 alert("로그인이 필요합니다.");
              }*/
             }
+
             
          // 장바구니 등록  
          $("#insert_cart").click(function(){
@@ -518,6 +522,39 @@ font-weight:700;
        	});
          
          
+         // 리뷰 쓰기 
+         $(".reply_button_wrap").click(function(e){
+        	 e.preventDefault();
+        	 
+        	 const memberId = '${memberId}';
+        	 const productNo = '${productDto.productNo}';
+        	 
+        	 $.ajax({
+        		data : {
+        			productNo : productNo,
+        			memberId : memberId
+        		},
+        		url : "/reply/check",
+        		type : "POST",
+        		success : function(result){
+        			if(result === '1'){
+    					alert("이미 등록된 리뷰가 존재 합니다.")
+    				} else{
+    					let popUrl = "/product/replyEnroll/" + memberId + "?productNo=" + productNo;
+    					console.log(popUrl);
+    					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+    					
+    					window.open(popUrl,"리뷰 쓰기",popOption);							
+    				}
+        		}
+        	 });
+        	 
+	 
+         });
+         
+    
+         
+        
         /* 주소입력란 버튼 동작(숨김, 등장) */
         function showAdress(className){
             /* 컨텐츠 동작 */
@@ -533,8 +570,6 @@ font-weight:700;
                     $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');   
         }
 
-            
-                   
         });
         
         
@@ -542,14 +577,29 @@ font-weight:700;
         
         
     </script>
+    
+     <script type="text/javascript">
+            /* 주소입력란 버튼 동작(숨김, 등장) */
+        function showAdress(className){
+            /* 컨텐츠 동작 */
+                /* 모두 숨기기 */
+                $(".addressInfo_input_div").css('display', 'none');
+                /* 컨텐츠 보이기 */
+                $(".addressInfo_input_div_" + className).css('display', 'block');		
+            
+            /* 버튼 색상 변경 */
+                /* 모든 색상 동일 */
+                    $(".address_btn").css('backgroundColor', '#a29bfe');
+                /* 지정 색상 변경 */
+                    $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');	
+        }
+            
+      </script>
 <head>
  
 </head>
 <%@ include file="../template/header.jsp" %>
-
-
-
-
+<body>
         <div class="row center">
             <h1></h1>
         </div>
@@ -692,6 +742,7 @@ font-weight:700;
             
                                      
             
+                                              
       <div class="addressInfo_div">
         <div class="addressInfo_button_div">
             <button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #a29bfe;">상품 정보</button>
@@ -706,7 +757,12 @@ font-weight:700;
                              ${productDto.productDesc}                                             
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_2">
-                테스트2
+                <div class="reply_subject">
+					<h2>리뷰</h2>
+				</div>
+				<div class="reply_button_wrap">
+					<button>리뷰 쓰기</button>
+				</div>
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_3" >
                 테스트3
@@ -721,6 +777,12 @@ font-weight:700;
     
    
 </div>
-    
 
+    
+<%-- 
 <%@include file="../template/footer.jsp" %>
+ --%>
+
+    </body>
+
+

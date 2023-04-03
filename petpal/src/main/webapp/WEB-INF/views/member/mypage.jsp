@@ -25,9 +25,8 @@
 
 
 
-<article style="display:flex; margin-top:3%; margin-left:10%;">
 
-<section class="flex-box flex-vertical">
+	<section class="flex-box flex-vertical"  style="display:flex; margin-top:3%; margin-left:15%; background-image:url('/static/image/mypage.png'); background-position: center; background-size: 400px; background-repeat:no-repeat">
             <aside style="border: 4px solid #b1b2ff; border-radius: 15px 15px 15px 15px ">
             
                 <!-- 관리 메뉴는 수직으로 배치(List-Group 형태) -->
@@ -37,21 +36,22 @@
                         <h3>내 정보 </h3>
                     </div>
                     <div class="p-20"><a href="/member/edit" class="link">개인정보 관리</a></div>
-                    <div class="p-20"><a href="/member/shipping" class="link">배송지 관리</a></div>
+              		 <div class="p-20"><a href="/member/password" class="link">비밀번호 변경</a></div>
+                     <div class="p-20"><a href="/member/exit" class="link">회원 탈퇴</a></div>
+                    
                     <br>
                     <div class="p-20">
                         <h3>내 활동 </h3>
                     </div>
-                    <div class="p-20"><a href="/member/orderPage" class="link">주문 목록</a></div>
-                    <div class="p-20"><a href="/cart/add" class="link">장바 구니</a></div>
+                    <div class="p-20"><a href="/member/orderList" class="link">주문목록</a></div>
+                    <div class="p-20"><a href="/cart" class="link">장바구니</a></div>
+                    
                 </div>
                 
             </aside>
-            
+                
         </section>
-          <img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
           
- </article>
  
  
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

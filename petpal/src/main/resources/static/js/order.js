@@ -84,15 +84,7 @@ $(function(){
             })    
             
 
-            //수령인 미 입력시 문구 나오게 하기
-            $("[name=receiverName]").blur(function(){
-                var isValid = $(this).val().length>0;
-                if(!isValid){
-                    $("[name=txt-p1]").show().css("display");
-                }else{
-                    $("[name=txt-p1]").hide().css("display");
-                }
-            });
+           
             
     
             //휴대폰 번호 미 입력시 문구 나오게 하기
@@ -117,16 +109,18 @@ $(function(){
 						$("[name=txt-p2]").hide().css("display");
 					}
                 });
-            //상세주소 미 입력시 문구 나오게 하기
-            $("[name=receiveAddressSub]").blur(function(){
-                var isValid = $(this).val().length>0;
-                if(!isValid){
-                    $("[name=txt-p3]").show().css("display");
-                }else{
-                    $("[name=txt-p3]").hide().css("display");
-                }
-            });
+           
             
+            
+             //카카오페이 api   (수정전 원래 코드) 
+               const IMP = window.IMP; // 생략 가능
+         	 IMP.init("imp55345065");  // 예: imp00000000a
+           
+          	var name = $("#productName").val(); //상품이름 변수로 선언
+      
+        
+
+			
 
             
 

@@ -10,6 +10,10 @@
     <title>홈페이지 레이아웃</title>
     <link rel="stylesheet" type="text/css" href="/static/css/load.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
     <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
@@ -28,7 +32,7 @@
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    </head>
    
-<main class="container-1500">
+<main class="container-1100">
 <body>
   <header id="header">
     <div id="header-area1">
