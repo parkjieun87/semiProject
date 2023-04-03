@@ -218,7 +218,7 @@
             <br>
 
             <div class="row flex-box">
-          
+
                 <div class="me-20 flex-box item ">
                 <a href="#">
                     <img src="${product.imageURL}" id="box">
@@ -230,6 +230,7 @@
                     <span>${disPrice}</span>원
                     </strong>
                 </div>
+
 
 
                  <div class="me-20 flex-box item ">
