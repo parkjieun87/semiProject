@@ -331,7 +331,7 @@
                     <span>칸타나 동결건조 치킨 연어칩 72g</span>
                 </a>
                     <strong class="price">
-                    <span>5,000</span>원
+                    <span>5,00022</span>원
                     </strong>
                 </div>
 
