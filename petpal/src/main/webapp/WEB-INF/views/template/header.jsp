@@ -38,11 +38,14 @@
                <a href="http://localhost:8080/">
                 <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
+                
                 <div id="search">
-                  <form name="frm_search" id="frm_search" method="#" action="#">
                     <div class="inp-wrap">
-                       <input class="inp2" type="text" placeholder="검색어를 입력하세요" > 
+                  <form name="frm_search" id="frm_search" method="post" action="shop/searchList">
+                       <input class="inp2" type="text" placeholder="검색어를 입력하세요"  value="${vo.getColumn()}"> 
                        <div class="tag" style="float:left; margin-top: 0;">
+                         </form>
+                         
                          <ul>
                          	<!-- 로그아웃 상태 -->
                            <c:if test="${memberId == null}">
@@ -52,7 +55,7 @@
                             <!-- 로그인 상태 -->
                            <c:if test="${memberId != null}">
                            <li><a href="http://localhost:8080/member/mypage">Mypage</a></li>
-                           <li><a href="/cart/${memberId}"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
+                           <li><a href="/cart"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
                            <li><a href="http://localhost:8080/member/logout">Logout</a></li>
                            </c:if>
                             <!-- 로그인 상태 -->
@@ -60,7 +63,6 @@
                        </div>                   
                     </div>
                 </div>
-                  </form>
                </div>
              </div>
     </div>

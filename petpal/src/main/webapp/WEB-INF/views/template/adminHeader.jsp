@@ -111,13 +111,6 @@
 	<!-- jQuery Cdn -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script>
-        $(function () {
-            var hasImage = $('td').has('img').length > 0;
-
-        });
-    </script>
-
 </head>
 	
 <body>
