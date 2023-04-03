@@ -29,10 +29,7 @@ import com.petpal.dto.ProductWithImageDto;
 import com.petpal.dto.ReplyDto;
 import com.petpal.service.ReplyService;
 import com.petpal.vo.PaginationVO;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 
 @Controller
 @RequestMapping("/product")
