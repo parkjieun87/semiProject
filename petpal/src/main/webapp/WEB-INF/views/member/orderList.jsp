@@ -470,7 +470,9 @@ td{
           			<input type="hidden" id="orderNo" value="${list.orderNo}">
           			<input type="hidden" id="productNo" value="${list.productNo}">
           	
-          			
+          			<c:if test="${list.replyCheck == 1}">
+          			<button class="order_btn">리뷰작성 완료</button> <br> 
+          			</c:if>
            			<button class="order_btn">리뷰남기기</button> <br> 
           </td>
         

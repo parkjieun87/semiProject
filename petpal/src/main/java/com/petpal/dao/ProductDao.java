@@ -230,6 +230,8 @@ public class ProductDao {
 
 		    return jdbcTemplate.query(sql, productMapper, param);
 		}
+	   
+	  
 	
 
 

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.petpal.dao.OrderDao;
 import com.petpal.dao.ReplyDao;
+import com.petpal.dto.OrderDetailDto;
 import com.petpal.dto.ProductDto;
 import com.petpal.dto.ReplyDto;
 import com.petpal.service.ReplyService;
@@ -21,22 +23,17 @@ public class ReplyController {
 	private ReplyDao replyDao;
 	
 	@Autowired
-	private ReplyService replyService;
+	private OrderDao orderDao;
 	
 	/* 리뷰 등록 */
 	@PostMapping("/enroll")
-	public void enrollReply(ReplyDto dto) {
+	public void enrollReply(ReplyDto dto, OrderDetailDto dto2) {
+		orderDao.replyCheck(1834);
 		replyDao.enrollReply(dto);
+		
 	}
 	
-	/*
-	/* 리뷰 체크 */
-	/* 리뷰가 존재하면 1 존재하지 않으면 0 
-	@PostMapping("/check")
-	public String replyCheck(ReplyDto dto) {
-		return replyService.replyCheck(dto);
-	}
-	*/
+	
 	
 
 

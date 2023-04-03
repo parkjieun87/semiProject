@@ -56,6 +56,7 @@ public class OrderDao {
 			orderDetailDto.setProductCount(rs.getInt("product_count"));
 			orderDetailDto.setProductPrice(rs.getInt("product_price"));
 			orderDetailDto.setProductName(rs.getString("product_name"));
+			orderDetailDto.setReplyCheck(rs.getInt("reply_check"));
 			return orderDetailDto;
 		}
 	};
@@ -131,6 +132,14 @@ public class OrderDao {
 		Object[]param = {orderDetailDto.getOrderNo(),orderDetailDto.getProductNo(),orderDetailDto.getMemberId(),
 				orderDetailDto.getProductCount(),orderDetailDto.getProductPrice()};
 		jdbcTemplate.update(sql,param);
+	}
+	
+	// 상품 리뷰 작성 유무를 확인
+	public boolean replyCheck(int orderNo) {
+		String sql = "update order_detail set reply_check = 1 where order_no = ?";
+		Object[] param = {orderNo};
+		
+		return jdbcTemplate.update(sql,param) > 0;
 	}
 	
 	

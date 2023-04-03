@@ -257,7 +257,7 @@ public class MemberController {
 		@GetMapping("/replyEnroll/{memberId}")
 		public String replyEnrollWindowGET(@PathVariable("memberId") String memberId, int productNo, Model model) {
 			ProductDto dto = productDao.getProduct(productNo);
-		
+			
 			model.addAttribute("orderList",dto);
 			model.addAttribute("memberId",memberId);
 			return "/WEB-INF/views/product/replyEnroll.jsp";
