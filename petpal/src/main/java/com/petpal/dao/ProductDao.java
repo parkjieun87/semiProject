@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.AdminOrderDto;
 import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.CategoryDto;
 import com.petpal.dto.ProductDto;
@@ -35,7 +36,7 @@ public class ProductDao {
 	}
 	
 	// 조회를 위한 RowMapper 구현
-	private RowMapper<ProductDto> mapper = new RowMapper<ProductDto>() {
+	private RowMapper<ProductDto> productMapper = new RowMapper<ProductDto>() {
 		@Override
 		public ProductDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 			ProductDto productDto = new ProductDto();
@@ -89,16 +90,17 @@ public class ProductDao {
 	}
 	
 	// 상품 리스트
-	public List<ProductDto> selectList(PaginationVO vo){
+	public List<ProductDto> selectList(PaginationVO vo, String sort){
 		String sql = "select * from("
 				+ "select rownum rn, TMP.* from("
 				+ "select * from product order by product_regdate desc"
 				+" )TMP"
-				+ ")where rn between ? and ?";
+				+ ")where rn between ? and ? "
+				+ "order by "+sort;
 		
 		Object[] param = {vo.getBegin(), vo.getEnd()};
 				
-		return jdbcTemplate.query(sql,mapper,param);
+		return jdbcTemplate.query(sql,productMapper,param);
 	}
 	
 	
@@ -107,13 +109,13 @@ public class ProductDao {
 	public List<ProductDto> selectList(String categoryCode){
 		String sql = "select * from product where category_code=?";
 		Object[] param = {categoryCode};
-		return jdbcTemplate.query(sql, mapper, param);
+		return jdbcTemplate.query(sql, productMapper, param);
 	}
 	
 	public ProductDto selectOne(int productNo) {
 		String sql = "select * from product where product_no=?";
 		Object[] param = {productNo};
-		List<ProductDto> list = jdbcTemplate.query(sql, mapper, param);
+		List<ProductDto> list = jdbcTemplate.query(sql, productMapper, param);
 		return list.isEmpty() ? null:list.get(0); 
 	}
 	
@@ -175,6 +177,26 @@ public class ProductDao {
 		Object[] param = {parentCode};
 		return jdbcTemplate.queryForObject(sql, String.class, param);
 	}
+	
+	 // 검색 + 정렬 기능
+	   public List<ProductDto> searchAndSelectList(String column, String keyword, PaginationVO vo, String sort) {
+		    String sql = "select * from ("
+		               + "select rownum rn, TMP.* from ("
+		               + "select * from product "
+		               + "where instr(#1, ?) > 0 "
+		               + "order by #1"
+		               + ") TMP"
+		               + ") where rn between ? and ?";
+		    sql = sql.replace("#1", column);
+
+		    Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
+
+		    if (sort != null && !sort.isEmpty()) {
+		        sql += " order by " + sort;
+		    }
+
+		    return jdbcTemplate.query(sql, productMapper, param);
+		}
 	
 
 }

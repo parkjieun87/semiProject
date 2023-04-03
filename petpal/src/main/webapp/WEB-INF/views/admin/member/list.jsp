@@ -12,11 +12,13 @@
 
 			if(choice == false) return;
 			
-			let pageNo = $(this).data("page");
+			var pageNo = $(this).data("page");
 			let memberId = $(this).data("memberid");
 			$(".delete_memberId").val(memberId);
+			$(".delete_page").val(pageNo);
 			$(".delete_form").submit();
 			
+					
 			
 			
 			
@@ -28,6 +30,7 @@
 		<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="memberId" class="delete_memberId">
+          <input type="hidden" name="page" class="delete_page">
        </form>  
        
     	<!-- 상품 목록 테이블 -->
