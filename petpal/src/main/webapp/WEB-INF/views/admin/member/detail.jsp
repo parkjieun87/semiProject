@@ -10,6 +10,7 @@
 	<div class="row center">
 		<h2>${memberDto.memberNick}님의 개인 프로필</h2>
 	</div>
+    
 	<div class="row">
 		<table class="center">
 			<tbody>
