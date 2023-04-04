@@ -256,6 +256,20 @@ public class ProductDao {
 		    return jdbcTemplate.query(sql, productMapper, param);
 		}
 	   
+	   
+	   /* 메인 페이지 상품 4개 씩 */
+	   public List<ProductDto> mainList(){
+		   String sql = "select * from product where product_no between 244 and 248";
+		   return jdbcTemplate.query(sql,productMapper);
+	   }
+	   
+	   /* 메인 페이지 상품 4개 씩 */
+	   public List<ProductDto> mainList2(){
+		   String sql = "select * from product where product_no between 249 and 252";
+		   return jdbcTemplate.query(sql,productMapper);
+	   }
+	   
+	
 	  
 	
 
