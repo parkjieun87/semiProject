@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductWithImageDao;
+import com.petpal.dao.ReplyDao;
 import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.OrderListDto;
 //import com.petpal.dao.ProductWithImageDao;
@@ -38,6 +39,9 @@ public class ProductController {
 	private ProductDao productDao;
 	@Autowired
 	private ProductWithImageDao productWithImageDao;
+	
+	@Autowired
+	private ReplyDao replyDao;
 	
 
 	
@@ -111,12 +115,16 @@ public class ProductController {
 	public String detail(@RequestParam int productNo, Model model) {
 		ProductWithImageDto productWithImageDto = productWithImageDao.selectOne(productNo);
 		int disPrice = productWithImageDto.getProductPrice()*(100-productWithImageDto.getProductDiscount())/100;
+		
 		model.addAttribute("productDto", productWithImageDto);
 		model.addAttribute("disPrice", disPrice);
+		model.addAttribute("replyList",replyDao.replyList(productNo));
 		
 		return "/WEB-INF/views/product/detail.jsp";
 		
 	}
+	
+	
 	
 	
 
