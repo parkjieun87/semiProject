@@ -24,7 +24,10 @@
 
 <script type="text/javascript">
 		
-
+	var unitCheck1 = false;
+	var unitCheck2 = false;
+	var unitCheck3 = false;
+	var unitCheck5 = false;
    
 		$(function(){
 			//체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
@@ -181,20 +184,22 @@
                 //this == 인증번호 입력창
                 
                 var number = $(this).val();
-                var unitCheck1 = false;
+                
                 if(number.length==0){//null일때
                     $("[name=phonecheck]").show().css("display");
                     $("[name=phonecheck2]").hide().css("display");
                     alert("인증번호입력해주세요")
-
                 }else if(number.length>4){
                     $("[name=phonecheck]").hide().css("display");
                     $("[name=phonecheck2]").show().css("display");
                 }else if(number.length==4){
                     $("[name=phonecheck]").hide().css("display");
                     $("[name=phonecheck2]").hide().css("display");
-                    var unitCheck1 = true;
+                    unitCheck1 = true;
+                }else if(number==null){
+                	unitCheck1 =false;
                 }
+                
                 
             })
           //2. 수령인 한글or영어 정규표현식 검사,null
@@ -204,17 +209,19 @@
                 var isValid = $(this).val().length>0;
                 var memberRegex = /^[가-힣a-zA-Z]{5,10}$/;
                 var isOk = memberRegex.test(check);
-                var unitCheck2 = false;
+                
             //    console.log(!isOk);
                 if(!isValid){
                     $("[name=txt-p1]").show().css("display");
                 }else if(!isOk){
                 	$("[name=txt-p1-2]").show().css("display");
+                }else if(check==null){
+                	unitCheck2 = false;
                 }
                 else{
                     $("[name=txt-p1]").hide().css("display");
                     $("[name=txt-p1-2]").hide().css("display");
-                    var unitCheck2 = true;
+                    unitCheck2 = true;
                     
                 }
             });
@@ -227,54 +234,39 @@
                 var regex = /^[0-9가-힣]{2,20}$/;
                 var isOk = regex.test(check);
                
-                var unitCheck3 = false;
+                
                 if(!isValid){
                     $("[name=txt-p5]").show().css("display");
                 }else if(!isOk){
                 	$("[name=txt-p5-2]").show().css("display");
+                }else if(check==null){
+                	unitCheck3 = false;
                 }
                 else{
                     $("[name=txt-p5]").hide().css("display");
                     $("[name=txt-p5-2]").hide().css("display");
-                    var unitCheck3 = true;
+                    unitCheck3 = true;
                 }
             });
 
             
             //4.결제하기를 누르면 카카오 또는 토스 결제 실행, 없으면 alert
             $("#submitSettleBtn").click(function(){
-            	var kakao = $("#payment-kakao").is(":checked");
-            	var toss = $("#payment-toss").is(":checked");
+            	
+        
             	var checkBox = $("#puchase-ok").is(":checked");
-            	 var unitCheck4 = false;
-            	if(kakao){
-            		kakao1();
-            	}else if(toss){
-            		toss1();
-            	}else if(toss||kakao){
-            		var unitCheck4 = true;
-            	}
-            	else{
-            		alert("결제 선택해주세요");
-            		var unitCheck4 = false;
-            	}
-            });
-            
-            //5.체크박스 동의버튼을 하지않으면 alert
-             $("#submitSettleBtn").click(function(){
-             	var checkBox = $("#puchase-ok").is(":checked");
-             	var unitCheck5 = false;
+             
              	if(checkBox){
-             		var unitCheck5 = ture;
+             		unitCheck5 = true;
              	}else{
              		alert("개인정보 제3자 제공 동의 체크 해주세요")
-             		var unitCheck5 = false;
+             		unitCheck5 = false;
              	}
-          
-             });
-
+            });
             
-	
+            
+
+          
 			
 			
   		   //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
@@ -283,13 +275,28 @@
 	     //   $( '#submitSettleBtn' ).click( function() {
 	     //     $( '#jb-form' ).submit();
 	    //    });
-      $("#submitSettleBtn").click(function(e){
+      $("#submitSettleBtn").click(function(e){ //우선 버튼을 못 누르게 막아둠
           e.preventDefault();
-          var isAll = unitCheck1 == unitCheck2 == unitCheck3 == unitCheck4 == unitCheck5 ==true;
-          var isNot = isAll == false;
+          var isAll = unitCheck1 && unitCheck2 && unitCheck3 && unitCheck5;
+          //var isNot = unitCheck1 || unitCheck2 || unitCheck3 || unitCheck4 || unitCheck5 == false;
+		 console.log(isAll);
 			if(isAll){
-				$( '#jb-form' ).submit();
-			}else if(isNot){
+				var kakao = $("#payment-kakao").is(":checked");
+            	var toss = $("#payment-toss").is(":checked");
+            	var checkBox = $("#puchase-ok").is(":checked");
+              	             	
+            	if(kakao){
+            		kakao1();
+            	}else if(toss){
+            		toss1();
+            	}
+            	else{
+            		alert("결제 선택해주세요");
+            	}
+            	
+            	
+				
+			}else{
 				e.preventDefault();
 			}
       })
@@ -521,7 +528,7 @@
                                     <label>결제</label>
 
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;" >
+                                        <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;"  checked="checked">
                                         <label for="payment-kakao"  class="kakaoBtn">카카오페이</label>
                                         <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
@@ -565,7 +572,7 @@
                                 </ol>
                             </div>
                             <div class="chk-wrap">
-                                <input type="checkbox" id="puchase-ok" style="display:none;" onchange="checkAgree();" required>
+                                <input type="checkbox" id="puchase-ok" style="display:none;" required>
                                 <label for="puchase-ok">
                                     본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.
                                 </label>

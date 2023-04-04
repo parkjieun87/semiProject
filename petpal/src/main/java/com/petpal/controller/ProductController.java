@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.CategoryCountDto;
+import com.petpal.dto.OrderListDto;
 //import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.ProductDto;
 //import com.petpal.dto.ProductWithImageDto;
 import com.petpal.dto.ProductWithImageDto;
-
 import com.petpal.dto.ReplyDto;
 import com.petpal.service.ReplyService;
-
 import com.petpal.vo.PaginationVO;
 
 
@@ -39,8 +39,10 @@ public class ProductController {
 	@Autowired
 	private ProductWithImageDao productWithImageDao;
 	
+
+	
 	@Autowired
-	private ReplyService replyService;
+	private MemberDao memberDao;
 	
 	@GetMapping("/insert")
 	public String insert() {
@@ -118,15 +120,7 @@ public class ProductController {
 	}
 	
 	
-	/* 리뷰 쓰기 */
-	@GetMapping("/replyEnroll/{memberId}")
-	public String replyEnrollWindowGET(@PathVariable("memberId") String memberId, int productNo, Model model) {
-		ProductDto dto = productDao.getProduct(productNo);
-		model.addAttribute("productInfo",dto);
-		model.addAttribute("memberId",memberId);
-		return "/WEB-INF/views/product/replyEnroll.jsp";
-		
-	}
+
 	
 	
 	

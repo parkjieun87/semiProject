@@ -403,9 +403,9 @@ font-weight:700;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 200px; /* footer 높이 */
+  height: 220px; /* footer 높이 */
   background-color: #f5f5f5;
-  text-align: center;
+  text-align: left;
 }
 
 
@@ -493,6 +493,22 @@ font-weight:700;
                });
             });
             
+            
+            $("#insert_direct").click(function(){
+            	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
+               var productCnt = $(this).parent().parent().parent().parent().find("input").val();
+               form.productCount = productCnt;
+               $.ajax({
+                  url : "/cart/add",
+                  type : "POST",
+                  data : form,
+                  success : function(result){
+                	 
+                     cartAlert(result);
+                  }
+               });
+            });
+            
             function cartAlert(result){
                if(result == '0'){
                 alert("장바구니에 추가를 하지 못하였습니다.");
@@ -521,36 +537,13 @@ font-weight:700;
        		location.href = "/cart";
        	});
          
+        // 바로구매 버튼
+        $("#insert_direct").click(function(){
+        	location.href="/cart";
+        });
          
-         // 리뷰 쓰기 
-         $(".reply_button_wrap").click(function(e){
-        	 e.preventDefault();
-        	 
-        	 const memberId = '${memberId}';
-        	 const productNo = '${productDto.productNo}';
-        	 
-        	 $.ajax({
-        		data : {
-        			productNo : productNo,
-        			memberId : memberId
-        		},
-        		url : "/reply/check",
-        		type : "POST",
-        		success : function(result){
-        			if(result === '1'){
-    					alert("이미 등록된 리뷰가 존재 합니다.")
-    				} else{
-    					let popUrl = "/product/replyEnroll/" + memberId + "?productNo=" + productNo;
-    					console.log(popUrl);
-    					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
-    					
-    					window.open(popUrl,"리뷰 쓰기",popOption);							
-    				}
-        		}
-        	 });
-        	 
-	 
-         });
+         
+   
          
     
          
@@ -760,9 +753,7 @@ font-weight:700;
                 <div class="reply_subject">
 					<h2>리뷰</h2>
 				</div>
-				<div class="reply_button_wrap">
-					<button>리뷰 쓰기</button>
-				</div>
+				
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_3" >
                 테스트3
@@ -777,12 +768,12 @@ font-weight:700;
     
    
 </div>
-<<<<<<< HEAD
+
     
 <%-- 
 <%@include file="../template/footer.jsp" %>
  --%>
-=======
+
     </body>
-<%@include file="../template/footer.jsp" %>
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
+
+

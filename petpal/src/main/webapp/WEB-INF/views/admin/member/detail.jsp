@@ -4,12 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
+
+
 <div class="container-800">
 	<div class="row center">
 		<h2>${memberDto.memberNick}님의 개인 프로필</h2>
 	</div>
 	<div class="row">
-		<table class="center" style="margin-left:auto; margin-right:auto;">
+		<table class="center">
 			<tbody>
 				<tr>
 					<th>아이디</th>
@@ -35,7 +37,7 @@
 					<th>등급</th>
 					<td>
 						<c:if test="${memberDto.adminCk == 1 }"> 관리자 </c:if>
-                  		<c:if test="${memberDto.adminCk == 0 }"> 일반회원 </c:if>				
+                  		<c:if test="${memberDto.adminCk == 0 }"> 일반회원</c:if>				
 					</td>				
 				</tr>
 				<tr>

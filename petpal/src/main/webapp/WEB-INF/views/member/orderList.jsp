@@ -295,6 +295,54 @@ td{
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script type="text/javascript">
+    
+  //마이너스 버튼
+    $(".btn-minus").click(function(){
+       
+    	 // 수량 버튼 조작
+        let quantity = $(this).parent("div").find("input").val();
+        let quantityInput = $(this).parent("div").find("#quantity");
+
+        if(quantity > 1){
+           
+           $(quantityInput).val(--quantity);
+           
+           
+        }
+    
+        
+         var sum = 0;
+         
+         sum += $("#disprice").val() * quantity;
+      
+         
+         $(".disPrice").text(sum.toLocaleString());
+ 
+    })
+   
+   //플러스 버튼
+    $(".btn-plus").click(function(){
+      
+       // 수량 버튼 조작
+       let quantity = $(this).parent("div").find("input").val();
+       let quantityInput = $(this).parent("div").find("#quantity");
+
+       if(quantity < '${productDto.productStock}'){
+          
+          $(quantityInput).val(++quantity);
+          
+          
+       }
+       
+       var sum = 0;
+
+       sum += $("#disprice").val() * quantity;
+    
+       
+       $(".disPrice").text(sum.toLocaleString());
+    });
+  
+  
         $(function(){
            
            /* 장바구니 종합 정보 삽입 */
@@ -346,16 +394,48 @@ td{
                });
               	$(".totalPrice_span").text(totalPrice.toLocaleString());
             	 
-			});
+		
             
-            // 리뷰쓰기 버튼
+       
+            // 리뷰 쓰기 
             $(".order_btn").click(function(){
-            	location.href="/shop/order";
-            });
-            
-        
            
-        });
+           	 
+           	 const memberId = '${memberId}';
+           	 const productNo = $(this).parent("td").find("#productNo").val();
+           	 
+           	let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
+				console.log(popUrl);
+				let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+				
+				window.open(popUrl,"리뷰 쓰기",popOption);					
+           	 
+				/*
+           	 $.ajax({
+           		data : {
+           			productNo : productNo,
+           			memberId : memberId
+           		},
+           		url : "/reply/check",
+           		type : "POST",
+           		success : function(result){
+           			if(result === '1'){
+       					alert("이미 등록된 리뷰가 존재 합니다.")
+       				} else{
+       					let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
+       					console.log(popUrl);
+       					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+       					
+       					window.open(popUrl,"리뷰 쓰기",popOption);							
+       				}
+           		}
+           	 });*/
+         
+   	 
+            });
+          
+            });
+  
     </script>
     
 </head>
@@ -366,18 +446,18 @@ td{
          
             <div class="row" style="display:flex;">
            <table style="width: 80%; margin-left:200px;">
+             
               <colgroup>
                  <col style="width: 40%; color:white;">
                  <col style="width: 20%;">
                  <col style="width: 20%;">
-            	<col style="width: 20%;">
-                 
+            	<col style="width: 20%;">       
               </colgroup>
-              
+             
          
               
               <thead>
-			      <tr>
+			     <tr>
 			     <th colspan="4"><h1>${memberId}님의 주문목록</h1> </th> 
 			    </tr>
                              <tr style="background:#b1b2ff;" id="colss">
@@ -429,13 +509,20 @@ td{
           </td>
           
           <td style="text-align:center;">
-             <span class="row price spans" style="text-decoration: line-through; color:#ccc;">${list.productPrice}원</span> <br>
+          <!-- <span class="row price spans" style="text-decoration: line-through; color:#ccc;">${list.productPrice}원</span> <br>  -->
              <span class="row price spans" style="color:#b12603; font-weight:800;">${list.productPrice}원</span>
              <span class="aa"></span>
           </td>
           
           <td>
-           			<button class="order_btn" onclick="location.href='/'" >리뷰남기기</button> <br> 
+          			<input type="hidden" id="orderNo" value="${list.orderNo}">
+          			<input type="hidden" id="productNo" value="${list.productNo}">
+          			<input type="hidden" id="orderNo" value="${list.orderNo}">
+          	
+          			<c:if test="${list.replyCheck == 1}">
+          			<button class="order_btn">리뷰작성 완료</button> <br> 
+          			</c:if>
+           			<button class="order_btn">리뷰남기기</button> <br> 
           </td>
         
        
