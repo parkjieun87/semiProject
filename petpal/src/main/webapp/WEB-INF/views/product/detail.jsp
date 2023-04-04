@@ -803,9 +803,9 @@ font-weight:700;
 </div>
 
     
-<%-- 
+
 <%@include file="../template/footer.jsp" %>
- --%>
+
 
     </body>
 
