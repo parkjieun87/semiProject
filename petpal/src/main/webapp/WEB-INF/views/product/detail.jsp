@@ -9,6 +9,7 @@
             font-family: '카페24 써라운드 에어';
             /* body의 마진을 설정하여 footer와 겹치지 않게 함 */
 			  margin-bottom: 50px; /* footer 높이와 같게 설정 */
+
         }
 
         /* 상세페이지 사진 css */
@@ -398,15 +399,15 @@ font-weight:700;
                 line-height: 40px;                
         }
            
-  footer {
-  position: fixed;
+  	footer {
+  	position:absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 220px; /* footer 높이 */
   background-color: #f5f5f5;
   text-align: left;
-}
+	}
 
 
 
@@ -715,10 +716,10 @@ font-weight:700;
                                         </div>
                                     </div> 
                                 </div>
-                                <button type="button" class="btn-type type03" id="insert_cart" style="border-color: #9091E6; background-color: #9091E6; border-bottom: #9091E6;">
+                                <button type="button" class="btn-type type03" id="insert_cart" style="color: white; border-color: #9091E6; background-color: #9091E6; border-bottom: #9091E6;">
                                     <b>장바구니 담기</b>
                                 </button>
-                                <button type="button" class="btn-type type04" id="insert_direct">
+                                <button type="button" class="btn-type type04 " id="insert_direct">
                                     <b>바로구매</b>
                                 </button>
                             </div>
@@ -786,7 +787,7 @@ font-weight:700;
                 테스트3
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_4">
-                테스트4
+               테스트4
             </div>
         </div>
     </div>
@@ -796,11 +797,11 @@ font-weight:700;
    
 </div>
 
-    
+    <%-- -
 
 <%@include file="../template/footer.jsp" %>
+--%>
 
 
-    </body>
 
 
