@@ -398,7 +398,7 @@ font-weight:700;
                 line-height: 40px;                
         }
            
-  footer {
+  	footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -406,7 +406,7 @@ font-weight:700;
   height: 220px; /* footer 높이 */
   background-color: #f5f5f5;
   text-align: left;
-}
+	}
 
 
 
@@ -786,7 +786,7 @@ font-weight:700;
                 테스트3
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_4">
-                테스트4
+               테스트4
             </div>
         </div>
     </div>
