@@ -170,10 +170,20 @@ public class AdminController {
    
    // 회원 리스트 페이지
    @GetMapping("/member/list")
-   public String memberList(Model model, @ModelAttribute("vo") PaginationVO vo) {
+   public String memberList(Model model, @ModelAttribute("vo") PaginationVO vo,
+		   @RequestParam(required=false, defaultValue="  member_regdate desc") String sort,
+		   @RequestParam(required=false, defaultValue="") String column,
+			@RequestParam(required=false, defaultValue="") String keyword) {
       int totalMemberCnt = memberDao.selectCount();
       vo.setCount(totalMemberCnt);
-      model.addAttribute("memberList", memberDao.selectList(vo));
+      boolean search = !column.equals("") && !keyword.equals("");
+		if(search) {
+			keyword = keyword.equals("관리자") ? "1" : "0";
+			model.addAttribute("memberList", memberDao.searchAndSelectList(column, keyword, vo, sort));
+		}
+		else {
+			model.addAttribute("memberList", memberDao.selectList(vo,sort));
+		}
       return "/WEB-INF/views/admin/member/list.jsp";
    }
    

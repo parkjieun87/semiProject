@@ -132,7 +132,7 @@ public class ProductDao {
 		public List<ProductDto> selectList2(PaginationVO vo, String sort){
 			String sql = "select * from("
 					+ "select rownum rn, TMP.* from("
-					+ "select * from product order by product_regdate desc"
+					+ "select * from product"
 					+" )TMP"
 					+ ")where rn between ? and ? "
 					+ "order by "+sort;

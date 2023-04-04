@@ -5,7 +5,6 @@
 
 <script>
 	$(function(){
-			var vo = "${vo}";
 		$(".del-btn").click(function(e){
 			e.preventDefault();
 			
@@ -15,20 +14,18 @@
 			
 			var pageNo = $(this).data("page");
 			let memberId = $(this).data("memberid");
-			console.log(pageNo);
+			
 			$(".delete_memberId").val(memberId);
 			$(".delete_page").val(pageNo);
 			$(".delete_form").submit();
-			
-					
-			
-			
-			
 		});
+		
 	});
 </script>
 
+
 <div class="container-1200 ms-10">
+		
 		<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="memberId" class="delete_memberId">
@@ -67,6 +64,19 @@
                 	</c:forEach>
                 </tbody>
             </table>
+        </div>
+        
+        <!-- 검색창  -->
+        <div class="row right">
+			<form action="list" method="get" class="search-form">
+				<select name="column" class="form-input">
+					<option value="member_id">아이디</option>
+					<option value="member_name">이름</option>
+					<option value="adminCk">회원등급</option>
+				</select>
+				<input type="search" name="keyword" placeholder="검색어" value="${keyword}" class="form-input">
+				<button class="form-btn neutral">검색</button>
+			</form>        
         </div>
         
         <!-- 페이징 영역 -->

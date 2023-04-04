@@ -9,7 +9,7 @@
 
     <style>
     	.swiper{
-    		width:100%;
+    		width: 1160px;
     		heigth:250px;
     	}
         .swiper-slide>img{
@@ -53,7 +53,7 @@
             margin-bottom: 50px;
             width: 200px;
             height: 300px;
-            flex-grow:1;
+            flex-grow:2;
         }
         strong{
             color: #EC6565;
@@ -115,8 +115,7 @@
 		<a href="/shop/goods/goods_list?categoryCode=1010"></a>
 		<a href="/shop/goods/goods_list?categoryCode=3010"></a>
 	</div>
-      <div class="container-1500">
-            <div class="row"> 
+            <div class="row ms-70"> 
                 <!-- Slider main container -->
                 <div class="swiper">
                     <!-- Additional required wrapper -->
@@ -135,87 +134,14 @@
                     <div class="swiper-button-next"></div>
                 </div>
             </div>
-            <div class="row flex-box" style="margin-left: 3px;">
-                <div class="itmeL me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301121829421.jpg" alt="청담닥터스랩 데일리솔루션">
-                    </a>
-                </div>
-                <div class="itmeL me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202302161824492.jpg" alt="anf">
-                    </a>
-                    </div>
-                <div class="itme">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/goodsno_center01_202212271757523.jpg" alt="치약">
-                    </a>
-                </div>
-            </div>
-            <div class="row flex-box" style="margin-left: 3px;">
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202206151136534.jpg" alt="커피트릿">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301181605535.jpg" alt="덴티페어리">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301181603386.jpg" alt="홀썸볼">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202207011329407.jpg" alt="카누들">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301311410078.jpg" alt="라이프앱">
-                    </a>
-                </div>
-            </div>
-            <div class="row flex-box" style="margin-left: 3px;">
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202208161535599.jpg" alt="테스트">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/goodsno_center01_2023010917203410.jpg" alt="비프캔">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_2023011816475711.jpg" alt="anf">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_2022120711305112.jpg" alt="테스트">
-                    </a>
-                </div>
-                <div class="itme">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_2023010917381613.jpg" alt="테스트">
-                    </a>
-                </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
+            
             <div class="row left">
-                <label>★할인중★</label>
+                <label></label>
             </div>
             <br>
 
-            <div class="row flex-box">
+	<div class="container-1100">
+            <div class="row flex-box ms-80">
 
                 <div class="me-20 flex-box item ">
                 <a href="#">
@@ -260,30 +186,12 @@
                     <span>2,500</span>원
                     </strong>
                 </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/5.jpg" id="box">
-                    <span>엘리야 치킨 오리 롤 베이글 대형견 4종 콤보</span>
-                </a>
-                    <strong class="price">
-                    <span>21,000</span>원
-                    </strong>
-                </div>
-
-                <div class="flex-box item">
-                <a href="">
-                    <img src="img/discount/6.jpg" id="box">
-                    <span>[3+1] 네추라너리쉬 트릿트릭 리필 3종콤보</span>
-                </a>
-                    <strong class="price">
-                    <span>29,700</span>원
-                    </strong>
-                </div>
-            </div>
+			</div>
+                
+         
 
             <div class="row flex-box mt-40">
-                <div class="me-20 flex-box item">
+                <div class="me-20 flex-box item ms-80">
                 <a href="">
                     <img src="img/discount/7.jpg" id="box">
                     <span>[카누들S 2p x 5개 추가증정]포켄스 덴티페어리 디스펜서 강아지 덴탈껌 SS 124개입</span>
@@ -322,30 +230,8 @@
                     <span>15,000</span>원
                     </strong>
                 </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/11.jpg"id="box">
-                    <span>칸타나 동결건조 치킨 연어칩 72g</span>
-                </a>
-                    <strong class="price">
-                    <span>5,00</span>원
-                    </strong>
-                </div>
-ㄴㄴ
-                <div class="flex-box item">
-                <a href = "">
-                    <img src="${productDto.imageURL }" id="box">
-                    <span>${ProductDto.productName}</span>
-                </a>
-                	<span>${ProductDto.productDiscount}</span>%
-                    <del>${ProductDto.productPrice}</del>
-                    <strong class="price">
-                    <span>${disPrice}</span>원
-                    </strong>
-                </div>
-            </div>
-
+		</div>
+               
             <br>
             <br>
             <div class="row center">
@@ -367,8 +253,7 @@
                 <img class="me-40"src="img/04.PNG">
             </div>
              -->
-        </div >
-
+</div>
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

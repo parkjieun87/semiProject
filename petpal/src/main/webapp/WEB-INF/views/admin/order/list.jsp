@@ -68,7 +68,7 @@
 	                        ${list.productName}*${list.productCount}개
 	                        </td>
 	                        <td>${list.total}</td>
-	                        <td class="target">	
+	                        <td class="target">
                        			<a class="link del-btn" data-detailno="${list.orderDetailNo}" data-page="${vo.page }">삭제</a>
 	                        </td>
 	                    </tr>
@@ -88,7 +88,7 @@
 				</select>
 				<input type="search" name="keyword" placeholder="검색어" value="${keyword}" class="form-input">
 				<button type="submit" class="form-btn neutral">검색</button>
-			</form>        
+			</form>
         </div>
         
         <!-- 페이징 영역 -->

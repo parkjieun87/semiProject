@@ -124,8 +124,10 @@
                     </div>
                     <div class="p-10"><a href="/admin/member/list" class="link">회원 관리</a></div>
                     <div class="p-10"><a href="/admin/product/list" class="link">상품 관리</a></div>
+                    <div class="p-10"><a href="/admin/product/insert" class="link">상품 등록</a></div>
                     <div class="p-10"><a href="/admin/sales/list" class="link">매출 관리</a></div>
                     <div class="p-10"><a href="/admin/order/list" class="link">주문 관리</a></div>
+                    
                 </div>
             </aside>
             <article>

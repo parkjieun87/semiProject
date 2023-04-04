@@ -29,12 +29,12 @@
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    </head>
    
-<main class="container-1100">
+<main class="container-1200">
 <body>
   <header id="header">
     <div id="header-area1">
-        <div class="wrap">
-               <div class="img-search">
+        <div class="wrap container-1200">
+               <div class="img-search ms-140">
                <a href="http://localhost:8080/">
                 <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
@@ -42,7 +42,7 @@
                 <div id="search">
                     <div class="inp-wrap">
                   <form name="frm_search" id="frm_search" method="post" action="shop/searchList">
-                       <input class="inp2" type="text" placeholder="검색어를 입력하세요"  value="${vo.getColumn()}"> 
+                       <input class="inp2" type="text" placeholder="검색어를 입력하세요"> 
                        <div class="tag" style="float:left; margin-top: 0;">
                          </form>
                          
