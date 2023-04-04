@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.AdminOrderDto;
 import com.petpal.dto.CartDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.OrderDetailDto;
@@ -251,17 +252,38 @@ public class MemberDao {
             }   
       
       //회원 리스트 (2023.03.28 성현)
-      public List<MemberDto> selectList(PaginationVO vo){
+      public List<MemberDto> selectList(PaginationVO vo, String sort){
          String sql = "select * from("
                + "select rownum rn, TMP.* from("
                + "select * from member order by member_regdate desc"
                +" )TMP"
-               + ")where rn between ? and ?";
+               + ")where rn between ? and ? "
+               + "order by "+sort;
          
          Object[] param = {vo.getBegin(), vo.getEnd()};
          
          return jdbcTemplate.query(sql,mapper,param);
       }   
+      
+   // 검색 + 정렬 기능
+	   public List<MemberDto> searchAndSelectList(String column, String keyword, PaginationVO vo, String sort) {
+		    String sql = "select * from ("
+		               + "select rownum rn, TMP.* from ("
+		               + "select * from member "
+		               + "where instr(#1, ?) > 0 "
+		               + "order by #1"
+		               + ") TMP"
+		               + ") where rn between ? and ?";
+		    sql = sql.replace("#1", column);
+
+		    Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
+
+		    if (sort != null && !sort.isEmpty()) {
+		        sql += " order by " + sort;
+		    }
+
+		    return jdbcTemplate.query(sql, mapper, param);
+		}
       
     	
       //주문 목록(2023.04.03 형석) - 재영 수정

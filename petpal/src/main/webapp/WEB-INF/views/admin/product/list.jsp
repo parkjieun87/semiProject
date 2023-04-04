@@ -31,6 +31,7 @@
        </form>
 
     <div class="container-1500 ms-10">
+		
     	<!-- 상품 목록 테이블 -->
         <div class="row">
             <table class="table table-slit">

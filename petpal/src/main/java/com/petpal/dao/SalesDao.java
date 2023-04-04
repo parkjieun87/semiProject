@@ -58,7 +58,7 @@ public class SalesDao {
    
    // 기본 조회
    public List<SalesDto> selectList(){
-      String sql = "select * from sales order by order_date desc";
+      String sql = "select * from admin_sales order by order_date desc";
       return jdbcTemplate.query(sql, adminSalesMapper);
    }
    
