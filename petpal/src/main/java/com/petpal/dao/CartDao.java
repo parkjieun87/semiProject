@@ -31,11 +31,24 @@ public class CartDao {
 			dto.setProductDiscount(rs.getInt("product_discount"));
 			dto.setProductPrice(rs.getInt("product_price"));
 			dto.setProductStock(rs.getInt("product_stock"));
+			dto.setAttachmentNo(rs.getInt("attachment_no"));
 	
 			return dto;
 		}
 		
 		
+	};
+	
+	private RowMapper<CartDto> joinMapper = new RowMapper<CartDto>() {
+
+		@Override
+		public CartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			CartDto dto = new CartDto();
+			
+			dto.setAttachmentNo(rs.getInt("attachment_no"));
+		
+			return dto;
+		}
 	};
 	
 	// 장바구니 추가
@@ -63,10 +76,9 @@ public class CartDao {
 	
 	// 장바구니 목록
 	public List<CartDto> getCart(String memberId){
-		String sql ="select a.cart_no, a.member_id, a.product_no, a.product_count,"+
-		"b.product_name, b.product_price, b.product_discount, b.product_stock from cart "+
-		"a left outer join product b on a.product_no = b.product_no where "+
-		"member_id = ?";
+		String sql ="select a.cart_no, a.member_id, a.product_no, a.product_count,b.product_name,"
+				+ " b.product_price, b.product_discount, b.product_stock, c.attachment_no "
+				+ "from cart a left outer join product b on a.product_no = b.product_no left outer join product_image c on b.product_no = c.product_no where member_id = ?";
 		Object[] param = {memberId};
 		
 		return jdbcTemplate.query(sql, mapper,param);
@@ -80,6 +92,14 @@ public class CartDao {
 		List<CartDto> list = jdbcTemplate.query(sql,mapper,param);
 		
 		return list.isEmpty() ? null : list.get(0);
+	}
+	
+	// 이미지 번호 가져오기
+	public List<CartDto> attachNoList(String memberId){
+		String sql = "select a.attachment_no from product_image a left outer join cart b on a.product_no = b.product_no where b.member_id =?";
+		Object[] param = {memberId};
+		
+		return jdbcTemplate.query(sql,joinMapper,param);
 	}
 	
 
