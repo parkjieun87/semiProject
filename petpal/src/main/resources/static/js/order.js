@@ -87,29 +87,7 @@ $(function(){
            
             
     
-            //휴대폰 번호 미 입력시 문구 나오게 하기
-                $("[name=receiverTel]").blur(function(){
-                    var isValid = $(this).val().length>0;
-                  
-                    var phone = $(this).val().length>11&& $(this).val().length<11;
-                    
-                     
-                     
-                    if(!isValid){
-                        $("[name=txt-p2]").show().css("display");
-                        $("[name=txt-p3]").hide().css("display");
-                    }else if(isValid){
-                        $("[name=txt-p2]").hide().css("display");
-                        $("[name=txt-p3]").hide().css("display");
-                    }else if(!phone){
-						$("[name=txt-p3]").show().css("display");
-						$("[name=txt-p2]").hide().css("display");
-					}else{
-						$("[name=txt-p3]").hide().css("display");
-						$("[name=txt-p2]").hide().css("display");
-					}
-                });
-           
+            
             
             
              //카카오페이 api   (수정전 원래 코드) 

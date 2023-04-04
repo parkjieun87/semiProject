@@ -739,7 +739,7 @@ font-weight:700;
       <div class="addressInfo_div">
         <div class="addressInfo_button_div">
             <button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #a29bfe;">상품 정보</button>
-            <button class="address_btn address_btn_2" onclick="showAdress('2')" style="background-color: #a29bfe;">상품 후기</button>
+            <button class="address_btn address_btn_2" onclick="showAdress('2')" style="background-color: #a29bfe;">상품 후기${replyCount}</button>
              <button class="address_btn address_btn_3" onclick="showAdress('3')" style="background-color: #a29bfe;">상품 문의</button>
              <button class="address_btn address_btn_4" onclick="showAdress('4')" style="background-color: #a29bfe;">구매 확인사항</button>
             
@@ -753,6 +753,39 @@ font-weight:700;
                 <div class="reply_subject">
 					<h2>리뷰</h2>
 				</div>
+				<div>
+					<ul class="review_list">
+						<c:forEach items="${replyList}" var="list">
+						
+						<li>
+							<div class="review-item">
+								<div class="review-info">
+									<dl class="grade">
+										<dt>평점</dt>
+										<div class="view-info-new">
+											<div class="grade">
+												<strong id="grade" style="width:100%;">${list.rating}</strong>
+											</div>
+										</div>
+										<dd>${list.regDate}</dd>
+										<dd class="writer">${list.memberId}</dd>
+									</dl>
+								</div>
+								<div class="riview-content">
+									<div class="review-span">
+										<div class="sec">
+											<p>
+											${list.content}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						</c:forEach>
+					</ul>
+				</div>
+				
 				
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_3" >
@@ -770,9 +803,9 @@ font-weight:700;
 </div>
 
     
-<%-- 
+
 <%@include file="../template/footer.jsp" %>
- --%>
+
 
     </body>
 

@@ -14,5 +14,8 @@ public class ReplyDto {
 	private String content;
 	private double rating;
 	
+	// 조인할 컬럼
+	private String productName;
+	
 
 }

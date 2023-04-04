@@ -20,43 +20,54 @@
    
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	
+   
 
 <script type="text/javascript">
-		
-	var unitCheck1 = false;
-	var unitCheck2 = false;
-	var unitCheck3 = false;
-	var unitCheck5 = false;
-   
-		$(function(){
-			//체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
-			$("[name=order_copy]").change(function(){
-				   var txt = "";
-				   var vailName = "${findDto.memberName}";
-				   var vailTel = "${findDto.memberTel}";
-				   var vailPost = "${findDto.memberPost}";
-				   var vailBasicAddr = "${findDto.memberBasicAddr}";
-				   var vailDetailAddr = "${findDto.memberDetailAddr}";
-		
-				   var txt2 = $("[name=order_copy]").prop("checked");
-		
-				   if(!txt2){
-					    $("input[name=receiverName]").val(txt);
-					    $("input[name=receiverTel]").val(txt);
-					    $("input[name=receiverPost]").val(txt);
-					    $("input[name=receiverBasicAddr]").val(txt);
-					    $("input[name=receiverDetailAddr]").val(txt);
+      
+   var unitBuyerTel = false;
+   var unitBuyer = false;
+   var unitAgree = false;
+   var unitReceiveTel = false;
+   var unitPost = false;
 
+      $(function(){
+         //체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
+         $("[name=order_copy]").change(function(){
+               var txt = "";
+               var vailName = "${findDto.memberName}";
+               var vailTel = "${findDto.memberTel}";
+               var vailPost = "${findDto.memberPost}";
+               var vailBasicAddr = "${findDto.memberBasicAddr}";
+               var vailDetailAddr = "${findDto.memberDetailAddr}";
+      
+               var txt2 = $("[name=order_copy]").prop("checked");
+      
+               if(!txt2){
+                   $("input[name=receiverName]").val(txt);
+                   $("input[name=receiverTel]").val(txt);
+                   $("input[name=receiverPost]").val(txt);
+                   $("input[name=receiverBasicAddr]").val(txt);
+                   $("input[name=receiverDetailAddr]").val(txt);
+
+                   unitBuyer = false;
+                   unitDetail = false;
+                   unitReceiveTel = false;
+                   unitPost = false;
 
                 } else {
-                    $("input[name=receiverName]").val(vailName);
+               
+                    $("input[name=receiverName]").val(vailName);             
                     $("input[name=receiverTel]").val(vailTel);
                     $("input[name=receiverPost]").val(vailPost);
                     $("input[name=receiverBasicAddr]").val(vailBasicAddr);
                     $("input[name=receiverDetailAddr]").val(vailDetailAddr);
+                    unitBuyer = true;
+                    unitDetail = true;
+                    unitReceiveTel = true;
+                    unitPost = true;
+                   
                 }
-
+              
                   });
                         
      
@@ -65,7 +76,7 @@
                
               // 할인 전 최종 금액        
                var totalPrice = 0;
-              	var count = 0; //상품의 총 갯수를 위해 변수 선언
+                 var count = 0; //상품의 총 갯수를 위해 변수 선언
                $(".p").each(function(){
                   var productPrice = parseInt($(this).parent().find("#basicPrice").val());
                   var productCount = parseInt($(this).parent().find("#productCount").val());
@@ -95,86 +106,88 @@
             
                 
         
-		            
-		    
+                  
+          
              //카카오페이 api    
                const IMP = window.IMP; // 생략 가능
-         	 IMP.init("imp55345065");  // 예: imp00000000a
+             IMP.init("imp55345065");  // 예: imp00000000a
            
-          	var name = $("#productName").val(); //상품이름 변수로 선언
+             var name = $("#productName").val(); //상품이름 변수로 선언
       
         
           //카카오 api (추후에 결제하기버튼을 누를때 호출하기위해 함수를 만들어줌)
           function kakao1() {
-			
+         
 
-				
-	       // IMP.request_pay(param, callback) 결제창 호출
-	       IMP.request_pay({ // param
-	           pg: "kakaopay",
-	           pay_method: "card",
-	           merchant_uid : 'merchant_' + new Date().getTime(),
-	           name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
-	           amount: parseInt(discountTotalPrice), //숫자타입
-	           buyer_email : 'iamport@siot.do1',
-	           buyer_name : '구매자이름',
-	           buyer_tel : '010-1234-5678',
-	           buyer_addr : '서울특별시 강남구 삼성동',
-	           buyer_postcode : '123-456'
-	       }, function (rsp) { // callback
-	           if (rsp.success) { 
-	             
-	            $("#jb-form").submit();   
-	               // 결제 성공 시 로직,
-	           
-	           } else {
-	              var msg = '결제에 실패하였습니다.';
+            
+          // IMP.request_pay(param, callback) 결제창 호출
+          IMP.request_pay({ // param
+              pg: "kakaopay",
+              pay_method: "card",
+              merchant_uid : 'merchant_' + new Date().getTime(),
+              name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+              amount: parseInt(discountTotalPrice), //숫자타입
+              buyer_email : 'iamport@siot.do1',
+              buyer_name : '구매자이름',
+              buyer_tel : '010-1234-5678',
+              buyer_addr : '서울특별시 강남구 삼성동',
+              buyer_postcode : '123-456'
+          }, function (rsp) { // callback
+              if (rsp.success) { 
+                
+               $("#jb-form").submit();   
+                  // 결제 성공 시 로직,
+              
+              } else {
+            	  unitAgree=false;
+                 var msg = '결제에 실패하였습니다.';
 
-	               // 결제 실패 시 로직,
+                  // 결제 실패 시 로직,
 
-	           }
+              }
 
-	  
-			}); 
-		}
+     
+         }); 
+      }
 
-			 
-	       
-			 
-			//토스페이 api (추후에 결제하기버튼을 누를때 호출하기위해 함수를 만들어줌)
-			function toss1() {
-						
-	       // IMP.request_pay(param, callback) 결제창 호출
-	       IMP.request_pay({ // param
-	           pg: "tosspay",
-	           pay_method: "card",
-	           merchant_uid : 'merchant_' + new Date().getTime(),
-	           name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
-	           amount: parseInt(discountTotalPrice),
-	           buyer_email : 'iamport@siot.do1',
-	           buyer_name : '구매자이름',
-	           buyer_tel : '010-1234-5678',
-	           buyer_addr : '서울특별시 강남구 삼성동',
-	           buyer_postcode : '123-456'
-	       }, function (rsp) { // callback
-	           if (rsp.success) { 
-	            
-	            $("#jb-form").submit();   //성공하면 버튼 눌러서 submit되게 수정함
-	               // 결제 성공 시 로직,
-	           
-	           } else {
-	              var msg = '결제에 실패하였습니다.';
+          
+          
+          
+         //토스페이 api (추후에 결제하기버튼을 누를때 호출하기위해 함수를 만들어줌)
+         function toss1() {
+                  
+          // IMP.request_pay(param, callback) 결제창 호출
+          IMP.request_pay({ // param
+              pg: "tosspay",
+              pay_method: "card",
+              merchant_uid : 'merchant_' + new Date().getTime(),
+              name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
+              amount: parseInt(discountTotalPrice),
+              buyer_email : 'iamport@siot.do1',
+              buyer_name : '구매자이름',
+              buyer_tel : '010-1234-5678',
+              buyer_addr : '서울특별시 강남구 삼성동',
+              buyer_postcode : '123-456'
+          }, function (rsp) { // callback
+              if (rsp.success) { 
+               
+               $("#jb-form").submit();   //성공하면 버튼 눌러서 submit되게 수정함
+                  // 결제 성공 시 로직,
+              
+              } else {
+            	  unitAgree=false;
+                 var msg = '결제에 실패하였습니다.';
 
-	               // 결제 실패 시 로직,
+                  // 결제 실패 시 로직,
 
-	           }
+              }
 
-	       });
-		
-				
-			}
-			
-			
+          });
+      
+            
+         }
+         
+         
             
 
         
@@ -188,6 +201,7 @@
                 if(number.length==0){//null일때
                     $("[name=phonecheck]").show().css("display");
                     $("[name=phonecheck2]").hide().css("display");
+                    unitBuyerTel =false;
                     alert("인증번호입력해주세요")
                 }else if(number.length>4){
                     $("[name=phonecheck]").hide().css("display");
@@ -195,114 +209,140 @@
                 }else if(number.length==4){
                     $("[name=phonecheck]").hide().css("display");
                     $("[name=phonecheck2]").hide().css("display");
-                    unitCheck1 = true;
-                }else if(number==null){
-                	unitCheck1 =false;
+                    unitBuyerTel = true;
                 }
+                
                 
                 
             })
           //2. 수령인 한글or영어 정규표현식 검사,null
             //수령인 미 입력시 문구 나오게 하기
             $("[name=receiverName]").blur(function(){
-            	var check = $(this).val();
+               var check = $(this).val();
                 var isValid = $(this).val().length>0;
-                var memberRegex = /^[가-힣a-zA-Z]{5,10}$/;
+                var memberRegex = /^[가-힣a-zA-Z]+$/;
                 var isOk = memberRegex.test(check);
+                
+                console.log(isOk);
                 
             //    console.log(!isOk);
                 if(!isValid){
                     $("[name=txt-p1]").show().css("display");
+                    unitBuyer = false;
                 }else if(!isOk){
-                	$("[name=txt-p1-2]").show().css("display");
-                }else if(check==null){
-                	unitCheck2 = false;
+                   $("[name=txt-p1-2]").show().css("display");
+                   unitBuyer = false;
+                
                 }
                 else{
                     $("[name=txt-p1]").hide().css("display");
                     $("[name=txt-p1-2]").hide().css("display");
-                    unitCheck2 = true;
+                    unitBuyer = true;
                     
                 }
             });
+         
+            
+         
         
-        //3.상세주소 null, 한글 글자 입력
+        //5.상세주소 null, 한글 글자 입력
          //상세주소 미 입력시 문구 나오게 하기
             $("[name=receiverDetailAddr]").blur(function(){
                 var isValid = $(this).val().length>0;
                 var check = $(this).val();
                 var regex = /^[0-9가-힣]{2,20}$/;
                 var isOk = regex.test(check);
+                console.log(isValid)
                
                 
                 if(!isValid){
                     $("[name=txt-p5]").show().css("display");
                 }else if(!isOk){
-                	$("[name=txt-p5-2]").show().css("display");
+                   $("[name=txt-p5-2]").show().css("display");
                 }else if(check==null){
-                	unitCheck3 = false;
+                	unitDetail = false;
                 }
                 else{
                     $("[name=txt-p5]").hide().css("display");
                     $("[name=txt-p5-2]").hide().css("display");
-                    unitCheck3 = true;
+                    unitDetail = true;
                 }
             });
-
+		
             
-            //4.결제하기를 누르면 카카오 또는 토스 결제 실행, 없으면 alert
-            $("#submitSettleBtn").click(function(){
-            	
-        
-            	var checkBox = $("#puchase-ok").is(":checked");
-             
-             	if(checkBox){
-             		unitCheck5 = true;
-             	}else{
-             		alert("개인정보 제3자 제공 동의 체크 해주세요")
-             		unitCheck5 = false;
-             	}
+          //휴대폰 번호 미 입력시 문구 나오게 하기
+            $("[name=receiverTel]").blur(function(){
+                var isValid = $(this).val().length>0;
+              
+                var phone = $(this).val().length>11&& $(this).val().length<11;
+                
+                 
+                 
+                if(!isValid){
+                    $("[name=txt-p2]").show().css("display");
+                    $("[name=txt-p3]").hide().css("display");
+                     unitReceiveTel = false;
+                }else if(isValid){
+                    $("[name=txt-p2]").hide().css("display");
+                    $("[name=txt-p3]").hide().css("display");
+                    unitReceiveTel = true;
+                }else if(!phone){
+					$("[name=txt-p3]").show().css("display");
+					$("[name=txt-p2]").hide().css("display");
+					unitReceiveTel = false;
+				}else{
+					$("[name=txt-p3]").hide().css("display");
+					$("[name=txt-p2]").hide().css("display");
+					unitReceiveTel = true;
+				}
             });
-            
-            
+       
 
           
-			
-			
-  		   //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
-			   // 아래 코드와 겹쳐서 주석 처리하고 아래코드와 합침 $( '#jb-form' ).submit();
+         
+         
+           //결제하기 버튼을 누르면 form안에있는 데이터들이 컨트롤러로 넘어가게 되서 실제로 등록이된다.
+            // 아래 코드와 겹쳐서 주석 처리하고 아래코드와 합침 $( '#jb-form' ).submit();
 
-	     //   $( '#submitSettleBtn' ).click( function() {
-	     //     $( '#jb-form' ).submit();
-	    //    });
+        //   $( '#submitSettleBtn' ).click( function() {
+        //     $( '#jb-form' ).submit();
+       //    });
       $("#submitSettleBtn").click(function(e){ //우선 버튼을 못 누르게 막아둠
           e.preventDefault();
-          var isAll = unitCheck1 && unitCheck2 && unitCheck3 && unitCheck5;
-          //var isNot = unitCheck1 || unitCheck2 || unitCheck3 || unitCheck4 || unitCheck5 == false;
-		 console.log(isAll);
-			if(isAll){
-				var kakao = $("#payment-kakao").is(":checked");
-            	var toss = $("#payment-toss").is(":checked");
-            	var checkBox = $("#puchase-ok").is(":checked");
-              	             	
-            	if(kakao){
-            		kakao1();
-            	}else if(toss){
-            		toss1();
-            	}
-            	else{
-            		alert("결제 선택해주세요");
-            	}
-            	
-            	
-				
-			}else{
-				e.preventDefault();
-			}
+          var checkBox = $("#puchase-ok").is(":checked");
+
+          if(checkBox){
+        	  unitAgree = true;
+           }else{
+              alert("개인정보 제3자 제공 동의 체크 해주세요")
+              unitAgree = false;
+           }
+
+          var isAll = unitBuyerTel && unitBuyer && unitAgree && unitReceiveTel && unitPost;
+       
+         if(isAll){
+            var kakao = $("#payment-kakao").is(":checked");
+               var toss = $("#payment-toss").is(":checked");
+               var checkBox = $("#puchase-ok").is(":checked");
+                                 
+               if(kakao){
+                  kakao1();
+               }else if(toss){
+                  toss1();
+               }
+               else{
+                  alert("결제 선택해주세요");
+               }
+               
+               
+            
+         }else{
+            e.preventDefault();
+         }
       })
  
       });    
-		
+      
    
    
 
@@ -371,7 +411,7 @@
                                             
                                             <input type="hidden" value="${totalPrice}" id="disCountPrice">
                                             <input type="hidden" value="${list.productName}" id="productName">
-                                          	 
+                                              
                                            
                                             <c:set var="productName" value="${list.productName}"/>
                                              <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
@@ -409,14 +449,14 @@
                                 <strong>이메일</strong>
                                 <span class="val" id="order-email">${findDto.memberEmail}</span>
                             </div>
-		
+      
                             <div class="inp-wrap type03 btn-add wide">
                                 <strong>휴대폰</strong>
                                 <span class="val">
                                     <span class="num" id="member_tel">휴대폰 번호를 입력해주세요</span>
                                 </span>
                                 <div class="row" id="rowbtn1" style="margin-top:0px;">
-                                    <input type="tel" name="memberTel" class="form-input w-60" value="${findDto.memberTel}" id="phone" placeholder="대시(-)를 제외하고 작성" style="width:200px; height:35px; border:1px solid #ddd;">
+                                    <input type="tel" name="memberTel" class="form-input w-60" required value="${findDto.memberTel}" id="phone" placeholder="대시(-)를 제외하고 작성" style="width:200px; height:35px; border:1px solid #ddd;">
                                     <div class="invalid-message">올바른 휴대전화번호가 아닙니다</div>
                                     <button type="button" class="form-btn positive w-30 ms-50" id="phoneChk" style="margin-left:30px">번호인증</button>
                                  </div>
@@ -463,13 +503,13 @@
      
                             <div class="inp-wrap type03 btn-add" id="row-btn6">
                                 <label for="receive-address-num">우편번호</label>
-                                <input type="text" name="receiverPost" id="receive-address-num" value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
+                                <input type="text" name="receiverPost" id="receive-address-num" required value="" readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
                                 <button type="button" class="btn-post" id="zipcode_search">우편번호 찾기</button>
                             </div>
                     
                             <div class="inp-wrap type03">
                                 <label for="receive-address">주소</label>
-                                <input type="text" name="receiverBasicAddr" id="receive-address" value=""readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
+                                <input type="text" name="receiverBasicAddr" id="receive-address" required value=""readonly="readonly" style="margin-bottom: 10px; background: rgb(246, 246, 246);" onclick="javascript:zipcode_click_search();">
                             </div>
                     
                             <div class="inp-wrap type03" id="row-btnC5">
@@ -485,7 +525,7 @@
                         
                     </div>
                     
-				
+            
 
 
 

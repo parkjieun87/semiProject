@@ -121,3 +121,54 @@
     color: white; 
   	cursor: pointer;
   }
+  
+  
+ .review-item{
+ 	position : relative;
+ 	border : 1px solid #ddd;
+ 	padding : 15px 0 60px 180px;
+ 	line-height : 1.2;
+ 	font-size : 12px;
+ 	border-radius : 7px;
+ 	margin-bottom : 10px;
+ } 
+ .review-item .review-info {
+    position: absolute;
+    top: 16px;
+    left: 15px;
+}
+.grade dt{
+	display:none;
+}
+review-item .review-info dd {
+    display: inline-block;
+}
+.review-item .review-info .grade .writer {
+    display: block;
+    margin-top: 5px;
+}
+.review-item .review-content {
+    position: relative;
+    min-height: 70px;
+    word-break: break-all;
+}
+.sec {
+    margin-top: 15px;
+    position: relative;
+    width: 100%;
+}
+.review-item .review-content .span2 .sec {
+    padding: 0 20px 10px 20px;
+    line-height: 1.4;
+}
+.review-item .review-content .span2 .sec:first-child {
+    padding-right: 400px;
+    width: 100%;
+}
+
+#grade{
+	width:64px;
+	height:12px;
+	background-image: url(../static/image/star.png);
+}
+  

@@ -107,8 +107,9 @@
 							<c:forEach var="productDto" items="${list}" varStatus="status">
 								<div class="flex-item" style="max-width: 240px;">
 									<div class="flex-root">
+
 										<a href="detail?productNo=${productDto.productNo}" class="flex-link">
-											<div class="flex-img">
+										<div class="flex-img">
 												<span
 													style="display: block; height: 0px; padding-top: 100%;"></span>
 												<div class="thumb_gray">
