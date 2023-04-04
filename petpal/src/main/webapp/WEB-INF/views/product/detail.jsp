@@ -493,6 +493,22 @@ font-weight:700;
                });
             });
             
+            
+            $("#insert_direct").click(function(){
+            	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
+               var productCnt = $(this).parent().parent().parent().parent().find("input").val();
+               form.productCount = productCnt;
+               $.ajax({
+                  url : "/cart/add",
+                  type : "POST",
+                  data : form,
+                  success : function(result){
+                	 
+                     cartAlert(result);
+                  }
+               });
+            });
+            
             function cartAlert(result){
                if(result == '0'){
                 alert("장바구니에 추가를 하지 못하였습니다.");
@@ -521,36 +537,13 @@ font-weight:700;
        		location.href = "/cart";
        	});
          
+        // 바로구매 버튼
+        $("#insert_direct").click(function(){
+        	location.href="/cart";
+        });
          
-         // 리뷰 쓰기 
-         $(".reply_button_wrap").click(function(e){
-        	 e.preventDefault();
-        	 
-        	 const memberId = '${memberId}';
-        	 const productNo = '${productDto.productNo}';
-        	 
-        	 $.ajax({
-        		data : {
-        			productNo : productNo,
-        			memberId : memberId
-        		},
-        		url : "/reply/check",
-        		type : "POST",
-        		success : function(result){
-        			if(result === '1'){
-    					alert("이미 등록된 리뷰가 존재 합니다.")
-    				} else{
-    					let popUrl = "/product/replyEnroll/" + memberId + "?productNo=" + productNo;
-    					console.log(popUrl);
-    					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
-    					
-    					window.open(popUrl,"리뷰 쓰기",popOption);							
-    				}
-        		}
-        	 });
-        	 
-	 
-         });
+         
+   
          
     
          
@@ -631,13 +624,7 @@ font-weight:700;
                         </div>
                         <h2 style="margin-bottom: 0px;">
                             <span id="viewName">${productDto.productName}</span>
-                            <div class="star">
-                                <div class="view-info-new">
-                                    <div class="grade">
-                                        <strong style="width: 0%;">0.0점</strong>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </h2>
                         <div class="price-info view_price_first">
                             <dl class="price-sell" style="padding-top: 10px;">
@@ -746,7 +733,7 @@ font-weight:700;
       <div class="addressInfo_div">
         <div class="addressInfo_button_div">
             <button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #a29bfe;">상품 정보</button>
-            <button class="address_btn address_btn_2" onclick="showAdress('2')" style="background-color: #a29bfe;">상품 후기</button>
+            <button class="address_btn address_btn_2" onclick="showAdress('2')" style="background-color: #a29bfe;">상품 후기${replyCount}</button>
              <button class="address_btn address_btn_3" onclick="showAdress('3')" style="background-color: #a29bfe;">상품 문의</button>
              <button class="address_btn address_btn_4" onclick="showAdress('4')" style="background-color: #a29bfe;">구매 확인사항</button>
             
@@ -760,9 +747,40 @@ font-weight:700;
                 <div class="reply_subject">
 					<h2>리뷰</h2>
 				</div>
-				<div class="reply_button_wrap">
-					<button>리뷰 쓰기</button>
+				<div>
+					<ul class="review_list">
+						<c:forEach items="${replyList}" var="list">
+						
+						<li>
+							<div class="review-item">
+								<div class="review-info">
+									<dl class="grade">
+										<dt>평점</dt>
+										<div class="view-info-new">
+											<div class="grade">
+												<strong id="grade" style="width:100%;">${list.rating}</strong>
+											</div>
+										</div>
+										<dd>${list.regDate}</dd>
+										<dd class="writer">${list.memberId}</dd>
+									</dl>
+								</div>
+								<div class="riview-content">
+									<div class="review-span">
+										<div class="sec">
+											<p>
+											${list.content}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+						</c:forEach>
+					</ul>
 				</div>
+				
+				
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_3" >
                 테스트3
@@ -779,9 +797,9 @@ font-weight:700;
 </div>
 
     
-<%-- 
+
 <%@include file="../template/footer.jsp" %>
- --%>
+
 
     </body>
 

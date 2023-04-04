@@ -29,12 +29,29 @@ public class ReplyDao {
 			dto.setContent(rs.getString("content"));
 			dto.setRegDate(rs.getDate("regDate"));
 			dto.setRating(rs.getDouble("rating"));
+			dto.setProductName(rs.getString("product_name"));
 			
 			return dto;
 		}
 		
 		
 	};
+	// 조인을 위한 mapper
+	public RowMapper<ReplyDto> joinMapper = new RowMapper<ReplyDto>() {
+		
+		@Override
+		public ReplyDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			ReplyDto dto = new ReplyDto();
+			dto.setRegDate(rs.getDate("regDate"));
+			dto.setContent(rs.getString("content"));
+			dto.setRating(rs.getInt("rating"));
+			dto.setProductName(rs.getString("product_name"));
+			dto.setMemberId(rs.getString("member_id"));
+			
+			return dto;
+		}
+	};
+	
 	
 
 	/* 리뷰 등록 */
@@ -59,6 +76,23 @@ public class ReplyDao {
 		
 	
 	}
+	
+	// 리뷰 목록
+	public List<ReplyDto> replyList(int productNo){
+		String sql ="select a.regDate,a.member_id,a.content,a.rating,b.product_name from reply a left outer join product b on a.product_no = b.product_no where a.product_no = ?";
+		Object[] param = {productNo};
+		
+		return jdbcTemplate.query(sql,joinMapper,param);
+		
+	}
+	
+//	// 상품 당 리뷰 개수
+//	public int replyCount(int productNo) {
+//		String sql = "select count(*) from reply where product_no = ?";
+//		Object[] param = {productNo};
+//		
+//		return jdbcTemplate.queryForObject(sql,int.class,mapper,param);
+//	}
 	
 	
 

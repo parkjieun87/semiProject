@@ -134,7 +134,7 @@ public class OrderDao {
 		jdbcTemplate.update(sql,param);
 	}
 	
-	// 상품 리뷰 작성 유무를 확인
+	// 상품 리뷰 작성 유무를 확인 - 재영
 	public boolean replyCheck(int orderNo) {
 		String sql = "update order_detail set reply_check = 1 where order_no = ?";
 		Object[] param = {orderNo};

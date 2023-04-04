@@ -295,6 +295,54 @@ td{
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script type="text/javascript">
+    
+  //마이너스 버튼
+    $(".btn-minus").click(function(){
+       
+    	 // 수량 버튼 조작
+        let quantity = $(this).parent("div").find("input").val();
+        let quantityInput = $(this).parent("div").find("#quantity");
+
+        if(quantity > 1){
+           
+           $(quantityInput).val(--quantity);
+           
+           
+        }
+    
+        
+         var sum = 0;
+         
+         sum += $("#disprice").val() * quantity;
+      
+         
+         $(".disPrice").text(sum.toLocaleString());
+ 
+    })
+   
+   //플러스 버튼
+    $(".btn-plus").click(function(){
+      
+       // 수량 버튼 조작
+       let quantity = $(this).parent("div").find("input").val();
+       let quantityInput = $(this).parent("div").find("#quantity");
+
+       if(quantity < '${productDto.productStock}'){
+          
+          $(quantityInput).val(++quantity);
+          
+          
+       }
+       
+       var sum = 0;
+
+       sum += $("#disprice").val() * quantity;
+    
+       
+       $(".disPrice").text(sum.toLocaleString());
+    });
+  
+  
         $(function(){
            
            /* 장바구니 종합 정보 삽입 */
@@ -461,7 +509,7 @@ td{
           </td>
           
           <td style="text-align:center;">
-             <span class="row price spans" style="text-decoration: line-through; color:#ccc;">${list.productPrice}원</span> <br>
+          <!-- <span class="row price spans" style="text-decoration: line-through; color:#ccc;">${list.productPrice}원</span> <br>  -->
              <span class="row price spans" style="color:#b12603; font-weight:800;">${list.productPrice}원</span>
              <span class="aa"></span>
           </td>
@@ -469,6 +517,7 @@ td{
           <td>
           			<input type="hidden" id="orderNo" value="${list.orderNo}">
           			<input type="hidden" id="productNo" value="${list.productNo}">
+          			<input type="hidden" id="orderNo" value="${list.orderNo}">
           	
           			<c:if test="${list.replyCheck == 1}">
           			<button class="order_btn">리뷰작성 완료</button> <br> 

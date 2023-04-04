@@ -138,6 +138,7 @@ public class OrderController {
 		ProductOrderDto dto =  orderDao.select(orderNo);
 		model.addAttribute("dto",dto);
 
+
 		return "/WEB-INF/views/shop/orderFinish.jsp";
 	}
 	

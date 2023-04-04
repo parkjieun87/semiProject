@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @Builder @NoArgsConstructor @AllArgsConstructor
-public class ProductWithImageDto {
+public class ProductWithImageDto{
 	//상품(product) 필드
 	private int productNo; // 상품번호
 	private String categoryCode; // 카테고리코드
@@ -27,4 +27,6 @@ public class ProductWithImageDto {
 		if(attachmentNo == null) return "https://via.placeholder.com/150x150";
 		else return "/attachment/download?attachmentNo="+attachmentNo;
 	}
+	
+
 }

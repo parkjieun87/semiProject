@@ -462,6 +462,12 @@ td{
             	location.href="/shop/order";
             });
             
+            
+            // 계속 쇼핑하기 버튼
+            $(".form-btn").click(function(){
+            	location.href="/";
+            });
+            
         
            
         });
