@@ -39,7 +39,7 @@
 		</div>
        
     	<!-- 상품 목록 테이블 -->
-        <div class="row" style="margin:auto;">
+        <div class="row">
             <table class="table table-slit">
                 <thead>
                     <tr>
