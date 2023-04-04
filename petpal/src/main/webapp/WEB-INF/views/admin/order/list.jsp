@@ -36,8 +36,8 @@
     	<div class="row" style="margin:auto;">
 			<a class="link" href="list">최신순</a>
 			<a class="link" href="list?sort=order_date asc">오래된순</a>
-			<a class="link" href="list?sort=total desc">주문액 높은순</a>
-			<a class="link" href="list?sort=total asc">주문액 낮은순</a>
+			<a class="link" href="list?sort=total desc">높은 주문액순</a>
+			<a class="link" href="list?sort=total asc">낮은 주문액순</a>
 		</div>
        		<table class="table table-slit">
                <thead>
@@ -98,7 +98,7 @@
 				<a class="arrow prev" href="list?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="list?page=${i}">${i}</a>
+						<a href="list?page=${i}&keyword=${keyword}&sort=${sort}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
 				<a class="arrow next" href="list?page=${vo.nextPage}">&gt;</a>

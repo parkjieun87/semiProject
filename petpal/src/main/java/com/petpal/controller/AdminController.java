@@ -125,9 +125,11 @@ public class AdminController {
       boolean search = !column.equals("") && !keyword.equals("");
 		if(search) {
 			model.addAttribute("productList", productDao.searchAndSelectList(column, keyword, vo, sort));
+			model.addAttribute("sort", sort);
 		}
 		else {
 			model.addAttribute("productList", productDao.selectList2(vo,sort));
+			model.addAttribute("sort", sort);
 		}
       return "/WEB-INF/views/admin/product/list.jsp";
    }
@@ -180,9 +182,11 @@ public class AdminController {
 		if(search) {
 			keyword = keyword.equals("관리자") ? "1" : "0";
 			model.addAttribute("memberList", memberDao.searchAndSelectList(column, keyword, vo, sort));
+			model.addAttribute("sort", sort);
 		}
 		else {
 			model.addAttribute("memberList", memberDao.selectList(vo,sort));
+			model.addAttribute("sort", sort);
 		}
       return "/WEB-INF/views/admin/member/list.jsp";
    }
@@ -264,9 +268,12 @@ public class AdminController {
       boolean search = !column.equals("") && !keyword.equals("");
 		if(search) {
 			model.addAttribute("orderDto", adminOrderDao.searchAndSelectList(column, keyword, vo, sort));
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("sort", sort);
 		}
 		else {
 			model.addAttribute("orderDto", adminOrderDao.selectList(vo,sort));
+			model.addAttribute("sort", sort);
 		}
       
       

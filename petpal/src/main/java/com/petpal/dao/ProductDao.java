@@ -107,10 +107,8 @@ public class ProductDao {
 		public List<ProductDto> selectList2(PaginationVO vo, String sort){
 			String sql = "select * from("
 					+ "select rownum rn, TMP.* from("
-					+ "select * from product"
-					+" )TMP"
-					+ ")where rn between ? and ? "
-					+ "order by "+sort;
+					+ "select * from product order by "+sort+")TMP"
+					+ ")where rn between ? and ?";
 			
 			Object[] param = {vo.getBegin(), vo.getEnd()};
 					

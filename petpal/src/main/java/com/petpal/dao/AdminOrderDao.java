@@ -49,9 +49,8 @@ public class AdminOrderDao {
 	   public List<AdminOrderDto> selectList(PaginationVO vo, String sort){
 	      String sql = "select * from("
 	                + "select rownum rn, TMP.* from("
-	                + "select * from admin_order)TMP"
-	                + ")where rn between ? and ?"
-	                + "order by "+sort;
+	                + "select * from admin_order order by "+sort+")TMP"
+	                + ")where rn between ? and ?";
 	        
 	        Object[] param = {vo.getBegin(), vo.getEnd()};
 	        
@@ -72,16 +71,12 @@ public class AdminOrderDao {
 		               + "select rownum rn, TMP.* from ("
 		               + "select * from admin_order "
 		               + "where instr(#1, ?) > 0 "
-		               + "order by #1"
+		               + "order by #1, "+sort
 		               + ") TMP"
 		               + ") where rn between ? and ?";
 		    sql = sql.replace("#1", column);
 
 		    Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
-
-		    if (sort != null && !sort.isEmpty()) {
-		        sql += " order by " + sort;
-		    }
 
 		    return jdbcTemplate.query(sql, orderMapper, param);
 		}
