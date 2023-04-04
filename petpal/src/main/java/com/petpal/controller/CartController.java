@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.petpal.dao.CartDao;
+import com.petpal.dao.ProductImageDao;
+import com.petpal.dao.ProductWithImageDao;
 import com.petpal.dto.CartDto;
 import com.petpal.dto.MemberDto;
+import com.petpal.dto.ProductImageDto;
+import com.petpal.dto.ProductWithImageDto;
 import com.petpal.service.CartService;
 
 @Controller
@@ -24,6 +28,9 @@ public class CartController {
 	
 	@Autowired
 	private CartDao cartDao;
+	
+	@Autowired
+	private ProductWithImageDao productWithImageDao;
 	
 	@PostMapping("/cart/add")
 	@ResponseBody
@@ -44,10 +51,10 @@ public class CartController {
 
 	
 	@GetMapping("/cart")
-	public String cartPage( Model model, HttpSession session) {
+	public String cartPage(Model model, HttpSession session) {
 		String memberId = (String)session.getAttribute("memberId");
-		model.addAttribute("cartInfo", cartService.getCartList(memberId));
 		
+		model.addAttribute("cartInfo", cartService.getCartList(memberId));
 		return "/WEB-INF/views/cart/cart.jsp";
 	}
 	
