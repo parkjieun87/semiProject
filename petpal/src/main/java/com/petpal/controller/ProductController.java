@@ -60,7 +60,8 @@ public class ProductController {
 	
 	@GetMapping("/list")
 	public String list(Model model, @RequestParam(required=false, defaultValue="") String categoryCode,
-			@RequestParam(required=false, defaultValue="") String parentCode, @ModelAttribute("vo") PaginationVO vo) throws JsonProcessingException {
+			@RequestParam(required=false, defaultValue="") String parentCode, @ModelAttribute("vo") PaginationVO vo,
+			@RequestParam(required=false, defaultValue="") String sort) throws JsonProcessingException {
 		String parent;
 		int totalProductCnt;
 		List<ProductWithImageDto> list = new ArrayList<>();
