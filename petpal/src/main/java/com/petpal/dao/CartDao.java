@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.CartDto;
+import com.petpal.dto.ProductImageDto;
 
 @Repository
 public class CartDao {
@@ -37,6 +38,16 @@ public class CartDao {
 		
 		
 	};
+	
+	//product_image mapper 생성(2023-04-04)지은
+	private RowMapper<ProductImageDto> imageMapper = new RowMapper<ProductImageDto>() {
+	@Override
+	public ProductImageDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+		ProductImageDto productImageDto = new ProductImageDto();
+		productImageDto.setAttachmentNo(rs.getInt("product_no"));
+		productImageDto.setAttachmentNo(rs.getInt("attachment_no"));
+		return productImageDto;
+	}};
 	
 	// 장바구니 추가
 	public int addCart(CartDto cart) throws Exception{
@@ -82,7 +93,20 @@ public class CartDao {
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
-
 	
+	//주문완료 후 장바구니 삭제 - 2023-04-04(지은)
+	public boolean orderCartDelete(String memberId) {
+		String sql = "delete from cart where member_id=?";
+		Object[]param = {memberId};
+		return jdbcTemplate.update(sql,param)>0;
+	}
+	
+	//상품번호로 이미지 조회(지은) - 수정해야함
+	public ProductImageDto imageSelect(int productNo) {
+		String sql ="select attachment_no from product_image where product_no=?";
+		Object[] param = {productNo};
+		List<ProductImageDto> list = jdbcTemplate.query(sql, imageMapper,param);
+		return list.isEmpty() ? null:list.get(0);
+	}
 
 }

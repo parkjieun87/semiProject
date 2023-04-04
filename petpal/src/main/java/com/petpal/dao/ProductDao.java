@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.AdminOrderDto;
+import com.petpal.dto.CartDto;
 import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.CategoryDto;
 import com.petpal.dto.ProductDto;
@@ -83,6 +84,30 @@ public class ProductDao {
 		}
 		
 	};
+	
+	//주문완료 후 상품 수량-주문결제 완료한 수량 mapper
+	private RowMapper<CartDto> cartMapper = new RowMapper<CartDto>() {
+		
+		@Override
+		public CartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			CartDto dto = new CartDto();
+			
+			dto.setCartNo(rs.getInt("cart_no"));
+			dto.setProductNo(rs.getInt("product_no"));
+			dto.setMemberId(rs.getString("member_id"));
+			dto.setProductCount(rs.getInt("product_count"));		
+			dto.setProductName(rs.getString("product_name"));
+			dto.setProductDiscount(rs.getInt("product_discount"));
+			dto.setProductPrice(rs.getInt("product_price"));
+			dto.setProductStock(rs.getInt("product_stock"));
+	
+			return dto;
+		}
+		
+		
+	};
+	
+	
 	
 	//상품 번호 생성
 	public int sequence() {
@@ -203,10 +228,10 @@ public class ProductDao {
 	}
 	
 
-	//주문완료 후 상품수량 수정(2023-04-03 박지은)
-	public boolean update(int productStock,int productNo) {
-		String sql = "update product set product_stock = ? where product_no=?";
-		Object[] param = {productStock,productNo};
+	//주문완료 후 상품수량 수정(2023-04-04 박지은)
+	public boolean update(int productCount,int productNo) {
+		String sql = "update product set product_stock = product_stock-? where product_no=?";
+		Object[] param = {productCount,productNo};
 		return jdbcTemplate.update(sql,param)>0;
 	}
 	
