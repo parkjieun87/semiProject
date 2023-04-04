@@ -51,12 +51,12 @@ $(function(){
                         console.log(phone2);
                         
                         if(data == phone2){
-                            $(".successPhoneChk").text("올바른 번호입니다.");
-                            $(".successPhoneChk").css("color","green");
+                            $("[name=phonecheck2]").show().css("display");
+                            $("[name=phonecheck]").hide().css("display");
             
                         }else{
-                            $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
-                            $(".successPhoneChk").css("color","red")
+                            $("[name=phonecheck]").show().css("display");
+                         
                         }
                     });
                     

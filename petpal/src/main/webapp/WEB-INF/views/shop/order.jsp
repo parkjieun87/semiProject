@@ -199,16 +199,9 @@
                 var number = $(this).val();
                 
                 if(number.length==0){//null일때
-                    $("[name=phonecheck]").show().css("display");
-                    $("[name=phonecheck2]").hide().css("display");
                     unitBuyerTel =false;
                     alert("인증번호입력해주세요")
-                }else if(number.length>4){
-                    $("[name=phonecheck]").hide().css("display");
-                    $("[name=phonecheck2]").show().css("display");
                 }else if(number.length==4){
-                    $("[name=phonecheck]").hide().css("display");
-                    $("[name=phonecheck2]").hide().css("display");
                     unitBuyerTel = true;
                 }
                 
@@ -464,6 +457,7 @@
                                  <input id="phone2" type="text"  class="form-input w-100"  name="phone2" placeholder="인증번호 입력"  required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                                  <button id="btnC2" type="button" class="btn-clear2"></button>  
                                  <span class="point successPhoneChk" name="phonecheck" style="display: none; color:#145eaa;">인증번호 4자리를 입력 해주십시오.</span>
+                                 <span class="point successPhoneChk" name="phonecheck2" style="display: none; color:#145eaa;">올바른 번호입니다.</span>
                                  </div>
                             </div>
 
