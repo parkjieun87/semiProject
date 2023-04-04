@@ -147,7 +147,7 @@
 				
                 <div class="me-20 flex-box item ">
                 <a href="/product/detail?productNo=${list.productNo}">
-                    <img src="" id="box">
+                    <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
                 </a>
                 
@@ -173,7 +173,7 @@
             <c:forEach items="${list2}" var="list">
             	 <div class="me-20 flex-box item ">
                  <a href="/product/detail?productNo=${list.productNo}">
-                    <img src="" id="box">
+                     <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
                 </a>
                 <span>${list.productDiscount}</span>%
