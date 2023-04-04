@@ -9,6 +9,7 @@
             font-family: '카페24 써라운드 에어';
             /* body의 마진을 설정하여 footer와 겹치지 않게 함 */
 			  margin-bottom: 50px; /* footer 높이와 같게 설정 */
+
         }
 
         /* 상세페이지 사진 css */
@@ -399,7 +400,7 @@ font-weight:700;
         }
            
   	footer {
-  position: fixed;
+  	position:absolute;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -796,11 +797,11 @@ font-weight:700;
    
 </div>
 
-    
+    <%-- -
 
 <%@include file="../template/footer.jsp" %>
+--%>
 
 
-    </body>
 
 

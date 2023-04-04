@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/header.css">
     
     <style>
-       
+      
     </style>
    <!-- jQuery Cdn -->
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
