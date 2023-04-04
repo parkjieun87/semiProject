@@ -43,7 +43,7 @@
 <body>
 
 	<div id="middle" class="goods-list">
-		<div class="wrap">
+		<div class="wrap container-1200 ms-60">
 			<div id="contents-wrap">
 				<div id="lnb" class="item-option">
 					<div class="ctg-area">
