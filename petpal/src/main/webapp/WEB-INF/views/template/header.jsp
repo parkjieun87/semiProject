@@ -33,8 +33,8 @@
 <body>
   <header id="header">
     <div id="header-area1">
-        <div class="wrap">
-               <div class="img-search">
+        <div class="wrap container-1200">
+               <div class="img-search ms-140">
                <a href="http://localhost:8080/">
                 <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
