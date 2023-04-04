@@ -20,7 +20,7 @@
 
 <title>로그인</title>
 
- <div class ="container-800">
+<div class ="container-800">
 <img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
 <form action="login" method="post" align="center" class="mt-10">
 	<input type="text" name="memberId" class="form-input w-50" required placeholder="아이디"><br><br>
@@ -32,7 +32,6 @@
 </form>
 </div>
 <div class ="row center" >
-<h4>
  </div>
 <%-- 
 	이 페이지에 접근 가능한 방법은 2가지가 있다.
