@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.petpal.comparator.myComparatorByName;
+import com.petpal.comparator.myComparatorByPriceAsc;
+import com.petpal.comparator.myComparatorByPriceDesc;
+import com.petpal.comparator.myComparatorByRegdate;
 import com.petpal.dao.MemberDao;
 import com.petpal.dao.ProductDao;
 import com.petpal.dao.ProductWithImageDao;
@@ -29,6 +33,8 @@ import com.petpal.dto.ProductWithImageDto;
 import com.petpal.dto.ReplyDto;
 import com.petpal.service.ReplyService;
 import com.petpal.vo.PaginationVO;
+
+import edu.emory.mathcs.backport.java.util.Collections;
 
 
 @Controller
@@ -67,21 +73,49 @@ public class ProductController {
 		String parent;
 		int totalProductCnt;
 		List<ProductWithImageDto> list = new ArrayList<>();
+		List<ProductWithImageDto> list2 = new ArrayList<>();
 		if(parentCode.equals("")) {
 			parent = productDao.ParentCate(categoryCode);
 			list = productWithImageDao.selectList(categoryCode);
+			if(sort.equals("viewName")) Collections.sort(list, new myComparatorByName());
+			else if(sort.equals("regdate")) Collections.sort(list, new myComparatorByRegdate());
+			else if(sort.equals("price_low")) Collections.sort(list, new myComparatorByPriceAsc());
+			else if(sort.equals("price_high")) Collections.sort(list, new myComparatorByPriceDesc());
 			totalProductCnt = list.size();
 		    vo.setCount(totalProductCnt);
-			list = productWithImageDao.selectList(categoryCode, vo);
+			 if(vo.getPage() == vo.getTotalPage()) {
+			    	for(int i=vo.getBegin()-1;i<list.size();i++) {
+			    		list2.add(list.get(i));
+			    	}
+			    }else {
+			    	for(int i=vo.getBegin()-1;i<vo.getEnd();i++) {
+				    	list2.add(list.get(i));
+				    }	
+			    }
 			model.addAttribute("mode", true);
 		}else {
 			parent = parentCode;
 			list = productWithImageDao.selectListFromParent(parent);
+			if(sort.equals("viewName")) Collections.sort(list, new myComparatorByName());
+			else if(sort.equals("regdate")) Collections.sort(list, new myComparatorByRegdate());
+			else if(sort.equals("price_low")) Collections.sort(list, new myComparatorByPriceAsc());
+			else if(sort.equals("price_high")) Collections.sort(list, new myComparatorByPriceDesc());
 			totalProductCnt = list.size();
 		    vo.setCount(totalProductCnt);
-			list = productWithImageDao.selectListFromParent(parent, vo);
+		    if(vo.getPage() == vo.getTotalPage()) {
+		    	for(int i=vo.getBegin()-1;i<list.size();i++) {
+		    		list2.add(list.get(i));
+		    	}
+		    }else {
+		    	for(int i=vo.getBegin()-1;i<vo.getEnd();i++) {
+			    	list2.add(list.get(i));
+			    }	
+		    }
 			model.addAttribute("mode", false);
 		}
+		
+		
+		
 		String parentName = productDao.parentName(parent);
 		int sum=0;
 		List<CategoryCountDto> cateList = productDao.categoryCountList(parent);
@@ -91,17 +125,17 @@ public class ProductController {
 			sum+=cateList.get(i).getCategoryCount();
 		}
 		List<Integer> DisPrice = new ArrayList<>();
-		for(int i=0;i<list.size();i++) {
-			int disPrice = list.get(i).getProductPrice()*(100-list.get(i).getProductDiscount())/100;
+		for(int i=0;i<list2.size();i++) {
+			int disPrice = list2.get(i).getProductPrice()*(100-list2.get(i).getProductDiscount())/100;
 			DisPrice.add(disPrice);
 		}
 	
 	
-	    
+	    model.addAttribute("sort", sort);
 		model.addAttribute("parentName", parentName);
 		model.addAttribute("sum", sum);
 		model.addAttribute("parent", parent);
-		model.addAttribute("list", list);
+		model.addAttribute("list", list2);
 		model.addAttribute("cateList", cateList);
 		model.addAttribute("cateList2",categoryList);
 		model.addAttribute("DisPrice", DisPrice);
