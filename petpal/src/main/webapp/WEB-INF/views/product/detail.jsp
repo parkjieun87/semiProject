@@ -624,13 +624,7 @@ font-weight:700;
                         </div>
                         <h2 style="margin-bottom: 0px;">
                             <span id="viewName">${productDto.productName}</span>
-                            <div class="star">
-                                <div class="view-info-new">
-                                    <div class="grade">
-                                        <strong style="width: 0%;">0.0점</strong>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </h2>
                         <div class="price-info view_price_first">
                             <dl class="price-sell" style="padding-top: 10px;">
