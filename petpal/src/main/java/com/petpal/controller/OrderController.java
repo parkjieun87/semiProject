@@ -78,19 +78,10 @@ public class OrderController {
 		MemberDto findDto = memberDao.selectOne(memberId);
 		model.addAttribute("findDto",findDto);
 		
-//		//주문상세조회(, 주문상세번호로 조회)-사용할꺼면 다시 만들어야함.
-//		
-//		orderDetailDto.setOrderDetailNo(orderDetailNo);
-//		OrderDetailDto orderDetailDto1 = orderDao.selectOne(orderDetailNo);
-//		
-//		model.addAttribute("orderDetailDto",orderDetailDto1);
-//		
-//		//주문정보조회(주문번호로 조회)-사용할꺼면 다시 만들어야함.
-//		
-//		productOrderDto.setOrderNo(orderNo);
-//		ProductOrderDto productOrderDto2 = orderDao.select(orderNo);
-//		
-//		model.addAttribute("productOrderDto",productOrderDto2);
+		//주문 상품 이미지 조회 - 수정해야함
+//		List<CartDto> cartList= cartDao.
+		
+		
 
 		return "/WEB-INF/views/shop/order.jsp";
 	}
@@ -124,9 +115,14 @@ public class OrderController {
 		
 
 //		//주문완료 후 상품 수량 수정
-//		ProductDto productDto = new ProductDto();
-//		
-//		productDao.update(productDto.getProductStock()- ,productDto.getProductNo());
+		for(OrderDetailDto orderDetailDto : productOrderDto.orderDetailDto) {
+			int productCount = orderDetailDto.getProductCount();
+			int productNo = orderDetailDto.getProductNo();
+			productDao.update(productCount, productNo);
+		}
+
+		//주문완료 후 장바구니 상품 삭제
+		cartDao.orderCartDelete(memberId);
 
 		return "redirect:orderFinish";
 	}

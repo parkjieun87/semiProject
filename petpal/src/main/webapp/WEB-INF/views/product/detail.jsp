@@ -716,10 +716,10 @@ font-weight:700;
                                         </div>
                                     </div> 
                                 </div>
-                                <button type="button" class="btn-type type03" id="insert_cart" style="border-color: #9091E6; background-color: #9091E6; border-bottom: #9091E6;">
+                                <button type="button" class="btn-type type03" id="insert_cart" style="color: white; border-color: #9091E6; background-color: #9091E6; border-bottom: #9091E6;">
                                     <b>장바구니 담기</b>
                                 </button>
-                                <button type="button" class="btn-type type04" id="insert_direct">
+                                <button type="button" class="btn-type type04 " id="insert_direct">
                                     <b>바로구매</b>
                                 </button>
                             </div>
