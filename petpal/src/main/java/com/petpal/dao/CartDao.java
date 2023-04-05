@@ -124,12 +124,6 @@ public class CartDao {
 		return jdbcTemplate.update(sql,param)>0;
 	}
 	
-	//상품번호로 이미지 조회(지은) - 수정해야함
-	public ProductImageDto imageSelect(int productNo) {
-		String sql ="select attachment_no from product_image where product_no=?";
-		Object[] param = {productNo};
-		List<ProductImageDto> list = jdbcTemplate.query(sql, imageMapper,param);
-		return list.isEmpty() ? null:list.get(0);
-	}
+
 
 }

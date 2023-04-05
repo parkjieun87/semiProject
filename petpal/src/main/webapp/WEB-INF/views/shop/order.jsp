@@ -399,8 +399,9 @@
                             <c:forEach items="${cartList}" var="list" varStatus="status">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
-                                        <img src="/attachment/download?attachmentNo=${cartList1.attachmentNo}"
+                                        <img src="/attachment/download?attachmentNo=${list.attachmentNo}"
                                          height="20px">
+                                         
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
                                         <p class ="p">
