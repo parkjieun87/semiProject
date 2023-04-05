@@ -24,6 +24,8 @@
 		});
 	});
 	</script>
+    
+    <div class="container-1500" style="margin-left: 60px;">
 	<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="productNo" class="delete_productNo">
@@ -38,7 +40,6 @@
 		<a class="link" href="list?sort=product_price asc">낮은 가격순</a>
 	</div>
 		
-    <div class="container-1500 ms-10">
 		
     	<!-- 상품 목록 테이블 -->
         <div class="row">
@@ -54,7 +55,7 @@
             		<col style="width: 7%;">
             		<col style="width: 7%;">
             		<col style="width: 7%;">
-            		<col style="width: 7%;">
+            		<col style="width: 10%;">
             	</colgroup>
                 <thead>
                     <tr>

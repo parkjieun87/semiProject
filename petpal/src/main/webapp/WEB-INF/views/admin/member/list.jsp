@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
-
-<script>
+	
+    <script>
 	$(function(){
 		$(".del-btn").click(function(e){
 			e.preventDefault();
@@ -22,10 +22,8 @@
 		
 	});
 </script>
-
-
-<div class="container-1200 ms-10">
 		
+		<div class="container-1200" style="margin-left: 200px;">
 		<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="memberId" class="delete_memberId">
@@ -34,7 +32,7 @@
        
        <!-- 정렬  -->
 	   	<div class="row ms-10">
-			<a class="link" href="list?">최신 등록일순</a>
+			<a class="link" href="list?">최신 가입일순</a>
 			<a class="link" href="list?sort=member_regdate asc">오래된순</a>
 		</div>
        
@@ -99,6 +97,5 @@
 				</c:if>
 			</div>
 		</div>
-       
     </div>
-<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>
