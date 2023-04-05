@@ -57,7 +57,7 @@
             flex-grow:2;
         }
         strong{
-            color: #EC6565;
+            color: #cc2424;
             font-size: 16px;
         }
         .form-btn{
@@ -94,8 +94,20 @@
                     prevEl: '.swiper-button-prev',
                 },
                 autoplay:{
-                    delay:2000,
-                },                
+                    delay:3000
+                },
+                speed: 1000, // 슬라이드 전환 속도
+                effect: 'slide', // 슬라이드 전환 효과
+                // 슬라이드 전환 transition 설정
+                slideTransition: {
+                    // "ease", "linear", "ease-in", "ease-out", "ease-in-out" 등 사용 가능
+                    // 기본값은 "ease" 입니다.
+                    // 자세한 설정값은 Swiper API 문서를 참조하세요.
+                    easing: 'ease',
+                    // 슬라이드 전환 속도(ms)
+                    speed: 1000
+                }
+
             });
         });
         </script>
@@ -143,52 +155,48 @@
 
 	<div class="container-1100">
             <div class="row flex-box ms-80">
-				<c:forEach items="${list}" var="list">
-				
+            <c:forEach items="${list}" var="list">
+            
                 <div class="me-20 flex-box item ">
                 <a href="/product/detail?productNo=${list.productNo}">
                     <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
-                </a>
-                
-       
-                <span>${list.productDiscount}%</span>
+                </a>               
+                <span style="color: red">${list.productDiscount}%
                     <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
-                    <span>
-                    할인가
-                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
-
-                    </span>원
+                    <span>   
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원
+                    </span>
                     </strong>
                 </div>
-				
-				</c:forEach>	
+            
+            </c:forEach>   
  
-			</div>
+         </div>
                 
          
-		
+      
             <div class="row flex-box ms-80">
             <c:forEach items="${list2}" var="list">
-            	 <div class="me-20 flex-box item ">
+                <div class="me-20 flex-box item ">
                  <a href="/product/detail?productNo=${list.productNo}">
                      <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
                 </a>
-                <span>${list.productDiscount}</span>%
+                <span style="color: red">${list.productDiscount}%
                     <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
                     <span>
-                    할인가
-                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
-
-                    </span>원
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원           
+                    </span>
                     </strong>
                 </div>
             </c:forEach>
              
-		</div>
+      </div>
                
             <br>
             <br>
