@@ -59,6 +59,7 @@ public class CartController {
 				
 		model.addAttribute("cartInfo", cartService.getCartList(memberId));
 		
+		//session에 cartlist 담기
 		session.setAttribute("cartList", cartService.getCartList(memberId));
 		model.addAttribute("cartList");
 		

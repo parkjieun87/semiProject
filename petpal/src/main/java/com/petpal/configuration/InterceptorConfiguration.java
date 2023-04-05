@@ -43,11 +43,11 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 				//- /member로 시작하는 주소 중에서 비회원 페이지 제거
 				//- /admin으로 시작하는 주소 전체
 				registry.addInterceptor(memberInterceptor)
-							.addPathPatterns(
-									"/member/**",
-									"/cart/**",
-									"/reply/**",
-									"/shop/**"
+							.addPathPatterns(//인터셉터 감시주소
+									"/member/**",//회원 전체
+									"/reply/**",//리뷰
+									"/cart/**"//장바구니 전체
+							
 							)
 							.excludePathPatterns(
 									"/member/join",
@@ -55,12 +55,17 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 									"/member/login",
 									"/member/find",
 									"/member/exitFinish"
+									
 							
 						
 							);
 				//[3] 관리자 전용 검사 인터셉터
 				registry.addInterceptor(adminInterceptor)
 						.addPathPatterns("/admin/**");
+				
+				//[4] 주문
+				registry.addInterceptor(orderInterceptor)
+							.addPathPatterns("/shop/**");
 
 		}
 		}
