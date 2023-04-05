@@ -201,9 +201,9 @@
             </c:forEach>
              
       </div>
-<<<<<<< HEAD
+
       </div>
-=======
+
                
             <br>
             <br>
@@ -228,7 +228,6 @@
              -->
 </div>
 
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
 
