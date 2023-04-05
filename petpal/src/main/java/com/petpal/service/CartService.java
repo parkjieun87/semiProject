@@ -19,8 +19,10 @@ public class CartService {
 		// 장바구니 데이터 체크
 		CartDto checkCart = cartDao.checkCart(cart);
 		
+		
 		// 0 : 등록 실패 / 1: 등록 성공 / 2: 등록된 데이터 존재  / 5:로그인 필요
 		if(checkCart != null) {
+			
 			return 2;
 		}
 		

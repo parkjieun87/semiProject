@@ -19,6 +19,17 @@
 <style>
 
 
+	.option-sort ul li a.active{
+		color: #c34;
+	}
+
+footer {
+	  position: bottom;
+	  bottom: 0;
+	  right: 25%;
+
+	}
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 	a:visited {
 		color: ;
 	}
@@ -61,7 +72,7 @@
 
     				// URL에 파라미터를 다시 붙여서 새로운 URL을 생성합니다.
     				var newUrl = url.split("?")[0] + "?" + paramsArray.join("&");
-
+				  				
     				// 새로운 URL로 이동합니다.
     				window.location.href = newUrl;
 
@@ -80,7 +91,28 @@
     					
     				} 			
         		}
+        	
+        		var currentPage = new URLSearchParams(window.location.search).get('page');
+        		if(currentPage != null) {
+        			var pages = document.querySelectorAll('.page');
+        			pages.forEach(function(link){
+        				if(link.getAttribute('data-value') === currentPage) {
+        					link.classList.add('active');
+        				}
+        			})
+        			
+        		}
         		
+        		var currentSort = new URLSearchParams(window.location.search).get('sort');
+        		if(currentSort != null) {
+        			var sorts = document.querySelectorAll('.sort');
+        			sorts.forEach(function(link){
+        				if(link.getAttribute('data-value') === currentSort) {
+            				link.classList.add('active');
+        				}
+        			})
+        		}
+
         	
         });
     	
@@ -153,18 +185,18 @@
 				<div id="contents" class="goods-wrap">
 					<div class="banner-area" style="border-radius: 10px;">
 						<div>
-							<a href="#"> <img
-								src="/static/image/cat_productimg_banner.jpg"
+							<a href="detail?productNo="> <img
+								src="/static/image/dogpang_banner.jpg"
 								style="border-radius: 10px;">
 							</a>
 						</div>
 					</div>
 					<div class="option-sort">
 						<ul>
-							<li><a href="#" data-name="sort" data-value="regdate" class="linkplus">신상품</a></li>
-							<li><a href="#" data-name="sort" data-value="viewName" class="linkplus">상품명</a></li>
-							<li><a href="#" data-name="sort" data-value="price_low" class="linkplus">낮은가격</a></li>
-							<li><a href="#" data-name="sort" data-value="price_high" class="linkplus">높은가격</a></li>
+							<li><a href="#" data-name="sort" data-value="regdate" class="linkplus sort">신상품</a></li>
+							<li><a href="#" data-name="sort" data-value="viewName" class="linkplus sort">상품명</a></li>
+							<li><a href="#" data-name="sort" data-value="price_low" class="linkplus sort">낮은가격</a></li>
+							<li><a href="#" data-name="sort" data-value="price_high" class="linkplus sort">높은가격</a></li>
 						</ul>
 					</div>
 					<!-- 신규상품 리스트 start -->
@@ -212,7 +244,7 @@
 			<div class="page_nation">
 
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="#"  data-name="page" data-value="${i}" class="linkplus">${i}</a>
+						<a href="#"  data-name="page" data-value="${i}" class="linkplus page">${i}</a>
 					</c:forEach>
 				
 			</div>

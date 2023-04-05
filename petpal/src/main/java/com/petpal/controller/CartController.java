@@ -29,8 +29,6 @@ public class CartController {
 	@Autowired
 	private CartDao cartDao;
 	
-	@Autowired
-	private ProductWithImageDao productWithImageDao;
 	
 	@PostMapping("/cart/add")
 	@ResponseBody
@@ -45,6 +43,7 @@ public class CartController {
 		}
 		
 		int result = cartService.addCart(cart);
+		
 		
 		return result + "";
 	}
