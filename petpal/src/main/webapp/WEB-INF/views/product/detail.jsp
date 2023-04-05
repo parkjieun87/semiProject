@@ -5,7 +5,7 @@
  <link rel="stylesheet" href="/static/css/contact/reply.css">
  <link rel="stylesheet" href="/static/css/product/detail.css">
    
-
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
  <style>
        
         body{
@@ -589,7 +589,7 @@ font-weight:700;
 <head>
  
 </head>
-<%@ include file="../template/header.jsp" %>
+
 <body>
         <div class="row center">
             <h1></h1>
