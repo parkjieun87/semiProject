@@ -13,13 +13,12 @@
 			if(choice == false) return;
 			
 			var pageNo = $(this).data("page");
-			let memberId = $(this).data("memberid");
+			var memberId = $(this).data("memberid");
 			
 			$(".delete_memberId").val(memberId);
 			$(".delete_page").val(pageNo);
 			$(".delete_form").submit();
 		});
-		
 	});
 </script>
 		
@@ -39,13 +38,21 @@
     	<!-- 상품 목록 테이블 -->
         <div class="row">
             <table class="table table-slit">
+            	<colgroup>
+            		<col style="width: 7%;">
+            		<col style="width: 7%;">
+            		<col style="width: 7%;">
+            		<col style="width: 5%;">
+            		<col style="width: 7%;">
+            	</colgroup>
+            	
                 <thead>
                     <tr>
-                        <th>아이디</th>
-                        <th>이름</th>
-                        <th>가입일</th>
-                        <th>등급</th>
-                        <th>관리</th>
+                        <th scope="col">아이디</th>
+                        <th scope="col">이름</th>
+                        <th scope="col">가입일</th>
+                        <th scope="col">등급</th>
+                        <th scope="col">관리</th>
                     </tr>
                 </thead>
                 <tbody>

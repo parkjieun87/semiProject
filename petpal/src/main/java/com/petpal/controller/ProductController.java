@@ -175,6 +175,7 @@ public class ProductController {
 		model.addAttribute("sort", sort);
 		model.addAttribute("list", list2);
 		model.addAttribute("DisPrice", DisPrice);
+		model.addAttribute("mode2", true);
 		return "/WEB-INF/views/product/list.jsp";
 	}
 

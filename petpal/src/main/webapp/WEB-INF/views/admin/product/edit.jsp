@@ -3,18 +3,23 @@
 <!DOCTYPE html>
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
-<div class="container-800">
+<div class="container-400">
 <div class="row center">
 	<h1>상품 정보 변경</h1>
 </div>
 <div class="row">
 	<form action="edit" method="post">
 		<input type="hidden" name="productNo" value="${productDto.productNo }">
-		<table style="margin-left:auto; margin-right:auto;">
+			<table class="table center ms-20">
+			<colgroup>
+				<col style="width: 50%;">
+           		<col style="width: 50%;">
+			</colgroup>
+			
 			<tbody>
 				<tr>
-					<th>카테고리 번호<th>
-					<td>
+					<th scope="col">카테고리 번호</th>
+					<td scope="col">
 						<input type="text" name="categoryCode" value="${productDto.categoryCode}">
 					</td>
 				</tr>
@@ -22,12 +27,6 @@
 					<th>상품명</th>
 					<td>
 						<input type="text" name="productName" value="${productDto.productName}">
-					</td>
-				</tr>
-				<tr>
-					<th>상품 상세설명</th>
-					<td>
-						<input type="hidden" name="productDesc" value="${productDto.productDesc}">
 					</td>
 				</tr>
 				<tr>
@@ -48,13 +47,12 @@
 						<input type="text" name="productDiscount" value="${productDto.productDiscount }">
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2" align="right">
-						<button>수정</button>
-					</td>
-				</tr>
 			</tbody>
 		</table>
+		<div class="row right">
+		<button class="edit-btn">수정</button>
+		<a class="link" href="list">목록</a>
+		</div>
 	</form>
 </div>
 
