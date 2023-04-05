@@ -499,7 +499,7 @@ td{
                           <a href=" " class="photo">
                           <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                          </a>
-                 <span id="spans"> <a href="/product/P000010819">${list.productName}</a></span>                             
+                 <span id="spans"> <a href="/product/detaol?productNo=${list.productNo}">${list.productName}</a></span>                             
                       </div>
                  </td>
                      
@@ -517,11 +517,8 @@ td{
           <td>
           			<input type="hidden" id="orderNo" value="${list.orderNo}">
           			<input type="hidden" id="productNo" value="${list.productNo}">
-          			<input type="hidden" id="orderNo" value="${list.orderNo}">
           	
-          			<c:if test="${list.replyCheck == 1}">
-          			<button class="order_btn">리뷰작성 완료</button> <br> 
-          			</c:if>
+          	
            			<button class="order_btn">리뷰남기기</button> <br> 
           </td>
         

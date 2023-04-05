@@ -74,7 +74,7 @@ public class MemberDao {
 				orderDetailDto.setProductPrice(rs.getInt("product_price"));
 				orderDetailDto.setProductCount(rs.getInt("product_count"));
 				orderDetailDto.setProductName(rs.getString("product_name"));
-				orderDetailDto.setReplyCheck(rs.getInt("reply_check"));
+				orderDetailDto.setAttachmentNo(rs.getInt("attachment_no"));
 				return orderDetailDto;
 			}
 		};
@@ -287,7 +287,7 @@ public class MemberDao {
     	
       //주문 목록(2023.04.03 형석) - 재영 수정
   	public List<OrderDetailDto> orderList(String memberId) {
-  		String sql = "select a.order_no,a.product_no,a.member_id,a.product_price, a.product_count,a.reply_check,b.product_name, c.attachment_no from order_detail a left outer join product b on a.product_no = b.product_no left outer join product_image c on b.product_no = c.product_no where member_id= ?";  		
+  		String sql = "select a.order_no,a.product_no,a.member_id,a.product_price, a.product_count,b.product_name, c.attachment_no from order_detail a left outer join product b on a.product_no = b.product_no left outer join product_image c on b.product_no = c.product_no where member_id= ?";  		
   				Object[] param = {memberId};
   		return jdbcTemplate.query(sql,mapperFinish, param);
   	}
