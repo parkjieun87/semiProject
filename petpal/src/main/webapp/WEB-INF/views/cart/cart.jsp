@@ -532,7 +532,7 @@ td{
                           <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                           
                          </a>
-                 <span id="spans"> <a href="/product/P000010819">${list.productName}</a></span>                             
+                 <span id="spans"> <a href="/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
                       </div>
                  </td>
                      

@@ -72,6 +72,7 @@ public class CartDao {
 		return jdbcTemplate.update(sql,param);
 	}
 	
+
 	// 장바구니 삭제
 	public boolean deleteCart(int cartNo) {
 		String sql = "delete from cart where cart_no = ?";
@@ -97,6 +98,7 @@ public class CartDao {
 		return jdbcTemplate.query(sql, mapper,param);
 	}
 	
+
 	// 장바구니 확인
 	public CartDto checkCart(CartDto cart) {
 		String sql = "select * from cart where member_id = ? and product_no = ?";

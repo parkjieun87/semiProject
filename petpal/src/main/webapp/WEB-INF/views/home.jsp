@@ -105,7 +105,7 @@
     <script type="text/javascript">
         $(function(){
 			$("#all").click(function(){
-				location.href = "/product/list?parentCode=2000"
+				location.href = "/product/list?parentCode=1000"
 			});
         });
         
