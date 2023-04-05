@@ -169,10 +169,9 @@
 
           
           
-          
-         
-         
-         
+   //   console.log(productName[0].val());    
+      
+      
             
 
         
@@ -386,13 +385,13 @@
                                             
                                             <input type="hidden" value="${totalPrice}" id="disCountPrice">
                                             <input type="hidden" value="${list.productName}" id="productName">
-                                              
+                                              <!-- input type hidden으로 하면 j쿼리에서도 값을 불러와서 사용가능(값을불러와서 변수로 넣고 사용해야함) -->
                                            
                                             <c:set var="productName" value="${list.productName}"/>
                                              <c:set var="totalPrice" value="${totalPrice+list.totalPrice}"/> 
                                             <c:set var="basicPrice" value="${productPrice+list.totalBasicPrice}"/>
                                             <c:set var="salePrice" value="${(productPrice+list.totalBasicPrice)-(totalPrice+list.totalPrice)}"/> 
-                                          
+                                          <!-- c태그 set으로 var로 변수를 넣으면 jsp에서만 불러와서 사용가능 -->
                                         </p>
                                     </div>
                                     <div class="bundel-info__delivery-service" style="padding-left: 50px;width: 100%;"></div>
