@@ -44,7 +44,6 @@
     	<!-- 상품 목록 테이블 -->
         <div class="row">
             <table class="table table-slit">
-            	
             	<colgroup>
             		<col style="width: 7%;">
             		<col style="width: 7%;">
@@ -57,6 +56,7 @@
             		<col style="width: 7%;">
             		<col style="width: 10%;">
             	</colgroup>
+            	
                 <thead>
                     <tr>
                         <th scope="col">상품 번호</th>

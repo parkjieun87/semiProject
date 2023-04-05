@@ -24,7 +24,7 @@
 	});
 </script>
 
-<div class="container-1200" style="margin-left: 200px;">
+<div class="container-1500" style="margin-left: 50px;">
 		<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="orderDetailNo" class="delete_detailNo">
@@ -42,6 +42,17 @@
     	<!-- 주문 목록 테이블 -->
         <div class="row">
        		<table class="table table-slit">
+       			<colgroup>
+            		<col style="width: 5%;">
+            		<col style="width: 5%;">
+            		<col style="width: 5%;">
+            		<col style="width: 20%;">
+            		<col style="width: 7%;">
+            		<col style="width: 10%;">
+            		<col style="width: 7%;">
+            		<col style="width: 5%;">
+            	</colgroup>
+            	
                <thead>
                     <tr>
                         <th>주문번호</th>
