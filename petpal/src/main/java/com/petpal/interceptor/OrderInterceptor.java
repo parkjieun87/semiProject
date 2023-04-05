@@ -11,7 +11,7 @@ import com.petpal.advice.RequireLoginException;
 
 //비회원이 회원 기능에 접근 하는걸 막기위해 만듬. 
 @Service
-public class MemberInterceptor implements HandlerInterceptor {
+public class OrderInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
@@ -23,8 +23,8 @@ public class MemberInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		else { //비회원이라면 - 로그인 페이지로 이동시키면서 차단
-			response.sendRedirect("/member/login");//return "redirect:/member/login"
-			return false;
+			
+			throw new RequireLoginException("로그인 후 이용 가능합니다.");
 		
 		}
 		

@@ -419,8 +419,9 @@ td{
                let quantityInput = $(this).parent("div").find("#quantity");
                
                let cartNo = $(this).parent("div").find("#cartNo").val();
+               let productStock = $(this).parent("div").find("#productStock").val();
                
-               if(quantity < 5){
+               if(quantity < productStock){
                   
                   $(quantityInput).val(++quantity);
                   
@@ -481,7 +482,7 @@ td{
          <input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
       </div>
             -->
-    
+    	
         <div class="row" style="display:flex;">
            <table style="width: 60%; margin-left:200px;">
               <colgroup>
@@ -528,10 +529,11 @@ td{
                   
                   
                     <div class="item-info" style="display:flex;">                     
-                          <a href=" " class="photo">
-                          <img src="https://cdnimg.dogpang.com/catpang/data/goods/10/9232_web_list_L1_1664878617838762.jpg" width="120" height="120">
+                          <a href="/product/detail?productNo=${list.productNo}" class="photo">
+                          <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
+                          
                          </a>
-                 <span id="spans"> <a href="/product/P000010819">${list.productName}</a></span>                             
+                 <span id="spans"> <a href="/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
                       </div>
                  </td>
                      
@@ -542,9 +544,10 @@ td{
                                         
                                             <div class="quantity-wrap" style="top:0; margin: 0 auto;">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
-                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin">
+                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin" readonly>
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                                 <input type="hidden" id="cartNo" value="${list.cartNo}">
+                                                <input type="hidden" id="productStock" value ="${list.productStock}">
                                                 <input type="hidden" id="salePrice" value="${list.salePrice}">
                                                 <input type="hidden" id="productCount" value="${list.productCount}">
                                                 <input type="hidden" id="totalPrice" value="${list.salePrice * list.productCount}">

@@ -24,17 +24,26 @@
 		});
 	});
 	</script>
+    
+    <div class="container-1500" style="margin-left: 60px;">
 	<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="productNo" class="delete_productNo">
           <input type="hidden" name="page" class="delete_pageNo">
        </form>
-
-    <div class="container-1500 ms-10">
+	
+	<!-- 정렬  -->
+   	<div class="row ms-10">
+		<a class="link" href="list?">최신 등록일순</a>
+		<a class="link" href="list?sort=product_regdate asc">오래된순</a>
+		<a class="link" href="list?sort=product_price desc">높은 가격순</a>
+		<a class="link" href="list?sort=product_price asc">낮은 가격순</a>
+	</div>
+		
+		
     	<!-- 상품 목록 테이블 -->
         <div class="row">
             <table class="table table-slit">
-            	
             	<colgroup>
             		<col style="width: 7%;">
             		<col style="width: 7%;">
@@ -45,8 +54,9 @@
             		<col style="width: 7%;">
             		<col style="width: 7%;">
             		<col style="width: 7%;">
-            		<col style="width: 7%;">
+            		<col style="width: 10%;">
             	</colgroup>
+            	
                 <thead>
                     <tr>
                         <th scope="col">상품 번호</th>
@@ -108,7 +118,7 @@
 				<a class="arrow prev" href="list?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="list?page=${i}">${i}</a>
+						<a href="list?page=${i}&sort=${sort}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
 				<a class="arrow next" href="list?page=${vo.nextPage}">&gt;</a>

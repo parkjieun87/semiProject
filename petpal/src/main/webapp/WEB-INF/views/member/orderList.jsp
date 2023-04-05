@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
@@ -496,10 +496,10 @@ td{
                   
                   
                     <div class="item-info" style="display:flex;">                     
-                          <a href=" " class="photo">
-                          <img src="https://cdnimg.dogpang.com/catpang/data/goods/10/9232_web_list_L1_1664878617838762.jpg" width="120" height="120">
+                          <a href="/product/detail?productNo=${list.productNo}" class="photo">
+                          <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                          </a>
-                 <span id="spans"> <a href="/product/P000010819">${list.productName}</a></span>                             
+                 <span id="spans"> <a href="/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
                       </div>
                  </td>
                      
@@ -517,11 +517,8 @@ td{
           <td>
           			<input type="hidden" id="orderNo" value="${list.orderNo}">
           			<input type="hidden" id="productNo" value="${list.productNo}">
-          			<input type="hidden" id="orderNo" value="${list.orderNo}">
           	
-          			<c:if test="${list.replyCheck == 1}">
-          			<button class="order_btn">리뷰작성 완료</button> <br> 
-          			</c:if>
+          	
            			<button class="order_btn">리뷰남기기</button> <br> 
           </td>
         

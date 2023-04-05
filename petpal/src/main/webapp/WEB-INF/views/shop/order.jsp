@@ -28,7 +28,7 @@
    var unitBuyer = false;
    var unitAgree = false;
    var unitReceiveTel = false;
-   var unitPost = false;
+   var unitDetail = false;
 
       $(function(){
          //체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
@@ -39,38 +39,55 @@
                var vailPost = "${findDto.memberPost}";
                var vailBasicAddr = "${findDto.memberBasicAddr}";
                var vailDetailAddr = "${findDto.memberDetailAddr}";
+               
+               var receiverName =  $("input[name=receiverName]");                 
+               var receiverTel =  $("input[name=receiverTel]");
+               var receiverPost =  $("input[name=receiverPost]");
+               var receiverBasicAddr =  $("input[name=receiverBasicAddr]");
+               var receiverDetailAddr =  $("input[name=receiverDetailAddr]");
+           
+               
       
                var txt2 = $("[name=order_copy]").prop("checked");
       
-               if(!txt2){
-                   $("input[name=receiverName]").val(txt);
-                   $("input[name=receiverTel]").val(txt);
-                   $("input[name=receiverPost]").val(txt);
-                   $("input[name=receiverBasicAddr]").val(txt);
-                   $("input[name=receiverDetailAddr]").val(txt);
-
+               if(!txt2){ //체크박스에 체크가 되지 않았을때
+                   $(receiverName).val(txt); //$()값은 값이 비어있다.
+                   $(receiverTel).val(txt);
+                   $(receiverPost).val(txt);
+                   $(receiverBasicAddr).val(txt);
+                   $(receiverDetailAddr).val(txt);
+                   
                    unitBuyer = false;
                    unitDetail = false;
                    unitReceiveTel = false;
                    unitPost = false;
-
-                } else {
-               
-                    $("input[name=receiverName]").val(vailName);             
-                    $("input[name=receiverTel]").val(vailTel);
-                    $("input[name=receiverPost]").val(vailPost);
-                    $("input[name=receiverBasicAddr]").val(vailBasicAddr);
-                    $("input[name=receiverDetailAddr]").val(vailDetailAddr);
-                    unitBuyer = true;
-                    unitDetail = true;
-                    unitReceiveTel = true;
-                    unitPost = true;
                    
-                }
-              
-                  });
+
+               }else {//체크되었을때
+               			
+            	   if ($(receiverName).val() === '') {
+                       $(receiverName).val(vailName);
+                       unitBuyer = true;
+                   }
+                   if ($(receiverTel).val() === '') {
+                       $(receiverTel).val(vailTel);
+                       unitReceiveTel = true;
+                   }
+                   if ($(receiverPost).val() === '') {
+                       $(receiverPost).val(vailPost);
+                       unitPost = true;
+                   }
+                   if ($(receiverBasicAddr).val() === '') {
+                       $(receiverBasicAddr).val(vailBasicAddr);
+                   }
+                   if ($(receiverDetailAddr).val() === '') {
+                       $(receiverDetailAddr).val(vailDetailAddr);
+                       unitDetail = true;
+                   }
+               }
+           });
                         
-     
+     		
                
               
                
@@ -87,7 +104,7 @@
                count -=1 ; //상품 외 -개
                
                var disCountPrice = $("#disCountPrice").val();
-               $("#totalBasicPrice").text(totalPrice.toLocaleString());
+               $("#totalBasicPrice").text(totalPrice.toLocaleString()+"원");
                
                // 할인 후 최종 금액
                var discountTotalPrice = 0;
@@ -96,13 +113,13 @@
                   var productCount = parseInt($(this).parent().find("#productCount").val());
                   discountTotalPrice += productPrice;
                });
-               $("#realTotalPrice").text(discountTotalPrice.toLocaleString());
+               $("#realTotalPrice").text(discountTotalPrice.toLocaleString()+"원");
                
                //hidden totalprice에 가격 넣어주기
                $("#totalPrice").val(discountTotalPrice);
                
                // 할인 금액
-               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
+               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString()+"원");
             
                 
         
@@ -153,39 +170,7 @@
           
           
           
-         //토스페이 api (추후에 결제하기버튼을 누를때 호출하기위해 함수를 만들어줌)
-         function toss1() {
-                  
-          // IMP.request_pay(param, callback) 결제창 호출
-          IMP.request_pay({ // param
-              pg: "tosspay",
-              pay_method: "card",
-              merchant_uid : 'merchant_' + new Date().getTime(),
-              name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
-              amount: parseInt(discountTotalPrice),
-              buyer_email : 'iamport@siot.do1',
-              buyer_name : '구매자이름',
-              buyer_tel : '010-1234-5678',
-              buyer_addr : '서울특별시 강남구 삼성동',
-              buyer_postcode : '123-456'
-          }, function (rsp) { // callback
-              if (rsp.success) { 
-               
-               $("#jb-form").submit();   //성공하면 버튼 눌러서 submit되게 수정함
-                  // 결제 성공 시 로직,
-              
-              } else {
-            	  unitAgree=false;
-                 var msg = '결제에 실패하였습니다.';
-
-                  // 결제 실패 시 로직,
-
-              }
-
-          });
-      
-            
-         }
+         
          
          
             
@@ -199,16 +184,9 @@
                 var number = $(this).val();
                 
                 if(number.length==0){//null일때
-                    $("[name=phonecheck]").show().css("display");
-                    $("[name=phonecheck2]").hide().css("display");
                     unitBuyerTel =false;
-                    alert("인증번호입력해주세요")
-                }else if(number.length>4){
-                    $("[name=phonecheck]").hide().css("display");
-                    $("[name=phonecheck2]").show().css("display");
+                  
                 }else if(number.length==4){
-                    $("[name=phonecheck]").hide().css("display");
-                    $("[name=phonecheck2]").hide().css("display");
                     unitBuyerTel = true;
                 }
                 
@@ -250,23 +228,21 @@
             $("[name=receiverDetailAddr]").blur(function(){
                 var isValid = $(this).val().length>0;
                 var check = $(this).val();
-                var regex = /^[0-9가-힣]{2,20}$/;
+                var regex = /^[a-zA-Z0-9가-힣-]+$/;
                 var isOk = regex.test(check);
-                console.log(isValid)
-               
-                
+   
                 if(!isValid){
                     $("[name=txt-p5]").show().css("display");
+                    unitDetail = false;
                 }else if(!isOk){
                    $("[name=txt-p5-2]").show().css("display");
-                }else if(check==null){
-                	unitDetail = false;
-                }
-                else{
-                    $("[name=txt-p5]").hide().css("display");
+                   unitDetail = false;
+                }else{
+                	$("[name=txt-p5]").hide().css("display");
                     $("[name=txt-p5-2]").hide().css("display");
-                    unitDetail = true;
+                    unitDetail = true; // 유효성 검사 통과
                 }
+               
             });
 		
             
@@ -318,17 +294,15 @@
               unitAgree = false;
            }
 
-          var isAll = unitBuyerTel && unitBuyer && unitAgree && unitReceiveTel && unitPost;
+          var isAll = unitBuyerTel && unitBuyer && unitAgree && unitReceiveTel && unitDetail;
        
          if(isAll){
             var kakao = $("#payment-kakao").is(":checked");
-               var toss = $("#payment-toss").is(":checked");
+              
                var checkBox = $("#puchase-ok").is(":checked");
                                  
                if(kakao){
                   kakao1();
-               }else if(toss){
-                  toss1();
                }
                else{
                   alert("결제 선택해주세요");
@@ -394,8 +368,9 @@
                             <c:forEach items="${cartList}" var="list" varStatus="status">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
-                                        <img src="./img/9012_web_original_1673006075211726.jpg"
-                                         height="20px">
+                                        <img src="/attachment/download?attachmentNo=${list.attachmentNo}"
+                                         height="50px">
+                                         
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
                                         <p class ="p">
@@ -464,6 +439,7 @@
                                  <input id="phone2" type="text"  class="form-input w-100"  name="phone2" placeholder="인증번호 입력"  required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
                                  <button id="btnC2" type="button" class="btn-clear2"></button>  
                                  <span class="point successPhoneChk" name="phonecheck" style="display: none; color:#145eaa;">인증번호 4자리를 입력 해주십시오.</span>
+                                 <span class="point successPhoneChk" name="phonecheck2" style="display: none; color:#145eaa;">올바른 번호입니다.</span>
                                  </div>
                             </div>
 
@@ -490,7 +466,7 @@
                                 <button id="btnC3" type="button" class="btn-clear3" style="left: 480px;"></button>
                             </div>
                             <p id="receive-name-txt" class="warning-txt" name="txt-p1" style="margin-top: -2px;">수령인을 입력해주세요.</p>
-                            <p id="receive-name-txt" class="warning-txt" name="txt-p1-2" style="margin-top: -2px;" style="display: none;">한글 또는 영어로 입력해주세요</p>
+                            <p id="receive-name-txt" class="warning-txt" name="txt-p1-2" style="margin-top: -2px;">한글 또는 영어로 입력해주세요</p>
 
 
                             <div class="inp-wrap type03" id="row-btnC4">
@@ -518,7 +494,7 @@
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5">상세주소를 입력해주세요.</p>
-                            <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5-2"  style="display: none;">한글 또는 영어로 입력해주세요</p>
+                            <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5-2" >한글 또는 영어로 입력해주세요</p>
                     
                         </div>
                         
@@ -540,6 +516,7 @@
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
                                 <span class="val" name="totalPrice1" id="totalBasicPrice" ></span>
+                                
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>
@@ -573,11 +550,7 @@
                                         <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
 
-                                    <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none;">
-                                        <label for="payment-toss"  class="tossBtn">토스페이</label>
-                                        <img src="/static/image/tosspay.png" style="height: 17px; width: 38px; border-radius: 10px 10px 10px 10px;">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

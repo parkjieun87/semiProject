@@ -21,6 +21,6 @@ public class OrderDetailDto {
 	
 	// 조인 할 컬럼
 	private String productName;
-	private int replyCheck;
+	private int attachmentNo;
 	
 }

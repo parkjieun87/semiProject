@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -9,12 +10,12 @@
 
     <style>
     	.swiper{
-    		width:100%;
+    		width: 1160px;
     		heigth:250px;
     	}
         .swiper-slide>img{
             width: 100%;
-            height: 250px;
+            height: 400px;
         }
         hr{
             background-color: #D2DAFF ;
@@ -53,10 +54,10 @@
             margin-bottom: 50px;
             width: 200px;
             height: 300px;
-            flex-grow:1;
+            flex-grow:2;
         }
         strong{
-            color: #EC6565;
+            color: #cc2424;
             font-size: 16px;
         }
         .form-btn{
@@ -69,6 +70,10 @@
         }
         del{
         	color:darkgray;
+        }
+        strong{
+            color: #cc2424;
+            font-size: 16px;
         }
     </style>
 
@@ -93,8 +98,20 @@
                     prevEl: '.swiper-button-prev',
                 },
                 autoplay:{
-                    delay:2000,
-                },                
+                    delay:3000
+                },
+                speed: 1000, // 슬라이드 전환 속도
+                effect: 'slide', // 슬라이드 전환 효과
+                // 슬라이드 전환 transition 설정
+                slideTransition: {
+                    // "ease", "linear", "ease-in", "ease-out", "ease-in-out" 등 사용 가능
+                    // 기본값은 "ease" 입니다.
+                    // 자세한 설정값은 Swiper API 문서를 참조하세요.
+                    easing: 'ease',
+                    // 슬라이드 전환 속도(ms)
+                    speed: 1000
+                }
+
             });
         });
         </script>
@@ -104,7 +121,7 @@
     <script type="text/javascript">
         $(function(){
 			$("#all").click(function(){
-				location.href = "/WEB-INF/views/product/list.jsp"
+				location.href = "/product/list?parentCode=1000"
 			});
         });
         
@@ -115,17 +132,16 @@
 		<a href="/shop/goods/goods_list?categoryCode=1010"></a>
 		<a href="/shop/goods/goods_list?categoryCode=3010"></a>
 	</div>
-      <div class="container-1500">
-            <div class="row"> 
+            <div class="row ms-70"> 
                 <!-- Slider main container -->
                 <div class="swiper">
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
                         <!-- Slides -->
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202206131734445.jpg" alt="네추라너리쉬"></div>
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202303241300251.jpg" alt="도그팡 봄맞이 이벤트"></div>
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202205101756341.jpg" alt="엘리야코리아"></div>
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202301021739372.jpg" alt="네츄럴코어대용량사료"></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/a880bdaa-03e2-4da6-92bb-bf0d931b5d16.jpeg" alt=""></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/fe10f57a-098c-4ac1-91bd-7aef32040c4a.jpeg" alt=""></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/e3cbad86-c965-463c-e9b0-bf895be695d3.jpeg" alt=""></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/c0fab775-86a7-4081-c48d-3ebfb0f001c8.jpeg" alt=""></div>
                     </div>
                     <!-- If we need pagination -->
                     <div class="swiper-pagination"></div>
@@ -135,217 +151,60 @@
                     <div class="swiper-button-next"></div>
                 </div>
             </div>
-            <div class="row flex-box" style="margin-left: 3px;">
-                <div class="itmeL me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301121829421.jpg" alt="청담닥터스랩 데일리솔루션">
-                    </a>
-                </div>
-                <div class="itmeL me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202302161824492.jpg" alt="anf">
-                    </a>
-                    </div>
-                <div class="itme">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/goodsno_center01_202212271757523.jpg" alt="치약">
-                    </a>
-                </div>
-            </div>
-            <div class="row flex-box" style="margin-left: 3px;">
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202206151136534.jpg" alt="커피트릿">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301181605535.jpg" alt="덴티페어리">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301181603386.jpg" alt="홀썸볼">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202207011329407.jpg" alt="카누들">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202301311410078.jpg" alt="라이프앱">
-                    </a>
-                </div>
-            </div>
-            <div class="row flex-box" style="margin-left: 3px;">
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_202208161535599.jpg" alt="테스트">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/goodsno_center01_2023010917203410.jpg" alt="비프캔">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_2023011816475711.jpg" alt="anf">
-                    </a>
-                </div>
-                <div class="itme me-10">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_2022120711305112.jpg" alt="테스트">
-                    </a>
-                </div>
-                <div class="itme">
-                    <a href="#">
-                        <img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_center01_2023010917381613.jpg" alt="테스트">
-                    </a>
-                </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
+            
             <div class="row left">
-                <label>★할인중★</label>
+                <label></label>
             </div>
             <br>
 
-            <div class="row flex-box">
-
+	<div class="container-1100">
+            <div class="row flex-box ms-80">
+            <c:forEach items="${list}" var="list">
+            
                 <div class="me-20 flex-box item ">
-                <a href="#">
-                    <img src="${product.imageURL}" id="box">
-                    <span>${ProductDto.productName}</span>
-                </a>
-                <span>${ProductDto.productDiscount}</span>%
-                    <del>${ProductDto.productPrice}</del>
+                <a href="/product/detail?productNo=${list.productNo}">
+                    <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
+                    <span>${list.productName}</span>
+                </a>               
+                <span style="color: red">${list.productDiscount}%
+                    <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
-                    <span>${disPrice}</span>원
+                    <span>   
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원
+                    </span>
                     </strong>
                 </div>
-
-
-
-                 <div class="me-20 flex-box item ">
-                <a href="">
-                    <img src="img/discount/2.jpg" id="box">
-                    <span>에티펫 손발 엉덩이 깨끗 도톰한 티슈 40매</span>
+            
+            </c:forEach>   
+ 
+         </div>
+                
+         
+      
+            <div class="row flex-box ms-80">
+            <c:forEach items="${list2}" var="list">
+                <div class="me-20 flex-box item ">
+                 <a href="/product/detail?productNo=${list.productNo}">
+                     <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
+                    <span>${list.productName}</span>
                 </a>
+                <span style="color: red">${list.productDiscount}%
+                    <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
-                    <span>2,000</span>원
+                    <span>
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원           
+                    </span>
                     </strong>
                 </div>
+            </c:forEach>
+             
+      </div>
 
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/3.jpg" id="box">
-                    <span>내츄럴코어 바이트 치킨 덕 2종 콤보</span>
-                </a>
-                    <strong class="price">
-                    <span>10,000</span>원
-                    </strong>
-                </div>
+      </div>
 
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/4.jpg" id="box">
-                    <span>내츄럴코어 센시티브케어 베지토퍼</span>
-                </a>
-                    <strong class="price">
-                    <span>2,500</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/5.jpg" id="box">
-                    <span>엘리야 치킨 오리 롤 베이글 대형견 4종 콤보</span>
-                </a>
-                    <strong class="price">
-                    <span>21,000</span>원
-                    </strong>
-                </div>
-
-                <div class="flex-box item">
-                <a href="">
-                    <img src="img/discount/6.jpg" id="box">
-                    <span>[3+1] 네추라너리쉬 트릿트릭 리필 3종콤보</span>
-                </a>
-                    <strong class="price">
-                    <span>29,700</span>원
-                    </strong>
-                </div>
-            </div>
-
-            <div class="row flex-box mt-40">
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/7.jpg" id="box">
-                    <span>[카누들S 2p x 5개 추가증정]포켄스 덴티페어리 디스펜서 강아지 덴탈껌 SS 124개입</span>
-                </a>
-                    <strong class="price">
-                    <span>32,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/8.jpg" id="box">
-                    <span>내츄럴코어 센시티브케어 콩고기 48g</span>
-                </a>
-                    <strong class="price">
-                    <span>5,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/9.jpg" id="box">
-                    <span>펫시모 강아지 파우치 70g 6종 콤보 12개</span>
-                </a>
-                    <strong class="price">
-                    <span>18,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/10.jpg" id="box">
-                    <span>내추렬코어 덕스틱 오리&참치 20p</span>
-                </a>
-                    <strong class="price">
-                    <span>15,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/11.jpg"id="box">
-                    <span>칸타나 동결건조 치킨 연어칩 72g</span>
-                </a>
-                    <strong class="price">
-                    <span>5,00</span>원
-                    </strong>
-                </div>
-ㄴㄴ
-                <div class="flex-box item">
-                <a href = "">
-                    <img src="${productDto.imageURL }" id="box">
-                    <span>${ProductDto.productName}</span>
-                </a>
-                	<span>${ProductDto.productDiscount}</span>%
-                    <del>${ProductDto.productPrice}</del>
-                    <strong class="price">
-                    <span>${disPrice}</span>원
-                    </strong>
-                </div>
-            </div>
-
+               
             <br>
             <br>
             <div class="row center">
@@ -367,8 +226,7 @@
                 <img class="me-40"src="img/04.PNG">
             </div>
              -->
-        </div >
-
+</div>
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

@@ -9,6 +9,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.petpal.advice.RequirePermissionException;
 
+
+//관리자만 접근하도록 하는 인터셉터
 @Service
 public class AdminInterceptor implements HandlerInterceptor {
 	@Override

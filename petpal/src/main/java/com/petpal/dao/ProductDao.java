@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.AdminOrderDto;
+import com.petpal.dto.CartDto;
 import com.petpal.dto.CategoryCountDto;
 import com.petpal.dto.CategoryDto;
 import com.petpal.dto.ProductDto;
@@ -54,6 +55,22 @@ public class ProductDao {
 		}
 	};
 	
+	
+	// attachmentNo를 받아오긴 위한 Mapper
+	private RowMapper<ProductDto> joinMapper = new RowMapper<ProductDto>() {
+		@Override
+		public ProductDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			ProductDto productDto = new ProductDto();
+			productDto.setProductNo(rs.getInt("product_no"));
+			productDto.setProductName(rs.getString("product_name"));
+			productDto.setProductPrice(rs.getInt("product_price"));
+			productDto.setProductStock(rs.getInt("product_stock"));
+			productDto.setProductDiscount(rs.getInt("product_discount"));
+			productDto.setAttachmentNo(rs.getInt("attachment_no"));
+			return productDto;
+		}
+	};
+	
 	// 카테고리 테이블 조회를 위한 mapper
 	private RowMapper<CategoryDto> categoryMapper = new RowMapper<CategoryDto>() {
 
@@ -84,6 +101,30 @@ public class ProductDao {
 		
 	};
 	
+	//주문완료 후 상품 수량-주문결제 완료한 수량 mapper
+	private RowMapper<CartDto> cartMapper = new RowMapper<CartDto>() {
+		
+		@Override
+		public CartDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			CartDto dto = new CartDto();
+			
+			dto.setCartNo(rs.getInt("cart_no"));
+			dto.setProductNo(rs.getInt("product_no"));
+			dto.setMemberId(rs.getString("member_id"));
+			dto.setProductCount(rs.getInt("product_count"));		
+			dto.setProductName(rs.getString("product_name"));
+			dto.setProductDiscount(rs.getInt("product_discount"));
+			dto.setProductPrice(rs.getInt("product_price"));
+			dto.setProductStock(rs.getInt("product_stock"));
+	
+			return dto;
+		}
+		
+		
+	};
+	
+	
+	
 	//상품 번호 생성
 	public int sequence() {
 		String sql = "select product_seq.nextval from dual";
@@ -107,10 +148,8 @@ public class ProductDao {
 		public List<ProductDto> selectList2(PaginationVO vo, String sort){
 			String sql = "select * from("
 					+ "select rownum rn, TMP.* from("
-					+ "select * from product order by product_regdate desc"
-					+" )TMP"
-					+ ")where rn between ? and ? "
-					+ "order by "+sort;
+					+ "select * from product order by "+sort+")TMP"
+					+ ")where rn between ? and ?";
 			
 			Object[] param = {vo.getBegin(), vo.getEnd()};
 					
@@ -203,10 +242,10 @@ public class ProductDao {
 	}
 	
 
-	//주문완료 후 상품수량 수정(2023-04-03 박지은)
-	public boolean update(int productStock,int productNo) {
-		String sql = "update product set product_stock = ? where product_no=?";
-		Object[] param = {productStock,productNo};
+	//주문완료 후 상품수량 수정(2023-04-04 박지은)
+	public boolean update(int productCount,int productNo) {
+		String sql = "update product set product_stock = product_stock-? where product_no=?";
+		Object[] param = {productCount,productNo};
 		return jdbcTemplate.update(sql,param)>0;
 	}
 	
@@ -231,6 +270,21 @@ public class ProductDao {
 		    return jdbcTemplate.query(sql, productMapper, param);
 		}
 	   
+	   
+	   /* 메인 페이지 상품 4개 씩 */
+	   public List<ProductDto> mainList(){
+		   String sql = "select a.attachment_no,b.product_no,b.product_price,b.product_stock,b.product_discount,b.product_name from product_image a left outer join product b on a.product_no = b.product_no where b.product_no between 244 and 248";
+		   return jdbcTemplate.query(sql,joinMapper);
+	   }
+	   
+	   /* 메인 페이지 상품 4개 씩 */
+	   public List<ProductDto> mainList2(){
+		   String sql = "select a.attachment_no,b.product_no,b.product_price,b.product_stock,b.product_discount,b.product_name from product_image a left outer join product b on a.product_no = b.product_no where b.product_no between 249 and 252";
+
+		   return jdbcTemplate.query(sql,joinMapper);
+	   }
+	   
+	
 	  
 	
 

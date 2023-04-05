@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.petpal.dto.AdminOrderDto;
 import com.petpal.dto.CartDto;
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.OrderDetailDto;
@@ -73,7 +74,7 @@ public class MemberDao {
 				orderDetailDto.setProductPrice(rs.getInt("product_price"));
 				orderDetailDto.setProductCount(rs.getInt("product_count"));
 				orderDetailDto.setProductName(rs.getString("product_name"));
-				orderDetailDto.setReplyCheck(rs.getInt("reply_check"));
+				orderDetailDto.setAttachmentNo(rs.getInt("attachment_no"));
 				return orderDetailDto;
 			}
 		};
@@ -251,10 +252,10 @@ public class MemberDao {
             }   
       
       //회원 리스트 (2023.03.28 성현)
-      public List<MemberDto> selectList(PaginationVO vo){
+      public List<MemberDto> selectList(PaginationVO vo, String sort){
          String sql = "select * from("
                + "select rownum rn, TMP.* from("
-               + "select * from member order by member_regdate desc"
+               + "select * from member order by "+sort
                +" )TMP"
                + ")where rn between ? and ?";
          
@@ -263,11 +264,31 @@ public class MemberDao {
          return jdbcTemplate.query(sql,mapper,param);
       }   
       
+   // 검색 + 정렬 기능
+	   public List<MemberDto> searchAndSelectList(String column, String keyword, PaginationVO vo, String sort) {
+		    String sql = "select * from ("
+		               + "select rownum rn, TMP.* from ("
+		               + "select * from member "
+		               + "where instr(#1, ?) > 0 "
+		               + "order by #1"
+		               + ") TMP"
+		               + ") where rn between ? and ?";
+		    sql = sql.replace("#1", column);
+
+		    Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
+
+		    if (sort != null && !sort.isEmpty()) {
+		        sql += " order by " + sort;
+		    }
+
+		    return jdbcTemplate.query(sql, mapper, param);
+		}
+      
     	
       //주문 목록(2023.04.03 형석) - 재영 수정
   	public List<OrderDetailDto> orderList(String memberId) {
-  		String sql = "select a.order_no,a.product_no,a.member_id,a.product_price, a.product_count,a.reply_check,b.product_name from order_detail a left outer join product b on a.product_no = b.product_no where member_id= ?";
-  		Object[] param = {memberId};
+  		String sql = "select a.order_no,a.product_no,a.member_id,a.product_price, a.product_count,b.product_name, c.attachment_no from order_detail a left outer join product b on a.product_no = b.product_no left outer join product_image c on b.product_no = c.product_no where member_id= ?";  		
+  				Object[] param = {memberId};
   		return jdbcTemplate.query(sql,mapperFinish, param);
   	}
   	

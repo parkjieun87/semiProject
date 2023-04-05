@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.petpal.dto.MemberDto;
 import com.petpal.dto.OrderDetailDto;
+import com.petpal.dto.ProductImageDto;
 import com.petpal.dto.ProductOrderDto;
 
 import net.nurigo.java_sdk.api.Message;
@@ -56,10 +57,11 @@ public class OrderDao {
 			orderDetailDto.setProductCount(rs.getInt("product_count"));
 			orderDetailDto.setProductPrice(rs.getInt("product_price"));
 			orderDetailDto.setProductName(rs.getString("product_name"));
-			orderDetailDto.setReplyCheck(rs.getInt("reply_check"));
 			return orderDetailDto;
 		}
 	};
+	
+
 	
 	//시퀀스 생성
 	public int sequence() {
@@ -142,6 +144,6 @@ public class OrderDao {
 		return jdbcTemplate.update(sql,param) > 0;
 	}
 	
-	
+
 	
 }

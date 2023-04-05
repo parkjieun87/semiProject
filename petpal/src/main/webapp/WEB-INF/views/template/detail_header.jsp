@@ -20,10 +20,10 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/detail_header.css">
     
     <style>
-      
+
     </style>
    <!-- jQuery Cdn -->
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -41,11 +41,9 @@
                 
                 <div id="search">
                     <div class="inp-wrap">
-
-                  <form name="frm_search" id="frm_search" method="get" action="list">
-                       <input class="inp2" name="search_word" type="text" placeholder="찾고싶은 상품을 검색해보세요!"> 
-
-                       <div class="tag" style="float:left; margin-top: 0;">
+                  <form name="frm_search" id="frm_search" method="post" action="shop/searchList">
+                       <input class="inp2" type="text" placeholder="검색어를 입력하세요"> 
+                       <div class="tag" style="margin-top: 0;">
                          </form>
                          
                          <ul>
