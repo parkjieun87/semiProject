@@ -375,21 +375,6 @@
             링크 스타일
         */
       
-         a.link {
-		  display: inline-block;
-		  padding: 6px 10px;
-		  border: 1px solid #ccc;
-		  border-radius: 5px;
-		  font-size: 14px;
-		  color: #333;
-		  text-decoration: none;
-		  text-align: center;
-		  transition: background-color 0.2s ease-in-out;
-		}
-		
-		a.link:hover {
-		  background-color: #eee;
-		}
 		        
         /*
             페이지네이션(Pagination) 디자인
