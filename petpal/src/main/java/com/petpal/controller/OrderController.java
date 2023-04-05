@@ -69,7 +69,6 @@ public class OrderController {
 	@GetMapping("/order")
 	public String order(HttpSession session, Model model,@ModelAttribute ProductOrderDto productOrderDto,@ModelAttribute OrderDetailDto orderDetailDto) {
 		String memberId = (String) session.getAttribute("memberId");
-		
 		//주문내역
 		List<CartDto> cartList= cartDao.getCart(memberId);
 		model.addAttribute("cartList",cartList);

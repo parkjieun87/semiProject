@@ -497,7 +497,7 @@ td{
                   
                     <div class="item-info" style="display:flex;">                     
                           <a href=" " class="photo">
-                          <img src="https://cdnimg.dogpang.com/catpang/data/goods/10/9232_web_list_L1_1664878617838762.jpg" width="120" height="120">
+                          <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                          </a>
                  <span id="spans"> <a href="/product/P000010819">${list.productName}</a></span>                             
                       </div>

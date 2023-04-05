@@ -28,7 +28,7 @@
    var unitBuyer = false;
    var unitAgree = false;
    var unitReceiveTel = false;
-   var unitPost = false;
+   var unitDetail = false;
 
       $(function(){
          //체크박스 누르면 수령인,전화번호 불러오기(findDto때문에 여기에다가 작성)
@@ -66,21 +66,27 @@
                }        
                else {
                			
-                    $("input[name=receiverName]").val(vailName);                  
-                    $("input[name=receiverTel]").val(vailTel);
-                    $("input[name=receiverPost]").val(vailPost);
-                    $("input[name=receiverBasicAddr]").val(vailBasicAddr);
-                    $("input[name=receiverDetailAddr]").val(vailDetailAddr);
-                             
-                    
-                    unitBuyer = true;
-                    unitDetail = true;
-                    unitReceiveTel = true;
-                    unitPost = true;
-                    
-                }
-                    
-                  });
+            	   if ($(receiverName).val() === '') {
+                       $(receiverName).val(vailName);
+                       unitBuyer = true;
+                   }
+                   if ($(receiverTel).val() === '') {
+                       $(receiverTel).val(vailTel);
+                       unitReceiveTel = true;
+                   }
+                   if ($(receiverPost).val() === '') {
+                       $(receiverPost).val(vailPost);
+                       unitPost = true;
+                   }
+                   if ($(receiverBasicAddr).val() === '') {
+                       $(receiverBasicAddr).val(vailBasicAddr);
+                   }
+                   if ($(receiverDetailAddr).val() === '') {
+                       $(receiverDetailAddr).val(vailDetailAddr);
+                       unitDetail = true;
+                   }
+               }
+           });
                         
      		
                
@@ -255,23 +261,21 @@
             $("[name=receiverDetailAddr]").blur(function(){
                 var isValid = $(this).val().length>0;
                 var check = $(this).val();
-                var regex = /^[0-9가-힣]{2,20}$/;
+                var regex = /^[a-zA-Z0-9가-힣-]+$/;
                 var isOk = regex.test(check);
-                console.log(isValid)
-               
-                
+   
                 if(!isValid){
                     $("[name=txt-p5]").show().css("display");
+                    unitDetail = false;
                 }else if(!isOk){
                    $("[name=txt-p5-2]").show().css("display");
-                }else if(check==null){
-                	unitDetail = false;
-                }
-                else{
-                    $("[name=txt-p5]").hide().css("display");
+                   unitDetail = false;
+                }else{
+                	$("[name=txt-p5]").hide().css("display");
                     $("[name=txt-p5-2]").hide().css("display");
-                    unitDetail = true;
+                    unitDetail = true; // 유효성 검사 통과
                 }
+               
             });
 		
             
@@ -323,7 +327,7 @@
               unitAgree = false;
            }
 
-          var isAll = unitBuyerTel && unitBuyer && unitAgree && unitReceiveTel && unitPost;
+          var isAll = unitBuyerTel && unitBuyer && unitAgree && unitReceiveTel && unitDetail;
        
          if(isAll){
             var kakao = $("#payment-kakao").is(":checked");
@@ -497,7 +501,7 @@
                                 <button id="btnC3" type="button" class="btn-clear3" style="left: 480px;"></button>
                             </div>
                             <p id="receive-name-txt" class="warning-txt" name="txt-p1" style="margin-top: -2px;">수령인을 입력해주세요.</p>
-                            <p id="receive-name-txt" class="warning-txt" name="txt-p1-2" style="margin-top: -2px;" style="display: none;">한글 또는 영어로 입력해주세요</p>
+                            <p id="receive-name-txt" class="warning-txt" name="txt-p1-2" style="margin-top: -2px;">한글 또는 영어로 입력해주세요</p>
 
 
                             <div class="inp-wrap type03" id="row-btnC4">
@@ -525,7 +529,7 @@
                                 <button  id="btnC5" type="button" class="btn-clear5" style="left: 480px;"></button>
                             </div>
                             <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5">상세주소를 입력해주세요.</p>
-                            <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5-2"  style="display: none;">한글 또는 영어로 입력해주세요</p>
+                            <p id="receive-address-detail-txt" class="warning-txt" name="txt-p5-2" >한글 또는 영어로 입력해주세요</p>
                     
                         </div>
                         
