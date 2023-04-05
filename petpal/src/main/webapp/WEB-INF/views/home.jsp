@@ -94,8 +94,20 @@
                     prevEl: '.swiper-button-prev',
                 },
                 autoplay:{
-                    delay:2000,
-                },                
+                    delay:3000
+                },
+                speed: 1000, // 슬라이드 전환 속도
+                effect: 'slide', // 슬라이드 전환 효과
+                // 슬라이드 전환 transition 설정
+                slideTransition: {
+                    // "ease", "linear", "ease-in", "ease-out", "ease-in-out" 등 사용 가능
+                    // 기본값은 "ease" 입니다.
+                    // 자세한 설정값은 Swiper API 문서를 참조하세요.
+                    easing: 'ease',
+                    // 슬라이드 전환 속도(ms)
+                    speed: 1000
+                }
+
             });
         });
         </script>
