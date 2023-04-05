@@ -32,8 +32,14 @@
           <input type="hidden" name="page" class="delete_page">
        </form>  
        
+       <!-- 정렬  -->
+	   	<div class="row ms-10">
+			<a class="link" href="list?">최신 등록일순</a>
+			<a class="link" href="list?sort=member_regdate asc">오래된순</a>
+		</div>
+       
     	<!-- 상품 목록 테이블 -->
-        <div class="row" style="margin:auto;">
+        <div class="row">
             <table class="table table-slit">
                 <thead>
                     <tr>
@@ -86,7 +92,7 @@
 				<a class="arrow prev" href="list?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="list?page=${i}">${i}</a>
+						<a href="list?page=${i}&sort=${sort}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
 				<a class="arrow next" href="list?page=${vo.nextPage}">&gt;</a>

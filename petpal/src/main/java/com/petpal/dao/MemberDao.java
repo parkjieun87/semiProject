@@ -255,10 +255,9 @@ public class MemberDao {
       public List<MemberDto> selectList(PaginationVO vo, String sort){
          String sql = "select * from("
                + "select rownum rn, TMP.* from("
-               + "select * from member order by member_regdate desc"
+               + "select * from member order by "+sort
                +" )TMP"
-               + ")where rn between ? and ? "
-               + "order by "+sort;
+               + ")where rn between ? and ?";
          
          Object[] param = {vo.getBegin(), vo.getEnd()};
          
