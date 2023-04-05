@@ -419,8 +419,9 @@ td{
                let quantityInput = $(this).parent("div").find("#quantity");
                
                let cartNo = $(this).parent("div").find("#cartNo").val();
+               let productStock = $(this).parent("div").find("#productStock").val();
                
-               if(quantity < 5){
+               if(quantity < productStock){
                   
                   $(quantityInput).val(++quantity);
                   
@@ -543,9 +544,10 @@ td{
                                         
                                             <div class="quantity-wrap" style="top:0; margin: 0 auto;">
                                                 <button class="btn-minus" style="background-color: #fff;">"빼기"</button>
-                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin">
+                                                <input type="number" id="quantity" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" value="${list.productCount}" class="no-spin" readonly>
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                                 <input type="hidden" id="cartNo" value="${list.cartNo}">
+                                                <input type="hidden" id="productStock" value ="${list.productStock}">
                                                 <input type="hidden" id="salePrice" value="${list.salePrice}">
                                                 <input type="hidden" id="productCount" value="${list.productCount}">
                                                 <input type="hidden" id="totalPrice" value="${list.salePrice * list.productCount}">
