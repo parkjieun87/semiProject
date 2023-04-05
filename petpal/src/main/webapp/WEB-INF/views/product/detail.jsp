@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  <link rel="stylesheet" href="/static/css/contact/reply.css">
  <link rel="stylesheet" href="/static/css/product/detail.css">
-   
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/detail_header.jsp"></jsp:include>
+
  <style>
        
         body{
@@ -668,7 +668,12 @@ font-weight:700;
                                         <dd class="alarm yes-stock" style="background-color: #f4f4f5;">
                                             <div class="quantity-wrap" style="top:0">
                                                 <button class="btn-minus dim" style="background-color: #fff;">"빼기"</button>
+                                                <c:if test="${productDto.productStock == 0 }">
+                                                <input type="number" name="productStock" id="quantity" value="0" autocapitalize="off" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" max="${productDto.productStock}" readonly>
+                                                </c:if>
+                                                <c:if test="${productDto.productStock != 0 }">
                                                 <input type="number" name="productStock" id="quantity" value="1" autocapitalize="off" style="border-left: 1px solid #dfdfdf; border-right: 1px solid #dfdf;" max="${productDto.productStock}" readonly>
+                                                </c:if>
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                             </div>
                                             <span id="pass_quantity" class="pss_quantitys">(재고 ${productDto.productStock}개 남음)</span>

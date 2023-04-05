@@ -50,8 +50,8 @@
       
                var txt2 = $("[name=order_copy]").prop("checked");
       
-               if(!txt2){
-                   $(receiverName).val(txt);
+               if(!txt2){ //체크박스에 체크가 되지 않았을때
+                   $(receiverName).val(txt); //$()값은 값이 비어있다.
                    $(receiverTel).val(txt);
                    $(receiverPost).val(txt);
                    $(receiverBasicAddr).val(txt);
@@ -63,8 +63,7 @@
                    unitPost = false;
                    
 
-               }        
-               else {
+               }else {//체크되었을때
                			
             	   if ($(receiverName).val() === '') {
                        $(receiverName).val(vailName);
@@ -171,39 +170,7 @@
           
           
           
-         //토스페이 api (추후에 결제하기버튼을 누를때 호출하기위해 함수를 만들어줌)
-         function toss1() {
-                  
-          // IMP.request_pay(param, callback) 결제창 호출
-          IMP.request_pay({ // param
-              pg: "tosspay",
-              pay_method: "card",
-              merchant_uid : 'merchant_' + new Date().getTime(),
-              name: name +" "+ count +"개 외",   //필수 파라미터 입니다.
-              amount: parseInt(discountTotalPrice),
-              buyer_email : 'iamport@siot.do1',
-              buyer_name : '구매자이름',
-              buyer_tel : '010-1234-5678',
-              buyer_addr : '서울특별시 강남구 삼성동',
-              buyer_postcode : '123-456'
-          }, function (rsp) { // callback
-              if (rsp.success) { 
-               
-               $("#jb-form").submit();   //성공하면 버튼 눌러서 submit되게 수정함
-                  // 결제 성공 시 로직,
-              
-              } else {
-            	  unitAgree=false;
-                 var msg = '결제에 실패하였습니다.';
-
-                  // 결제 실패 시 로직,
-
-              }
-
-          });
-      
-            
-         }
+         
          
          
             
@@ -331,13 +298,11 @@
        
          if(isAll){
             var kakao = $("#payment-kakao").is(":checked");
-               var toss = $("#payment-toss").is(":checked");
+              
                var checkBox = $("#puchase-ok").is(":checked");
                                  
                if(kakao){
                   kakao1();
-               }else if(toss){
-                  toss1();
                }
                else{
                   alert("결제 선택해주세요");
@@ -584,11 +549,7 @@
                                         <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
 
-                                    <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
-                                        <input type="radio" id="payment-toss" name="order-payment" value="TOSS" style="display:none;">
-                                        <label for="payment-toss"  class="tossBtn">토스페이</label>
-                                        <img src="/static/image/tosspay.png" style="height: 17px; width: 38px; border-radius: 10px 10px 10px 10px;">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
