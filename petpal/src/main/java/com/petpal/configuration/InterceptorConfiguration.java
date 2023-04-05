@@ -55,6 +55,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
                            "/member/login",
                            "/member/find",
                            "/member/exitFinish"
+                             
                            
                      
                   
@@ -66,7 +67,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
             //[4] 주문
             registry.addInterceptor(orderInterceptor)
                      .addPathPatterns("/shop/**");
-	
+
 
       }
       }
