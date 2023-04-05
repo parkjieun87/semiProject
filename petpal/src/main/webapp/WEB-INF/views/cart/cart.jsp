@@ -529,7 +529,7 @@ td{
                   
                   
                     <div class="item-info" style="display:flex;">                     
-                          <a href=" " class="photo">
+                          <a href="/product/detail?productNo=${list.productNo}" class="photo">
                           <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                           
                          </a>
