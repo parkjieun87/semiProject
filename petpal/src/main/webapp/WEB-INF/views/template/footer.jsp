@@ -3,14 +3,14 @@
  <html lang="ko">
  
  <style>
- footer {
+ 	footer {
 	  position: ;
 	  bottom: 0;
 	  left: 0%;
 	  transform: translateX(25%);
 	}
  
-		.footMent
+	.footMent
    {
    	font-size : 15px;
     font-weight: lighter;  	
@@ -28,7 +28,6 @@
    }
    
 </style>
-<head>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,7 +85,7 @@
       </a>
       
       <a class="footer-button" href="https://www.instagram.com/newjeans_official/">
-            		<img class="me-10"  src = "/static/image/instagram.png" width ="170px" height = "50px" padding="10em">
+            <img class="me-10"  src = "/static/image/instagram.png" width ="170px" height = "50px" padding="10em">
       </a>
      </ul>
      
