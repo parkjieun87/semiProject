@@ -23,10 +23,10 @@
 	}
 
 footer {
-	  position: bottom;
+	  position: ;
 	  bottom: 0;
-	  right: 25%;
-
+	  left: 0%;
+	  transform: translateX(2%) !important;
 	}
 	a:visited {
 		color: ;
