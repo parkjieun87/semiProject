@@ -480,6 +480,8 @@ td{
 </head>
 <body>
 <div class="container-1500 mt-50">
+
+
           <!-- 체크박스 전체 여부 
       <div class="all_check_input_div">
          <input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
