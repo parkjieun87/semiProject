@@ -1,5 +1,7 @@
 package com.petpal.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -53,7 +55,14 @@ public class CartController {
 	public String cartPage(Model model, HttpSession session) {
 		String memberId = (String)session.getAttribute("memberId");
 		
+		
+				
 		model.addAttribute("cartInfo", cartService.getCartList(memberId));
+		
+		session.setAttribute("cartList", cartService.getCartList(memberId));
+		model.addAttribute("cartList");
+		
+		
 		return "/WEB-INF/views/cart/cart.jsp";
 	}
 	

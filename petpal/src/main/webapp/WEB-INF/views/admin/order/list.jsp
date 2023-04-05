@@ -55,14 +55,14 @@
             	
                <thead>
                     <tr>
-                        <th>주문번호</th>
-                        <th>성명</th>
-                        <th>주문 날짜</th>
-                        <th>수령인 주소</th>
-                        <th>연락처</th>
-                        <th>상품 이름(수량 * 가격)</th>
-                        <th>총 주문 금액</th>
-                        <th>관리</th>
+                        <th scope="col">주문번호</th>
+                        <th scope="col">성명</th>
+                        <th scope="col">주문 날짜</th>
+                        <th scope="col">수령인 주소</th>
+                        <th scope="col">연락처</th>
+                        <th scope="col">상품 이름(수량 * 가격)</th>
+                        <th scope="col">총 주문 금액</th>
+                        <th scope="col">관리</th>
                     </tr>
                 </thead>
                 <tbody>

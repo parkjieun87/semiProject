@@ -5,18 +5,24 @@
 
 <jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
 
-<div class="container-800">
-<div class="row center">
-	<h1>회원 정보 변경</h1>
-</div>
-<div class="row">
-	<form action="edit" method="post">
-		<input type="hidden" name="memberId" value="${memberDto.memberId}">
-		<table style="margin-left:auto; margin-right:auto;">
+<div class="container-500">
+	<div class="row center">
+		<h1>회원 정보 변경</h1>
+	</div>
+	<div class="row">
+		<form action="edit" method="post" class="edit_form">
+			<input type="hidden" name="memberId" value="${memberDto.memberId}">
+			<input type="hidden" name="memberRegdate" value="${memberDto.memberRegdate }">
+			
+			<table class="table center ms-20">
+			<colgroup>
+				<col style="width: 30%;">
+           		<col style="width: 70%;">
+			</colgroup>
 			<tbody>
 				<tr>
-					<th>이름</th>
-					<td>
+					<th scope="col">이름</th>
+					<td scope="col">
 						<input type="text" name="memberName" value="${memberDto.memberName}">
 					</td>
 				</tr>
@@ -59,12 +65,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th>가입일</th>
-					<td>
-						<input type="date" name="memberRegdate" value="${memberDto.memberRegdate }">
-					</td>
-				</tr>
-				<tr>
 					<th>주소</th>
 					<td>
 						<input type="text" name="memberPost" value="${memberDto.memberPost }">
@@ -72,15 +72,14 @@
 						<input type="text" name="memberDetailAddr" value="${memberDto.memberDetailAddr }">
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2" align="right">
-						<button>수정</button>
-					</td>
-				</tr>
 			</tbody>
-		</table>
-	</form>
-</div>
+			</table>
+			<div class="row right">
+				<button class="edit-btn">수정</button>
+				<a class="link" href="list">목록</a>
+			</div>
+			</form>
+		</div>
 
 </div>
 

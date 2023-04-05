@@ -485,12 +485,19 @@ font-weight:700;
                   type : "POST",
                   data : form,
                   success : function(result){
-                	// 장바구니 등록  
+                
+   
+                		
                       $(".cart-layer").css("display","block");
+                
         
                   },
                   error : function(result){
+                	 
+
+                	  
                 	  $(".cart-layer").css("display","none");
+                	  
                 	  alert("장바구니에 이미 추가되어져 있습니다.");
                 	 
                   }
@@ -516,6 +523,11 @@ font-weight:700;
                   }
                });
             });
+            
+            
+
+         
+            
             
             
             function cartAlert(result){
