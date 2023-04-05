@@ -496,10 +496,10 @@ td{
                   
                   
                     <div class="item-info" style="display:flex;">                     
-                          <a href=" " class="photo">
+                          <a href="/product/detail?productNo=${list.productNo}" class="photo">
                           <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                          </a>
-                 <span id="spans"> <a href="/product/detaol?productNo=${list.productNo}">${list.productName}</a></span>                             
+                 <span id="spans"> <a href="/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
                       </div>
                  </td>
                      

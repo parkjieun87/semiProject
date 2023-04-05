@@ -104,7 +104,7 @@
                count -=1 ; //상품 외 -개
                
                var disCountPrice = $("#disCountPrice").val();
-               $("#totalBasicPrice").text(totalPrice.toLocaleString());
+               $("#totalBasicPrice").text(totalPrice.toLocaleString()+"원");
                
                // 할인 후 최종 금액
                var discountTotalPrice = 0;
@@ -113,13 +113,13 @@
                   var productCount = parseInt($(this).parent().find("#productCount").val());
                   discountTotalPrice += productPrice;
                });
-               $("#realTotalPrice").text(discountTotalPrice.toLocaleString());
+               $("#realTotalPrice").text(discountTotalPrice.toLocaleString()+"원");
                
                //hidden totalprice에 가격 넣어주기
                $("#totalPrice").val(discountTotalPrice);
                
                // 할인 금액
-               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString());
+               $("#discountval").text((totalPrice- discountTotalPrice).toLocaleString()+"원");
             
                 
         
@@ -185,7 +185,7 @@
                 
                 if(number.length==0){//null일때
                     unitBuyerTel =false;
-                    alert("인증번호입력해주세요")
+                  
                 }else if(number.length==4){
                     unitBuyerTel = true;
                 }
@@ -516,6 +516,7 @@
                             <div class="inp-wrap type03">
                                 <strong>총 상품가격</strong>
                                 <span class="val" name="totalPrice1" id="totalBasicPrice" ></span>
+                                
                             </div>
                             <div class="inp-wrap type03">
                                 <strong>할인금액</strong>

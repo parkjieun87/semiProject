@@ -762,7 +762,7 @@ font-weight:700;
 										<dt>평점</dt>
 										<div class="view-info-new">
 											<div class="grade">
-												<strong id="grade" style="width:100%;">${list.rating}</strong>
+												<strong id="grade" style="width:100%;">★★★★★</strong>
 											</div>
 										</div>
 										<dd>${list.regDate}</dd>

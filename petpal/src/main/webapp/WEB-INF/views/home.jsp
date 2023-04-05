@@ -71,6 +71,10 @@
         del{
         	color:darkgray;
         }
+        strong{
+            color: #cc2424;
+            font-size: 16px;
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
@@ -143,76 +147,49 @@
 
 	<div class="container-1100">
             <div class="row flex-box ms-80">
-				<c:forEach items="${list}" var="list">
-				
+            <c:forEach items="${list}" var="list">
+            
                 <div class="me-20 flex-box item ">
                 <a href="/product/detail?productNo=${list.productNo}">
                     <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
-                </a>
-                
-       
-                <span>${list.productDiscount}%</span>
+                </a>               
+                <span style="color: red">${list.productDiscount}%
                     <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
-                    <span>
-                    할인가
-                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
-
-                    </span>원
+                    <span>   
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원
+                    </span>
                     </strong>
                 </div>
-				
-				</c:forEach>	
+            
+            </c:forEach>   
  
-			</div>
+         </div>
                 
          
-		
+      
             <div class="row flex-box ms-80">
             <c:forEach items="${list2}" var="list">
-            	 <div class="me-20 flex-box item ">
+                <div class="me-20 flex-box item ">
                  <a href="/product/detail?productNo=${list.productNo}">
                      <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
                 </a>
-                <span>${list.productDiscount}</span>%
+                <span style="color: red">${list.productDiscount}%
                     <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
                     <span>
-                    할인가
-                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
-
-                    </span>원
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원           
+                    </span>
                     </strong>
                 </div>
             </c:forEach>
              
-		</div>
-               
-            <br>
-            <br>
-            <div class="row center">
-                <button type="submit" id="all" class="form-btn ps-50 pe-50" style="border-radius: 25px;">
-                상품 전체보기
-                </button>
-            </div>
-            <br>
-            <!-- 
-            <div class="row left mt-30">
-                <img src="img/logo2.png" width="100" style="margin-bottom: -10px;">
-                <label><span class="ms-10">펫팔</span>의 기분좋은 혜택</label>
-                <hr class="mb-30">
-            </div>
-            <div class="row flex-box" style="width: 200px; height: 200px;">
-                <img class="me-40" src="img/01.PNG">
-                <img class="me-40"src="img/02.PNG">
-                <img class="me-40"src="img/03.PNG">
-                <img class="me-40"src="img/04.PNG">
-            </div>
-             -->
-</div>
-
+      </div>
+      </div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
 
