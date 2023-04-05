@@ -399,7 +399,7 @@
                             <c:forEach items="${cartList}" var="list" varStatus="status">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
-                                        <img src="./img/9012_web_original_1673006075211726.jpg"
+                                        <img src="/attachment/download?attachmentNo=${cartList1.attachmentNo}"
                                          height="20px">
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
