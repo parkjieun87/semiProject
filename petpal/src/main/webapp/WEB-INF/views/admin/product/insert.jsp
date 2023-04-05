@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<jsp:include page="/WEB-INF/views/template/adminHeader.jsp"></jsp:include>
+
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -97,7 +94,6 @@
     </script>
 </head>
 <body>
-	<h1>상품 입력 페이지</h1>
 	<form action="insertProcess" method="post" enctype="multipart/form-data">
 		<div>
 		<div class="category_wrap">
@@ -135,7 +131,10 @@
 		</div>
 		<label>이미지</label>
 		<input type="file" name="attach">
-		<button type="submit">입력</button>
+		<div class="row right">
+			<button type="submit" class="insert-btn">등록</button>
+			<a class="link" href="list">목록</a>
+		</div>
 	</form>
-</body>
-</html>
+	
+<jsp:include page="/WEB-INF/views/template/adminFooter.jsp"></jsp:include>

@@ -11,4 +11,6 @@ public class SalesDto {
 	
 	private Date orderDate;
 	private long total;
+	private String receiverName;
+	private int orderNo;
 }
