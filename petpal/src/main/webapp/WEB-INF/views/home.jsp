@@ -57,7 +57,7 @@
             flex-grow:2;
         }
         strong{
-            color: #EC6565;
+            color: #cc2424;
             font-size: 16px;
         }
         .form-btn{
@@ -155,52 +155,48 @@
 
 	<div class="container-1100">
             <div class="row flex-box ms-80">
-				<c:forEach items="${list}" var="list">
-				
+            <c:forEach items="${list}" var="list">
+            
                 <div class="me-20 flex-box item ">
                 <a href="/product/detail?productNo=${list.productNo}">
                     <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
-                </a>
-                
-       
-                <span>${list.productDiscount}%</span>
+                </a>               
+                <span style="color: red">${list.productDiscount}%
                     <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
-                    <span>
-                    할인가
-                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
-
-                    </span>원
+                    <span>   
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원
+                    </span>
                     </strong>
                 </div>
-				
-				</c:forEach>	
+            
+            </c:forEach>   
  
-			</div>
+         </div>
                 
          
-		
+      
             <div class="row flex-box ms-80">
             <c:forEach items="${list2}" var="list">
-            	 <div class="me-20 flex-box item ">
+                <div class="me-20 flex-box item ">
                  <a href="/product/detail?productNo=${list.productNo}">
                      <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
                 </a>
-                <span>${list.productDiscount}</span>%
+                <span style="color: red">${list.productDiscount}%
                     <del>${list.productPrice}</del>
+                </span>
                     <strong class="price">
                     <span>
-                    할인가
-                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
-
-                    </span>원
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>원           
+                    </span>
                     </strong>
                 </div>
             </c:forEach>
              
-		</div>
+      </div>
                
             <br>
             <br>
