@@ -11,15 +11,22 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Javascript</title>
+<title></title>
 
 <link rel="stylesheet" href="/static/css/product/list.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 <style>
-	a:visited {
-		color: red;
+
+footer {
+	  position: bottom;
+	  bottom: 0;
+	  right: 25%;
 	}
+	a:visited {
+		color: ;
+	}
+	
 </style>
 
 <!--jquery cdn-->
