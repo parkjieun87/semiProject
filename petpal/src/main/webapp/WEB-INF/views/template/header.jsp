@@ -41,13 +41,22 @@
                 
                 <div id="search">
                     <div class="inp-wrap">
-
+                <c:choose>    
+				<c:when test="${mode2 == true}">
                   <form name="frm_search" id="frm_search" method="get" action="list">
                        <input class="inp2" name="search_word" type="text" placeholder="찾고싶은 상품을 검색해보세요!"> 
 
                        <div class="tag" style="float:left; margin-top: 0;">
-                         </form>
-                         
+                   </form>
+                </c:when>
+                <c:otherwise>
+                	 <form name="frm_search" id="frm_search" method="get" action="product/list">
+                       <input class="inp2" name="search_word" type="text" placeholder="찾고싶은 상품을 검색해보세요!"> 
+
+                       <div class="tag" style="float:left; margin-top: 0;">
+                   </form>
+                </c:otherwise>
+                </c:choose>         
                          <ul>
                          	<!-- 로그아웃 상태 -->
                            <c:if test="${memberId == null}">
