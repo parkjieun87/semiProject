@@ -57,7 +57,7 @@
             flex-grow:2;
         }
         strong{
-            color: #EC6565;
+            color: #cc2424;
             font-size: 16px;
         }
         .form-btn{
@@ -98,8 +98,20 @@
                     prevEl: '.swiper-button-prev',
                 },
                 autoplay:{
-                    delay:2000,
-                },                
+                    delay:3000
+                },
+                speed: 1000, // 슬라이드 전환 속도
+                effect: 'slide', // 슬라이드 전환 효과
+                // 슬라이드 전환 transition 설정
+                slideTransition: {
+                    // "ease", "linear", "ease-in", "ease-out", "ease-in-out" 등 사용 가능
+                    // 기본값은 "ease" 입니다.
+                    // 자세한 설정값은 Swiper API 문서를 참조하세요.
+                    easing: 'ease',
+                    // 슬라이드 전환 속도(ms)
+                    speed: 1000
+                }
+
             });
         });
         </script>
@@ -189,7 +201,34 @@
             </c:forEach>
              
       </div>
+<<<<<<< HEAD
       </div>
+=======
+               
+            <br>
+            <br>
+            <div class="row center">
+                <button type="submit" id="all" class="form-btn ps-50 pe-50" style="border-radius: 25px;">
+                상품 전체보기
+                </button>
+            </div>
+            <br>
+            <!-- 
+            <div class="row left mt-30">
+                <img src="img/logo2.png" width="100" style="margin-bottom: -10px;">
+                <label><span class="ms-10">펫팔</span>의 기분좋은 혜택</label>
+                <hr class="mb-30">
+            </div>
+            <div class="row flex-box" style="width: 200px; height: 200px;">
+                <img class="me-40" src="img/01.PNG">
+                <img class="me-40"src="img/02.PNG">
+                <img class="me-40"src="img/03.PNG">
+                <img class="me-40"src="img/04.PNG">
+            </div>
+             -->
+</div>
+
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
 
