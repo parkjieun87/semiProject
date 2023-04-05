@@ -38,6 +38,9 @@
                     <div class="p-20"><a href="/member/edit" class="link">개인정보 관리</a></div>
               		 <div class="p-20"><a href="/member/password" class="link">비밀번호 변경</a></div>
                      <div class="p-20"><a href="/member/exit" class="link">회원 탈퇴</a></div>
+                     <c:if test="${memberDto.adminCk == 1}">
+                     	<div class="p-20"><a href="/admin/" class="link">관리자 페이지</a></div>
+                     </c:if>
                     
                     <br>
                     <div class="p-20">

@@ -270,16 +270,12 @@ public class MemberDao {
 		               + "select rownum rn, TMP.* from ("
 		               + "select * from member "
 		               + "where instr(#1, ?) > 0 "
-		               + "order by #1"
+		               + "order by #1, "+sort
 		               + ") TMP"
 		               + ") where rn between ? and ?";
 		    sql = sql.replace("#1", column);
 
 		    Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
-
-		    if (sort != null && !sort.isEmpty()) {
-		        sql += " order by " + sort;
-		    }
 
 		    return jdbcTemplate.query(sql, mapper, param);
 		}

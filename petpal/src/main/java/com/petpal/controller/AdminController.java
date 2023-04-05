@@ -126,6 +126,7 @@ public class AdminController {
 		if(search) {
 			model.addAttribute("productList", productDao.searchAndSelectList(column, keyword, vo, sort));
 			model.addAttribute("sort", sort);
+			model.addAttribute("keyword", keyword);
 		}
 		else {
 			model.addAttribute("productList", productDao.selectList2(vo,sort));
@@ -138,6 +139,7 @@ public class AdminController {
    @GetMapping("/product/detail")
    public String productDetail(Model model, 
                      @RequestParam int productNo) {
+	   model.addAttribute("productDto", productDao.selectOne(productNo));
       return "/WEB-INF/views/admin/product/detail.jsp";
    }
    
@@ -178,12 +180,16 @@ public class AdminController {
 			@RequestParam(required=false, defaultValue="") String keyword) {
       int totalMemberCnt = memberDao.selectCount();
       vo.setCount(totalMemberCnt);
+      
       boolean search = !column.equals("") && !keyword.equals("");
 		if(search) {
-			keyword = keyword.equals("관리자") ? "1" : "0";
-			model.addAttribute("memberList", memberDao.searchAndSelectList(column, keyword, vo, sort));
-			model.addAttribute("sort", sort);
-		}
+			if(column.equals("adminCk")) {
+				keyword = keyword.equals("관리자") ? "1" : "0";
+			}
+				model.addAttribute("memberList", memberDao.searchAndSelectList(column, keyword, vo, sort));
+				model.addAttribute("sort", sort);
+				model.addAttribute("keyword", keyword);
+			}
 		else {
 			model.addAttribute("memberList", memberDao.selectList(vo,sort));
 			model.addAttribute("sort", sort);
@@ -276,7 +282,6 @@ public class AdminController {
 			model.addAttribute("sort", sort);
 		}
       
-      
       return "/WEB-INF/views/admin/order/list.jsp";
    }
    
@@ -289,7 +294,4 @@ public class AdminController {
 	   attr.addAttribute("page", page);
 	   return "redirect:list";
    }
-   
-   
-   
 }
