@@ -57,7 +57,6 @@ public class OrderDao {
 			orderDetailDto.setProductCount(rs.getInt("product_count"));
 			orderDetailDto.setProductPrice(rs.getInt("product_price"));
 			orderDetailDto.setProductName(rs.getString("product_name"));
-			orderDetailDto.setReplyCheck(rs.getInt("reply_check"));
 			return orderDetailDto;
 		}
 	};

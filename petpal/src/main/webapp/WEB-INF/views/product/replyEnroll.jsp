@@ -11,6 +11,7 @@
   
   <script>
   	$(function(){
+  		
   	
   	// 취소 버튼
   	$(".cancel_btn").click(function(e){
@@ -22,20 +23,20 @@
   		const memberId = '${memberId}';
   		const rating = $("select").val();
   		const content = $("textarea").val();
-  		
   		const data = {
   				productNo : productNo,
   				memberId : memberId,
   				rating : rating,
-  				content : content
+  				content : content	
   		}
   		
   		$.ajax({
   			data : data,
   			type : 'POST',
   			url : "/reply/enroll",
-  			success:function(result){
+  			success:function(result){			
   				window.close();
+  				alert("리뷰가 작성되었습니다");
   			}
   		});
   	});
