@@ -278,7 +278,7 @@ footer {
 
     
         
-<footer class="row container-1300 ms-100">
+<footer class="row container-1300 ms-120">
 
 	<p class="row">
         <a href='https://www.petbabo.com/' target='_blank'>회사소개   |</a>
