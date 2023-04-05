@@ -1,5 +1,7 @@
 package com.petpal.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,8 +31,6 @@ public class CartController {
 	@Autowired
 	private CartDao cartDao;
 	
-	@Autowired
-	private ProductWithImageDao productWithImageDao;
 	
 	@PostMapping("/cart/add")
 	@ResponseBody
@@ -46,6 +46,7 @@ public class CartController {
 		
 		int result = cartService.addCart(cart);
 		
+		
 		return result + "";
 	}
 
@@ -54,7 +55,14 @@ public class CartController {
 	public String cartPage(Model model, HttpSession session) {
 		String memberId = (String)session.getAttribute("memberId");
 		
+		
+				
 		model.addAttribute("cartInfo", cartService.getCartList(memberId));
+		
+		session.setAttribute("cartList", cartService.getCartList(memberId));
+		model.addAttribute("cartList");
+		
+		
 		return "/WEB-INF/views/cart/cart.jsp";
 	}
 	

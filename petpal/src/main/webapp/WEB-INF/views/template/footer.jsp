@@ -3,8 +3,13 @@
  <html lang="ko">
  
  <style>
- 	
- 	
+ 	footer {
+	  position: ;
+	  bottom: 0;
+	  left: 0%;
+	  transform: translateX(25%);
+	}
+ 
 	.footMent
    {
    	font-size : 15px;
@@ -21,8 +26,8 @@
    	text-decoration: none;
    	color: #2d3436;
    }
+   
 </style>
-<head>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +44,7 @@
 
     
         
-<footer>
+<footer class="row container-1300">
 
 	<p class="row">
         <a href='https://www.petbabo.com/' target='_blank'>회사소개   |</a>
@@ -80,7 +85,7 @@
       </a>
       
       <a class="footer-button" href="https://www.instagram.com/newjeans_official/">
-            		<img class="me-10"  src = "/static/image/instagram.png" width ="170px" height = "50px" padding="10em">
+            <img class="me-10"  src = "/static/image/instagram.png" width ="170px" height = "50px" padding="10em">
       </a>
      </ul>
      

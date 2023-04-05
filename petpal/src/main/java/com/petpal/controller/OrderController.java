@@ -69,19 +69,13 @@ public class OrderController {
 	@GetMapping("/order")
 	public String order(HttpSession session, Model model,@ModelAttribute ProductOrderDto productOrderDto,@ModelAttribute OrderDetailDto orderDetailDto) {
 		String memberId = (String) session.getAttribute("memberId");
-		//주문내역
+		//주문내역 (장바구니에 있는 이름, 이미지,수량,가격 불러오기)
 		List<CartDto> cartList= cartDao.getCart(memberId);
 		model.addAttribute("cartList",cartList);
 		
-		//주문자 이름,이메일
+		//주문자 (product_order에 있는 이름,이메일,전화번호 불러오기)
 		MemberDto findDto = memberDao.selectOne(memberId);
 		model.addAttribute("findDto",findDto);
-		
-		//주문 상품 이미지 조회 - 수정해야함
-		List<CartDto> cartList1= cartDao.attachNoList(memberId);
-		model.addAttribute("cartList1",cartList1);
-		System.out.println(cartList1);
-		
 		
 
 		return "/WEB-INF/views/shop/order.jsp";

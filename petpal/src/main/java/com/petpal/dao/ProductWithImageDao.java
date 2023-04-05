@@ -49,7 +49,7 @@ public class ProductWithImageDao {
 
 	// 카테고리코드 -> 리스트
 	public List<ProductWithImageDto> selectList(String categoryCode) {
-		String sql = "select * from product_with_image where category_code=?";
+		String sql = "select * from product_with_image_parent where category_code=?";
 		Object[] param = { categoryCode };
 		return jdbcTemplate.query(sql, mapper, param);
 	}
@@ -73,6 +73,25 @@ public class ProductWithImageDao {
 		String sql = "select * from(select rownum rn, TMP.* from(select * from product_with_image_parent where category_parent=?)TMP)where rn between ? and ?";
 		Object[] param = { parent, vo.getBegin(), vo.getEnd() };
 		return jdbcTemplate.query(sql, parentMapper, param);
+	}
+	/////
+	public List<ProductWithImageDto> selectListBySearch(String search){
+		String sql = "select * from product_with_image_parent where instr(product_name, ?)>0";
+		Object[] param = {search};
+		return jdbcTemplate.query(sql, mapper, param);
+	}
+	
+	public List<ProductWithImageDto> selectListBySearchAndC(String search, String category){
+		String sql = "select * from product_with_image_parent where instr(product_name, ?)>0 and category_code=?";
+		Object[] param = {search, category};
+		return jdbcTemplate.query(sql,  mapper, param);
+	}
+	
+	public List<ProductWithImageDto> selectListBySearchAndP(String search, String parent){
+		String sql = "select * from product_with_image_parent where instr(product_name, ?)>0 and category_parent=?";
+		Object[] param = {search, parent};
+		return jdbcTemplate.query(sql,  mapper, param);
+
 	}
 
 	public ProductWithImageDto selectOne(int productNo) {

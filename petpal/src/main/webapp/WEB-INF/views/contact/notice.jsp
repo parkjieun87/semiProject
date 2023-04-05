@@ -94,9 +94,11 @@
 				</c:if>
 			</div>
 		</div>
+		<!-- 
 		<div class="row ">
 			<a class="form-btn positive w-100" href="/contact/notice/write">글쓰기</a>
 		</div>
+		 -->
     </div>
 </body>
 </html>

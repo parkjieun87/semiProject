@@ -11,6 +11,8 @@
      display: block;
      margin: auto;
    }
+   
+   
 </style>  
 
 <!-- 다음 우편 API 사용을 위한 CDN -->

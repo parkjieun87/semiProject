@@ -25,7 +25,7 @@
 <form action="login" method="post" align="center" class="mt-10">
 	<input type="text" name="memberId" class="form-input w-50" required placeholder="아이디"><br><br>
 	<input type="password" name="memberPw" class="form-input w-50"  required placeholder="비밀번호"><br><br>
-	<button class="form-btn positive w-50">로그인</button>
+	<button class="form-btn positive w-50" style="margin-bottom : 10px;">로그인</button>
 	
 	<button class= "form-btn neutral w-50" onclick="location.href='find'">아이디가 기억나지 않습니다</button>
 	
@@ -45,6 +45,6 @@
 	- EL은 문자열을 쌍따옴표 또는 외따옴표 구분하지 않고 사용
  --%>
  <c:if test="${param.mode == 'error'}">
- 	<h3> 로그인 정보가 일치하지 않습니다.</h3>
+ 	<h3 class="center" style="color:red; font-weight:1100;"> 로그인 정보가 일치하지 않습니다.</h3>
 </c:if>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

@@ -23,8 +23,8 @@ public class MemberInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		else { //비회원이라면 - 로그인 페이지로 이동시키면서 차단
-			
-			throw new RequireLoginException("로그인 후 이용 가능합니다.");
+			response.sendRedirect("/member/login");//return "redirect:/member/login"
+			return false;
 		
 		}
 		
