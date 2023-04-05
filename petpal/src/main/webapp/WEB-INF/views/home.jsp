@@ -15,7 +15,7 @@
     	}
         .swiper-slide>img{
             width: 100%;
-            height: 250px;
+            height: 400px;
         }
         hr{
             background-color: #D2DAFF ;
@@ -122,10 +122,10 @@
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
                         <!-- Slides -->
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202206131734445.jpg" alt="네추라너리쉬"></div>
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202303241300251.jpg" alt="도그팡 봄맞이 이벤트"></div>
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202205101756341.jpg" alt="엘리야코리아"></div>
-                        <div class="swiper-slide"><img src="https://cdnimg.dogpang.com/catpang/data/event/banner/sno_maintopnew_202301021739372.jpg" alt="네츄럴코어대용량사료"></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/a880bdaa-03e2-4da6-92bb-bf0d931b5d16.jpeg" alt=""></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/fe10f57a-098c-4ac1-91bd-7aef32040c4a.jpeg" alt=""></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/e3cbad86-c965-463c-e9b0-bf895be695d3.jpeg" alt=""></div>
+                        <div class="swiper-slide"><img src="https://file.cafe24cos.com/banner-admin-live/upload/harimpetfood/c0fab775-86a7-4081-c48d-3ebfb0f001c8.jpeg" alt=""></div>
                     </div>
                     <!-- If we need pagination -->
                     <div class="swiper-pagination"></div>

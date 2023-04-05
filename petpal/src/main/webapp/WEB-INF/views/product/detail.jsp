@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  <link rel="stylesheet" href="/static/css/contact/reply.css">
  <link rel="stylesheet" href="/static/css/product/detail.css">
-   
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/detail_header.jsp"></jsp:include>
+
  <style>
        
         body{
