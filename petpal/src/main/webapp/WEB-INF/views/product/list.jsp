@@ -16,13 +16,56 @@
 <link rel="stylesheet" href="/static/css/product/list.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
+<style>
+	a:visited {
+		color: red;
+	}
+</style>
 
 <!--jquery cdn-->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
     	$(function () {
-    			console.log('${list}');
+    			$('.linkplus').click(function(e){
+    				e.preventDefault();
+    				// 새로 추가할 파라미터 이름과 값
+    				this.classList.add('visited');
+    				var paramName = this.dataset.name;
+    				var paramValue = this.dataset.value;
+    				
+    				console.log(paramName);
+
+    				// 현재 URL을 가져옵니다.
+    				var url = window.location.href;
+
+    				// URL에서 "?" 이후의 파라미터 부분을 가져옵니다.
+    				var params = url.split("?")[1];
+
+    				// 파라미터를 "&" 기준으로 나눕니다.
+    				var paramsArray = params ? params.split("&") : [];
+
+    				// 중복된 파라미터를 제거합니다.
+    				for (var i = 0; i < paramsArray.length; i++) {
+    				  var param = paramsArray[i].split("=");
+    				  if (param[0] === paramName) {
+    				    paramsArray.splice(i, 1);
+    				    i--;
+    				  }
+    				}
+
+    				// 새로운 파라미터를 추가합니다.
+    				paramsArray.push(paramName + "=" + paramValue);
+
+    				// URL에 파라미터를 다시 붙여서 새로운 URL을 생성합니다.
+    				var newUrl = url.split("?")[0] + "?" + paramsArray.join("&");
+
+    				// 새로운 URL로 이동합니다.
+    				window.location.href = newUrl;
+
+    			})
+    			
+
+
     			let categoryList = JSON.parse('${cateList2}');				   			
         		var params = new URLSearchParams(window.location.search);
         		if(params.has("categoryCode")){
@@ -34,7 +77,18 @@
     					
     				} 			
         		}
+        		
+        		let links = document.getElementsByClassName("linkplus");
+        		for(let i=0;i<links.length;i++){
+        			links[i].addEventListener("click", function(){
+        				let current = document.getElementByClassName("active");
+        				current[0].className = current[0].className.replace(" active", "");
+        				this.className += " active";
+        			})
+        		}
         });
+    	
+  
     </script>
 
 
@@ -47,7 +101,33 @@
 			<div id="contents-wrap">
 				<div id="lnb" class="item-option">
 					<div class="ctg-area">
+						<c:choose>
+						<c:when test="${search == true}">
 						<ul>
+							<li>
+								<h2 id="tag" style="width: 200px;">
+									${parentName} 검색결과
+								</h2>
+
+								<ul>
+									<li style="line-height: 24px;"><a
+										href="?search_word=${parentName}" class="cate-link"> 전체 <span
+											class="ic-num">(${sum})</span>
+									</a></li>
+								</ul>
+								<ul>
+									<c:forEach var="cateList" items="${cateList}">
+										<li><a href="?search_word=${parentName}&categoryCode=${cateList.categoryCode}&sort=${sort}"
+											data="${cateList.categoryCode}" class="cate-link">
+												${cateList.categoryName} <em class="ic-num">(${cateList.categoryCount})</em>
+										</a></li>
+									</c:forEach>
+								</ul>
+							</li>
+						</ul>
+						</c:when>
+						<c:otherwise>
+							<ul>
 							<li>
 								<h2 id="tag" style="width: 200px;">
 									<a href="?parentCode=${parent}">${parentName}</a>
@@ -69,9 +149,9 @@
 								</ul>
 							</li>
 						</ul>
+						</c:otherwise>
+						</c:choose>
 					</div>
-					<!-- <button id="filter-layer" class="ico-filter hide">검색옵션</button>
-                    <button id="view-type" class="ico-list hide">리스트 형태</button> -->
 
 				</div>
 				<div id="contents" class="goods-wrap">
@@ -85,20 +165,10 @@
 					</div>
 					<div class="option-sort">
 						<ul>
-							<c:choose>
-							<c:when test="${mode == true}">	
-							<li><a href="?categoryCode=${list[0].categoryCode}&sort=regdate">신상품</a></li>
-							<li><a href="?categoryCode=${list[0].categoryCode}&sort=viewName">상품명</a></li>
-							<li><a href="?categoryCode=${list[0].categoryCode}&sort=price_low">낮은가격</a></li>
-							<li><a href="?categoryCode=${list[0].categoryCode}&sort=price_high">높은가격</a></li>
-							</c:when>
-							<c:otherwise>
-							<li><a href="?parentCode=${parent}&sort=regdate">신상품</a></li>
-							<li><a href="?parentCode=${parent}&sort=viewName">상품명</a></li>
-							<li><a href="?parentCode=${parent}&sort=price_low">낮은가격</a></li>
-							<li><a href="?parentCode=${parent}&sort=price_high">높은가격</a></li>
-							</c:otherwise>
-							</c:choose>
+							<li><a href="#" data-name="sort" data-value="regdate" class="linkplus">신상품</a></li>
+							<li><a href="#" data-name="sort" data-value="viewName" class="linkplus">상품명</a></li>
+							<li><a href="#" data-name="sort" data-value="price_low" class="linkplus">낮은가격</a></li>
+							<li><a href="#" data-name="sort" data-value="price_high" class="linkplus">높은가격</a></li>
 						</ul>
 					</div>
 					<!-- 신규상품 리스트 start -->
@@ -141,38 +211,19 @@
 					</div>
 					
 					 <!-- 페이징 영역 -->
-		<c:choose>
-		<c:when test="${mode == true}">					 
+				 
 		<div class="page_wrap">
 			<div class="page_nation">
-				<c:if test="${vo.startBlock != 1}">
-				<a class="arrow prev" href="?categoryCode=${list[0].categoryCode}&sort=${sort}&page=${vo.prevPage}">&lt;</a>
-				</c:if>
+
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="?categoryCode=${list[0].categoryCode}&sort=${sort}&page=${i}">${i}</a>
+						<a href="#"  data-name="page" data-value="${i}" class="linkplus">${i}</a>
 					</c:forEach>
-				<c:if test="${vo.page != vo.totalPage}">
-				<a class="arrow next" href="?categoryCode=${list[0].categoryCode}&sort=${sort}&page=${vo.nextPage}">&gt;</a>
-				</c:if>
+				
 			</div>
 		</div>
-		</c:when>
-		<c:otherwise>
-			<div class="page_wrap">
-			<div class="page_nation">
-				<c:if test="${vo.startBlock != 1}">
-				<a class="arrow prev" href="?parentCode=${parent}&sort=${sort}&page=${vo.prevPage}">&lt;</a>
-				</c:if>
-					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="?parentCode=${parent}&sort=${sort}&page=${i}">${i}</a>
-					</c:forEach>
-				<c:if test="${vo.page != vo.totalPage}">
-				<a class="arrow next" href="?parentCode=${parent}&sort=${sort}&page=${vo.nextPage}">&gt;</a>
-				</c:if>
-			</div>
-		</div>
-		</c:otherwise>
-		</c:choose>
+
+	
+
 				</div>
 			</div>
 		</div>
