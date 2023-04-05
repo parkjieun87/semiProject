@@ -11,7 +11,7 @@
         body{
             font-family: '카페24 써라운드 에어';
             /* body의 마진을 설정하여 footer와 겹치지 않게 함 */
-			  margin-bottom: 50px; /* footer 높이와 같게 설정 */
+           margin-bottom: 50px; /* footer 높이와 같게 설정 */
 
         }
         
@@ -295,7 +295,7 @@ font-weight:700;
    font-size : 24px;
 }
 .cart-txt{
-	padding: 20px 0 0 0;
+   padding: 20px 0 0 0;
     line-height: 40px;
     color: #373737;
     font-size: 13px;
@@ -303,7 +303,7 @@ font-weight:700;
     text-align: center;
 }
 .btn-close1{
-	width: 48%;
+   width: 48%;
     font-size: 13px;
     display: block;
     margin: 0 auto;
@@ -314,7 +314,7 @@ font-weight:700;
 }
 
 .btn-type_cart{
-	width: 48%;
+   width: 48%;
     font-size: 13px;
         display: block;
     margin: 0 auto;
@@ -326,7 +326,7 @@ font-weight:700;
     font-size: 14px;
 }
 .btn-area{
-	position: static;
+   position: static;
     margin: 0 0 0 0;
     padding-top: 0;
     width: auto;
@@ -338,29 +338,29 @@ font-weight:700;
     margin-left : 10px;
 }
 .cart-body{
-	padding: 0px 15px 15px 15px;
+   padding: 0px 15px 15px 15px;
 }
 .cart-wrap{
-	margin-bottom : 30px;
+   margin-bottom : 30px;
 }
 
 .cartView_btn{
-	width : 50%;
-	height: 30px;
-	margin-right : 8px;
-	background-color: #9091E6;
-	border : 1px solid #9091E6;
-	opacity : 0.7;
-	color: white;
+   width : 50%;
+   height: 30px;
+   margin-right : 8px;
+   background-color: #9091E6;
+   border : 1px solid #9091E6;
+   opacity : 0.7;
+   color: white;
 }
 .exit_btn{
-	width : 50%;
-	height: 30px;
-	margin-right : 8px;
+   width : 50%;
+   height: 30px;
+   margin-right : 8px;
 }
 
 .cart-layer{
-	display:none;
+   display:none;
 }
 
 
@@ -426,7 +426,7 @@ font-weight:700;
             //마이너스 버튼
             $(".btn-minus").click(function(){
                
-            	 // 수량 버튼 조작
+                // 수량 버튼 조작
                 let quantity = $(this).parent("div").find("input").val();
                 let quantityInput = $(this).parent("div").find("#quantity");
        
@@ -477,7 +477,7 @@ font-weight:700;
             }
             
             $("#insert_cart").click(function(){
-            	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
+               // 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();
                form.productCount = productCnt;
                $.ajax({
@@ -485,14 +485,18 @@ font-weight:700;
                   type : "POST",
                   data : form,
                   success : function(result){
-                	 
+                    
                      cartAlert(result);
+                  },
+                  error : function(result){
+                     alert("장바구니에 이미 추가되어져 있습니다.");
+                    
                   }
                });
             });
             
             $("#insert_direct").click(function(){
-            	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
+               // 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();      
                form.productCount = productCnt;
                $.ajax({
@@ -500,45 +504,49 @@ font-weight:700;
                   type : "POST",
                   data : form,
                   success : function(result){
-                	 console.log("result", result);
+                    console.log("result", result);
+                   
                      //cartAlert(result);
-                	 location.href="/cart";
+                    location.href="/cart";
+                  },
+                  error : function(result){
+                     alert("장바구니에 이미 추가되어져 있습니다.");
                   }
                });
             });
             
             
             function cartAlert(result){
-               	if(result == '0'){
-	                alert("장바구니에 추가를 하지 못하였습니다.");
-	             }else if(result == '1'){
-	               // alert("장바구니에 추가되었습니다.");
-	             }else if(result == '2'){
-	                alert("장바구니에 이미 추가되어져 있습니다.");
-	             }/*else if(result == '5'){
-	                alert("로그인이 필요합니다.");
-	             }*/
+                  if(result == '0'){
+                   alert("장바구니에 추가를 하지 못하였습니다.");
+                }else if(result == '1'){
+                   alert("장바구니에 추가되었습니다.");
+                }else if(result == '2'){
+                   alert("장바구니에 이미 추가되어져 있습니다.");
+                }else if(result == '5'){
+                   alert("로그인이 필요합니다.");
+                }
             }
 
             
          // 장바구니 등록  
          $("#insert_cart").click(function(){
-        	 $(".cart-layer").css("display","block");
+            $(".cart-layer").css("display","block");
          });   
             
          // 장바구니 등록 창 닫기 버튼   
-       	$(".exit_btn").click(function(){
-       		$(".cart-layer").css("display","none"); 
-       	});
-       	
+          $(".exit_btn").click(function(){
+             $(".cart-layer").css("display","none"); 
+          });
+          
          // 장바구니로 가기 버튼
-       	$(".cartView_btn").click(function(){
-       		location.href = "/cart";
-       	});
+          $(".cartView_btn").click(function(){
+             location.href = "/cart";
+          });
          
         // 바로구매 버튼
         //$("#insert_direct").click(function(){
-        //	location.href="/cart";
+        //   location.href="/cart";
         //});
          
          
@@ -577,13 +585,13 @@ font-weight:700;
                 /* 모두 숨기기 */
                 $(".addressInfo_input_div").css('display', 'none');
                 /* 컨텐츠 보이기 */
-                $(".addressInfo_input_div_" + className).css('display', 'block');		
+                $(".addressInfo_input_div_" + className).css('display', 'block');      
             
             /* 버튼 색상 변경 */
                 /* 모든 색상 동일 */
                     $(".address_btn").css('backgroundColor', '#a29bfe');
                 /* 지정 색상 변경 */
-                    $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');	
+                    $(".address_btn_"+className).css('backgroundColor', '#6c5ce7');   
         }
             
       </script>
@@ -749,42 +757,42 @@ font-weight:700;
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_2">
                 <div class="reply_subject">
-					<h2>리뷰</h2>
-				</div>
-				<div>
-					<ul class="review_list">
-						<c:forEach items="${replyList}" var="list">
-						
-						<li>
-							<div class="review-item">
-								<div class="review-info">
-									<dl class="grade">
-										<dt>평점</dt>
-										<div class="view-info-new">
-											<div class="grade">
-												<strong id="grade" style="width:100%;">★★★★★</strong>
-											</div>
-										</div>
-										<dd>${list.regDate}</dd>
-										<dd class="writer">${list.memberId}</dd>
-									</dl>
-								</div>
-								<div class="riview-content">
-									<div class="review-span">
-										<div class="sec">
-											<p>
-											${list.content}
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						</c:forEach>
-					</ul>
-				</div>
-				
-				
+               <h2>리뷰</h2>
+            </div>
+            <div>
+               <ul class="review_list">
+                  <c:forEach items="${replyList}" var="list">
+                  
+                  <li>
+                     <div class="review-item">
+                        <div class="review-info">
+                           <dl class="grade">
+                              <dt>평점</dt>
+                              <div class="view-info-new">
+                                 <div class="grade">
+                                    <strong id="grade" style="width:100%;">★★★★★</strong>
+                                 </div>
+                              </div>
+                              <dd>${list.regDate}</dd>
+                              <dd class="writer">${list.memberId}</dd>
+                           </dl>
+                        </div>
+                        <div class="riview-content">
+                           <div class="review-span">
+                              <div class="sec">
+                                 <p>
+                                 ${list.content}
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  </c:forEach>
+               </ul>
+            </div>
+            
+            
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_3" >
                
@@ -837,7 +845,6 @@ font-weight:700;
 
 <%@include file="../template/footer.jsp" %>
 --%>
-
 
 
 
