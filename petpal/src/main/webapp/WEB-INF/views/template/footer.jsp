@@ -3,9 +3,14 @@
  <html lang="ko">
  
  <style>
- 	
- 	
-	.footMent
+ footer {
+	  position: ;
+	  bottom: 0;
+	  left: 0%;
+	  transform: translateX(25%);
+	}
+ 
+		.footMent
    {
    	font-size : 15px;
     font-weight: lighter;  	
@@ -21,6 +26,7 @@
    	text-decoration: none;
    	color: #2d3436;
    }
+   
 </style>
 <head>
 
@@ -39,7 +45,7 @@
 
     
         
-<footer>
+<footer class="row container-1300">
 
 	<p class="row">
         <a href='https://www.petbabo.com/' target='_blank'>회사소개   |</a>
