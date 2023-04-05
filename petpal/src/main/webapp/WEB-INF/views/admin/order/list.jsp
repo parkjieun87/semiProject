@@ -24,14 +24,13 @@
 	});
 </script>
 
-<div class="container-1200 ms-10">
+<div class="container-1200" style="margin-left: 200px;">
 		<!-- 삭제 form -->
        <form action="delete" method="post" class="delete_form">
           <input type="hidden" name="orderDetailNo" class="delete_detailNo">
           <input type="hidden" name="page" class="delete_pageNo">
        </form>   
-    	<!-- 주문 목록 테이블 -->
-        <div class="row">
+       
         	<!-- 정렬  -->
     	<div class="row" style="margin:auto;">
 			<a class="link" href="list">최신순</a>
@@ -39,6 +38,9 @@
 			<a class="link" href="list?sort=total desc">높은 주문액순</a>
 			<a class="link" href="list?sort=total asc">낮은 주문액순</a>
 		</div>
+		
+    	<!-- 주문 목록 테이블 -->
+        <div class="row">
        		<table class="table table-slit">
                <thead>
                     <tr>
