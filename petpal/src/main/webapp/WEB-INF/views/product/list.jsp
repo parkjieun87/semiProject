@@ -254,7 +254,7 @@ a:visited {
 				<div id="contents" class="goods-wrap">
 					<div class="banner-area" style="border-radius: 10px;">
 						<div>
-							<a href="detail?productNo="> <img
+							<a href="detail?productNo=286"> <img
 								src="/static/image/dogpang_banner.jpg"
 								style="border-radius: 10px;">
 							</a>
