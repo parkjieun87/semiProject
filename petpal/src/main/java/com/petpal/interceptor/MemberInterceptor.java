@@ -18,27 +18,7 @@ import com.petpal.dto.CartDto;
 @Service
 public class MemberInterceptor implements HandlerInterceptor {
 
-<<<<<<< HEAD
-   
-   @Override
-   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-      
-      //로그인 상태 = 세션의 memberId가 null이 아닌 경우
-      HttpSession session = request.getSession(); //세션을 직접 가져와야 한다. 컨트롤러가 아니니.
-      String memberId = (String)session.getAttribute("memberId");
-
-      if(memberId != null) { //회원이라면 이라는 소리
-         return true;
-      }else { //비회원이라면 - 로그인 페이지로 이동시키면서 차단
-         response.sendRedirect("/member/login");//return "redirect:/member/login"
-         return false;
-      }
-      
-   }
-}
-=======
-	
-	@Override
+		@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		//로그인 상태 = 세션의 memberId가 null이 아닌 경우
@@ -54,4 +34,3 @@ public class MemberInterceptor implements HandlerInterceptor {
 		
 	}
 }
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
