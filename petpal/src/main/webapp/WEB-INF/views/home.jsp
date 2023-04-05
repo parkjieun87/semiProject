@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
@@ -104,7 +105,7 @@
     <script type="text/javascript">
         $(function(){
 			$("#all").click(function(){
-				location.href = "/WEB-INF/views/product/list.jsp"
+				location.href = "/product/list?parentCode=2000"
 			});
         });
         
@@ -142,94 +143,51 @@
 
 	<div class="container-1100">
             <div class="row flex-box ms-80">
-
+				<c:forEach items="${list}" var="list">
+				
                 <div class="me-20 flex-box item ">
-                <a href="#">
-                    <img src="${product.imageURL}" id="box">
-                    <span>${ProductDto.productName}</span>
+                <a href="/product/detail?productNo=${list.productNo}">
+                    <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
+                    <span>${list.productName}</span>
                 </a>
-                <span>${ProductDto.productDiscount}</span>%
-                    <del>${ProductDto.productPrice}</del>
+                
+       
+                <span>${list.productDiscount}%</span>
+                    <del>${list.productPrice}</del>
                     <strong class="price">
-                    <span>${disPrice}</span>원
+                    <span>
+                    할인가
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
+
+                    </span>원
                     </strong>
                 </div>
-
-
-
-                 <div class="me-20 flex-box item ">
-                <a href="">
-                    <img src="img/discount/2.jpg" id="box">
-                    <span>에티펫 손발 엉덩이 깨끗 도톰한 티슈 40매</span>
-                </a>
-                    <strong class="price">
-                    <span>2,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/3.jpg" id="box">
-                    <span>내츄럴코어 바이트 치킨 덕 2종 콤보</span>
-                </a>
-                    <strong class="price">
-                    <span>10,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/4.jpg" id="box">
-                    <span>내츄럴코어 센시티브케어 베지토퍼</span>
-                </a>
-                    <strong class="price">
-                    <span>2,500</span>원
-                    </strong>
-                </div>
+				
+				</c:forEach>	
+ 
 			</div>
                 
          
-
-            <div class="row flex-box mt-40">
-                <div class="me-20 flex-box item ms-80">
-                <a href="">
-                    <img src="img/discount/7.jpg" id="box">
-                    <span>[카누들S 2p x 5개 추가증정]포켄스 덴티페어리 디스펜서 강아지 덴탈껌 SS 124개입</span>
+		
+            <div class="row flex-box ms-80">
+            <c:forEach items="${list2}" var="list">
+            	 <div class="me-20 flex-box item ">
+                 <a href="/product/detail?productNo=${list.productNo}">
+                     <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
+                    <span>${list.productName}</span>
                 </a>
+                <span>${list.productDiscount}</span>%
+                    <del>${list.productPrice}</del>
                     <strong class="price">
-                    <span>32,000</span>원
+                    <span>
+                    할인가
+                    <fmt:formatNumber value="${list.productPrice *  (100-list.productDiscount) / 100}"/>
+
+                    </span>원
                     </strong>
                 </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/8.jpg" id="box">
-                    <span>내츄럴코어 센시티브케어 콩고기 48g</span>
-                </a>
-                    <strong class="price">
-                    <span>5,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/9.jpg" id="box">
-                    <span>펫시모 강아지 파우치 70g 6종 콤보 12개</span>
-                </a>
-                    <strong class="price">
-                    <span>18,000</span>원
-                    </strong>
-                </div>
-
-                <div class="me-20 flex-box item">
-                <a href="">
-                    <img src="img/discount/10.jpg" id="box">
-                    <span>내추렬코어 덕스틱 오리&참치 20p</span>
-                </a>
-                    <strong class="price">
-                    <span>15,000</span>원
-                    </strong>
-                </div>
+            </c:forEach>
+             
 		</div>
                
             <br>

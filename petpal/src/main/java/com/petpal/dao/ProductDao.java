@@ -55,6 +55,22 @@ public class ProductDao {
 		}
 	};
 	
+	
+	// attachmentNo를 받아오긴 위한 Mapper
+	private RowMapper<ProductDto> joinMapper = new RowMapper<ProductDto>() {
+		@Override
+		public ProductDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+			ProductDto productDto = new ProductDto();
+			productDto.setProductNo(rs.getInt("product_no"));
+			productDto.setProductName(rs.getString("product_name"));
+			productDto.setProductPrice(rs.getInt("product_price"));
+			productDto.setProductStock(rs.getInt("product_stock"));
+			productDto.setProductDiscount(rs.getInt("product_discount"));
+			productDto.setAttachmentNo(rs.getInt("attachment_no"));
+			return productDto;
+		}
+	};
+	
 	// 카테고리 테이블 조회를 위한 mapper
 	private RowMapper<CategoryDto> categoryMapper = new RowMapper<CategoryDto>() {
 
@@ -254,6 +270,21 @@ public class ProductDao {
 		    return jdbcTemplate.query(sql, productMapper, param);
 		}
 	   
+	   
+	   /* 메인 페이지 상품 4개 씩 */
+	   public List<ProductDto> mainList(){
+		   String sql = "select a.attachment_no,b.product_no,b.product_price,b.product_stock,b.product_discount,b.product_name from product_image a left outer join product b on a.product_no = b.product_no where b.product_no between 244 and 248";
+		   return jdbcTemplate.query(sql,joinMapper);
+	   }
+	   
+	   /* 메인 페이지 상품 4개 씩 */
+	   public List<ProductDto> mainList2(){
+		   String sql = "select a.attachment_no,b.product_no,b.product_price,b.product_stock,b.product_discount,b.product_name from product_image a left outer join product b on a.product_no = b.product_no where b.product_no between 249 and 252";
+
+		   return jdbcTemplate.query(sql,joinMapper);
+	   }
+	   
+	
 	  
 	
 

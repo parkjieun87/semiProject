@@ -39,38 +39,50 @@
                var vailPost = "${findDto.memberPost}";
                var vailBasicAddr = "${findDto.memberBasicAddr}";
                var vailDetailAddr = "${findDto.memberDetailAddr}";
+               
+               var receiverName =  $("input[name=receiverName]");                 
+               var receiverTel =  $("input[name=receiverTel]");
+               var receiverPost =  $("input[name=receiverPost]");
+               var receiverBasicAddr =  $("input[name=receiverBasicAddr]");
+               var receiverDetailAddr =  $("input[name=receiverDetailAddr]");
+           
+               
       
                var txt2 = $("[name=order_copy]").prop("checked");
       
                if(!txt2){
-                   $("input[name=receiverName]").val(txt);
-                   $("input[name=receiverTel]").val(txt);
-                   $("input[name=receiverPost]").val(txt);
-                   $("input[name=receiverBasicAddr]").val(txt);
-                   $("input[name=receiverDetailAddr]").val(txt);
-
+                   $(receiverName).val(txt);
+                   $(receiverTel).val(txt);
+                   $(receiverPost).val(txt);
+                   $(receiverBasicAddr).val(txt);
+                   $(receiverDetailAddr).val(txt);
+                   
                    unitBuyer = false;
                    unitDetail = false;
                    unitReceiveTel = false;
                    unitPost = false;
+                   
 
-                } else {
-               
-                    $("input[name=receiverName]").val(vailName);             
+               }        
+               else {
+               			
+                    $("input[name=receiverName]").val(vailName);                  
                     $("input[name=receiverTel]").val(vailTel);
                     $("input[name=receiverPost]").val(vailPost);
                     $("input[name=receiverBasicAddr]").val(vailBasicAddr);
                     $("input[name=receiverDetailAddr]").val(vailDetailAddr);
+                             
+                    
                     unitBuyer = true;
                     unitDetail = true;
                     unitReceiveTel = true;
                     unitPost = true;
-                   
+                    
                 }
-              
+                    
                   });
                         
-     
+     		
                
               
                
@@ -387,7 +399,7 @@
                             <c:forEach items="${cartList}" var="list" varStatus="status">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
-                                        <img src="./img/9012_web_original_1673006075211726.jpg"
+                                        <img src="/attachment/download?attachmentNo=${cartList1.attachmentNo}"
                                          height="20px">
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">

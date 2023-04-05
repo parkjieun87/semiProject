@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
  <link rel="stylesheet" href="/static/css/contact/reply.css">
+ <link rel="stylesheet" href="/static/css/product/detail.css">
+   
+
  <style>
        
         body{
@@ -11,6 +14,8 @@
 			  margin-bottom: 50px; /* footer 높이와 같게 설정 */
 
         }
+        
+ 
 
         /* 상세페이지 사진 css */
         .photo-sell-wrap .photo-wrap .photo-view img{
@@ -399,15 +404,7 @@ font-weight:700;
                 line-height: 40px;                
         }
            
-  	footer {
-  	position:absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 220px; /* footer 높이 */
-  background-color: #f5f5f5;
-  text-align: left;
-	}
+  
 
 
 
@@ -494,10 +491,9 @@ font-weight:700;
                });
             });
             
-            
             $("#insert_direct").click(function(){
             	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
-               var productCnt = $(this).parent().parent().parent().parent().find("input").val();
+               var productCnt = $(this).parent().parent().parent().parent().find("input").val();      
                form.productCount = productCnt;
                $.ajax({
                   url : "/cart/add",
@@ -509,6 +505,7 @@ font-weight:700;
                   }
                });
             });
+            
             
             function cartAlert(result){
                if(result == '0'){
@@ -784,10 +781,43 @@ font-weight:700;
 				
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_3" >
-                테스트3
+               
             </div>
             <div class="addressInfo_input_div addressInfo_input_div_4">
-               테스트4
+                <div class="add-content">
+                                      
+                                                        <div class="sec span2" style="padding: 0px 50px;">
+
+                                <div class="sec type03" style="border-radius:5px;">
+                                    <h2 class="tit type02 cs-intro" style="font-size:14px;font-weight: 500;">배송정보</h2>
+                                    <ul class="list-type type02 cs-intro" style="font-size:13px">
+                                        <li>3만원 이상 구매 시 무료배송됩니다. (부피, 무게 무관)</li>
+                                        <li>제주, 도서산간 지역은 3,000원 택배비 추가됩니다.</li>
+                                        <li>펫팔 출고상품 경우 [평일 오후 5시 까지, 토요일 낮 12시 결제건] 까지 당일출고 됩니다.</li>
+                                        <li>택배 업체 상황에 따라 [CJ대한통운, 롯태택배] 로 출고될수 있습니다.</li>
+                                        <li>업체 배송에 경우 1~3일가량 추가로 소요될 수 있습니다.</li>
+                                        <li>천재지변, 물량 수급 변동 등 예외적인 사유 발생 시, 지연될 수 있는 점 양해 부탁드립니다.</li>
+                                    </ul>
+                                </div>
+                                <div class="sec type03" style="border-radius:5px;margin-top:20px;">
+                                    <h2 class="tit type02 cs-intro" style="font-size:14px;font-weight: 500;">교환, 반품 안내</h2>
+                                    <ul class="list-type type02 cs-intro" style="font-size:13px">
+                                        <li>단순변심에 의한 환불은 제품 수령후 7일이내에 신청 가능합니다. (왕복배송비 고객부담)</li>
+                                        <li>단순변심에 의한 반품시 배송박스 수량에 따라 반품 택배비가 추가됩니다. </li>
+                                        <li>포장개봉, 조립, 사용 등으로 인해 재판매가 불가능할 경우 반품이 불가능 할 수 있습니다.</li>
+                                        <li>제품 하자의 경우 물품 수령 후 30일이내 반품 가능합니다.</li>
+                                    </ul>
+                                </div>
+                                <div class="sec type03" style="border-radius:5px;margin-top:20px;">
+                                    <h2 class="tit type02 cs-intro" style="font-size:14px;font-weight: 500;">네이버페이 결제시 교환/반품 주의사항</h2>
+                                    <ul class="list-type type02 cs-intro" style="font-size:13px">
+                                        <li>펫팔에서는 자체 물류 운영으로 물류센터의 상품 출고지와 교환 및 반품지 주소가 서로 다릅니다.</li>
+                                        <li>네이버페이 결제시 반품/교환시 택배 자동수거설정이 불가한점 양해부탁드립니다.</li>
+                                        <li>네이버페이로 주문하신 고객님은  상품 반품 및 교환 요청시 카톡상담 또는 1:1 게시판을 통해 요청해주시면 빠르게 접수 후 저희가 제품 회수 접수를 도와드리도록 하겠습니다.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
             </div>
         </div>
     </div>

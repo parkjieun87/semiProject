@@ -1,0 +1,22 @@
+@charset "EUC-KR";
+
+.add-sec .add-content {
+    position: relative;
+    padding: 0 0 0;
+    width: 100%;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.add-sec .add-content {
+    position: relative;
+    padding: 0 0 0;
+    width: 100%;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.sec.type03{
+	border: 1px solid #ddd;
+}
+

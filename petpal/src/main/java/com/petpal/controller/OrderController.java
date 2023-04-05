@@ -79,7 +79,9 @@ public class OrderController {
 		model.addAttribute("findDto",findDto);
 		
 		//주문 상품 이미지 조회 - 수정해야함
-//		List<CartDto> cartList= cartDao.
+		List<CartDto> cartList1= cartDao.attachNoList(memberId);
+		model.addAttribute("cartList1",cartList1);
+		System.out.println(cartList1);
 		
 		
 
