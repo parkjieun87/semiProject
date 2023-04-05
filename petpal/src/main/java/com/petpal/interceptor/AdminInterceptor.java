@@ -25,9 +25,8 @@ public class AdminInterceptor implements HandlerInterceptor {
 		return true;
 	}
 	else {
-//		response.sendError(403);
-//		return false;
-		throw new RequirePermissionException("관리자만 이용 가능합니다.");
+		response.sendRedirect("/member/login");//return "redirect:/member/login"
+		return false;
 	}
 	}
 	
