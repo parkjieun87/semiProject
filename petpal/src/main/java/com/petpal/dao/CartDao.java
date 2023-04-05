@@ -122,6 +122,7 @@ public class CartDao {
 	//주문완료 후 장바구니 삭제 - 2023-04-04(지은)
 	public boolean orderCartDelete(String memberId) {
 		String sql = "delete from cart where member_id=?";
+		
 		Object[]param = {memberId};
 		return jdbcTemplate.update(sql,param)>0;
 	}
