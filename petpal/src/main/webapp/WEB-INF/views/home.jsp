@@ -126,9 +126,7 @@
 
     <script type="text/javascript">
         $(function(){
-			$("#all").click(function(){
-				location.href = "/product/list?parentCode=1000"
-			});
+
         });
         
     </script>
@@ -213,11 +211,6 @@
                
             <br>
             <br>
-            <div class="row center">
-                <button type="submit" id="all" class="form-btn ps-50 pe-50" style="border-radius: 25px;">
-                상품 전체보기
-                </button>
-            </div>
             <br>
             <!-- 
             <div class="row left mt-30">
