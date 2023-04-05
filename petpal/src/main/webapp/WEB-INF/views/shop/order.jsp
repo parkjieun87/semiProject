@@ -400,7 +400,7 @@
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
                                         <img src="/attachment/download?attachmentNo=${list.attachmentNo}"
-                                         height="20px">
+                                         height="50px">
                                          
                                     </div>
                                     <div class="bundle-info__vendor-item" style="padding-left: 50px;width: 100%;">
