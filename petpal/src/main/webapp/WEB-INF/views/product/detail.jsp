@@ -485,8 +485,14 @@ font-weight:700;
                   type : "POST",
                   data : form,
                   success : function(result){
+                	// 장바구니 등록  
+                      $(".cart-layer").css("display","block");
+        
+                  },
+                  error : function(result){
+                	  $(".cart-layer").css("display","none");
+                	  alert("장바구니에 이미 추가되어져 있습니다.");
                 	 
-                     cartAlert(result);
                   }
                });
             });
@@ -501,8 +507,12 @@ font-weight:700;
                   data : form,
                   success : function(result){
                 	 console.log("result", result);
+                	
                      //cartAlert(result);
                 	 location.href="/cart";
+                  },
+                  error : function(result){
+                	  alert("장바구니에 이미 추가되어져 있습니다.");
                   }
                });
             });
@@ -512,19 +522,16 @@ font-weight:700;
                	if(result == '0'){
 	                alert("장바구니에 추가를 하지 못하였습니다.");
 	             }else if(result == '1'){
-	               // alert("장바구니에 추가되었습니다.");
+	                alert("장바구니에 추가되었습니다.");
 	             }else if(result == '2'){
 	                alert("장바구니에 이미 추가되어져 있습니다.");
-	             }/*else if(result == '5'){
+	             }else if(result == '5'){
 	                alert("로그인이 필요합니다.");
-	             }*/
+	             }
             }
 
             
-         // 장바구니 등록  
-         $("#insert_cart").click(function(){
-        	 $(".cart-layer").css("display","block");
-         });   
+          
             
          // 장바구니 등록 창 닫기 버튼   
        	$(".exit_btn").click(function(){

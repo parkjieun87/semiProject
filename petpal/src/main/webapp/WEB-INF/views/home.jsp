@@ -9,6 +9,12 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 
     <style>
+    footer {
+	  position: ;
+	  bottom: 0;
+	  left: 0%;
+	  transform: translateX(35%);
+	}
     	.swiper{
     		width: 1160px;
     		heigth:250px;
