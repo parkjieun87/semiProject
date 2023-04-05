@@ -430,7 +430,7 @@
                                     <span class="num" id="member_tel">휴대폰 번호를 입력해주세요</span>
                                 </span>
                                 <div class="row" id="rowbtn1" style="margin-top:0px;">
-                                    <input type="tel" name="memberTel" class="form-input w-60" required value="${findDto.memberTel}" id="phone" placeholder="대시(-)를 제외하고 작성" style="width:200px; height:35px; border:1px solid #ddd;">
+                                    <input type="tel" name="memberTel" class="form-input w-60" readonly value="${findDto.memberTel}" id="phone" placeholder="대시(-)를 제외하고 작성" style="width:200px; height:35px; border:1px solid #ddd;">
                                     <div class="invalid-message">올바른 휴대전화번호가 아닙니다</div>
                                     <button type="button" class="form-btn positive w-30 ms-50" id="phoneChk" style="margin-left:30px">번호인증</button>
                                  </div>
