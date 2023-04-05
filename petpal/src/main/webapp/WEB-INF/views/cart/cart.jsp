@@ -306,13 +306,16 @@ td{
 
     <script type="text/javascript">
         $(function(){
-           
+        	       
            /* 장바구니 종합 정보 삽입 */
            setTotalInfo();
           if($(".individual_totalPrice_input").val() == undefined){
         	  $(".totalPrice_span").text(0);   
         	  $(".totalCount_span").text(0);
               $(".totalKind_span").text(0);
+              $(".order_btn").prop("disabled",true);
+          }else{
+        	   $(".order_btn").prop("disabled",false	);
           }
  		
            
@@ -600,7 +603,8 @@ td{
                <span>배송비 &nbsp;</span>무료
             </div>
             <br>
-   
+   		
+   		
             <div class="totalPrice">
                <strong>총 결제 금액</strong>
                <span class="totalPrice_span" style="color:red; font-weight:700;"></span> 원
@@ -608,6 +612,9 @@ td{
             <div class="orderBtn_section">
                <button class="order_btn">주문하기</button>
             </div>
+   		
+   		
+   
             
          
          
