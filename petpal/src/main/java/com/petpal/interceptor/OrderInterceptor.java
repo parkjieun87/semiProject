@@ -35,11 +35,15 @@ public class OrderInterceptor implements HandlerInterceptor {
          }
    
       else { //비회원이라면 - 로그인 페이지로 이동시키면서 차단
-//    	 response.sendRedirect("/");
-         return true;
+
+    	  response.sendRedirect("/member/login");//return "redirect:/member/login"
+         return false;
       
       }
       
    }
+   
+      
+
 
 }

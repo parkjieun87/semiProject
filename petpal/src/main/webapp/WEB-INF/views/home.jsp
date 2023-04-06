@@ -9,6 +9,9 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 
     <style>
+    *{
+    	font-family: 카페24 써라운드 에어 가늘게;
+    }
     footer {
 	  position: ;
 	  bottom: 0;

@@ -48,7 +48,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
                            "/reply/**",//리뷰
                            "/cart/**"//장바구니 전체
                            
-                     
+         
                      )
                      .excludePathPatterns(
                            "/member/join",
@@ -61,12 +61,16 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
                   
                      );
             //[3] 관리자 전용 검사 인터셉터
-            registry.addInterceptor(adminInterceptor)
-                  .addPathPatterns("/admin/**");
+//            registry.addInterceptor(adminInterceptor)
+//                  .addPathPatterns("/admin/**");
             
             //[4] 주문
             registry.addInterceptor(orderInterceptor)       
                      .addPathPatterns("/shop/**");
+            registry.addInterceptor(orderInterceptor)
+                     .addPathPatterns("/shop/**")
+                     .excludePathPatterns("/shop/orderFinish");
+            			
 
       }
       }
