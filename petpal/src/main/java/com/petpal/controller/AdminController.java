@@ -294,4 +294,6 @@ public class AdminController {
 	   attr.addAttribute("page", page);
 	   return "redirect:list";
    }
+   
+   
 }
