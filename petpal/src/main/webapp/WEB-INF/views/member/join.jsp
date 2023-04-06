@@ -122,6 +122,7 @@
 
 
 <script>
+
 //휴대폰 번호 인증
 var code2 = "";
 $("#phoneChk").click(function(){
@@ -156,6 +157,7 @@ $("#phoneChk").click(function(){
         }
     });
 });
+       
 
 </script>
 

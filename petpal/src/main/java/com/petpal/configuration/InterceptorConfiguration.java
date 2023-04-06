@@ -61,8 +61,8 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
                   
                      );
             //[3] 관리자 전용 검사 인터셉터
-//            registry.addInterceptor(adminInterceptor)
-//                  .addPathPatterns("/admin/**");
+            registry.addInterceptor(adminInterceptor)
+                  .addPathPatterns("/admin/**");
             
             //[4] 주문
             registry.addInterceptor(orderInterceptor)       
