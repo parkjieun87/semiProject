@@ -29,7 +29,7 @@
 <script>
 $(function(){
     $.ajax({
-        url:"http://localhost:8080/admin/dailysales",
+        url:contextPath+"/admin/dailysales",
         method:"get",
         success: function(response){
             // 차트 생성
@@ -70,7 +70,7 @@ $(function(){
 
 $(function(){
     $.ajax({
-        url:"http://localhost:8080/admin/monthlysales",
+        url:contextPath+"/admin/monthlysales",
         method:"get",
         success: function(response){
             // 차트 생성
