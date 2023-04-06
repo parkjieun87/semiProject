@@ -35,7 +35,7 @@
     <div id="header-area1">
         <div class="wrap container-1200">
                <div class="img-search ms-140">
-               <a href="http://localhost:8080/">
+               <a href="/">
                 <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
                 
@@ -60,14 +60,14 @@
                          <ul>
                          	<!-- 로그아웃 상태 -->
                            <c:if test="${memberId == null}">
-                           <li><a href="http://localhost:8080/member/join">Join</a></li>
-                           <li><a href="http://localhost:8080/member/login">Login</a></li>
+                           <li><a href="/member/join">Join</a></li>
+                           <li><a href="/member/login">Login</a></li>
                            </c:if>
                             <!-- 로그인 상태 -->
                            <c:if test="${memberId != null}">
-                           <li><a href="http://localhost:8080/member/mypage">Mypage</a></li>
+                           <li><a href="/member/mypage">Mypage</a></li>
                            <li><a href="/cart"><i class="fa-sharp fa-solid fa-cart-shopping fa-1x" style="font-size: 23px;"></i></a></li>
-                           <li><a href="http://localhost:8080/member/logout">Logout</a></li>
+                           <li><a href="/member/logout">Logout</a></li>
                            </c:if>
                             <!-- 로그인 상태 -->
                          </ul>
