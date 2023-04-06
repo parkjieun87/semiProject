@@ -144,6 +144,11 @@ $.ajax({
             if(data == phone2){
                 $("[name=phonecheck2]").show().css("display");
                 $("[name=phonecheck]").hide().css("display");
+          
+                        
+              if(data == phone2){
+                 $(".successPhoneChk").text("올바른 번호입니다.");
+                 $(".successPhoneChk").css("color","green");
 
             }else{
                 $("[name=phonecheck]").show().css("display");
