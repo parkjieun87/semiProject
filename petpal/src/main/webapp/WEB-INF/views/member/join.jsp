@@ -135,7 +135,7 @@ $("#phoneChk").click(function(){
         cache : false,
         success:function(data){
           
-           console.log(data);
+        
            
            $("#phone2").on("propertychange change keyup paste input",function(){
               var phone2 = $("#phone2").val();
