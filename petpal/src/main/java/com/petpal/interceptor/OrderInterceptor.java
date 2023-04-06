@@ -28,21 +28,18 @@ public class OrderInterceptor implements HandlerInterceptor {
       HttpSession session = request.getSession(); //세션을 직접 가져와야 한다. 컨트롤러가 아니니.
       String memberId = (String)session.getAttribute("memberId");
       List<CartDto> list = cartDao.getCart(memberId);
-      if(memberId != null) { //회원이라면 이라는 소리
+    
          if(list.isEmpty()) {
             response.sendRedirect("/cart");
             return false;
          }
-         return true;
-      }
+   
       else { //비회원이라면 - 로그인 페이지로 이동시키면서 차단
-         return false;
+//    	 response.sendRedirect("/");
+         return true;
       
       }
       
    }
-	
-		
-
 
 }
