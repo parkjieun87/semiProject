@@ -67,13 +67,14 @@ public class OrderController {
 	
 	//주문내역 (cartDao에서 가져옴) , 주문자 이름,이메일 가져오기
 	@GetMapping("/order")
-	public String order(HttpSession session, Model model,@ModelAttribute ProductOrderDto productOrderDto,@ModelAttribute OrderDetailDto orderDetailDto) {
+	public String order(HttpSession session, Model model) {
+		
 		String memberId = (String) session.getAttribute("memberId");
 		//주문내역 (장바구니에 있는 이름, 이미지,수량,가격 불러오기)
 		List<CartDto> cartList= cartDao.getCart(memberId);
 		model.addAttribute("cartList",cartList);
 		
-		//주문자 (product_order에 있는 이름,이메일,전화번호 불러오기)
+		//구매자 (MEMBER테이블에 있는 이름,이메일,전화번호 불러오기)
 		MemberDto findDto = memberDao.selectOne(memberId);
 		model.addAttribute("findDto",findDto);
 		
