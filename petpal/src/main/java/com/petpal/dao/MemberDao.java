@@ -26,63 +26,63 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class MemberDao {
 
    //형석
-	
-//	//product_order mapper 생성
-//	private RowMapper<ProductOrderDto> mapper2 = new RowMapper<ProductOrderDto>() {
-//	@Override
-//	public ProductOrderDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-//		ProductOrderDto productOrderDto = new ProductOrderDto();
-//		productOrderDto.setOrderNo(rs.getInt("order_no"));
-//		productOrderDto.setMemberId(rs.getString("member_id"));
-//		productOrderDto.setOrderDate(rs.getDate("order_date"));
-//		productOrderDto.setReceiverName(rs.getString("receiver_name"));
-//		productOrderDto.setReceiverTel(rs.getString("receiver_tel"));
-//		productOrderDto.setReceiverBasicAddr(rs.getString("receiver_basic_addr"));
-//		productOrderDto.setReceiverPost(rs.getString("receiver_post"));
-//		productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
-//		productOrderDto.setTotalPrice(rs.getInt("total_price"));
-//		return productOrderDto;
-//	}};
-	
-	 //형석(2023.04.03
-	
-		//OrderListDto mapper 생성
-	
-		private RowMapper<OrderListDto> mapper3 = new RowMapper<OrderListDto>() {
-		@Override
-		public OrderListDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-			OrderListDto orderListDto = new OrderListDto();
-			orderListDto.setOrderNo(rs.getInt("order_no"));
-			orderListDto.setMemberId(rs.getString("member_id"));
-			orderListDto.setProductCount(rs.getInt("product_count"));
-			orderListDto.setProductName(rs.getString("product_name"));
-			orderListDto.setProductPrice(rs.getInt("product_price"));
-		
-			return orderListDto;
-		}};
-		
-		//order_detail mapper 생성
-		// 재영 (04/03)
-		private RowMapper<OrderDetailDto> mapperFinish = new RowMapper<OrderDetailDto>() {
-			
-			@Override
-			public OrderDetailDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-				OrderDetailDto orderDetailDto = new OrderDetailDto();
-				orderDetailDto.setOrderNo(rs.getInt("order_no"));
-				orderDetailDto.setProductNo(rs.getInt("product_no"));
-				orderDetailDto.setMemberId(rs.getString("member_id"));
-				orderDetailDto.setProductPrice(rs.getInt("product_price"));
-				orderDetailDto.setProductCount(rs.getInt("product_count"));
-				orderDetailDto.setProductName(rs.getString("product_name"));
-				orderDetailDto.setAttachmentNo(rs.getInt("attachment_no"));
-				return orderDetailDto;
-			}
-		};
+   
+//   //product_order mapper 생성
+//   private RowMapper<ProductOrderDto> mapper2 = new RowMapper<ProductOrderDto>() {
+//   @Override
+//   public ProductOrderDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+//      ProductOrderDto productOrderDto = new ProductOrderDto();
+//      productOrderDto.setOrderNo(rs.getInt("order_no"));
+//      productOrderDto.setMemberId(rs.getString("member_id"));
+//      productOrderDto.setOrderDate(rs.getDate("order_date"));
+//      productOrderDto.setReceiverName(rs.getString("receiver_name"));
+//      productOrderDto.setReceiverTel(rs.getString("receiver_tel"));
+//      productOrderDto.setReceiverBasicAddr(rs.getString("receiver_basic_addr"));
+//      productOrderDto.setReceiverPost(rs.getString("receiver_post"));
+//      productOrderDto.setReceiverDetailAddr(rs.getString("receiver_detail_addr"));
+//      productOrderDto.setTotalPrice(rs.getInt("total_price"));
+//      return productOrderDto;
+//   }};
+   
+    //형석(2023.04.03
+   
+      //OrderListDto mapper 생성
+   
+      private RowMapper<OrderListDto> mapper3 = new RowMapper<OrderListDto>() {
+      @Override
+      public OrderListDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+         OrderListDto orderListDto = new OrderListDto();
+         orderListDto.setOrderNo(rs.getInt("order_no"));
+         orderListDto.setMemberId(rs.getString("member_id"));
+         orderListDto.setProductCount(rs.getInt("product_count"));
+         orderListDto.setProductName(rs.getString("product_name"));
+         orderListDto.setProductPrice(rs.getInt("product_price"));
+      
+         return orderListDto;
+      }};
+      
+      //order_detail mapper 생성
+      // 재영 (04/03)
+      private RowMapper<OrderDetailDto> mapperFinish = new RowMapper<OrderDetailDto>() {
+         
+         @Override
+         public OrderDetailDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+            OrderDetailDto orderDetailDto = new OrderDetailDto();
+            orderDetailDto.setOrderNo(rs.getInt("order_no"));
+            orderDetailDto.setProductNo(rs.getInt("product_no"));
+            orderDetailDto.setMemberId(rs.getString("member_id"));
+            orderDetailDto.setProductPrice(rs.getInt("product_price"));
+            orderDetailDto.setProductCount(rs.getInt("product_count"));
+            orderDetailDto.setProductName(rs.getString("product_name"));
+            orderDetailDto.setAttachmentNo(rs.getInt("attachment_no"));
+            return orderDetailDto;
+         }
+      };
 
-		
-		
-		
-	
+      
+      
+      
+   
       @Autowired
       private JdbcTemplate jdbcTemplate;
       
@@ -183,9 +183,9 @@ public class MemberDao {
                + "member_email=?, member_tel=?, member_post=?, "
                + "member_basic_addr=?, member_detail_addr=? where member_id=?";
          Object[] param = {
-        		 memberDto.getMemberName(), memberDto.getAdminCk(), memberDto.getMemberNick(), 
-        		 memberDto.getMemberEmail(), memberDto.getMemberTel(), memberDto.getMemberPost(),
-        		 memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr(), memberDto.getMemberId()
+               memberDto.getMemberName(), memberDto.getAdminCk(), memberDto.getMemberNick(), 
+               memberDto.getMemberEmail(), memberDto.getMemberTel(), memberDto.getMemberPost(),
+               memberDto.getMemberBasicAddr(), memberDto.getMemberDetailAddr(), memberDto.getMemberId()
                
          };
          return jdbcTemplate.update(sql, param) > 0;         
@@ -193,14 +193,14 @@ public class MemberDao {
       
       // 번호 인증 기능
       public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
-         String api_key = "NCSDBELKOW4C91N8";
-          String api_secret = "CU99NCUZXCJZP6JALSSY8YYHSFVZFTL9";
+         String api_key = "NCSZ1CBJD1Z9UFVN";
+          String api_secret = "VUHE9YGFBNRPUPKWK2REZWOGOXJITDES";
           Message coolsms = new Message(api_key, api_secret);
 
           // 4 params(to, from, type, text) are mandatory. must be filled
           HashMap<String, String> params = new HashMap<String, String>();
           params.put("to", userPhoneNumber);    // 수신전화번호
-          params.put("from", "01053261408");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+          params.put("from", "01056300144");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
           params.put("type", "SMS");
           params.put("text", "[TEST] 인증번호는" + "["+randomNumber+"]" + "입니다."); // 문자 내용 입력
           params.put("app_version", "test app 1.2"); // application name and version
@@ -226,7 +226,7 @@ public class MemberDao {
       //    회원 탈퇴시 웨이팅 테이블로의 이동 (2023.03.28 수정 형석)
       public void insertWaiting(MemberDto memberDto) {
             String sql = "insert into waiting("
-            		+ "member_id, member_pw, member_name, "
+                  + "member_id, member_pw, member_name, "
                     + "member_email, member_tel, member_nick, "
                     + "adminck, member_regdate, member_post, "
                     + "member_basic_addr, member_detail_addr"
@@ -235,7 +235,7 @@ public class MemberDao {
                     + ")";
                     
          Object[] param = {
-        		 memberDto.getMemberId(), memberDto.getMemberPw(),
+               memberDto.getMemberId(), memberDto.getMemberPw(),
                   memberDto.getMemberName(), memberDto.getMemberEmail(),
                   memberDto.getMemberTel(), memberDto.getMemberNick(),
                   memberDto.getAdminCk(), memberDto.getMemberRegdate(),
@@ -265,30 +265,30 @@ public class MemberDao {
       }   
       
    // 검색 + 정렬 기능
-	   public List<MemberDto> searchAndSelectList(String column, String keyword, PaginationVO vo, String sort) {
-		    String sql = "select * from ("
-		               + "select rownum rn, TMP.* from ("
-		               + "select * from member "
-		               + "where instr(#1, ?) > 0 "
-		               + "order by #1, "+sort
-		               + ") TMP"
-		               + ") where rn between ? and ?";
-		    sql = sql.replace("#1", column);
+      public List<MemberDto> searchAndSelectList(String column, String keyword, PaginationVO vo, String sort) {
+          String sql = "select * from ("
+                     + "select rownum rn, TMP.* from ("
+                     + "select * from member "
+                     + "where instr(#1, ?) > 0 "
+                     + "order by #1, "+sort
+                     + ") TMP"
+                     + ") where rn between ? and ?";
+          sql = sql.replace("#1", column);
 
-		    Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
+          Object[] param = {keyword, vo.getBegin(), vo.getEnd()};
 
-		    return jdbcTemplate.query(sql, mapper, param);
-		}
+          return jdbcTemplate.query(sql, mapper, param);
+      }
       
-    	
+       
       //주문 목록(2023.04.03 형석) - 재영 수정
-  	public List<OrderDetailDto> orderList(String memberId) {
-  		String sql = "select a.order_no,a.product_no,a.member_id,a.product_price, a.product_count,b.product_name, c.attachment_no from order_detail a left outer join product b on a.product_no = b.product_no left outer join product_image c on b.product_no = c.product_no where member_id= ?";  		
-  				Object[] param = {memberId};
-  		return jdbcTemplate.query(sql,mapperFinish, param);
-  	}
-  	
-  	
+     public List<OrderDetailDto> orderList(String memberId) {
+        String sql = "select a.order_no,a.product_no,a.member_id,a.product_price, a.product_count,b.product_name, c.attachment_no from order_detail a left outer join product b on a.product_no = b.product_no left outer join product_image c on b.product_no = c.product_no where member_id= ?";        
+              Object[] param = {memberId};
+        return jdbcTemplate.query(sql,mapperFinish, param);
+     }
+     
+     
 
 }
       
