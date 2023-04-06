@@ -7,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.petpal.advice.RequirePermissionException;
-
 
 //관리자만 접근하도록 하는 인터셉터
 @Service
@@ -17,10 +15,10 @@ public class AdminInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 	throws Exception{
 		HttpSession session = request.getSession();
-		String memberLevel = (String)session.getAttribute("memberLevel");
+		Integer memberLevel = (Integer)session.getAttribute("adminCk");
 	
 		//null 검사 무적권 해야함
-	if(memberLevel != null && memberLevel.equals("관리자"))
+	if(memberLevel == 1)
 			{
 		return true;
 	}
