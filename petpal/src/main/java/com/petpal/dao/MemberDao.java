@@ -193,8 +193,8 @@ public class MemberDao {
       
       // 번호 인증 기능
       public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
-         String api_key = "NCSZ1CBJD1Z9UFVN";
-          String api_secret = "VUHE9YGFBNRPUPKWK2REZWOGOXJITDES";
+         String api_key = "NCSXMWS2W0QNKFI8";
+          String api_secret = "N87HRKXO6OIVDACXHEPMYTR0H9KOCNVB";
           Message coolsms = new Message(api_key, api_secret);
 
           // 4 params(to, from, type, text) are mandatory. must be filled

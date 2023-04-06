@@ -127,7 +127,7 @@ var code2 = "";
 $("#phoneChk").click(function(){
    alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
    var phone = $("#phone").val();   
-   
+
    
    $.ajax({
         type:"GET",
@@ -135,11 +135,11 @@ $("#phoneChk").click(function(){
         cache : false,
         success:function(data){
           
-        
+        	 console.log(data);
            
            $("#phone2").on("propertychange change keyup paste input",function(){
               var phone2 = $("#phone2").val();
-              console.log(phone2);
+             
               
               if(data == phone2){
                  $(".successPhoneChk").text("올바른 번호입니다.");
