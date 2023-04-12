@@ -28,7 +28,7 @@ public class TestInterceptor implements HandlerInterceptor{
 			throws Exception{
 // 		인터셉터는 컨트롤러처럼 선언한다고 주지 않음
 //  	- HttpSession은 HttpServletRequest 객체 내부에 포함되어 있다.
-//		System.out.println("테스트 인터셉터!");
+//		//System.out.println("테스트 인터셉터!");
 		return true; //통과 
 	}
 //	return false; //차단

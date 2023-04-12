@@ -16,7 +16,7 @@ public class ReplyService {
 	public String replyCheck(ReplyDto dto) {
 		
 		Integer result = replyDao.checkReply(dto);
-		System.out.println(result);
+		//System.out.println(result);
 		if(result > 1) {
 			return "1";
 		}else {
