@@ -29,7 +29,7 @@
 <script>
 $(function(){
     $.ajax({
-        url:"http://localhost:8080/admin/dailysales",
+        url:"/admin/dailysales",
         method:"get",
         success: function(response){
             // 차트 생성

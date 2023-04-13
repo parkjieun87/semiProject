@@ -515,7 +515,7 @@ font-weight:700;
                   type : "POST",
                   data : form,
                   success : function(result){
-                	 console.log("result", result);
+                	 //console.log("result", result);
                 	
                      //cartAlert(result);
                 	 location.href="/cart";

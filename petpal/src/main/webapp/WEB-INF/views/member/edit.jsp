@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/header.jsp"></jsp:include>
  <style>
    
    .logo 
@@ -24,7 +24,7 @@
 
 <div class="container-600">
       <div class="row center">
-         <img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
+         <img src = "${pageContext.request.contextPath}/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
       </div>
       
        <div class="row center">
@@ -109,11 +109,11 @@ $("#phoneChk").click(function(){
         cache : false,
         success:function(data){
           
-           console.log(data);
+           //console.log(data);
            
            $("#phone2").on("propertychange change keyup paste input",function(){
               var phone2 = $("#phone2").val();
-              console.log(phone2);
+              //console.log(phone2);
               
               if(data == phone2){
                  $(".successPhoneChk").text("올바른 번호입니다.");
@@ -131,4 +131,4 @@ $("#phoneChk").click(function(){
 });
 </script>
  
-<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/footer.jsp"></jsp:include>

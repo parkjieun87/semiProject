@@ -169,7 +169,7 @@
 
           
           
-   //   console.log(productName[0].val());    
+   //   //console.log(productName[0].val());    
       
       
             
@@ -200,9 +200,9 @@
                 var memberRegex = /^[가-힣a-zA-Z]+$/;
                 var isOk = memberRegex.test(check);
                 
-                console.log(isOk);
+                //console.log(isOk);
                 
-            //    console.log(!isOk);
+            //    //console.log(!isOk);
                 if(!isValid){
                     $("[name=txt-p1]").show().css("display");
                     unitBuyer = false;
