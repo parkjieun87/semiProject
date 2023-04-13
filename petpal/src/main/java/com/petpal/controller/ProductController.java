@@ -98,7 +98,7 @@ public class ProductController {
 				}
 				cateSet.add(dto);
 			}
-
+			
 			List<CategoryCountDto> cateList = new ArrayList<>(cateSet);
 			for (int i = 0; i < list.size(); i++) {
 				for (int k = 0; k < cateList.size(); k++) {

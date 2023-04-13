@@ -29,7 +29,11 @@
 <script>
 $(function(){
     $.ajax({
+<<<<<<< HEAD
         url:"/admin/dailysales",
+=======
+        url:contextPath+"/admin/dailysales",
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
         method:"get",
         success: function(response){
             // 차트 생성
@@ -70,7 +74,7 @@ $(function(){
 
 $(function(){
     $.ajax({
-        url:"http://localhost:8080/admin/monthlysales",
+        url:contextPath+"/admin/monthlysales",
         method:"get",
         success: function(response){
             // 차트 생성

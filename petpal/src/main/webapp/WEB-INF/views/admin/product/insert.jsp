@@ -79,6 +79,22 @@
           
         ]
       });  
+         
+            // 할인가격 설정
+           
+          
+       	$("#discount").on("propertychange change keyup paste input",function(){
+       	 var productPrice = $("#productPrice").val();
+       	 var discount = $(this).val();
+         var discountPrice = productPrice * (1 - discount/100);
+         
+       	 var discountPriceText = $("#discountPrice").text(discountPrice);
+       	 
+       	
+       	});
+            
+        
+         
             
             
             
@@ -113,10 +129,11 @@
 		<label>상품명</label>
 		<input type="text" name="productName">
 		</div>
-		<div>
+		<div class="price">
 		<label>상품가격</label>
-		<input type="text" name="productPrice">
-		</div>
+		<input type="text" name="productPrice" id="productPrice">
+		할인가격 : <span id="discountPrice"></span> 
+		</div> <br>
 		<div>
 		<label>상품재고</label>
 		<input type="text" name="productStock">
@@ -127,7 +144,7 @@
 		</div>
 		<div>
 		<label>상품할인율</label>
-		<input type="text" name="productDiscount">
+		<input type="text" name="productDiscount" id="discount">
 		</div>
 		<label>이미지</label>
 		<input type="file" name="attach">

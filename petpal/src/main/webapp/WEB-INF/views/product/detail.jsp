@@ -457,7 +457,6 @@ font-weight:700;
                let quantityInput = $(this).parent("div").find("#quantity");
       
                if(quantity < '${productDto.productStock}'){
-                  
                   $(quantityInput).val(++quantity);
                   
                   
