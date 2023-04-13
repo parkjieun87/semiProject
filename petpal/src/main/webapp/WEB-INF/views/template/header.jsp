@@ -8,23 +8,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈페이지 레이아웃</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/load.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/load.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
 
-
+	<!--  favicon 설정 -->
+	<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/header.css">
     
     <style>
       
     </style>
+    
+    <!--
+    	Javascript에서 절대경로를 ㅏ용하기위한 꼼수
+    	-JS는 절대경로란 개념이 없으므로 JSP의 EL의 도움을 받아야 함
+    	-<script>는 분할해서 작성해도 결국 이어지는 특성을 활용
+    	-모든 <script>의 가장 위에 다음과 같이 변수를 하나 선언
+    	-const로 변수를 선언하면 자바의 final과 같이 불변 처리가됨
+    -->
+    <script>
+    	const contextPath = "${pageContext.request.contextPath}";
+    </script>
+    
    <!-- jQuery Cdn -->
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
    </head>
