@@ -81,6 +81,7 @@ public class MemberController {
 	   //로그인 성공한 경우 이를 기억하기 위해 HttpSession에 정보 추가
 	   session.setAttribute("memberId", findDto.getMemberId());
 	   session.setAttribute("memberNick", findDto.getMemberNick());
+	   session.setAttribute("adminCk", findDto.getAdminCk());
 	   
 	   return "redirect:/";
    }

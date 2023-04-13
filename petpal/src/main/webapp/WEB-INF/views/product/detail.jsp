@@ -14,7 +14,9 @@
 			  margin-bottom: 50px; /* footer 높이와 같게 설정 */
 
         }
-        
+            *{
+    	font-family: 카페24 써라운드 에어 가늘게;
+    }
  
 
         /* 상세페이지 사진 css */
@@ -455,7 +457,6 @@ font-weight:700;
                let quantityInput = $(this).parent("div").find("#quantity");
       
                if(quantity < '${productDto.productStock}'){
-                  
                   $(quantityInput).val(++quantity);
                   
                   

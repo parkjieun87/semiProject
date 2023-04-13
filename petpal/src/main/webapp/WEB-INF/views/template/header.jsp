@@ -11,11 +11,19 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/load.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
 
+=======
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+	
+>>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal
 	<!--  favicon 설정 -->
 	<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 
