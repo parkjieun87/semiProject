@@ -182,7 +182,6 @@ public class MemberController {
 		 //비밀번호가 일치하지 않는다면 → 에러 표시 후 이전 페이지로 리다이렉트
 		 if(!findDto.getMemberPw().equals(memberDto.getMemberPw())) {
 
-			 //System.out.println(findDto.getMemberPw());
 			 
 			 attr.addAttribute("mode","error");
 

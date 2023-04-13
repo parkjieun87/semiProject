@@ -18,14 +18,14 @@ $(function(){
 
 	//[1]
 	$.ajax({
-		url:"/rest/board/check",
+		url:contextPath+"/rest/board/check",
 		method:"post",
 		data:{
 			boardNo : boardNo
 		},
 		success:function(response){
-			//console.log(response);
-			//console.log(typeof response);
+			////console.log(response);
+			////console.log(typeof response);
 			if(response) {
 				$(".fa-heart").addClass("fa-solid");
 			}
@@ -41,7 +41,7 @@ $(function(){
 	//[2]
 	$(".fa-heart").click(function(){
 		$.ajax({
-			url:"/rest/board/like",
+			url:contextPath+"/rest/board/like",
 			method:"post",
 			data:{
 				boardNo:boardNo

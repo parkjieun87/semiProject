@@ -40,15 +40,15 @@ $(function(){
             
             $.ajax({   
                     type:"GET",
-                    url:"/member/phoneCheck?phone=" + phone,
+                    url:contextPath+"/member/phoneCheck?phone=" + phone,
                     cache : false,
                     success:function(data){
                     
-                    console.log(data);
+                    //console.log(data);
                     
                     $("#phone2").on("propertychange change keyup paste input",function(){
                         var phone2 = $("#phone2").val();
-                        console.log(phone2);
+                        //console.log(phone2);
                         
                         if(data == phone2){
                             $("[name=phonecheck2]").show().css("display");

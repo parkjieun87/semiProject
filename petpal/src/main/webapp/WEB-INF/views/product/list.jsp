@@ -76,7 +76,7 @@ a:visited {
     				var paramName = this.dataset.name;
     				var paramValue = this.dataset.value;
     				
-    				console.log(paramName);
+    				//console.log(paramName);
 
     				// 현재 URL을 가져옵니다.
     				var url = window.location.href;

@@ -14,6 +14,8 @@
 	<!-- favicon 설정 -->
 	<link rel="icon" type="image/x-icon" sizes="16x16" href="${pageContext.request.contextPath}/static/favicon-16x16.png">
 	
+	 <!-- favicon 설정 -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <!-- jQuery Cdn -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	

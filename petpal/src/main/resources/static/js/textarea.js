@@ -13,22 +13,22 @@ $(function(){
         ],
         callbacks: {
          onImageUpload:function(files){
-            // console.log(files);
+            // //console.log(files);
             if(files.length != 1) return;
             
-//            console.log("비동기 파일 업로드 시작");
+//            //console.log("비동기 파일 업로드 시작");
             // [1] FormData ]2\ processData [3] contentType
             var fd = new FormData();
             fd.append("attach", files[0]);
             
             $.ajax({
-               url:"/rest/attachment/upload",
+               url:contextPath+"/rest/attachment/upload",
                method:"post",
                data:fd,
                processData:false,
                contentType:false,
                success:function(response){
-                  //console.log(response);
+                  ////console.log(response);
                   
                   //서버로 전송할 이미지 번호 정보 생성
 				  var input = $("<input>").attr("type", "hidden")

@@ -96,7 +96,6 @@ public class OrderController {
 		productOrderDto.setOrderNo(orderNo);
 		
 		orderDao.insert(productOrderDto);
-		//System.out.println(productOrderDto);
 
 		
 		//주문상세정보 등록(주문번호,아이디는 가져오고, 상품번호,수량,가격은 jsp에서 등록한다.
