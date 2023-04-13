@@ -36,7 +36,7 @@ public class CartService {
 	public List<CartDto> getCartList(String memberId){
 	
 		List<CartDto> cart = cartDao.getCart(memberId);
-		System.out.println(cart);
+		//System.out.println(cart);
 		
 		for(CartDto dto : cart) {
 			dto.initSaleTotal();

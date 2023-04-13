@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/static/css/commons.css">
-<link rel="stylesheet" href="/static/css/contact/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/commons.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/contact/notice.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
 <style>
@@ -84,13 +84,13 @@
 		<div class="page_wrap">
 			<div class="page_nation">
 				<c:if test="${vo.startBlock != 1}">
-				<a class="arrow prev" href="/contact/notice?page=${vo.prevPage}">&lt;</a>
+				<a class="arrow prev" href="${pageContext.request.contextPath}/contact/notice?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="/contact/notice?page=${i}">${i}</a>
+						<a href="${pageContext.request.contextPath}/contact/notice?page=${i}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
-				<a class="arrow next" href="/contact/notice?page=${vo.nextPage}">&gt;</a>
+				<a class="arrow next" href="${pageContext.request.contextPath}/contact/notice?page=${vo.nextPage}">&gt;</a>
 				</c:if>
 			</div>
 		</div>

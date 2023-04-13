@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-	<link rel="stylesheet" type="text/css" href="/static/css/orderFinish.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/orderFinish.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
         <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

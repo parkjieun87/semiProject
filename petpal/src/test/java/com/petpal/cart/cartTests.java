@@ -33,7 +33,7 @@ public class cartTests {
 //		int result = 0;
 //		result = cartDao.addCart(cart);
 //		
-//		System.out.println("결과 : "+result);
+//		//System.out.println("결과 : "+result);
 //	}
 	
 //	@Test
@@ -61,9 +61,9 @@ public class cartTests {
 //		
 //		List<CartDto> list = cartDao.getCart(memberId);
 //		for(CartDto cart : list) {
-//			System.out.println(cart);
+//			//System.out.println(cart);
 //			cart.initSaleTotal();
-//			System.out.println("init cart : "+cart);
+//			//System.out.println("init cart : "+cart);
 //		}
 //	}
 	
@@ -77,7 +77,7 @@ public class cartTests {
 //		cart.setProductNo(productNo);
 //		
 //		CartDto resultCart = cartDao.checkCart(cart);
-//		System.out.println("결과 : "+resultCart);
+//		//System.out.println("결과 : "+resultCart);
 //	}
 	
 	@Test
@@ -95,7 +95,7 @@ public class cartTests {
 		// when
 		int result = cartService.addCart(dto);
 		// then
-		System.out.println("result : "+result);
+		//System.out.println("result : "+result);
 	}
 	
 

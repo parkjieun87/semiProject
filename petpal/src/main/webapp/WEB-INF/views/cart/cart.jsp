@@ -3,11 +3,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<link rel="stylesheet" type="text/css" href="/static/css/load.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/load.css">
 
-    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
     <style>
@@ -299,7 +299,7 @@ td{
    
 
 
-    <script src="/static/js/cart.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/cart.js"></script>
     
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -534,11 +534,11 @@ td{
                   
                   
                     <div class="item-info" style="display:flex;">                     
-                          <a href="/product/detail?productNo=${list.productNo}" class="photo">
-                          <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
+                          <a href="${pageContext.request.contextPath}/product/detail?productNo=${list.productNo}" class="photo">
+                          <img src="${pageContext.request.contextPath}/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                           
                          </a>
-                 <span id="spans"> <a href="/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
+                 <span id="spans"> <a href="${pageContext.request.contextPath}/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
                       </div>
                  </td>
                      

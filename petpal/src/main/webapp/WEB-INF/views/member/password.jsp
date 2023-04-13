@@ -15,7 +15,7 @@
 
 
 <div class ="container-800">
-<img src = "/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
+<img src = "${pageContext.request.contextPath}/static/image/petpal.png" width = "200px" height = "200px" padding="10em" class="logo">
 <form action="find" method="post" align="center" class="mt-10">
 	<input type="password" name="currentPw" class="form-input w-50" placeholder="현재 비밀번호를 적으세요" required><br><br>
 	<input type="password" name="changePw" class="form-input w-50"  placeholder="변경할 비밀번호를 적으세요" required><br><br>
