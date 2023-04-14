@@ -3,11 +3,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<link rel="stylesheet" type="text/css" href="/static/css/load.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/load.css">
 
-    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
     <style>
@@ -405,7 +405,7 @@ td{
            	 const productNo = $(this).parent("td").find("#productNo").val();
            	 
            	let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
-				console.log(popUrl);
+				//console.log(popUrl);
 				let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
 				
 				window.open(popUrl,"리뷰 쓰기",popOption);					
@@ -423,7 +423,7 @@ td{
        					alert("이미 등록된 리뷰가 존재 합니다.")
        				} else{
        					let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
-       					console.log(popUrl);
+       					//console.log(popUrl);
        					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
        					
        					window.open(popUrl,"리뷰 쓰기",popOption);							

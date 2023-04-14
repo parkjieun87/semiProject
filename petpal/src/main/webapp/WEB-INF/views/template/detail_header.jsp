@@ -8,19 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈페이지 레이아웃</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/load.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/load.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="/static/css/detail_header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/detail_header.css">
     
     <style>
 
@@ -36,7 +36,7 @@
         <div class="wrap container-1200">
                <div class="img-search ms-140">
                <a href="http://localhost:8080/">
-                <img src="/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
+                <img src="${pageContext.request.contextPath}/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
                 
                 <div id="search">
