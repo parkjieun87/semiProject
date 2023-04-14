@@ -136,8 +136,8 @@
 </head>
 <body>
 	<div>
-		<a href="/shop/goods/goods_list?categoryCode=1010"></a>
-		<a href="/shop/goods/goods_list?categoryCode=3010"></a>
+		<a href="${pageContext.request.contextPath}/shop/goods/goods_list?categoryCode=1010"></a>
+		<a href="${pageContext.request.contextPath}/shop/goods/goods_list?categoryCode=3010"></a>
 	</div>
             <div class="row ms-70"> 
                 <!-- Slider main container -->
@@ -169,8 +169,8 @@
             <c:forEach items="${list}" var="list">
             
                 <div class="me-20 flex-box item ">
-                <a href="/product/detail?productNo=${list.productNo}">
-                    <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
+                <a href="${pageContext.request.contextPath}/product/detail?productNo=${list.productNo}">
+                    <img src="${pageContext.request.contextPath}/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
                 </a>               
                 <span style="color: red">${list.productDiscount}%
@@ -192,8 +192,8 @@
             <div class="row flex-box ms-80">
             <c:forEach items="${list2}" var="list">
                 <div class="me-20 flex-box item ">
-                 <a href="/product/detail?productNo=${list.productNo}">
-                     <img src="/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
+                 <a href="${pageContext.request.contextPath}/product/detail?productNo=${list.productNo}">
+                     <img src="${pageContext.request.contextPath}/attachment/download?attachmentNo=${list.attachmentNo}" id="box">
                     <span>${list.productName}</span>
                 </a>
                 <span style="color: red">${list.productDiscount}%

@@ -19,7 +19,7 @@
 <div id="pay-step" class="order">
         <div class="wrap">
             <h1 id="logo">
-                <a href="/">펫팔</a>
+                <a href="${pageContext.request.contextPath}/">펫팔</a>
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
@@ -97,7 +97,7 @@
                    
                     
                     <div class="btn-area">
-                        <a href="/"><button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;">
+                        <a href="${pageContext.request.contextPath}/"><button class="btn-type size04 size05 ico-ok" id="submitSettleBtn" style="border-radius: 3px;">
                             <b>홈으로가기</b>
                         </button>
                         </a>

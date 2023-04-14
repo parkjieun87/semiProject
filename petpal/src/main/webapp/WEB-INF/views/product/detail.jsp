@@ -419,7 +419,7 @@ font-weight:700;
     <script type="text/javascript">
         $(function(){
            
-           
+        	const contextPath= "${pageContext.request.contextPath}";
            
            var inputCount = 1;
            var memberId = "${memberId}";
@@ -482,7 +482,7 @@ font-weight:700;
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();
                form.productCount = productCnt;
                $.ajax({
-                  url : "/cart/add",
+                  url : contextPath+"/cart/add",
                   type : "POST",
                   data : form,
                   success : function(result){
@@ -510,14 +510,14 @@ font-weight:700;
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();      
                form.productCount = productCnt;
                $.ajax({
-                  url : "/cart/add",
+                  url : contextPath+"/cart/add",
                   type : "POST",
                   data : form,
                   success : function(result){
                 	 //console.log("result", result);
                 	
                      //cartAlert(result);
-                	 location.href="/cart";
+                	 location.href="${pageContext.request.contextPath}/cart";
                   },
                   error : function(result){
                 	  alert("장바구니에 이미 추가되어져 있습니다.");
@@ -553,14 +553,10 @@ font-weight:700;
        	
          // 장바구니로 가기 버튼
        	$(".cartView_btn").click(function(){
-       		location.href = "/cart";
+       		location.href = "${pageContext.request.contextPath}/cart";
        	});
          
-        // 바로구매 버튼
-        //$("#insert_direct").click(function(){
-        //	location.href="/cart";
-        //});
-         
+  
          
    
          
@@ -629,7 +625,7 @@ font-weight:700;
                             <ul id="photo_dumy">
                                 <li class="smallImg">               
                                     <button class="active thumb-detail-list">
-                                        <img id="btn_img" src="${productDto.imageURL}" style="height: 60px; width: 60px;" alt="이동장가방사진">
+                                        <img id="btn_img" src="${pageContext.request.contextPath}/${productDto.imageURL}" style="height: 60px; width: 60px;" alt="이동장가방사진">
 <!--                                         <img id="btn_img" src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
   -->                                  
                                     </button>

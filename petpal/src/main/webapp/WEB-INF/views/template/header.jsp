@@ -26,6 +26,9 @@
     
    <!-- jQuery Cdn -->
    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script>
+   	const contextPath= "${pageContext.request.contextPath}";
+   </script>
    </head>
    
 <main class="container-1200">
@@ -34,7 +37,7 @@
     <div id="header-area1">
         <div class="wrap container-1200">
                <div class="img-search ms-140">
-               <a href="http://localhost:8080/">
+               <a href="${pageContext.request.contextPath}/">
                 <img src="${pageContext.request.contextPath}/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
                 

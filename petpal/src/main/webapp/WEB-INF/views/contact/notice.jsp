@@ -72,7 +72,7 @@
                 	 <tr>
                         <td class="text-center">${list.boardNo}</td>
                         <td class="text-left">
-                        <a href="noticeDetail?boardNo=${list.boardNo}">${list.boardTitle}</a></td>
+                        <a href="${pageContext.request.contextPath}/noticeDetail?boardNo=${list.boardNo}">${list.boardTitle}</a></td>
                         <td class="text-center">${list.boardDate}</td>
                     </tr>
                 	</c:forEach>                           
@@ -94,11 +94,7 @@
 				</c:if>
 			</div>
 		</div>
-		<!-- 
-		<div class="row ">
-			<a class="form-btn positive w-100" href="/contact/notice/write">글쓰기</a>
-		</div>
-		 -->
+	
     </div>
 </body>
 </html>

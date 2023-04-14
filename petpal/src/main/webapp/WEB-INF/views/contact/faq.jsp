@@ -32,19 +32,19 @@
 	border:1px solid #ccc;
 }
 .page_nation .pprev {
-	background:#f8f8f8 url('/static/image/page_pprev.png') no-repeat center center;
+	background:#f8f8f8 url('${pageContext.request.contextPath}/static/image/page_pprev.png') no-repeat center center;
 	margin-left:0;
 }
 .page_nation .prev {
-	background:#f8f8f8 url('/static/image/page_prev.png') no-repeat center center;
+	background:#f8f8f8 url('${pageContext.request.contextPath}/static/image/page_prev.png') no-repeat center center;
 	margin-right:7px;
 }
 .page_nation .next {
-	background:#f8f8f8 url('/static/image/page_next.png') no-repeat center center;
+	background:#f8f8f8 url('${pageContext.request.contextPath}/static/image/page_next.png') no-repeat center center;
 	margin-left:7px;
 }
 .page_nation .nnext {
-	background:#f8f8f8 url('/static/image/page_nnext.png') no-repeat center center;
+	background:#f8f8f8 url('${pageContext.request.contextPath}/static/image/page_nnext.png') no-repeat center center;
 	margin-right:0;
 }
 .page_nation a.active {
@@ -150,7 +150,7 @@
             	<c:forEach items="${pageInfo}" var="list">
             		<ul class="ans-list-ul">
                     <li>
-                        <a href="" class="title-div">
+                        <a href="${pageContext.request.contextPath}/" class="title-div">
                             <div class="subject">
                                 <span class="category">${list.faqCategoryName}</span>
                                 <span class="classify">Q</span>

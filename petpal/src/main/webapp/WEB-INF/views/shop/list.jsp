@@ -163,9 +163,7 @@ label:focus {
 	
 </script>
 <script type="text/template" id="qq">
-        <h2 style="width:200px">
-            <a href="?category=001001" data="001001">사료</a>
-        </h2>
+      
     </script>
 </head>
 
@@ -178,17 +176,17 @@ label:focus {
 						<ul>
 							<li id="li1">
 								<h2 style="width: 200px">
-									<a href="?category="+=param1 data="001001">사료</a>
+									<a href="${pageContext.request.contextPath}/?category="+=param1 data="001001">사료</a>
 								</h2>
 								<ul>
 									<li style="line-height: 24px"><a
-										href="/shop/goods/goods_list?category=001001"
+										href="${pageContext.request.contextPath}/shop/goods/goods_list?category=001001"
 										class="cate-link active" data="001001" id="a1"> "전체" <span
 											class="ic-num">(783)</span>
 									</a></li>
 								</ul>
 								<ul>
-									<li><a href="/shop/goods/goods_list?category=001001001"
+									<li><a href="${pageContext.request.contextPath}/shop/goods/goods_list?category=001001001"
 										class="cate-link" data="001001001" id="a2"> "전연령용" <em
 											class="ic-num">(401)</em>
 									</a></li>
@@ -269,7 +267,7 @@ label:focus {
 									<c:forEach var="productDto" items="${list}">
 										<tr>
 											<td><a
-												href="/product/detail?productNo=${productDto.productNo}">${productDto.productName}</td>
+												href="${pageContext.request.contextPath}/product/detail?productNo=${productDto.productNo}">${productDto.productName}</td>
 											<td>${productDto.productDiscount}</td>
 											<td>${productDto.productPrice}</td>
 											<td><img src="${productDto.imageURL}"></td>

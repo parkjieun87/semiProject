@@ -74,14 +74,14 @@ ul{
 					<tr>
                         <td class="text-center">이전글</td>
                         <td class="text-left">
-                        <a href="noticeDetail?boardNo=${pageInfo.boardNo-1}">${pageInfo.boardTitle}</a></td>
+                        <a href="${pageContext.request.contextPath}/noticeDetail?boardNo=${pageInfo.boardNo-1}">${pageInfo.boardTitle}</a></td>
                         <td class="text-center">${pageInfo.boardDate}</td>
                     </tr>
                     
                     <tr>
                         <td class="text-center">다음글</td>
                         <td class="text-left">
-                        <a href="noticeDetail?boardNo=${pageInfo.boardNo+1}">${pageInfo.boardTitle}</a></td>
+                        <a href="${pageContext.request.contextPath}/noticeDetail?boardNo=${pageInfo.boardNo+1}">${pageInfo.boardTitle}</a></td>
                         <td class="text-center">${pageInfo.boardDate}</td>
                     </tr>
                                          

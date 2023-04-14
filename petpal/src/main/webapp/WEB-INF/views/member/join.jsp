@@ -31,8 +31,7 @@
 <!-- 다음 우편 API 사용을 위한 CDN -->
 <script src="https://cdn.jsdelivr.net/gh/hiphop5782/daum-post-api@latest/find-address.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- <script src="/static/js/find-address.min.js"></script> -->
-<script src="/static/js/member-join.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/member-join.js"></script>
 
 <form class="join-form" action="join" method="post" enctype="multipart/form-data" autocomplete="off">
 
@@ -131,7 +130,7 @@ $("#phoneChk").click(function(){
    
    $.ajax({
         type:"GET",
-        url:"/member/phoneCheck?phone=" + phone,
+        url:contextPath+"/member/phoneCheck?phone=" + phone,
         cache : false,
         success:function(data){
           

@@ -31,8 +31,8 @@
        
        <!-- 정렬  -->
 	   	<div class="row ms-10">
-			<a class="link" href="list?">최신 가입일순</a>
-			<a class="link" href="list?sort=member_regdate asc">오래된순</a>
+			<a class="link" href="${pageContext.request.contextPath}/list?">최신 가입일순</a>
+			<a class="link" href="${pageContext.request.contextPath}/list?sort=member_regdate asc">오래된순</a>
 		</div>
        
     	<!-- 상품 목록 테이블 -->
@@ -66,8 +66,8 @@
                   				<c:if test="${list.adminCk == 0 }"> 일반회원 </c:if>
 	                       	</td>
 	                        <td>
-	                        	<a class="link" href="detail?memberId=${list.memberId}">상세</a>
-	                        	<a class="link" href="edit?memberId=${list.memberId}">수정</a>
+	                        	<a class="link" href="${pageContext.request.contextPath}/detail?memberId=${list.memberId}">상세</a>
+	                        	<a class="link" href="${pageContext.request.contextPath}/edit?memberId=${list.memberId}">수정</a>
 	                        	<a class="link del-btn" data-memberid="${list.memberId}" data-page="${vo.page}">탈퇴</a>
 	                        </td>
 	                    </tr>
@@ -94,13 +94,13 @@
 		<div class="page_wrap">
 			<div class="page_nation">
 				<c:if test="${vo.startBlock != 1}">
-				<a class="arrow prev" href="list?page=${vo.prevPage}">&lt;</a>
+				<a class="arrow prev" href="${pageContext.request.contextPath}/list?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="list?page=${i}&sort=${sort}">${i}</a>
+						<a href="${pageContext.request.contextPath}/list?page=${i}&sort=${sort}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
-				<a class="arrow next" href="list?page=${vo.nextPage}">&gt;</a>
+				<a class="arrow next" href="${pageContext.request.contextPath}/list?page=${vo.nextPage}">&gt;</a>
 				</c:if>
 			</div>
 		</div>

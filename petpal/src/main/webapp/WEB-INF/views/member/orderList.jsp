@@ -289,7 +289,7 @@ td{
    
 
 
-    <script src="/static/js/cart.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/cart.js"></script>
     
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -404,32 +404,11 @@ td{
            	 const memberId = '${memberId}';
            	 const productNo = $(this).parent("td").find("#productNo").val();
            	 
-           	let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
-				//console.log(popUrl);
+           	let popUrl = contextPath+"/member/replyEnroll/" + memberId + "?productNo=" + productNo;
 				let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
 				
 				window.open(popUrl,"리뷰 쓰기",popOption);					
            	 
-				/*
-           	 $.ajax({
-           		data : {
-           			productNo : productNo,
-           			memberId : memberId
-           		},
-           		url : "/reply/check",
-           		type : "POST",
-           		success : function(result){
-           			if(result === '1'){
-       					alert("이미 등록된 리뷰가 존재 합니다.")
-       				} else{
-       					let popUrl = "/member/replyEnroll/" + memberId + "?productNo=" + productNo;
-       					//console.log(popUrl);
-       					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
-       					
-       					window.open(popUrl,"리뷰 쓰기",popOption);							
-       				}
-           		}
-           	 });*/
          
    	 
             });
@@ -476,7 +455,7 @@ td{
               			<td colspan="6" style="text-align: center;">
               				<h2>주문한 제품이 없습니다.</h2>
               				<br>
-              				<a href="/" class="form-btn" style="border: 2px solid #b1b2ff;">계속 쇼핑하기</a>
+              				<a href="${pageContext.request.contextPath}/" class="form-btn" style="border: 2px solid #b1b2ff;">계속 쇼핑하기</a>
               			</td>
               		</tr>
               		
@@ -496,10 +475,10 @@ td{
                   
                   
                     <div class="item-info" style="display:flex;">                     
-                          <a href="/product/detail?productNo=${list.productNo}" class="photo">
-                          <img src="/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
+                          <a href="${pageContext.request.contextPath}/product/detail?productNo=${list.productNo}" class="photo">
+                          <img src="${pageContext.request.contextPath}/attachment/download?attachmentNo=${list.attachmentNo}" width="120" height="120">
                          </a>
-                 <span id="spans"> <a href="/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
+                 <span id="spans"> <a href="${pageContext.request.contextPath}/product/detail?productNo=${list.productNo}">${list.productName}</a></span>                             
                       </div>
                  </td>
                      

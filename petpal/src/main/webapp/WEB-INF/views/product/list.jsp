@@ -190,14 +190,14 @@ a:visited {
 
 										<ul>
 											<li style="line-height: 24px;"><a
-												href="?search_word=${parentName}" class="cate-link"> 전체
+												href="${pageContext.request.contextPath}/?search_word=${parentName}" class="cate-link"> 전체
 													<span class="ic-num">(${sum})</span>
 											</a></li>
 										</ul>
 										<ul>
 											<c:forEach var="cateList" items="${cateList}">
 												<li><a
-													href="?search_word=${parentName}&categoryCode=${cateList.categoryCode}&sort=${sort}"
+													href="${pageContext.request.contextPath}/?search_word=${parentName}&categoryCode=${cateList.categoryCode}&sort=${sort}"
 													data="${cateList.categoryCode}" class="cate-link">
 														${cateList.categoryName} <em class="ic-num">(${cateList.categoryCount})</em>
 												</a></li>
@@ -211,12 +211,12 @@ a:visited {
 								<ul>
 									<li>
 										<h2 id="tag" style="width: 200px;">
-											<a href="?parentCode=${parent}">${parentName}</a>
+											<a href="${pageContext.request.contextPath}/?parentCode=${parent}">${parentName}</a>
 										</h2>
 
 										<ul>
 											<li style="line-height: 24px;"><a
-												href="?parentCode=${parent}" class="cate-link"> 전체 <span
+												href="${pageContext.request.contextPath}/?parentCode=${parent}" class="cate-link"> 전체 <span
 													class="ic-num">(${sum})</span>
 											</a></li>
 										</ul>
@@ -254,7 +254,7 @@ a:visited {
 				<div id="contents" class="goods-wrap">
 					<div class="banner-area" style="border-radius: 10px;">
 						<div>
-							<a href="detail?productNo=286"> <img
+							<a href="${pageContext.request.contextPath}/detail?productNo=286"> <img
 								src="${pageContext.request.contextPath }/static/image/dogpang_banner.jpg"
 								style="border-radius: 10px;">
 							</a>
@@ -279,18 +279,18 @@ a:visited {
 								<div class="flex-item" style="max-width: 240px;">
 									<div class="flex-root">
 
-										<a href="detail?productNo=${productDto.productNo}"
+										<a href="${pageContext.request.contextPath}/product/detail?productNo=${productDto.productNo}"
 											class="flex-link">
 											<div class="flex-img">
 												<span
 													style="display: block; height: 0px; padding-top: 100%;"></span>
 												<div class="thumb_gray">
-													<img class="list-img-source" src="${productDto.imageURL}">
+													<img class="list-img-source" src="${pageContext.request.contextPath}${productDto.imageURL}">
 												</div>
 											</div>
 										</a>
 										<div class="flex-contents">
-											<a href="detail?productNo=${productDto.productNo}"
+											<a href="${pageContext.request.contextPath}/product/detail?productNo=${productDto.productNo}"
 												class="flex-link"> <span>${productDto.productName}</span>
 												<div style="margin-top: 0px">
 													<span id="discount"
@@ -363,8 +363,8 @@ a:visited {
 			href='https://www.dogpang.com/shop/service/term.php' target='_blank'>이용약관
 			|</a> <a href='https://www.dogpang.com/shop/service/private.php'
 			target='_blank'>개인정보 처리방침 |</a> <a
-			href='http://localhost:8080/contact/notice' target='_blank'>공지사항
-			|</a> <a href='http://localhost:8080/contact/notice/faqAll'
+			href='${pageContext.request.contextPath}/contact/notice' target='_blank'>공지사항
+			|</a> <a href='${pageContext.request.contextPath}/contact/notice/faqAll'
 			target='_blank'>자주묻는 질문 |</a>
 
 	</p>

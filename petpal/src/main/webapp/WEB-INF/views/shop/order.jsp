@@ -331,7 +331,7 @@
 <div class="container-1000" style="font-family: '카페24 써라운드 에어';">
     <div id="pay-step" class="order">
             <h1 id="logo">
-                <a href="/">펫팔</a>
+                <a href="${pageContext.request.contextPath}/">펫팔</a>
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500; margin-left:10px;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
@@ -367,7 +367,7 @@
                             <c:forEach items="${cartList}" var="list" varStatus="status">
                                 <div class="bundle-info__vendor-tiem-box">
                                     <div style="position: absolute;">
-                                        <img src="/attachment/download?attachmentNo=${list.attachmentNo}"
+                                        <img src="${pageContext.request.contextPath}/attachment/download?attachmentNo=${list.attachmentNo}"
                                          height="50px">
                                          
                                     </div>

@@ -33,10 +33,10 @@
        
         	<!-- 정렬  -->
     	<div class="row" style="margin:auto;">
-			<a class="link" href="list">최신순</a>
-			<a class="link" href="list?sort=order_date asc">오래된순</a>
-			<a class="link" href="list?sort=total desc">높은 주문액순</a>
-			<a class="link" href="list?sort=total asc">낮은 주문액순</a>
+			<a class="link" href="${pageContext.request.contextPath}/list">최신순</a>
+			<a class="link" href="${pageContext.request.contextPath}/list?sort=order_date asc">오래된순</a>
+			<a class="link" href="${pageContext.request.contextPath}/list?sort=total desc">높은 주문액순</a>
+			<a class="link" href="${pageContext.request.contextPath}/list?sort=total asc">낮은 주문액순</a>
 		</div>
 		
     	<!-- 주문 목록 테이블 -->
@@ -108,13 +108,13 @@
 		<div class="page_wrap">
 			<div class="page_nation">
 				<c:if test="${vo.startBlock != 1}">
-				<a class="arrow prev" href="list?page=${vo.prevPage}">&lt;</a>
+				<a class="arrow prev" href="${pageContext.request.contextPath}/list?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="list?page=${i}&keyword=${keyword}&sort=${sort}">${i}</a>
+						<a href="${pageContext.request.contextPath}/list?page=${i}&keyword=${keyword}&sort=${sort}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
-				<a class="arrow next" href="list?page=${vo.nextPage}">&gt;</a>
+				<a class="arrow next" href="${pageContext.request.contextPath}/list?page=${vo.nextPage}">&gt;</a>
 				</c:if>
 			</div>
 		</div>

@@ -7,7 +7,7 @@
 	<div class="row center">
 		<h1>일회용 비밀번호 설정 완료</h1>
 		<h2>${memberPw} 로 변경되었습니다</h2>
-		<a class="link" href="list">돌아가기</a>
+		<a class="link" href="${pageContext.request.contextPath}/list">돌아가기</a>
 	</div>
 </div>
 

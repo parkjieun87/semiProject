@@ -27,8 +27,8 @@
 	<h2> </h2>
 </div>
 <div class="row center">	
-	<a href="/"><button class="form-btn positive w-70">홈으로</button></a>
-	<a href="mypage"><button class="form-btn neutral w-70">마이 페이지</button></a>
+	<a href="${pageContext.request.contextPath}/"><button class="form-btn positive w-70">홈으로</button></a>
+	<a href="${pageContext.request.contextPath}/mypage"><button class="form-btn neutral w-70">마이 페이지</button></a>
 </div>
 </div>
 

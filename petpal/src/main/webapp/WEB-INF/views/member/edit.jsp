@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
  <style>
    
    .logo 
@@ -105,7 +105,7 @@ $("#phoneChk").click(function(){
    
    $.ajax({
         type:"GET",
-        url:"/member/phoneCheck?phone=" + phone,
+        url:contextPath+"/member/phoneCheck?phone=" + phone,
         cache : false,
         success:function(data){
           
@@ -131,4 +131,4 @@ $("#phoneChk").click(function(){
 });
 </script>
  
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

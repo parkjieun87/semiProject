@@ -392,7 +392,7 @@ td{
                
                $.ajax({
                   type:"POST",
-                  url : "/cart/update",
+                  url : contextPath+"/cart/update",
                   data : {cartNo : cartNo, productCount : quantity},
                   dataType:"json",
                   success:function(result){
@@ -433,7 +433,7 @@ td{
                
                $.ajax({
                   method:"POST",
-                  url : "/cart/update",
+                  url : contextPath+"/cart/update",
                   data : {cartNo : cartNo, productCount : quantity},
                   dataType:"json",
                   success:function(result){
@@ -463,13 +463,13 @@ td{
             
             // 주문하기 버튼
             $(".order_btn").click(function(){
-            	location.href="/shop/order";
+            	location.href="${pageContext.request.contextPath}/shop/order";
             });
             
             
             // 계속 쇼핑하기 버튼
             $(".form-btn").click(function(){
-            	location.href="/";
+            	location.href="${pageContext.request.contextPath}/";
             });
             
         

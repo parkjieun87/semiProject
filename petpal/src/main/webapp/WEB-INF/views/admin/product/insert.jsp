@@ -150,7 +150,7 @@
 		<input type="file" name="attach">
 		<div class="row right">
 			<button type="submit" class="insert-btn">등록</button>
-			<a class="link" href="list">목록</a>
+			<a class="link" href="${pageContext.request.contextPath}/list">목록</a>
 		</div>
 	</form>
 	

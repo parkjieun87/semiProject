@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
     
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
 
@@ -27,7 +27,7 @@
 	<input type="password" name="memberPw" class="form-input w-50"  required placeholder="비밀번호"><br><br>
 	<button class="form-btn positive w-50" style="margin-bottom : 10px;">로그인</button>
 	
-	<button class= "form-btn neutral w-50" onclick="location.href='find'">아이디가 기억나지 않습니다</button>
+	<button class= "form-btn neutral w-50" onclick="${pageContext.request.contextPath}/location.href='find'">아이디가 기억나지 않습니다</button>
 	
 </form>
 </div>
@@ -47,4 +47,4 @@
  <c:if test="${param.mode == 'error'}">
  	<h3 class="center" style="color:red; font-weight:1100;"> 로그인 정보가 일치하지 않습니다.</h3>
 </c:if>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
