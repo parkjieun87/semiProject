@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1>입력완료</h1>
-	<a href="${pageContext.request.contextPath}/list">목록으로</a>
+	<a href="${pageContext.request.contextPath}/admin/product/list">목록으로</a>
 </body>
 </html>

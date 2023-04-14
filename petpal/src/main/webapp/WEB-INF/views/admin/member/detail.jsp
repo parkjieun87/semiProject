@@ -85,9 +85,9 @@
 	</div>
 	<div class="row right">
 		<!-- 회원 관리 메뉴 -->
-		<a class="link" href="${pageContext.request.contextPath}/edit?memberId=${memberDto.memberId}">개인정보 변경</a>
+		<a class="link" href="${pageContext.request.contextPath}/admin/member/edit?memberId=${memberDto.memberId}">개인정보 변경</a>
 		<a class="link del-btn" data-memberid="${memberDto.memberId}">탈퇴</a>
-		<a class="link" href="${pageContext.request.contextPath}/list">목록</a>
+		<a class="link" href="${pageContext.request.contextPath}/admin/member/list">목록</a>
 	</div>
 
 </div>

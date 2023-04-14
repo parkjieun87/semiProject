@@ -34,10 +34,10 @@
 	
 	<!-- 정렬  -->
    	<div class="row ms-10">
-		<a class="link" href="${pageContext.request.contextPath}/list?">최신 등록일순</a>
-		<a class="link" href="${pageContext.request.contextPath}/list?sort=product_regdate asc">오래된순</a>
-		<a class="link" href="${pageContext.request.contextPath}/list?sort=product_price desc">높은 가격순</a>
-		<a class="link" href="${pageContext.request.contextPath}/list?sort=product_price asc">낮은 가격순</a>
+		<a class="link" href="${pageContext.request.contextPath}/admin/product/list?">최신 등록일순</a>
+		<a class="link" href="${pageContext.request.contextPath}/admin/product/list?sort=product_regdate asc">오래된순</a>
+		<a class="link" href="${pageContext.request.contextPath}/admin/product/list?sort=product_price desc">높은 가격순</a>
+		<a class="link" href="${pageContext.request.contextPath}/admin/product/list?sort=product_price asc">낮은 가격순</a>
 	</div>
 		
 		
@@ -80,7 +80,7 @@
 	                        <td>${list.productPrice}원</td>
 	                        <td>${list.productStock}개</td>
 	                        <td>
-	                        	<a class="link" href="${pageContext.request.contextPath}/detail?productNo=${list.productNo}">
+	                        	<a class="link" href="${pageContext.request.contextPath}/admin/product/detail?productNo=${list.productNo}">
 	                        		${list.productName} 자세히보기
 	                        	</a>
 	                        </td>
@@ -88,7 +88,7 @@
 	                        <td>${list.productDiscount}%</td>
 	                        <td>${list.productViews}</td>
 	                        <td>
-	                        	<a class="link" href="${pageContext.request.contextPath}/edit?productNo=${list.productNo}">수정</a>
+	                        	<a class="link" href="${pageContext.request.contextPath}/admin/product/edit?productNo=${list.productNo}">수정</a>
 	                        	<a class="link del-btn" data-productno="${list.productNo }" data-page="${vo.page }">삭제</a>
 	                        </td>
 	                    </tr>
@@ -115,13 +115,13 @@
 		<div class="page_wrap">
 			<div class="page_nation">
 				<c:if test="${vo.startBlock != 1}">
-				<a class="arrow prev" href="${pageContext.request.contextPath}/list?page=${vo.prevPage}">&lt;</a>
+				<a class="arrow prev" href="${pageContext.request.contextPath}/admin/product/list?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="${pageContext.request.contextPath}/list?page=${i}&sort=${sort}">${i}</a>
+						<a href="${pageContext.request.contextPath}/admin/product/list?page=${i}&sort=${sort}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
-				<a class="arrow next" href="${pageContext.request.contextPath}/list?page=${vo.nextPage}">&gt;</a>
+				<a class="arrow next" href="${pageContext.request.contextPath}/admin/product/list?page=${vo.nextPage}">&gt;</a>
 				</c:if>
 			</div>
 		</div>

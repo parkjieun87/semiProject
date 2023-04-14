@@ -69,6 +69,8 @@ a:visited {
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
     	$(function () {
+    		const contextPath= "${pageContext.request.contextPath}";
+    		
     			$('.linkplus').click(function(e){
     				e.preventDefault();
     				// 새로 추가할 파라미터 이름과 값
@@ -162,7 +164,7 @@ a:visited {
 
     				// URL에 파라미터를 다시 붙여서 새로운 URL을 생성합니다.
     				if(!paramsArray.length == 0) var newUrl = url.split("?")[0] + "?" + paramsArray.join("&");
-    				else var newUrl = new URL('http://localhost:8080');			
+    				else var newUrl = new URL('http://localhost:80/home');			
     				// 새로운 URL로 이동합니다.
     				window.location.href = newUrl;
         			

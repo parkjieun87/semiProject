@@ -561,14 +561,14 @@ td{
                 
                                     </div>  
                                     <!-- 수량 조정 form -->
-                                    <form action="/cart/update" method="post" class="quantity_update_form">
+                                    <form action="${pageContext.request.contextPath}/cart/update" method="post" class="quantity_update_form">
                                        <input type="hidden" name="cartNo" class="update_cartNo">
                                        <input type="hidden" name="productCount" class="update_productCount">
                                        <input type="hidden" name="memberId" value="${memberId}">
                                     </form>   
                                     
                                     <!-- 삭제 form -->
-                                    <form action="/cart/delete" method="post" class="delete_form">
+                                    <form action="${pageContext.request.contextPath}/cart/delete" method="post" class="delete_form">
                                        <input type="hidden" name="cartNo" class="delete_cartNo">
                                        <input type="hidden" name="memberId" value="${memberId}">
                                     </form>        
