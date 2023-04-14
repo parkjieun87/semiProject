@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/static/css/commons.css">
-<link rel="stylesheet" href="/static/css/contact/notice.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/commons.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/contact/notice.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style>
 .inner{
@@ -91,7 +91,7 @@ ul{
         
         
         <div class="row center">
-        	<a class="form-btn btn-black" href="/contact/notice">목록</a>
+        	<a class="form-btn btn-black" href="${pageContext.request.contextPath}/contact/notice">목록</a>
         </div>
 	</div>
 </body>

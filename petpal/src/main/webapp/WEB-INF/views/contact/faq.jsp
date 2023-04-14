@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/css/contact/faq.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/contact/faq.css">
  <style>
  .page_wrap {
 	text-align:center;
@@ -129,17 +129,17 @@
                 <ul class="ul">
                
                     <div class="search btn">
-                        <li><a href="/contact/notice/faqAll">전체보기</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact/notice/faqAll">전체보기</a></li>
                     </div>
                     <div class="search btn">
-                        <li><a href="/contact/notice/faq?faqCategory=2">주문/결제/배송</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact/notice/faq?faqCategory=2">주문/결제/배송</a></li>
                     </div>
                     
                     <div class="search btn">
-                        <li><a href="/contact/notice/faq?faqCategory=1">회원가입/정보</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact/notice/faq?faqCategory=1">회원가입/정보</a></li>
                     </div>
                     <div class="search btn">
-                        <li><a href="/contact/notice/faq?faqCategory=3">기타</a></li>
+                        <li><a href="${pageContext.request.contextPath}/contact/notice/faq?faqCategory=3">기타</a></li>
                     </div>
                 </ul>
             </div>
@@ -183,13 +183,13 @@
 		<div class="page_wrap">
 			<div class="page_nation">
 				<c:if test="${vo.startBlock != 1}">
-				<a class="arrow prev" href="/contact/notice/faqAll?page=${vo.prevPage}">&lt;</a>
+				<a class="arrow prev" href="${pageContext.request.contextPath}/contact/notice/faqAll?page=${vo.prevPage}">&lt;</a>
 				</c:if>
 					<c:forEach var="i" begin="${vo.startBlock}" end="${vo.finishBlock}">
-						<a href="/contact/notice/faqAll?page=${i}">${i}</a>
+						<a href="${pageContext.request.contextPath}/contact/notice/faqAll?page=${i}">${i}</a>
 					</c:forEach>
 				<c:if test="${vo.page != vo.totalPage}">
-				<a class="arrow next" href="/contact/notice/faqAll?page=${vo.nextPage}">&gt;</a>
+				<a class="arrow next" href="${pageContext.request.contextPath}/contact/notice/faqAll?page=${vo.nextPage}">&gt;</a>
 				</c:if>
 			</div>
 		</div> 

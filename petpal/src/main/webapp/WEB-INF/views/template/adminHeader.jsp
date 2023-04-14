@@ -8,19 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetPal 관리자 페이지</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/commons.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/admin.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/admin.css">
 	
 	<!-- favicon 설정 -->
-	<link rel="icon" type="image/x-icon" sizes="16x16" href="${pageContext.request.contextPath }/static/favicon-16x16.png">
+	<link rel="icon" type="image/x-icon" sizes="16x16" href="${pageContext.request.contextPath}/static/favicon-16x16.png">
 	
 	 <!-- favicon 설정 -->
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <!-- jQuery Cdn -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	
-	<!-- Javascript에서 절대겨롤를 사용하기 위한 꼼수
-		- JS는 절대경로란 개념ㅇ이 없으므로 JSP의 EL의 도움을 받아야 함
+	<!-- Javascript에서 절대경로를 사용하기 위한 꼼수
+		- JS는 절대경로란 개념이 없으므로 JSP의 EL의 도움을 받아야 함
 		- <script>는 분할해서 작성해도 결국 이어지는특징을 화용
 		- 모든 <script>의 가장 위에 다음과 같이 변수를 하나 선언
 		- const로 변수를 선언하면 자바의 final과 같이 불변처리가 됨

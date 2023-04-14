@@ -5,7 +5,7 @@
 
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/order.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/order.css">
 
    <!-- 결제 api -->
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
@@ -15,8 +15,8 @@
     <!-- jquery cdn -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     
-    <script src="/static/js/cart.js"></script>
-    <script src="/static/js/order.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/cart.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/order.js"></script>
    
     <!-- 우편cdn -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -546,7 +546,7 @@
                                     <div class="chk-wrap" style="margin-top: 3px; margin-left: 10px; font-size: 13px;">
                                         <input type="radio" id="payment-kakao" name="order-payment" value="KAKAO" style="display:none;"  checked="checked">
                                         <label for="payment-kakao"  class="kakaoBtn">카카오페이</label>
-                                        <img src="/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
+                                        <img src="${pageContext.request.contextPath}/static/image/kakaopay.png" style="height: 13px; border-radius: 10px 10px 10px 10px;" >
                                     </div>
 
                                     

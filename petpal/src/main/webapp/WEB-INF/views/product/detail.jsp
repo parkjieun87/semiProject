@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- <link rel="stylesheet" href="/static/css/contact/reply.css">
- <link rel="stylesheet" href="/static/css/product/detail.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/contact/reply.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/product/detail.css">
 <jsp:include page="/WEB-INF/views/template/detail_header.jsp"></jsp:include>
 
  <style>
