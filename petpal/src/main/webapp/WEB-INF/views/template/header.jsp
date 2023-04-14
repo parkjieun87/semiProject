@@ -7,24 +7,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>Petpal</title>
-=======
     <title>홈페이지 레이아웃</title>
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/load.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
     
-    <!-- favicon 설정 -->
-    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/favicon.ico">
-
-	<!-- 
+   	<!-- 
 		Javascript에서 절대경로를 사용하기 위한 꼼수
 		- JS는 절대경로란 개념이 없으므로 JSP의 EL의 도움을 받아야 함
 		- <Script>는 분할해서 작성해도 결국 이어지는 특징을 활용
@@ -32,33 +25,12 @@
 		- const로 변수를 선언하면 자바의 final과 같이 불변처리가 됨
 	 -->
 
-<script>
-	const contextPath = "${pageContext.request.contextPath}";
-</script>
-=======
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
-=======
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
+	<script>
+		const contextPath = "${pageContext.request.contextPath}";
+	</script>
 
-=======
-    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/test.css">
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
-	
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal
-	<!--  favicon 설정 -->
+    <!--  favicon 설정 -->
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/favicon.ico">
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <!-- header css -->
@@ -89,11 +61,7 @@
     <div id="header-area1">
         <div class="wrap container-1200">
                <div class="img-search ms-140">
-<<<<<<< HEAD
-               <a href="/">
-=======
                <a href="http://localhost:8080/">
->>>>>>> branch 'master' of https://github.com/jaeyoung1375/petpal.git
                 <img src="${pageContext.request.contextPath}/static/image/petpal.png" width="170" height="150" style="padding-left: 20px; margin-right: 20px; margin-top: -70px; ;">
                 </a>
                 
