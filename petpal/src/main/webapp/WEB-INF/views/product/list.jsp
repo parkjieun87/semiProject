@@ -255,7 +255,7 @@ a:visited {
 					<div class="banner-area" style="border-radius: 10px;">
 						<div>
 							<a href="detail?productNo=286"> <img
-								src="/static/image/dogpang_banner.jpg"
+								src="${pageContext.request.contextPath }/static/image/dogpang_banner.jpg"
 								style="border-radius: 10px;">
 							</a>
 						</div>
@@ -344,14 +344,14 @@ a:visited {
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>홈페이지 레이아웃</title>
-<link rel="stylesheet" type="text/css" href="/static/css/load.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/load.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
-<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-<link rel="stylesheet" type="text/css" href="/static/css/layout.css">
-<link rel="stylesheet" type="text/css" href="/static/css/commons.css">
-<link rel="stylesheet" type="text/css" href="/static/css/test.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/reset.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/layout.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/commons.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/static/css/test.css">
 
 
 
@@ -370,7 +370,7 @@ a:visited {
 	</p>
 	<hr>
 	<nav style="display: flex" class="footMent">
-		<img src="/static/image/petpal.png" width="150px" height="150px"
+		<img src="${pageContext.request.contextPath }/static/image/petpal.png" width="150px" height="150px"
 			padding="5em" class="">
 		<p class="ms-40 mt-10">
 			<span>(주) 펫팔</span><span> | 대표이사 : C조 전원</span><br /> <span>주소
@@ -389,18 +389,18 @@ a:visited {
 		<ul class="ms-70 mt-40">
 
 			<a href="https://play.google.com/store/games?hl=ko"> <img
-				class="me-10" src="/static/image/googleplay.png" width="170px"
+				class="me-10" src="${pageContext.request.contextPath }/static/image/googleplay.png" width="170px"
 				height="50px" padding="10em">
 			</a>
 
 			<a class="footer-button" href="https://www.apple.com/kr/app-store/">
-				<img class="me-10" src="/static/image/appstore.png" width="170px"
+				<img class="me-10" src="${pageContext.request.contextPath }/static/image/appstore.png" width="170px"
 				height="50px" padding="10em">
 			</a>
 
 			<a class="footer-button"
 				href="https://www.instagram.com/newjeans_official/"> <img
-				class="me-10" src="/static/image/instagram.png" width="170px"
+				class="me-10" src="${pageContext.request.contextPath }/static/image/instagram.png" width="170px"
 				height="50px" padding="10em">
 			</a>
 		</ul>
