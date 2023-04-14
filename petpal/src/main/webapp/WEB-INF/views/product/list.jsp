@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
 
-<link rel="stylesheet" href="/static/css/product/list.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/product/list.css">
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 <style>
