@@ -51,7 +51,7 @@
 		</table>
 		<div class="row right">
 		<button class="edit-btn">수정</button>
-		<a class="link" href="list">목록</a>
+		<a class="link" href="${pageContext.request.contextPath}/list">목록</a>
 		</div>
 	</form>
 </div>
