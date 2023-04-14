@@ -25,11 +25,20 @@
 		- const로 변수를 선언하면 자바의 final과 같이 불변처리가 됨
 	 -->
 
-	<script>
-		const contextPath = "${pageContext.request.contextPath}";
-	</script>
 
-    <!--  favicon 설정 -->
+<script>
+	const contextPath = "${pageContext.request.contextPath}";
+</script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/test.css">
+
+	<!--  favicon 설정 -->
 	<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/static/favicon.ico">
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
