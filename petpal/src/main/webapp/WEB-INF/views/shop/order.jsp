@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/order.css">
 
+
    <!-- 결제 api -->
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -331,7 +332,8 @@
 <div class="container-1000" style="font-family: '카페24 써라운드 에어';">
     <div id="pay-step" class="order">
             <h1 id="logo">
-                <a href="${pageContext.request.contextPath}/">펫팔</a>
+            	
+                <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/static/image/petpallong.png" width="100"></a>
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500; margin-left:10px;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">
