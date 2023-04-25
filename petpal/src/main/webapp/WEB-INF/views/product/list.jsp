@@ -164,7 +164,7 @@ a:visited {
 
     				// URL에 파라미터를 다시 붙여서 새로운 URL을 생성합니다.
     				if(!paramsArray.length == 0) var newUrl = url.split("?")[0] + "?" + paramsArray.join("&");
-    				else var newUrl = new URL('https://sysout.co.kr/petpal');			
+    				else var newUrl = new URL('https://sysout.co.kr/petpal/');			
     				// 새로운 URL로 이동합니다.
     				window.location.href = newUrl;
         			
