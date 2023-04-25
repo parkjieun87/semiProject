@@ -90,7 +90,9 @@
 
 
 <c:if test="${param.mode == 'error'}">
-   <h2>비밀번호가 일치하지 않습니다</h2>
+   <script>
+      alert("비밀번호가 일치하지 않습니다");
+   </script>
 </c:if>
 
 </form>
