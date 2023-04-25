@@ -180,6 +180,7 @@ a:visited {
 <body>
 
 	<div id="middle" class="goods-list">
+		<h1> kkkk </h1>
 		<div class="wrap container-1200 ms-60">
 			<div id="contents-wrap">
 				<div id="lnb" class="item-option">
