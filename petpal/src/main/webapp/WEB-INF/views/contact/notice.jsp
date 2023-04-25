@@ -29,7 +29,7 @@
             
        </div>
        <div class="header_search ">
-            	<form action="/contact/notice" method="get">
+            	<form action="${pageContext.request.contextPath}/contact/notice" method="get">
 				<c:choose>
 					<c:when test="${vo.column == 'board_content'}">
 						<select name="column" class="keyword_search">
@@ -56,7 +56,7 @@
 				
                 <div class="top_search">
                     <input type="search" class="input_search" name="keyword" placeholder="검색어를 입력하세요.">
-                    <button type="button" class="btn_top_search" id="btnTopSearch"><i class="fas fa-search fa-lg"></i></button>   
+                    <button type="submit" class="btn_top_search" id="btnTopSearch"><i class="fas fa-search fa-lg"></i></button>   
                 </div>
                 </form>
             </div>

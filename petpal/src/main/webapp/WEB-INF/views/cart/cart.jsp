@@ -315,7 +315,7 @@ td{
               $(".totalKind_span").text(0);
               $(".order_btn").prop("disabled",true);
           }else{
-        	   $(".order_btn").prop("disabled",false	);
+        	   $(".order_btn").prop("disabled",false);
           }
  		
            
