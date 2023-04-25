@@ -101,7 +101,7 @@
               <a href="${pageContext.request.contextPath}/product/list?categoryCode=2012">껌/덴탈껌</a>
               <a href="${pageContext.request.contextPath}/product/list?categoryCode=2013">캔/파우치</a>
               <a href="${pageContext.request.contextPath}/product/list?categoryCode=2014">동결건조</a>
-              <a href="${pageContext.request.contextPath}/product/list?categoryCode=2015">비스켓/스낵</a>              
+             
             </ul>
           </li>
           <li>
@@ -112,7 +112,7 @@
               <a href="${pageContext.request.contextPath}/product/list?categoryCode=3012">라텍스장난감</a>
               <a href="${pageContext.request.contextPath}/product/list?categoryCode=3013">치실/로프</a>
               <a href="${pageContext.request.contextPath}/product/list?categoryCode=3014">터그놀이</a>
-              <a href="${pageContext.request.contextPath}/product/list?categoryCode=3015">노즈워크</a>
+
             </ul>
           </li>
           <li>
