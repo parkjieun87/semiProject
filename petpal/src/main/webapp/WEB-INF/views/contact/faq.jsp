@@ -121,7 +121,7 @@
        		<input type="hidden" name="column" value="${vo.getColumn()}">
             <div class="top_search">
                 <input type="search" class="input_search" name="keyword" placeholder="검색어를 입력하세요.">
-                <button type="button" class="btn_top_search" id="btnTopSearch"><i class="fas fa-search fa-lg"></i></button>   
+                <button type="submit" class="btn_top_search" id="btnTopSearch"><i class="fas fa-search fa-lg"></i></button>   
             </div>
             </form>
             <div>

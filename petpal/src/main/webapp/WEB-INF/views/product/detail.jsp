@@ -423,7 +423,7 @@ font-weight:700;
            
            var inputCount = 1;
            var memberId = "${memberId}";
-           
+           console.log(memberId);
         
             //마이너스 버튼
             $(".btn-minus").click(function(){
@@ -478,6 +478,10 @@ font-weight:700;
             }
             
             $("#insert_cart").click(function(){
+            	if(memberId == ""){
+            		alert("로그인이 필요합니다");
+            	}else{
+            		
             	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();
                form.productCount = productCnt;
@@ -503,12 +507,18 @@ font-weight:700;
                 	 
                   }
                });
+            	}
             });
             
             $("#insert_direct").click(function(){
             	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();      
                form.productCount = productCnt;
+               if(memberId == ""){
+            	   alert("로그인이 필요합니다.");
+               }else{
+            	   
+               
                $.ajax({
                   url : contextPath+"/cart/add",
                   type : "POST",
@@ -517,12 +527,16 @@ font-weight:700;
                 	 //console.log("result", result);
                 	
                      //cartAlert(result);
+                 
+                    	 
                 	 location.href="${pageContext.request.contextPath}/cart";
+                     
                   },
                   error : function(result){
                 	  alert("장바구니에 이미 추가되어져 있습니다.");
                   }
                });
+               }
             });
             
             
@@ -618,14 +632,14 @@ font-weight:700;
                 <div class="photo-sell-wrap">
                     <div class="photo-wrap">
                         <div class="photo-view" data="#" style="cursor: pointer;">
-                        <img src="${productDto.imageURL}" alt="이동장가방사진" id="photo_detail">
+                        <img src="${pageContext.request.contextPath}${productDto.imageURL}" alt="이동장가방사진" id="photo_detail">
                         <!-- <img src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg"  alt="이동장가방사진" id="photo_detail">
   -->                       </div>
                         <div class="photo-indicate">
                             <ul id="photo_dumy">
                                 <li class="smallImg">               
                                     <button class="active thumb-detail-list">
-                                        <img id="btn_img" src="${pageContext.request.contextPath}/${productDto.imageURL}" style="height: 60px; width: 60px;" alt="이동장가방사진">
+                                        <img id="btn_img" src="${pageContext.request.contextPath}${productDto.imageURL}" style="height: 60px; width: 60px;" alt="이동장가방사진">
 <!--                                         <img id="btn_img" src="https://cdnimg.dogpang.com/catpang/data/goods/4/3473_web_original_1536742300169762.jpg" style="height: 60px; width: 60px;" alt="이동장가방사진">
   -->                                  
                                     </button>
