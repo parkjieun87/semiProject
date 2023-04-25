@@ -85,7 +85,7 @@ sup{
     border: 1px solid #e0e0e0;
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-}
+} 
 .step-location ul
 .step02::after{
     background-position: -72px 33px;
