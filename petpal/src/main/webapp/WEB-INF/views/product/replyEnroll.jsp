@@ -11,7 +11,7 @@
   
   <script>
   	$(function(){
-  		
+  		const contextPath= "${pageContext.request.contextPath}";
   	
   	// 취소 버튼
   	$(".cancel_btn").click(function(e){
