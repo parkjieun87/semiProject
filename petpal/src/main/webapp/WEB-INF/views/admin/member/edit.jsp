@@ -12,7 +12,7 @@
 	<div class="row">
 		<form action="edit" method="post" class="edit_form">
 			<input type="hidden" name="memberId" value="${memberDto.memberId}">
-			<input type="hidden" name="memberRegdate" value="${memberDto.memberRegdate }">
+			
 			
 			<table class="table center ms-20">
 			<colgroup>
@@ -42,6 +42,12 @@
 					<th>이메일</th>
 					<td>
 						<input type="text" name="memberEmail" value="${memberDto.memberEmail }">
+					</td>
+				</tr>
+				<tr>
+					<th>가입일</th>
+					<td>
+						<input type="date" name="memberRegdate" value="${memberDto.memberRegdate }">
 					</td>
 				</tr>
 				<tr>

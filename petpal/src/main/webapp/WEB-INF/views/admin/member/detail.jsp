@@ -68,13 +68,6 @@
 					</td>				
 				</tr>
 				<tr>
-					<th>가입일</th>
-					<td colspan=3>
-						<fmt:formatDate value="${memberDto.memberRegdate}"
-										pattern="y년 M월 d일 E a h시 m분 s초"/> 
-					</td>				
-				</tr>
-				<tr>
 					<th >주소</th>
 					<td>[${memberDto.memberPost}]</td>		
 					<td scope="col">${memberDto.memberBasicAddr}</td>
