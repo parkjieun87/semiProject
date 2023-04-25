@@ -45,7 +45,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>등급<th>
+				<th>등급<th>
 					<td>
 					<c:choose>
 						<c:when test="${memberDto.adminCk == 0 }">
@@ -76,7 +76,7 @@
 			</table>
 			<div class="row right">
 				<button class="edit-btn">수정</button>
-				<a class="link" href="${pageContext.request.contextPath}/list">목록</a>
+				<a class="link" href="${pageContext.request.contextPath}/admin/member/list">목록</a>
 			</div>
 			</form>
 		</div>

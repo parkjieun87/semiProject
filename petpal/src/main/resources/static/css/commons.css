@@ -538,7 +538,6 @@
             padding-right: 20px;
         }
         input[name=memberId] {
-            background-image: url(/static/image/usericon01.jpg);
             background-size: auto 50%;
             background-repeat: no-repeat;
             /*
@@ -550,17 +549,14 @@
             background-position: left 5px center;
         
             /* 글자 입력란을 오른쪽으로 밀기 위해 여백을 부여 */
-            padding-left: 3em;
         }
 
         input[name=memberPw]{
-            background-image: url("/static/image/lockicon01.png");
             background-size: auto 50%;
             background-repeat: no-repeat;
 
             background-position: left 5px center;
 
-            padding-left: 3em;
         }
 
         /*
@@ -771,12 +767,10 @@
         }
         .valid {
             border-color: forestgreen;
-            background-image: url("/static/image/valid.png");
         }
 
         .invalid, .invalid2, .invalid3 {
             border-color: red;
-            background-image: url("/static/image/invalid.png");
         }
         
         .form-btn.positive[disabled],
