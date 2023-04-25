@@ -27,7 +27,7 @@ ol, ul, li {
 #pay-step .wrap #logo{position: relative; top: 0; left: 0; padding: 16px 0;}
 #logo sub{top: 0;left: 227px;font-size: 14px;white-space: nowrap;}
 #pay-step .wrap #logo sub{top: 33px;left: auto;right: 0;color: #9091E6;font-weight: 500;}
-#logo a{display: block;margin-left: 0px;margin-top: 8px;padding-top: 54px;width: 215px;height: 54px;background: url('${pageContext.request.contextPath}/static/image/petpallong.png') 0 0 no-repeat;-ms-background: url(${pageContext.request.contextPath}/static/image/petpallong.png) 0 0 no-repeat;background-size: 198px auto;overflow: hidden;}
+#logo a{display: table; overflow: hidden;}
 a{box-sizing: border-box;color: #333;text-decoration: none;cursor: pointer;-webkit-tap-highlight-color: transparent;}
 
 /* 장바구니,주문/결제,결제완료 */
@@ -53,11 +53,6 @@ a{box-sizing: border-box;color: #333;text-decoration: none;cursor: pointer;-webk
 .step-location ul li:first-child{
     padding-left: 60px;
     border-left: 1px solid #e0e0e0;
-    background-image: url('${pageContext.request.contextPath}/static/image/cart.png');
-    background-size: 100px auto;
-    background-repeat: no-repeat;
-    background-position-x: 160px;
-    background-position-y: 20px;
 }
 .step-location ul li sup{
     display: block;
@@ -74,7 +69,6 @@ sup{
     top: 0;
     right: 0;
     height: 98px;
-    background: #fff url('${pageContext.request.contextPath}/static/image/cart.png') 0 33px no-repeat;
 }
 .step-location ul li:first-child{
     padding-left: 20px;
@@ -106,7 +100,6 @@ li.active::before{
     background-color: #fff;
 }
 .step-location ul .step02{
-    background-image: url('${pageContext.request.contextPath}/static/image/dollar.png');
     background-size: 88px auto;
     background-repeat: no-repeat;
     background-position-x: 173px;
@@ -114,7 +107,6 @@ li.active::before{
     background-color: #c7d2ff;
 }
 .step-location ul .step03{
-    background-image: url('${pageContext.request.contextPath}/static/image/check.png');
     background-size: 88px auto;
     background-repeat: no-repeat;
     background-position-x: 172px;
@@ -412,8 +404,12 @@ input[type="checkbox"], input[type="radio"] {
     border-radius: 100px;
 }
 .chk-wrap input:checked+label:after {
-    border-color: #e699a2;
-    background-position: 0 bottom;
+ content: '\2714';  /* 체크표시 유니코드 사용 */
+  color: #e699a2;
+  text-shadow: 1px 1px #fff;
+  background: #ffffff;
+  border-color: #e699a2;;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
 }
 .chk-wrap label:after {
     content: "";
@@ -425,7 +421,6 @@ input[type="checkbox"], input[type="radio"] {
     height: 12px;
     border: 2px solid #ddd;
     border-radius: 4px;
-    background: #fff url('${pageContext.request.contextPath}/static/image/ico_inp.png') 0 0 no-repeat;
 }
 .inp-wrap.type02:after, .inp-wrap.type03:after {
     content: "";
