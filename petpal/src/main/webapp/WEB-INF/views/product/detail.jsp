@@ -423,11 +423,14 @@ font-weight:700;
            
            var inputCount = 1;
            var memberId = "${memberId}";
-           console.log(memberId);
+           var stock = ${productDto.productStock};
         
             //마이너스 버튼
             $(".btn-minus").click(function(){
-               
+            	if(stock == 0){
+              	  $(this).attr("disabled","true");
+              	  return;
+                }
             	 // 수량 버튼 조작
                 let quantity = $(this).parent("div").find("input").val();
                 let quantityInput = $(this).parent("div").find("#quantity");
@@ -451,7 +454,10 @@ font-weight:700;
            
            //플러스 버튼
             $(".btn-plus").click(function(){
-              
+              if(stock == 0){
+            	  $(this).attr("disabled","true");
+            	  return;
+              }
                // 수량 버튼 조작
                let quantity = $(this).parent("div").find("input").val();
                let quantityInput = $(this).parent("div").find("#quantity");
@@ -480,7 +486,10 @@ font-weight:700;
             $("#insert_cart").click(function(){
             	if(memberId == ""){
             		alert("로그인이 필요합니다");
-            	}else{
+            	}else if(stock == 0){
+            		alert("재고가 없습니다");
+            	}
+            	else{
             		
             	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();
@@ -514,9 +523,13 @@ font-weight:700;
             	// 상품 상세 페이지에서 상품 수량 -> 장바구니 에서 상품 수량
                var productCnt = $(this).parent().parent().parent().parent().find("input").val();      
                form.productCount = productCnt;
+               
                if(memberId == ""){
             	   alert("로그인이 필요합니다.");
-               }else{
+               }else if(stock == 0){
+            	   alert("재고가 없습니다");
+               }
+               else{
             	   
                
                $.ajax({
@@ -706,7 +719,12 @@ font-weight:700;
                                                 </c:if>
                                                 <button class="btn-plus" style="background-color: #fff;">"더하기"</button>
                                             </div>
+                                            <c:if test="${productDto.productStock == 0}">
+                                            	<span id="pass_quantity" class="pss_quantitys">(재고없음)</span>
+                                            </c:if>
+                                            <c:if test="${productDto.productStock != 0}">
                                             <span id="pass_quantity" class="pss_quantitys">(재고 ${productDto.productStock}개 남음)</span>
+                                            </c:if>
                                         </dd>
                                     </div>
                                 </div>
