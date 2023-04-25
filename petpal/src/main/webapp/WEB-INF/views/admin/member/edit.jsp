@@ -12,7 +12,7 @@
 	<div class="row">
 		<form action="edit" method="post" class="edit_form">
 			<input type="hidden" name="memberId" value="${memberDto.memberId}">
-			<input type="hidden" name="memberRegdate" value="${memberDto.memberRegdate }">
+			
 			
 			<table class="table center ms-20">
 			<colgroup>
@@ -45,7 +45,13 @@
 					</td>
 				</tr>
 				<tr>
-					<th>등급<th>
+					<th>가입일</th>
+					<td>
+						<input type="date" name="memberRegdate" value="${memberDto.memberRegdate }">
+					</td>
+				</tr>
+				<tr>
+				<th>등급<th>
 					<td>
 					<c:choose>
 						<c:when test="${memberDto.adminCk == 0 }">
@@ -76,7 +82,7 @@
 			</table>
 			<div class="row right">
 				<button class="edit-btn">수정</button>
-				<a class="link" href="${pageContext.request.contextPath}/list">목록</a>
+				<a class="link" href="${pageContext.request.contextPath}/admin/member/list">목록</a>
 			</div>
 			</form>
 		</div>
