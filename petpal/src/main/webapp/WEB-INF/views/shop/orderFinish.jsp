@@ -19,7 +19,7 @@
 <div id="pay-step" class="order">
         <div class="wrap">
             <h1 id="logo">
-                <a href="${pageContext.request.contextPath}/">펫팔</a>
+                <a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/static/image/petpallong.png" width="100"></a>
                 <sub style="top: 33px; left: auto; right: 0; color: #9091E6; font-weight: 500;">강아지용폼 전문몰 펫팔</sub>
             </h1>
             <div class="step-location">

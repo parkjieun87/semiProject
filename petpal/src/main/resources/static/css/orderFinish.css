@@ -27,7 +27,7 @@ ol, ul, li {
 #pay-step .wrap #logo{position: relative; top: 0; left: 0; padding: 16px 0;}
 #logo sub{top: 0;left: 227px;font-size: 14px;white-space: nowrap;}
 #pay-step .wrap #logo sub{top: 33px;left: auto;right: 0;color: #9091E6;font-weight: 500;}
-#logo a{display: block;margin-left: 0px;margin-top: 8px;padding-top: 54px;width: 215px;height: 54px;background: url(/static/image/petpallong.png) 0 0 no-repeat;-ms-background: url(/static/image/petpallong.png) 0 0 no-repeat;background-size: 198px auto;overflow: hidden;}
+#logo a{display: table; overflow: hidden;}
 a{box-sizing: border-box;color: #333;text-decoration: none;cursor: pointer;-webkit-tap-highlight-color: transparent;}
 
 /* 장바구니,주문/결제,결제완료 */
@@ -53,7 +53,6 @@ a{box-sizing: border-box;color: #333;text-decoration: none;cursor: pointer;-webk
 .step-location ul li:first-child{
     padding-left: 60px;
     border-left: 1px solid #e0e0e0;
-    background-image: url(/static/image/cart.png);
     background-size: 100px auto;
     background-repeat: no-repeat;
     background-position-x: 160px;
@@ -74,7 +73,6 @@ sup{
     top: 0;
     right: 0;
     height: 98px;
-    background: #fff url(/static/image/cart.png) 0 33px no-repeat;
 }
 .step-location ul li:first-child{
     padding-left: 20px;
@@ -106,14 +104,12 @@ li.active::before{
     background-color: #fff;
 }
 .step-location ul .step02{
-    background-image: url(/static/image/dollar.png);
     background-size: 88px auto;
     background-repeat: no-repeat;
     background-position-x: 173px;
     background-position-y: 10px;
 }
 .step-location ul .step03{
-    background-image: url(/static/image/check.png);
     background-size: 88px auto;
     background-repeat: no-repeat;
     background-position-x: 172px;
