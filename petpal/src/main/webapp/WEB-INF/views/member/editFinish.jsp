@@ -25,7 +25,7 @@
 </div>
 <div class="row center">	
 	<a href="${pageContext.request.contextPath}/"><button class="form-btn positive w-70">홈으로</button></a>
-	<a href="${pageContext.request.contextPath}/mypage"><button class="form-btn neutral w-70">마이 페이지</button></a>
+	<button class="form-btn neutral w-70" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">마이페이지</button>
 </div>
 </div>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
