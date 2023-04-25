@@ -27,7 +27,8 @@
 	<input type="password" name="memberPw" class="form-input w-50"  required placeholder="비밀번호"><br><br>
 	<button class="form-btn positive w-50" style="margin-bottom : 10px;">로그인</button>
 	
-	<button class= "form-btn neutral w-50" onclick="${pageContext.request.contextPath}/location.href='find'">아이디가 기억나지 않습니다</button>
+	<button class="form-btn neutral w-50" onclick="location.href='${pageContext.request.contextPath}/member/find'">아이디가 기억나지 않습니다</button>
+
 	
 </form>
 </div>
