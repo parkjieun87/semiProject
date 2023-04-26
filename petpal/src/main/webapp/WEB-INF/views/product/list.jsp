@@ -164,7 +164,7 @@ a:visited {
 
     				// URL에 파라미터를 다시 붙여서 새로운 URL을 생성합니다.
     				if(!paramsArray.length == 0) var newUrl = url.split("?")[0] + "?" + paramsArray.join("&");
-    				else var newUrl = new URL('http://localhost:80/home');			
+    				else var newUrl = new URL('https://sysout.co.kr/petpal/');			
     				// 새로운 URL로 이동합니다.
     				window.location.href = newUrl;
         			
@@ -180,7 +180,6 @@ a:visited {
 <body>
 
 	<div id="middle" class="goods-list">
-		<h1> kkkk </h1>
 		<div class="wrap container-1200 ms-60">
 			<div id="contents-wrap">
 				<div id="lnb" class="item-option">
@@ -193,14 +192,14 @@ a:visited {
 
 										<ul>
 											<li style="line-height: 24px;"><a
-												href="${pageContext.request.contextPath}/?search_word=${parentName}" class="cate-link"> 전체
+												href="${pageContext.request.contextPath}/product/list?search_word=${parentName}" class="cate-link"> 전체
 													<span class="ic-num">(${sum})</span>
 											</a></li>
 										</ul>
 										<ul>
 											<c:forEach var="cateList" items="${cateList}">
 												<li><a
-													href="${pageContext.request.contextPath}/?search_word=${parentName}&categoryCode=${cateList.categoryCode}&sort=${sort}"
+													href="${pageContext.request.contextPath}/product/list?search_word=${parentName}&categoryCode=${cateList.categoryCode}&sort=${sort}"
 													data="${cateList.categoryCode}" class="cate-link">
 														${cateList.categoryName} <em class="ic-num">(${cateList.categoryCount})</em>
 												</a></li>
@@ -214,18 +213,18 @@ a:visited {
 								<ul>
 									<li>
 										<h2 id="tag" style="width: 200px;">
-											<a href="${pageContext.request.contextPath}/?parentCode=${parent}">${parentName}</a>
+											<a href="?parentCode=${parent}">${parentName}</a>
 										</h2>
 
 										<ul>
 											<li style="line-height: 24px;"><a
-												href="${pageContext.request.contextPath}/?parentCode=${parent}" class="cate-link"> 전체 <span
+												href="${pageContext.request.contextPath}/product/list?parentCode=${parent}" class="cate-link"> 전체 <span
 													class="ic-num">(${sum})</span>
 											</a></li>
 										</ul>
 										<ul>
 											<c:forEach var="cateList" items="${cateList}">
-												<li><a href="?categoryCode=${cateList.categoryCode}"
+												<li><a href="${pageContext.request.contextPath}/product/list?categoryCode=${cateList.categoryCode}"
 													data="${cateList.categoryCode}" class="cate-link">
 														${cateList.categoryName} <em class="ic-num">(${cateList.categoryCount})</em>
 												</a></li>
@@ -257,7 +256,7 @@ a:visited {
 				<div id="contents" class="goods-wrap">
 					<div class="banner-area" style="border-radius: 10px;">
 						<div>
-							<a href="${pageContext.request.contextPath}/detail?productNo=286"> <img
+							<a href="${pageContext.request.contextPath}/product/detail?productNo=286"> <img
 								src="${pageContext.request.contextPath }/static/image/dogpang_banner.jpg"
 								style="border-radius: 10px;">
 							</a>

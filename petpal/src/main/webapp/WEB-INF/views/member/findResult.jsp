@@ -19,7 +19,7 @@
   
 	<div class="row center">	
 	<h4>찾으시는 아이디는 ${memberId} 입니다.</h4>
-	<a href="${pageContext.request.contextPath}/login"><button class="form-btn positive w-50">로그인하기</button></a>
+	<button class="form-btn positive w-50" onclick="location.href='${pageContext.request.contextPath}/member/login'">로그인하기</button>
 	</div>
   </div>
 
