@@ -1,4 +1,12 @@
+
 $(function(){
+
+   var unitBuyerTel = false;
+   var unitBuyer = false;
+   var unitAgree = false;
+   var unitReceiveTel = false;
+   var unitDetail = false;
+
 
             //주소 
             $(".btn-post").click(function(){
@@ -67,21 +75,31 @@ $(function(){
             });
         
             //내용 삭제
-            $(".btn-clear1").click(function(){
-                $("#phone").val("");
-            })           
-            $(".btn-clear2").click(function(){
-                $("#phone2").val("");
-            })           
-            $(".btn-clear3").click(function(){
-                $("#receive-name").val("");
-            })           
-            $(".btn-clear4").click(function(){
-                $("#receive-tel").val("");
-            })           
-            $(".btn-clear5").click(function(){
-                $("#receive-address-detail").val("");
-            })    
+           $(".btn-clear1").click(function(){
+		    $("#phone").val("");
+		    $("#phone").empty();
+		    
+			})           
+			$(".btn-clear2").click(function(){
+			    $("#phone2").val("");
+			    $("#phone2").empty();
+			    unitBuyerTel = false;
+			})           
+			$(".btn-clear3").click(function(){
+			    $("#receive-name").val("");
+			    $("#receive-name").empty();
+			    unitBuyer = false;
+			})           
+			$(".btn-clear4").click(function(){
+			    $("#receive-tel").val("");
+			    $("#receive-tel").empty();
+			    unitReceiveTel = false;
+			})           
+			$(".btn-clear5").click(function(){
+			    $("#receive-address-detail").val("");
+			    $("#receive-address-detail").empty();
+			    unitDetail = false;
+			})   
             
 
            
