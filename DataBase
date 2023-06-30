@@ -1,0 +1,254 @@
+CREATE TABLE `Member` (
+	`member_id`	varchar2(20)	NOT NULL,
+	`member_pw`	varchar2(20)	NULL,
+	`member_name`	varchar2(90)	NULL,
+	`member_email`	varchar2(100)	NULL,
+	`member_tel`	varchar2(30)	NULL,
+	`member_nick`	varchar2(30)	NULL,
+	`adminCk`	number	NULL,
+	`member_regdate`	date	NULL,
+	`member_post`	varchar2(6)	NULL,
+	`member_basic_addr`	varchar2((30)	NULL,
+	`member_detail_addr`	varchar2(30)	NULL
+);
+
+CREATE TABLE `Product` (
+	`product_no`	number	NOT NULL,
+	`category_code`	varchar2(20)	NOT NULL,
+	`product_name`	varchar2(200)	NULL,
+	`product_price`	number	NULL,
+	`product_stock`	number	NULL,
+	`product_desc`	varchar2(4000)	NULL,
+	`product_regdate`	date	NULL,
+	`product_discount`	number	NULL
+);
+
+CREATE TABLE `product_cate` (
+	`category_code`	varchar2(20)	NOT NULL,
+	`category_parent`	varchar2(20)	NULL,
+	`tier`	number	NULL,
+	`cartegory_name`	varchar2(20)	NULL
+);
+
+CREATE TABLE `Cart` (
+	`cart_no`	number	NOT NULL,
+	`product_no`	number	NOT NULL,
+	`member_id`	varchar2(20)	NOT NULL,
+	`product_count`	number	NULL
+);
+
+CREATE TABLE `Product_Attachment` (
+	`attachment_no`	number	NOT NULL,
+	`attachment_name`	varchar2(30)	NULL,
+	`attachment_size`	number	NULL,
+	`attachment_type`	varchar2(60)	NULL
+);
+
+CREATE TABLE `product_order` (
+	`order_no`	number	NOT NULL	COMMENT '시퀀스 부여, 시퀀스 1000부터',
+	`member_id`	varchar2(20)	NOT NULL,
+	`order_date`	date	NULL,
+	`receiver_name`	varchar2(20)	NULL,
+	`receiver_tel`	char(13)	NULL,
+	`receiver_basic_addr`	varchar2(30)	NULL,
+	`receiver_post`	varchar2(6)	NULL,
+	`receiver_detail_addr`	varchar2(30)	NULL,
+	`total_price`	number	NULL
+);
+
+CREATE TABLE `order_detail` (
+	`order_detail_no`	number	NOT NULL	COMMENT '1000부터',
+	`order_no`	number	NOT NULL,
+	`product_no`	number	NOT NULL,
+	`member_id`	varchar2(30)	NOT NULL,
+	`product_count`	number	NULL,
+	`product_price`	number	NULL
+);
+
+CREATE TABLE `product_review` (
+	`review_no`	number	NOT NULL,
+	`product_no`	number	NOT NULL,
+	`member_id`	varchar2(30)	NOT NULL,
+	`review_content`	varchar2(2000)	NULL,
+	`review_date`	date	NULL
+);
+
+CREATE TABLE `notice_board` (
+	`board_no`	number	NOT NULL,
+	`board_title`	varchar2(200)	NULL,
+	`board_content`	varchar2(2000)	NULL,
+	`board_date`	date	NULL
+);
+
+CREATE TABLE `FAQ` (
+	`faq_no`	number	NOT NULL,
+	`faq_title`	varchar2(50)	NULL,
+	`faq_answer`	varchar2(2000)	NULL,
+	`faq_category`	number	NULL
+);
+
+CREATE TABLE `Product_image` (
+	`attachment_no`	number	NOT NULL,
+	`product_no`	number	NOT NULL
+);
+
+CREATE TABLE `reply` (
+	`reply_id`	number	NOT NULL,
+	`product_no`	number	NOT NULL,
+	`member_id`	varchar2(20)	NOT NULL,
+	`regDate`	date	NULL,
+	`content`	varchar2(4000)	NULL,
+	`rating`	number	NULL
+);
+
+ALTER TABLE `Member` ADD CONSTRAINT `PK_MEMBER` PRIMARY KEY (
+	`member_id`
+);
+
+ALTER TABLE `Product` ADD CONSTRAINT `PK_PRODUCT` PRIMARY KEY (
+	`product_no`,
+	`category_code`
+);
+
+ALTER TABLE `product_cate` ADD CONSTRAINT `PK_PRODUCT_CATE` PRIMARY KEY (
+	`category_code`
+);
+
+ALTER TABLE `Cart` ADD CONSTRAINT `PK_CART` PRIMARY KEY (
+	`cart_no`,
+	`product_no`,
+	`member_id`
+);
+
+ALTER TABLE `Product_Attachment` ADD CONSTRAINT `PK_PRODUCT_ATTACHMENT` PRIMARY KEY (
+	`attachment_no`
+);
+
+ALTER TABLE `product_order` ADD CONSTRAINT `PK_PRODUCT_ORDER` PRIMARY KEY (
+	`order_no`,
+	`member_id`
+);
+
+ALTER TABLE `order_detail` ADD CONSTRAINT `PK_ORDER_DETAIL` PRIMARY KEY (
+	`order_detail_no`,
+	`order_no`,
+	`product_no`,
+	`member_id`
+);
+
+ALTER TABLE `product_review` ADD CONSTRAINT `PK_PRODUCT_REVIEW` PRIMARY KEY (
+	`review_no`,
+	`product_no`,
+	`member_id`
+);
+
+ALTER TABLE `notice_board` ADD CONSTRAINT `PK_NOTICE_BOARD` PRIMARY KEY (
+	`board_no`
+);
+
+ALTER TABLE `FAQ` ADD CONSTRAINT `PK_FAQ` PRIMARY KEY (
+	`faq_no`
+);
+
+ALTER TABLE `Product_image` ADD CONSTRAINT `PK_PRODUCT_IMAGE` PRIMARY KEY (
+	`attachment_no`,
+	`product_no`
+);
+
+ALTER TABLE `reply` ADD CONSTRAINT `PK_REPLY` PRIMARY KEY (
+	`reply_id`,
+	`product_no`,
+	`member_id`
+);
+
+ALTER TABLE `Product` ADD CONSTRAINT `FK_product_cate_TO_Product_1` FOREIGN KEY (
+	`category_code`
+)
+REFERENCES `product_cate` (
+	`category_code`
+);
+
+ALTER TABLE `Cart` ADD CONSTRAINT `FK_Product_TO_Cart_1` FOREIGN KEY (
+	`product_no`
+)
+REFERENCES `Product` (
+	`product_no`
+);
+
+ALTER TABLE `Cart` ADD CONSTRAINT `FK_Member_TO_Cart_1` FOREIGN KEY (
+	`member_id`
+)
+REFERENCES `Member` (
+	`member_id`
+);
+
+ALTER TABLE `product_order` ADD CONSTRAINT `FK_Member_TO_product_order_1` FOREIGN KEY (
+	`member_id`
+)
+REFERENCES `Member` (
+	`member_id`
+);
+
+ALTER TABLE `order_detail` ADD CONSTRAINT `FK_product_order_TO_order_detail_1` FOREIGN KEY (
+	`order_no`
+)
+REFERENCES `product_order` (
+	`order_no`
+);
+
+ALTER TABLE `order_detail` ADD CONSTRAINT `FK_product_order_TO_order_detail_2` FOREIGN KEY (
+	`member_id`
+)
+REFERENCES `product_order` (
+	`member_id`
+);
+
+ALTER TABLE `order_detail` ADD CONSTRAINT `FK_Product_TO_order_detail_1` FOREIGN KEY (
+	`product_no`
+)
+REFERENCES `Product` (
+	`product_no`
+);
+
+ALTER TABLE `product_review` ADD CONSTRAINT `FK_Product_TO_product_review_1` FOREIGN KEY (
+	`product_no`
+)
+REFERENCES `Product` (
+	`product_no`
+);
+
+ALTER TABLE `product_review` ADD CONSTRAINT `FK_Member_TO_product_review_1` FOREIGN KEY (
+	`member_id`
+)
+REFERENCES `Member` (
+	`member_id`
+);
+
+ALTER TABLE `Product_image` ADD CONSTRAINT `FK_Product_Attachment_TO_Product_image_1` FOREIGN KEY (
+	`attachment_no`
+)
+REFERENCES `Product_Attachment` (
+	`attachment_no`
+);
+
+ALTER TABLE `Product_image` ADD CONSTRAINT `FK_Product_TO_Product_image_1` FOREIGN KEY (
+	`product_no`
+)
+REFERENCES `Product` (
+	`product_no`
+);
+
+ALTER TABLE `reply` ADD CONSTRAINT `FK_Product_TO_reply_1` FOREIGN KEY (
+	`product_no`
+)
+REFERENCES `Product` (
+	`product_no`
+);
+
+ALTER TABLE `reply` ADD CONSTRAINT `FK_Member_TO_reply_1` FOREIGN KEY (
+	`member_id`
+)
+REFERENCES `Member` (
+	`member_id`
+);
+
